@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/utils/app_assets.dart';
 
 const backgroundColrors = [
   Color(0xff61b3de),
@@ -10,8 +11,16 @@ const backgroundColrors = [
 
 const appListStrings = [
   "القران الكريم",
-  "الاذكار",
+  "الحديث",
   "مواقيت الصلاة",
-  "القران الكريم",
-  "القران الكريم",
+  "الاذكار",
+  "السبحة الالكترونية",
+];
+
+const appHomeIcons = [
+  AppAssets.quranSvgPath,
+  AppAssets.hadithSvgPath,
+  AppAssets.alarmSvgPath,
+  AppAssets.compassSvgPath,
+  AppAssets.seb7aSvgPath,
 ];
