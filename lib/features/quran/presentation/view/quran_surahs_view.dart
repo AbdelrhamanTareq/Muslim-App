@@ -13,7 +13,6 @@ class _QuranSurahsViewState extends State<QuranSurahsView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-    
       body: SafeArea(child: BlocBuilder<QuranCubit, QuranState>(
         builder: (context, state) {
           if (state is QuranGetAllDataError) {
@@ -25,8 +24,33 @@ class _QuranSurahsViewState extends State<QuranSurahsView> {
               itemCount: state.data.length,
               itemBuilder: (context, index) {
                 return ListTile(
-                  leading: Text(state.data[index].name),
-                  trailing: Text((state.data[index].name.length).toString()),
+                  leading: Text(
+                    state.data[index].name,
+                    style: const TextStyle(
+                        fontFamily: "Uthman",
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  trailing: FittedBox(
+                    child: Column(
+                      children: [
+                       const Text(
+                          "عدد اياتها",
+                          style:  TextStyle(
+                            fontFamily: "Uthman",
+                            fontSize: 20,
+                          ),
+                        ),
+                        Text(
+                          (state.data[index].array.length).toString(),
+                          style: const TextStyle(
+                            fontFamily: "Uthman",
+                            fontSize: 22,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
               separatorBuilder: (context, index) => const Divider(),
