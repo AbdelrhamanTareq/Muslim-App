@@ -8,11 +8,14 @@ part 'quran.g.dart';
 class Quran {
   final int id;
   final String name;
+  @JsonKey(name: "name_en")
   final String nameEn;
+  @JsonKey(name: "name_translation")
   final String nameTranslation;
   final int words;
   final int letters;
   final String type;
+  @JsonKey(name: "type_en")
   final String typeEn;
   final String ar;
   final String en;
