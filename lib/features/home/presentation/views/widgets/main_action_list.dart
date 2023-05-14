@@ -19,8 +19,11 @@ class MainActionList extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => const QuranSurahsView()));
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => const QuranSurahsView(),
+                ),
+              );
             },
             child: Container(
               margin: const EdgeInsets.all(16),
