@@ -5,12 +5,12 @@ import 'package:flutter/services.dart';
 import '../models/quran.dart';
 
 abstract class QuranRepo {
-  Future<void> getAllQuranData();
+  Future<List<Quran>> getAllQuranData();
 }
 
 class QuranRepoImpl implements QuranRepo {
   @override
-  Future<void> getAllQuranData() async {
+  Future<List<Quran>> getAllQuranData() async {
     final List<Quran> quranData = [];
 
     final stringData = await rootBundle.loadString("assets/quran/quran.json");
@@ -20,5 +20,6 @@ class QuranRepoImpl implements QuranRepo {
       final quran = Quran.fromJson(element);
       quranData.add(quran);
     });
+    return quranData;
   }
 }
