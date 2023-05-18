@@ -78,6 +78,11 @@ flutter:
         - asset: assets/fonts/Uthman-Regular.ttf
         - asset: assets/fonts/Uthman-Bold.ttf
           weight: 700
+    - family: me_quran
+      fonts:
+        - asset: assets/fonts/me_quran-Regular.ttf
+       
+          
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

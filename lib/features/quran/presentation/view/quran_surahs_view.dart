@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/view/quran_shrah_details.dart';
 
 class QuranSurahsView extends StatefulWidget {
   const QuranSurahsView({super.key});
@@ -23,32 +24,40 @@ class _QuranSurahsViewState extends State<QuranSurahsView> {
             return ListView.separated(
               itemCount: state.data.length,
               itemBuilder: (context, index) {
-                return ListTile(
-                  leading: Text(
-                    state.data[index].name,
-                    style: const TextStyle(
-                        fontFamily: "Uthman",
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
-                  ),
-                  trailing: FittedBox(
-                    child: Column(
-                      children: [
-                       const Text(
-                          "عدد اياتها",
-                          style:  TextStyle(
-                            fontFamily: "Uthman",
-                            fontSize: 20,
+                return InkWell(
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>  QuranSurahDetails(state.data[index].array),
+                      )),
+                  child: ListTile(
+                    leading: Text(
+                      state.data[index].name,
+                      style: const TextStyle(
+                          fontFamily: "me_quran",
+                          fontSize: 22,
+                          //fontWeight: FontWeight.bold
                           ),
-                        ),
-                        Text(
-                          (state.data[index].array.length).toString(),
-                          style: const TextStyle(
-                            fontFamily: "Uthman",
-                            fontSize: 22,
+                    ),
+                    trailing: FittedBox(
+                      child: Column(
+                        children: [
+                          const Text(
+                            "عدد آياتها",
+                            style: TextStyle(
+                              fontFamily: "me_quran",
+                              fontSize: 20,
+                            ),
                           ),
-                        ),
-                      ],
+                          Text(
+                            (state.data[index].array.length).toString(),
+                            style: const TextStyle(
+                              fontFamily: "Uthman",
+                              fontSize: 22,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
