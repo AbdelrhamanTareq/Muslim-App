@@ -1,7 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
+import '../../../../core/injection_container.dart';
+import '../../data/local_data/quran_local_data.dart';
 import 'widgets/basmala.dart';
 import 'widgets/surh_with_text_span.dart';
 
@@ -30,6 +31,20 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 252, 252, 206),
+      appBar: AppBar(
+        title: Text("surh"),
+        actions: [
+          IconButton(
+              onPressed: () {
+                final double postion =
+                    instance<QuranLocalData>().getBookmark() ?? 0.0;
+                _scrollController.animateTo(postion - 190,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn);
+              },
+              icon: Icon(Icons.bookmark))
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.only(top: 24, left: 2, right: 2),
         child: Center(

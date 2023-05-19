@@ -38,7 +38,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_svg: ^2.0.5
+  get_it: ^7.6.0
   json_serializable: ^6.6.2
+  shared_preferences: ^2.1.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0
@@ -81,8 +83,6 @@ flutter:
     - family: me_quran
       fonts:
         - asset: assets/fonts/me_quran-Regular.ttf
-       
-          
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:

@@ -1,6 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
+import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 
 import '../../../data/models/quran.dart';
 
@@ -9,7 +11,8 @@ class SurhWithTextSpan extends StatelessWidget {
     super.key,
     required List<Array> surahAyat,
     required ScrollController scrollController,
-  }) : _scrollController = scrollController, _surahAyat = surahAyat;
+  })  : _scrollController = scrollController,
+        _surahAyat = surahAyat;
 
   final List<Array> _surahAyat;
   final ScrollController _scrollController;
@@ -44,16 +47,31 @@ class SurhWithTextSpan extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     IconButton(
-                                      onPressed: () {
-                                        print(_scrollController.offset -
-                                            details.globalPosition.dy);
+                                      onPressed: () async {
+                                        print(_scrollController.offset);
+                                        print(details.globalPosition.distance);
+                                        print(
+                                            MediaQuery.of(context).padding.top);
+                                        await instance<QuranLocalData>()
+                                            .setBookmark(
+                                                _scrollController.offset +
+                                                    details.globalPosition
+                                                        .distance 
+                                                    );
+                                        Navigator.pop(context);
                                       },
                                       icon: const Icon(Icons.bookmark),
                                     ),
                                     IconButton(
                                       onPressed: () {
-                                        _scrollController
-                                            .jumpTo(2184.1868161757807);
+                                        _scrollController.animateTo(
+                                            (2102.951152521807 +
+                                                531.330346159729 -
+                                                70),
+                                            duration: const Duration(
+                                                milliseconds: 300),
+                                            curve: Curves.easeIn);
+                                        Navigator.pop(context);
                                       },
                                       icon: const Icon(Icons.share),
                                     ),
