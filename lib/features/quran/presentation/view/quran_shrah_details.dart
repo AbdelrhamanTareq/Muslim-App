@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
-import '../../../../core/injection_container.dart';
-import '../../data/local_data/quran_local_data.dart';
+
 import 'widgets/basmala.dart';
 import 'widgets/sura_name_shape.dart';
 import 'widgets/surh_with_text_span.dart';
