@@ -4,13 +4,16 @@ import 'package:muslim_app/features/quran/data/models/quran.dart';
 import '../../../../core/injection_container.dart';
 import '../../data/local_data/quran_local_data.dart';
 import 'widgets/basmala.dart';
+import 'widgets/sura_name_shape.dart';
 import 'widgets/surh_with_text_span.dart';
 
 class QuranSurahDetails extends StatefulWidget {
   final List<Array> _surahAyat;
+  final String _surahName;
 
   const QuranSurahDetails(
-    this._surahAyat, {
+    this._surahAyat,
+    this._surahName, {
     super.key,
   });
 
@@ -28,43 +31,75 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
     // }
 
     ScrollController _scrollController = ScrollController();
-
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 252, 252, 206),
-      appBar: AppBar(
-        title: Text("surh"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                final double postion =
-                    instance<QuranLocalData>().getBookmark() ?? 0.0;
-                _scrollController.animateTo(postion - 190,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn);
-              },
-              icon: Icon(Icons.bookmark))
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 24, left: 2, right: 2),
-        child: Center(
-          child: SingleChildScrollView(
-            controller: _scrollController,
-            child: Column(
+      body: SafeArea(
+        child: Stack(
+          children: [
+            Stack(
               children: [
-                widget._surahAyat.length == 7 || widget._surahAyat.length == 129
-                    ? const Text("")
-                    : const Basmala(),
-                const SizedBox(
-                  height: 8,
+                Align(
+                  alignment: Alignment.topRight,
+                  child: Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: const Icon(
+                        Icons.bookmark,
+                        size: 30,
+                      ),
+                    ),
+                  ),
                 ),
-                SurhWithTextSpan(
-                  surahAyat: widget._surahAyat,
-                  scrollController: _scrollController,
+                Align(
+                  alignment: Alignment.topCenter,
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.5,
+                    height: 100,
+                    child: CustomPaint(
+                      painter: SurhNameCustomPainter(),
+                      child:  Align(
+                        alignment: Alignment.center,
+                        child: FittedBox(
+                          child: Padding(
+                            padding: const  EdgeInsets.only(left: 8, right: 8),
+                            child: Text(
+                            widget. _surahName,
+                              style: const  TextStyle(fontSize: 22),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
               ],
             ),
-          ),
+           
+            Padding(
+              padding: const EdgeInsets.only(top: 124, left: 2, right: 2),
+              child: Center(
+                child: SingleChildScrollView(
+                  controller: _scrollController,
+                  child: Column(
+                    children: [
+                      widget._surahAyat.length == 7 ||
+                              widget._surahAyat.length == 129
+                          ? const Text("")
+                          : const Basmala(),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      SurhWithTextSpan(
+                        surahAyat: widget._surahAyat,
+                        scrollController: _scrollController,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
