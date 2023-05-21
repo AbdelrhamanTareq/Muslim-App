@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
-
+import '../../../../core/injection_container.dart';
+import '../../data/local_data/quran_local_data.dart';
 import 'widgets/basmala.dart';
 import 'widgets/sura_name_shape.dart';
 import 'widgets/surh_with_text_span.dart';
@@ -42,7 +43,23 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        final _bookmarkedSurhName =
+                            instance<QuranLocalData>().getBookMarkedSurhName();
+                        if (_bookmarkedSurhName != widget._surahName) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text("لا يوجد علامة في هذة الصورة"),
+                            ),
+                          );
+                          return;
+                        }
+                        final double _position =
+                            instance<QuranLocalData>().getBookmark() ?? 0;
+                        _scrollController.animateTo(_position -240,
+                            duration: const Duration(milliseconds: 300),
+                            curve: Curves.easeIn);
+                      },
                       icon: const Icon(
                         Icons.bookmark,
                         size: 30,
@@ -57,14 +74,14 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                     height: 100,
                     child: CustomPaint(
                       painter: SurhNameCustomPainter(),
-                      child:  Align(
+                      child: Align(
                         alignment: Alignment.center,
                         child: FittedBox(
                           child: Padding(
-                            padding: const  EdgeInsets.only(left: 8, right: 8),
+                            padding: const EdgeInsets.only(left: 8, right: 8),
                             child: Text(
-                            widget. _surahName,
-                              style: const  TextStyle(fontSize: 22),
+                              widget._surahName,
+                              style: const TextStyle(fontSize: 22),
                             ),
                           ),
                         ),
@@ -74,7 +91,6 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                 ),
               ],
             ),
-           
             Padding(
               padding: const EdgeInsets.only(top: 124, left: 2, right: 2),
               child: Center(
@@ -90,6 +106,7 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                         height: 8,
                       ),
                       SurhWithTextSpan(
+                        surhName: widget._surahName,
                         surahAyat: widget._surahAyat,
                         scrollController: _scrollController,
                       ),
