@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/utils/texts_styles.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_shrah_details.dart';
 
@@ -36,46 +37,34 @@ class _QuranSurahsViewState extends State<QuranSurahsView> {
                     onTap: () => Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) =>
-                              QuranSurahDetails(state.data[index].array, state.data[index].name),
+                          builder: (context) => QuranSurahDetails(
+                              state.data[index].array, state.data[index].name),
                         )),
                     child: ListTile(
                       leading: Text(
                         state.data[index].name,
-                        style: const TextStyle(
-                          fontFamily: "me_quran",
-                          fontSize: 22,
-                          //fontWeight: FontWeight.bold
-                        ),
+                        style:
+                            AppTextsStyle.quranTextStyle.copyWith(fontSize: 22),
                       ),
                       trailing: FittedBox(
                         child: Column(
                           children: [
                             Row(
                               children: [
-                                const Text(
-                                  " عدد آياتها",
-                                  style: TextStyle(
-                                    fontFamily: "me_quran",
-                                    fontSize: 20,
-                                  ),
-                                ),
+                                const Text(" عدد آياتها",
+                                    style: AppTextsStyle.surhsDetailsTextStyle),
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                Text(state.data[index].array.length.toString(),
-                                    style: const TextStyle(
-                                      fontFamily: "me_quran",
-                                      fontSize: 20,
-                                    ))
+                                Text(
+                                  state.data[index].array.length.toString(),
+                                  style: AppTextsStyle.surhsDetailsTextStyle,
+                                )
                               ],
                             ),
                             Text(
                               (state.data[index].type).toString(),
-                              style: const TextStyle(
-                                fontFamily: "Uthman",
-                                fontSize: 22,
-                              ),
+                              style: AppTextsStyle.surhsDetailsTextStyle,
                             ),
                           ],
                         ),

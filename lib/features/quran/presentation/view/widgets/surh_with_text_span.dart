@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
+import 'package:muslim_app/core/utils/texts_styles.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 
 import '../../../data/models/quran.dart';
@@ -63,7 +64,8 @@ class SurhWithTextSpan extends StatelessWidget {
                                                         details.globalPosition
                                                             .distance);
                                             await instance<QuranLocalData>()
-                                                .setBookMarkedSurhName(_surhName);
+                                                .setBookMarkedSurhName(
+                                                    _surhName);
 
                                             Navigator.pop(context);
                                           },
@@ -75,16 +77,7 @@ class SurhWithTextSpan extends StatelessWidget {
                                     Column(
                                       children: [
                                         IconButton(
-                                          onPressed: () {
-                                            // _scrollController.animateTo(
-                                            //     (2102.951152521807 +
-                                            //         531.330346159729 -
-                                            //         70),
-                                            //     duration: const Duration(
-                                            //         milliseconds: 300),
-                                            //     curve: Curves.easeIn);
-                                            // Navigator.pop(context);
-                                          },
+                                          onPressed: () {},
                                           icon: const Icon(Icons.share),
                                         ),
                                         const Text("مشاركة")
@@ -105,12 +98,10 @@ class SurhWithTextSpan extends StatelessWidget {
             )
             .toList(),
       ),
-      style: const TextStyle(
-        fontSize: 25,
-        fontFamily: "me_quran",
-        height: 2,
-        color: Color.fromARGB(196, 44, 44, 44),
-      ),
+      style:
+       AppTextsStyle.quranTextStyle
+      
+      ,
       textAlign: TextAlign.center,
     );
   }

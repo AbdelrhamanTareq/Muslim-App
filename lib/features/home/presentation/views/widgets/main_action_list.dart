@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/core/utils/texts_styles.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
@@ -70,8 +72,8 @@ class MainActionList extends StatelessWidget {
                       padding: const EdgeInsets.all(12.0),
                       child: Text(
                         appListStrings[index],
-                        style: TextStyle(
-                            fontSize: 28,
+                        style: AppTextsStyle.surhsNamesTextStyle.copyWith(
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             color: Colors.white),
                       ),
