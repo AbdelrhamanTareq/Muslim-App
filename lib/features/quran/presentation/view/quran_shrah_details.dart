@@ -56,7 +56,7 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                         }
                         final double _position =
                             instance<QuranLocalData>().getBookmark() ?? 0;
-                        _scrollController.animateTo(_position -240,
+                        _scrollController.animateTo(_position - 240,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn);
                       },

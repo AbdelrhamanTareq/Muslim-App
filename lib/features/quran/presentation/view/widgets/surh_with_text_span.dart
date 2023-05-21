@@ -49,36 +49,46 @@ class SurhWithTextSpan extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    IconButton(
-                                      onPressed: () async {
-                                        // print(_scrollController.offset);
-                                        // print(details.globalPosition.distance);
-                                        // print(
-                                        //     MediaQuery.of(context).padding.top);
-                                        await instance<QuranLocalData>()
-                                            .setBookmark(
-                                                _scrollController.offset +
-                                                    details.globalPosition
-                                                        .distance);
-                                        await instance<QuranLocalData>()
-                                            .setBookMarkedSurhName(_surhName);
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                          onPressed: () async {
+                                            // print(_scrollController.offset);
+                                            // print(details.globalPosition.distance);
+                                            // print(
+                                            //     MediaQuery.of(context).padding.top);
+                                            await instance<QuranLocalData>()
+                                                .setBookmark(
+                                                    _scrollController.offset +
+                                                        details.globalPosition
+                                                            .distance);
+                                            await instance<QuranLocalData>()
+                                                .setBookMarkedSurhName(_surhName);
 
-                                        Navigator.pop(context);
-                                      },
-                                      icon: const Icon(Icons.bookmark),
+                                            Navigator.pop(context);
+                                          },
+                                          icon: const Icon(Icons.bookmark),
+                                        ),
+                                        Text("علامة")
+                                      ],
                                     ),
-                                    IconButton(
-                                      onPressed: () {
-                                        // _scrollController.animateTo(
-                                        //     (2102.951152521807 +
-                                        //         531.330346159729 -
-                                        //         70),
-                                        //     duration: const Duration(
-                                        //         milliseconds: 300),
-                                        //     curve: Curves.easeIn);
-                                        // Navigator.pop(context);
-                                      },
-                                      icon: const Icon(Icons.share),
+                                    Column(
+                                      children: [
+                                        IconButton(
+                                          onPressed: () {
+                                            // _scrollController.animateTo(
+                                            //     (2102.951152521807 +
+                                            //         531.330346159729 -
+                                            //         70),
+                                            //     duration: const Duration(
+                                            //         milliseconds: 300),
+                                            //     curve: Curves.easeIn);
+                                            // Navigator.pop(context);
+                                          },
+                                          icon: const Icon(Icons.share),
+                                        ),
+                                        const Text("مشاركة")
+                                      ],
                                     ),
                                   ],
                                 ),
