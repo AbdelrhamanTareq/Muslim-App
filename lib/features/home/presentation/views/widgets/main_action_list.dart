@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/utils/texts_styles.dart';
+import 'package:muslim_app/features/hadith/view/hadith_view.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
@@ -23,7 +24,7 @@ class MainActionList extends StatelessWidget {
             onTap: () {
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) => const QuranSurahsView(),
+                  builder: (context) => const HadithView(),
                 ),
               );
             },
@@ -68,8 +69,9 @@ class MainActionList extends StatelessWidget {
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
-                    child: Padding(
-                      padding: const EdgeInsets.all(12.0),
+                    child: Container(
+                      color: Colors.black.withOpacity(0.1),
+                     padding: const EdgeInsets.only(right: 8, bottom: 8),
                       child: Text(
                         appListStrings[index],
                         style: AppTextsStyle.surhsNamesTextStyle.copyWith(
