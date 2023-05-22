@@ -4,12 +4,15 @@ class ScreenObject {
   final String _name;
   final Color _color;
   final String _path;
+  final String _iconAsset;
 
   ScreenObject({
     required Color color,
     required String name,
     required String path,
+    required String iconAsset,
   })  : _name = name,
         _color = color,
-        _path = path;
+        _path = path,
+        _iconAsset = iconAsset;
 }
