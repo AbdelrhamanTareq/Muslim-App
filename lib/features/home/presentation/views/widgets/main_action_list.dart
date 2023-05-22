@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/utils/texts_styles.dart';
 import 'package:muslim_app/features/hadith/view/hadith_view.dart';
-import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
 
@@ -34,7 +32,7 @@ class MainActionList extends StatelessWidget {
               height: 200,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
-                color: backgroundColrors[index],
+                color: appScreen[index].color,
                 boxShadow: const [
                   BoxShadow(
                     color: Colors.grey,
@@ -59,7 +57,7 @@ class MainActionList extends StatelessWidget {
                             shape: const CircleBorder(),
                             elevation: 10,
                             child: SvgPicture.asset(
-                              appHomeIcons[index],
+                              appScreen[index].iconAsset,
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -71,13 +69,14 @@ class MainActionList extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     child: Container(
                       color: Colors.black.withOpacity(0.1),
-                     padding: const EdgeInsets.only(right: 8, bottom: 8),
+                      padding: const EdgeInsets.only(right: 8, bottom: 8),
                       child: Text(
-                        appListStrings[index],
+                        appScreen[index].name,
                         style: AppTextsStyle.surhsNamesTextStyle.copyWith(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   )
