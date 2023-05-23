@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
+import 'package:muslim_app/core/utils/app_router.dart';
 
 import '../../features/home/data/models/screen_object.dart';
 
@@ -31,31 +32,31 @@ List<ScreenObject> appScreen = [
   ScreenObject(
     color: const Color(0xff61b3de),
     name: "القران الكريم",
-    path: "/quran",
+    path: Routes.quranPath,
     iconAsset: AppAssets.quranSvgPath,
   ),
   ScreenObject(
     color: const Color(0xffa1e3df),
     name: "الحديث",
-    path: "/hadith",
+    path: Routes.hadithPath,
     iconAsset: AppAssets.hadithSvgPath,
   ),
   ScreenObject(
     color: const Color(0xffffe980),
-    name: "البوصلة",
-    path: "/prayer-time",
+    name: "مواقيت الصلاة",
+    path: Routes.prayerTimePath,
     iconAsset: AppAssets.alarmSvgPath,
   ),
   ScreenObject(
     color: const Color(0xff0e3042),
-    name: "الاذكار",
-    path: "/azhar",
+    name: "البوصلة",
+    path: Routes.compassPath,
     iconAsset: AppAssets.compassSvgPath,
   ),
   ScreenObject(
     color: const Color(0xff86abb8),
     name: "السبحة الالكترونية",
-    path: "/sebha",
+    path: Routes.sebhaPath,
     iconAsset: AppAssets.seb7aSvgPath,
   ),
 ];

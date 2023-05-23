@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
+import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/texts_styles.dart';
-import 'package:muslim_app/features/hadith/view/hadith_view.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
 
@@ -20,10 +21,9 @@ class MainActionList extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => const HadithView(),
-                ),
+              //    GoRouter.of(context).push(appScreen[index].path);
+              Navigator.of(context).pushNamed(
+                appScreen[index].path,
               );
             },
             child: Container(
@@ -68,7 +68,7 @@ class MainActionList extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomRight,
                     child: Container(
-                      color: Colors.black.withOpacity(0.1),
+                      color: appScreen[index].color,
                       padding: const EdgeInsets.only(right: 8, bottom: 8),
                       child: Text(
                         appScreen[index].name,

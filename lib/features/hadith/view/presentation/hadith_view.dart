@@ -33,8 +33,12 @@ class _HadithViewState extends State<HadithView> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: SafeArea(
+    return  Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
+      body: const SafeArea(
+        
         child: Text("data"),
       ),
     );
