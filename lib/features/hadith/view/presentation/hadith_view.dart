@@ -1,45 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
+import 'package:muslim_app/core/constant/app_constatnt.dart';
+import 'package:muslim_app/core/utils/app_router.dart';
 
-import 'widgets/hadith_details_list_builder.dart';
-
-class HadithView extends StatefulWidget {
+class HadithView extends StatelessWidget {
   const HadithView({super.key});
-
-  @override
-  State<HadithView> createState() => _HadithViewState();
-}
-
-class _HadithViewState extends State<HadithView> {
-  @override
-  void initState() {
-    BlocProvider.of<HadithCubit>(context).getSahihElbokharyData();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("صحيح البخاري"),
+        title: const Text("الأحاديث"),
       ),
-      body: SafeArea(
-        child: BlocBuilder<HadithCubit, HadithState>(
-          builder: (context, state) {
-            if (state is GetSahihElbokharyDataErrorState) {
-              return Center(
-                child: Text(state.error),
-              );
-            } else if (state is GetSahihElbokharyDataSuccesState) {
-              return HadithDetailsListBuilder(
-                state: state,
-              );
-            } else {
-              return const Center(
-                child: CircularProgressIndicator.adaptive(),
-              );
-            }
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: GridView.builder(
+          itemCount: hadithBooks.length,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            mainAxisSpacing: 10,
+            crossAxisSpacing: 10,
+          ),
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Navigator.pushNamed(context, Routes.hadithDeatilsPath);
+              },
+              child: Container(
+                //width: MediaQuery.of(context).size.width * 0.4,
+                //height: MediaQuery.of(context).size.height * 0.3,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                  borderRadius: BorderRadius.circular(16),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.book_online_outlined,
+                      size: 30,
+                      color: Colors.white,
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      hadithBooks[index],
+                      style: const TextStyle(fontSize: 25, color: Colors.white),
+                    )
+                  ],
+                ),
+              ),
+            );
           },
         ),
       ),

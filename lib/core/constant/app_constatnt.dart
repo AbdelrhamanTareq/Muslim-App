@@ -60,3 +60,12 @@ List<ScreenObject> appScreen = [
     iconAsset: AppAssets.seb7aSvgPath,
   ),
 ];
+
+const List<String> hadithBooks = [
+  "صحيح البخاري",
+  "صحيح مسلم",
+  "سنن ابن ماجه",
+  "سنن ابي دواد",
+  "سنن الترمذي",
+  "الموطأ",
+];
