@@ -18,7 +18,7 @@ class GetSahihElbokharyDataErrorState extends HadithState {
 }
 
 class GetSahihElbokharyDataSuccesState extends HadithState {
-  final List<dynamic> data;
+  final List<Bukhari> data;
 
   const GetSahihElbokharyDataSuccesState(this.data);
 }
