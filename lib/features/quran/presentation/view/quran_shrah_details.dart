@@ -32,7 +32,8 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
 
     ScrollController _scrollController = ScrollController();
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 252, 252, 206),
+      // backgroundColor: const Color.fromARGB(255, 252, 252, 206),
+      backgroundColor: const Color(0xfffff8f3),
       body: SafeArea(
         child: Stack(
           children: [

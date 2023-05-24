@@ -4,7 +4,7 @@ const String imageAssetsPath = "assets/images";
 abstract class AppAssets {
   static const quranPath = "$assetsPath/quran.json";
   //////////////////////////////////////////////////////
-  static const sahiahElbokharPath = "$assetsPath/sahih_al-bukhari_ahadith.csv";
+  static const sahiahElbokharPath = "$assetsPath/hadith/sahih_al-bukhari_ahadith.utf8.csv";
   //////////////////////////////////////////////////////
   static const quranSvgPath = "$imageAssetsPath/quran.svg";
   static const compassSvgPath = "$imageAssetsPath/compass.svg";

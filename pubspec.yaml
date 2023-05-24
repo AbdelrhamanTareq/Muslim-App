@@ -63,7 +63,8 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/quran/quran.json
-    - assets/hadith/sahih_al-bukhari_ahadith_mushakkala_mufassala.utf8.csv
+    - assets/hadith/sahih_al-bukhari_ahadith.utf8.csv
+    - assets/hadith/bukhari.json
     - assets/images/quran.svg
     - assets/images/hadith.svg
     - assets/images/alarm.svg

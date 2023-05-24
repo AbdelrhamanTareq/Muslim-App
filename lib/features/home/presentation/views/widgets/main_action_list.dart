@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:go_router/go_router.dart';
-import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/texts_styles.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
@@ -19,10 +22,14 @@ abstract class AppRoutes {
     switch (settings.name) {
       case Routes.home:
         return MaterialPageRoute(builder: (context) => const HomwView());
-        case Routes.quranPath:
+      case Routes.quranPath:
         return MaterialPageRoute(builder: (context) => const QuranSurahsView());
-        case Routes.hadithPath:
-        return MaterialPageRoute(builder: (context) => const HadithView());
+      case Routes.hadithPath:
+        return MaterialPageRoute(
+            builder: (context) =>  BlocProvider<HadithCubit>(
+                  create: (context) => instance<HadithCubit>(),
+                  child: const HadithView(),
+                ));
       default:
         return unDefinedRoute();
     }
