@@ -5,7 +5,8 @@ import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'widgets/hadith_details_list_builder.dart';
 
 class HadithDetailsView extends StatefulWidget {
-  const HadithDetailsView({super.key});
+  final String hadihPath;
+  const HadithDetailsView({super.key,required this.hadihPath});
 
   @override
   State<HadithDetailsView> createState() => _HadithDetailsViewState();
@@ -14,7 +15,7 @@ class HadithDetailsView extends StatefulWidget {
 class _HadithDetailsViewState extends State<HadithDetailsView> {
   @override
   void initState() {
-    BlocProvider.of<HadithCubit>(context).getSahihElbokharyData();
+    BlocProvider.of<HadithCubit>(context).getSahihElbokharyData(widget.hadihPath);
     super.initState();
   }
 

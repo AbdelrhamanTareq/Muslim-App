@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
+import 'package:muslim_app/features/hadith/data/models/hadith_screen_object.dart';
 
 import '../../features/home/data/models/screen_object.dart';
 
@@ -61,11 +62,15 @@ List<ScreenObject> appScreen = [
   ),
 ];
 
-const List<String> hadithBooks = [
-  "صحيح البخاري",
-  "صحيح مسلم",
-  "سنن ابن ماجه",
-  "سنن ابي دواد",
-  "سنن الترمذي",
-  "الموطأ",
+ List<HadithScreenObject> hadithBooks = [
+  HadithScreenObject(name: "صحيح البخاري", path: AppAssets.bukhariPath),
+  HadithScreenObject(name: "صحيح مسلم", path: AppAssets.muslimPath),
+  HadithScreenObject(name: "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
+  HadithScreenObject(name: "سنن ابي دواد", path: AppAssets.abuDaudPath),
+  HadithScreenObject(name: "سنن الترمذي", path: AppAssets.tirmidziPath),
+  HadithScreenObject(name:  "الموطأ", path: AppAssets.malikPath),
+  HadithScreenObject(name:  "سنن النسائي", path: AppAssets.nasaiPath),
+  HadithScreenObject(name:  "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
+  HadithScreenObject(name: "مسند احمد", path: AppAssets.ahmadPath),
+
 ];

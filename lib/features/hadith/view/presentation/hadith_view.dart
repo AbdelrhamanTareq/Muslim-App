@@ -23,7 +23,8 @@ class HadithView extends StatelessWidget {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                Navigator.pushNamed(context, Routes.hadithDeatilsPath);
+                Navigator.pushNamed(context, Routes.hadithDeatilsPath,
+                    arguments: hadithBooks[index].path);
               },
               child: Container(
                 //width: MediaQuery.of(context).size.width * 0.4,
@@ -37,7 +38,7 @@ class HadithView extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Icon(
-                      Icons.book_online_outlined,
+                      Icons.auto_stories,
                       size: 30,
                       color: Colors.white,
                     ),
@@ -45,7 +46,7 @@ class HadithView extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      hadithBooks[index],
+                      hadithBooks[index].name,
                       style: const TextStyle(fontSize: 25, color: Colors.white),
                     )
                   ],

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart';
+import 'package:muslim_app/core/utils/app_assets.dart';
 
 import '../models/quran.dart';
 
@@ -13,7 +14,7 @@ class QuranRepoImpl implements QuranRepo {
   Future<List<Quran>> getAllQuranData() async {
     final List<Quran> quranData = [];
 
-    final stringData = await rootBundle.loadString("assets/quran/quran.json");
+    final stringData = await rootBundle.loadString(AppAssets.quran);
     List<Map<String, dynamic>> data = (jsonDecode(stringData) as List).cast();
 
     data.forEach((element) {

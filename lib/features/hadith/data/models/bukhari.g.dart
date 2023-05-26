@@ -6,13 +6,13 @@ part of 'bukhari.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Bukhari _$BukhariFromJson(Map<String, dynamic> json) => Bukhari(
+Hadith _$BukhariFromJson(Map<String, dynamic> json) => Hadith(
       number: json['number'] as int,
       arab: json['arab'] as String,
       id: json['id'] as String,
     );
 
-Map<String, dynamic> _$BukhariToJson(Bukhari instance) => <String, dynamic>{
+Map<String, dynamic> _$BukhariToJson(Hadith instance) => <String, dynamic>{
       'number': instance.number,
       'arab': instance.arab,
       'id': instance.id,

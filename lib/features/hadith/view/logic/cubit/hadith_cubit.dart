@@ -13,9 +13,9 @@ class HadithCubit extends Cubit<HadithState> {
     this.hadithRepo,
   ) : super(HadithInitial());
 
-  Future getSahihElbokharyData() async {
+  Future getSahihElbokharyData(String hadihPath) async {
     emit(GetSahihElbokharyDataLoadingState());
-    final dataOrError = await hadithRepo.getSahihElbokharyData();
+    final dataOrError = await hadithRepo.getSahihElbokharyData(hadihPath);
 
     dataOrError.fold(
       (error) => emit(GetSahihElbokharyDataErrorState(error.errorMessage)),

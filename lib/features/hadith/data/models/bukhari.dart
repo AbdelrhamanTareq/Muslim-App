@@ -6,18 +6,18 @@ part 'bukhari.g.dart';
 
 
 @JsonSerializable()
-class Bukhari {
+class Hadith {
   final int number;
   final String arab;
   final String id;
 
-  Bukhari({
+  Hadith({
     required this.number,
     required this.arab,
     required this.id,
   });
 
-  factory Bukhari.fromJson(Map<String, dynamic> json) => _$BukhariFromJson(json);
+  factory Hadith.fromJson(Map<String, dynamic> json) => _$BukhariFromJson(json);
 
   Map<String, dynamic> toJson() => _$BukhariToJson(this);
 }

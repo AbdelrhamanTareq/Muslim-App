@@ -35,10 +35,11 @@ abstract class AppRoutes {
           builder: (context) => const HadithView(),
         );
       case Routes.hadithDeatilsPath:
+      final String hadihPath =settings.arguments as String;
         return MaterialPageRoute(
           builder: (context) => BlocProvider<HadithCubit>(
             create: (context) => instance<HadithCubit>(),
-            child: const HadithDetailsView(),
+            child:  HadithDetailsView(hadihPath: hadihPath,),
           ),
         );
       default:

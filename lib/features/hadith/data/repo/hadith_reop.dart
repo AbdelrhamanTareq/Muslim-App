@@ -6,22 +6,22 @@ import 'package:muslim_app/core/errors/erros.dart';
 import 'package:muslim_app/features/hadith/data/models/bukhari.dart';
 
 abstract class HadithRepo {
-  Future<Either<Faliure, List<Bukhari>>> getSahihElbokharyData();
+  Future<Either<Faliure, List<Hadith>>> getSahihElbokharyData(String hadihPath);
 }
 
 class HadithRepoImpl implements HadithRepo {
   @override
-  Future<Either<Faliure, List<Bukhari>>> getSahihElbokharyData() async {
+  Future<Either<Faliure, List<Hadith>>> getSahihElbokharyData(String hadihPath) async {
     try {
-      final List<Bukhari> bukhariHadiths = [];
+      final List<Hadith> bukhariHadiths = [];
       final stringData =
-          await rootBundle.loadString("assets/hadith/bukhari.json");
+          await rootBundle.loadString(hadihPath);
       final data = json.decode(stringData);
 
       //print(data.runtimeType);
       data.forEach(
         (e) => bukhariHadiths.add(
-          Bukhari.fromJson(e),
+          Hadith.fromJson(e),
         ),
       );
 
