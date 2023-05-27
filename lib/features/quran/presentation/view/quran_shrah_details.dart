@@ -46,7 +46,7 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                     child: IconButton(
                       onPressed: () {
                         final _bookmarkedSurhName =
-                            instance<QuranLocalData>().getBookMarkedSurhName();
+                            instance<QuranLocalData>().getBookMarkedName("BOOKMARKED_SURH_NAME");
                         if (_bookmarkedSurhName != widget._surahName) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -56,7 +56,7 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                           return;
                         }
                         final double _position =
-                            instance<QuranLocalData>().getBookmark() ?? 0;
+                            instance<QuranLocalData>().getBookmark("QURAN_BOOKMARK") ?? 0;
                         _scrollController.animateTo(_position - 240,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn);

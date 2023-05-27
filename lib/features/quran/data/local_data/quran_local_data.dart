@@ -1,10 +1,12 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class QuranLocalData {
-  setBookmark(double value);
-  double? getBookmark();
-  setBookMarkedSurhName(String name);
-  String? getBookMarkedSurhName();
+  setBookmark({required double value, required String key});
+  double? getBookmark(String key);
+  setBookMarkedName({required String name, required String key});
+  String? getBookMarkedName(String key);
+
+ 
 }
 
 class QuranLocalDataImpl extends QuranLocalData {
@@ -12,22 +14,23 @@ class QuranLocalDataImpl extends QuranLocalData {
 
   QuranLocalDataImpl(this._sharedPreferences);
   @override
-  double? getBookmark() {
-    return _sharedPreferences.getDouble("bookmark");
+  double? getBookmark(String key) {
+    return _sharedPreferences.getDouble(key);
   }
 
   @override
-  setBookmark(double value) async {
-    return await _sharedPreferences.setDouble("bookmark", value);
+  setBookmark({required double value, required String key}) async {
+    return await _sharedPreferences.setDouble(key, value);
   }
-  
+
   @override
-  String? getBookMarkedSurhName() {
-    return _sharedPreferences.getString("bookmarked_surh_name");
+  String? getBookMarkedName(String key) {
+    return _sharedPreferences.getString(key);
   }
-  
+
   @override
-  setBookMarkedSurhName(String name)async {
-    return await _sharedPreferences.setString("bookmarked_surh_name", name);
+  setBookMarkedName({required String name, required String key}) async {
+    return await _sharedPreferences.setString(key, name);
   }
+
 }

@@ -60,12 +60,14 @@ class SurhWithTextSpan extends StatelessWidget {
                                             //     MediaQuery.of(context).padding.top);
                                             await instance<QuranLocalData>()
                                                 .setBookmark(
-                                                    _scrollController.offset +
+                                                  key: "QURAN_BOOKMARK",
+                                                    value: _scrollController
+                                                            .offset +
                                                         details.globalPosition
                                                             .distance);
                                             await instance<QuranLocalData>()
-                                                .setBookMarkedSurhName(
-                                                    _surhName);
+                                                .setBookMarkedName(
+                                                  name:  _surhName, key: "BOOKMARKED_SURH_NAME");
 
                                             Navigator.pop(context);
                                           },
@@ -98,10 +100,7 @@ class SurhWithTextSpan extends StatelessWidget {
             )
             .toList(),
       ),
-      style:
-       AppTextsStyle.quranTextStyle
-      
-      ,
+      style: AppTextsStyle.quranTextStyle,
       textAlign: TextAlign.center,
     );
   }
