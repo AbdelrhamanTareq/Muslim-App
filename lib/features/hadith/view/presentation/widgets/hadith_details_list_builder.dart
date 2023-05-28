@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -8,7 +9,10 @@ import '../../logic/cubit/hadith_cubit.dart';
 class HadithDetailsListBuilder extends StatelessWidget {
   final GetSahihElbokharyDataSuccesState state;
   const HadithDetailsListBuilder(
-      {super.key, required this.state, required this.itemScrollController,required this.name});
+      {super.key,
+      required this.state,
+      required this.itemScrollController,
+      required this.name});
 
   final ItemScrollController itemScrollController;
   final String name;
@@ -51,8 +55,10 @@ class HadithDetailsListBuilder extends StatelessWidget {
                       IconButton(
                         color: const Color.fromARGB(255, 9, 109, 12),
                         onPressed: () {
-                          instance<QuranLocalData>().setBookMarkedName(
-                              name: name, key: "HADITH_BOOKMARKED_NAME");
+                          instance<AppLocalData>().setBookmarkedNames(
+                              key: name, value: [name,index.toDouble()]);
+                          // instance<QuranLocalData>().setBookMarkedName(
+                          //     name: name, key: "HADITH_BOOKMARKED_NAME");
                           instance<QuranLocalData>().setBookmark(
                               value: index.toDouble(), key: "HADITH_BOOKMARK");
                           // _itemScrollController.scrollTo(

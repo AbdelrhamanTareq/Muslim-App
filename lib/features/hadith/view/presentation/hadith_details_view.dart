@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
@@ -35,10 +36,10 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
               Icons.bookmark,
             ),
             onPressed: () {
-              final bookName = instance<QuranLocalData>()
-                      .getBookMarkedName("HADITH_BOOKMARKED_NAME") ??
-                  "";
-              if (bookName == "" || bookName != widget.hadihPath) {
+              final bookmark = instance<AppLocalData>()
+                      .getBookmarkedNames(widget.hadihPath) ??
+                  [];
+              if (bookmark[0] != widget.hadihPath) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text("لا يوجد علامة"),
@@ -46,13 +47,33 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
                 );
                 return;
               }
-              final double index =
-                  instance<QuranLocalData>().getBookmark("HADITH_BOOKMARK") ??
-                      -1;
+              final double index = bookmark[1];
               _itemScrollController.scrollTo(
                   index: index.toInt(),
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeIn);
+              // final bookName =
+              // instance<AppLocalData>()
+              //         .getBookmarkedNames(widget.hadihPath) ??
+              //     "";
+              // // instance<QuranLocalData>()
+              // //         .getBookMarkedName("HADITH_BOOKMARKED_NAME") ??
+              // //     "";
+              // if (bookName == "" || bookName != widget.hadihPath) {
+              //   ScaffoldMessenger.of(context).showSnackBar(
+              //     const SnackBar(
+              //       content: Text("لا يوجد علامة"),
+              //     ),
+              //   );
+              //   return;
+              // }
+              // final double index =
+              //     instance<QuranLocalData>().getBookmark("HADITH_BOOKMARK") ??
+              //         -1;
+              // _itemScrollController.scrollTo(
+              //     index: index.toInt(),
+              //     duration: const Duration(milliseconds: 300),
+              //     curve: Curves.easeIn);
             },
           )
         ],
