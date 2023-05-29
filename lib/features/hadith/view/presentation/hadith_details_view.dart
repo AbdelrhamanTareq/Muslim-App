@@ -9,8 +9,9 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'widgets/hadith_details_list_builder.dart';
 
 class HadithDetailsView extends StatefulWidget {
-  final String hadihPath;
-  const HadithDetailsView({super.key, required this.hadihPath});
+  final String bookName;
+  final String bookPath;
+  const HadithDetailsView({super.key, required this.bookName, required this.bookPath});
 
   @override
   State<HadithDetailsView> createState() => _HadithDetailsViewState();
@@ -21,7 +22,7 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
   @override
   void initState() {
     BlocProvider.of<HadithCubit>(context)
-        .getSahihElbokharyData(widget.hadihPath);
+        .getHadithData(widget.bookPath);
     super.initState();
   }
 
@@ -29,17 +30,16 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("صحيح البخاري"),
+        title: Text(widget.bookName),
         actions: [
           IconButton(
             icon: const Icon(
               Icons.bookmark,
             ),
             onPressed: () {
-              final bookmark = instance<AppLocalData>()
-                      .getBookmarkedNames(widget.hadihPath) ??
-                  [];
-              if (bookmark[0] != widget.hadihPath) {
+              final bookmark =
+                  instance<AppLocalData>().getBookmarkedNames(widget.bookName);
+              if (bookmark == null || bookmark[0] != widget.bookName) {
                 ScaffoldMessenger.of(context).showSnackBar(
                   const SnackBar(
                     content: Text("لا يوجد علامة"),
@@ -89,7 +89,7 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
               return HadithDetailsListBuilder(
                 state: state,
                 itemScrollController: _itemScrollController,
-                name: widget.hadihPath,
+                name: widget.bookName,
               );
             } else {
               return const Center(

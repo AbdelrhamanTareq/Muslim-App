@@ -35,11 +35,16 @@ abstract class AppRoutes {
           builder: (context) => const HadithView(),
         );
       case Routes.hadithDeatilsPath:
-      final String hadihPath =settings.arguments as String;
+        // TODO make map object
+        final Map<String, dynamic> book =
+            settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
           builder: (context) => BlocProvider<HadithCubit>(
             create: (context) => instance<HadithCubit>(),
-            child:  HadithDetailsView(hadihPath: hadihPath,),
+            child: HadithDetailsView(
+              bookName: book["bookName"],
+              bookPath: book["bookPath"],
+            ),
           ),
         );
       default:

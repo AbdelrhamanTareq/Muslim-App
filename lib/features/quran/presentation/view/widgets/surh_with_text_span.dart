@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
 import 'package:muslim_app/core/utils/texts_styles.dart';
@@ -58,17 +59,26 @@ class SurhWithTextSpan extends StatelessWidget {
                                             // print(details.globalPosition.distance);
                                             // print(
                                             //     MediaQuery.of(context).padding.top);
-                                            await instance<QuranLocalData>()
-                                                .setBookmark(
-                                                  key: "QURAN_BOOKMARK",
-                                                    value: _scrollController
-                                                            .offset +
-                                                        details.globalPosition
-                                                            .distance);
-                                            await instance<QuranLocalData>()
-                                                .setBookMarkedName(
-                                                  name:  _surhName, key: "BOOKMARKED_SURH_NAME");
+                                            // await instance<QuranLocalData>()
+                                            //     .setBookmark(
+                                            //       key: "QURAN_BOOKMARK",
+                                            //         value: _scrollController
+                                            //                 .offset +
+                                            //             details.globalPosition
+                                            //                 .distance);
+                                            // await instance<QuranLocalData>()
+                                            //     .setBookMarkedName(
+                                            //       name:  _surhName, key: "BOOKMARKED_SURH_NAME");
 
+                                            await instance<AppLocalData>()
+                                                .setBookmarkedNames(
+                                                    key: _surhName,
+                                                    value: [
+                                                  _surhName,
+                                                  _scrollController.offset +
+                                                      details.globalPosition
+                                                          .distance,
+                                                ]);
                                             Navigator.pop(context);
                                           },
                                           icon: const Icon(Icons.bookmark),

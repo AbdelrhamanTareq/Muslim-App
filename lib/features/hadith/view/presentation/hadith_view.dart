@@ -23,8 +23,9 @@ class HadithView extends StatelessWidget {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
+                // TODO make map object
                 Navigator.pushNamed(context, Routes.hadithDeatilsPath,
-                    arguments: hadithBooks[index].path);
+                    arguments: {"bookPath":hadithBooks[index].path, "bookName":hadithBooks[index].name});
               },
               child: Container(
                 //width: MediaQuery.of(context).size.width * 0.4,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
 import '../../../../core/injection_container.dart';
@@ -45,9 +46,10 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                     padding: const EdgeInsets.only(right: 8.0),
                     child: IconButton(
                       onPressed: () {
-                        final _bookmarkedSurhName =
-                            instance<QuranLocalData>().getBookMarkedName("BOOKMARKED_SURH_NAME");
-                        if (_bookmarkedSurhName != widget._surahName) {
+                        final bookmark = instance<AppLocalData>()
+                            .getBookmarkedNames(widget._surahName);
+                        if (bookmark == null ||
+                            bookmark[0] != widget._surahName) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text("لا يوجد علامة في هذة الصورة"),
@@ -55,11 +57,26 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                           );
                           return;
                         }
-                        final double _position =
-                            instance<QuranLocalData>().getBookmark("QURAN_BOOKMARK") ?? 0;
-                        _scrollController.animateTo(_position - 240,
+                        final double position = bookmark[1];
+                        _scrollController.animateTo(position - 240,
                             duration: const Duration(milliseconds: 300),
                             curve: Curves.easeIn);
+
+                        // final _bookmarkedSurhName =
+                        //     instance<QuranLocalData>().getBookMarkedName("BOOKMARKED_SURH_NAME");
+                        // if (_bookmarkedSurhName != widget._surahName) {
+                        //   ScaffoldMessenger.of(context).showSnackBar(
+                        //     const SnackBar(
+                        //       content: Text("لا يوجد علامة في هذة الصورة"),
+                        //     ),
+                        //   );
+                        //   return;
+                        // }
+                        // final double _position =
+                        //     instance<QuranLocalData>().getBookmark("QURAN_BOOKMARK") ?? 0;
+                        // _scrollController.animateTo(_position - 240,
+                        //     duration: const Duration(milliseconds: 300),
+                        //     curve: Curves.easeIn);
                       },
                       icon: const Icon(
                         Icons.bookmark,

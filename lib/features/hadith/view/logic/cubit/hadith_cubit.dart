@@ -13,7 +13,7 @@ class HadithCubit extends Cubit<HadithState> {
     this.hadithRepo,
   ) : super(HadithInitial());
 
-  Future getSahihElbokharyData(String hadihPath) async {
+  Future getHadithData(String hadihPath) async {
     emit(GetSahihElbokharyDataLoadingState());
     final dataOrError = await hadithRepo.getSahihElbokharyData(hadihPath);
 
