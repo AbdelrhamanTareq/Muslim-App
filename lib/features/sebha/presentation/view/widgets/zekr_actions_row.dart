@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
+import 'package:vibration/vibration.dart';
 
 class ZekrActionsRow extends StatelessWidget {
   const ZekrActionsRow({
@@ -23,6 +24,7 @@ class ZekrActionsRow extends StatelessWidget {
           ),
           onPressed: () {
             BlocProvider.of<SebhaCubit>(context).add();
+            
             // setState(() {
             //   if (_initValue == _maxValue) {
             //     _initValue = _maxValue;

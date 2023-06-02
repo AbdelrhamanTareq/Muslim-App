@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 
 class ActionsRow extends StatelessWidget {
   const ActionsRow({
@@ -17,7 +20,10 @@ class ActionsRow extends StatelessWidget {
         children: [
           IconWidget(
             icon: Icons.vibration,
-            onPressed: () {},
+            onPressed: () {
+              BlocProvider.of<SebhaCubit>(context).enableVibrate();
+              HapticFeedback.vibrate();
+            },
           ),
           IconWidget(
             icon: Icons.music_note,

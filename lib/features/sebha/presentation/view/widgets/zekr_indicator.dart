@@ -16,7 +16,7 @@ class ZekrIndictor extends StatelessWidget {
           progressColor: Colors.amber,
           radius: 100.0,
           lineWidth: 10.0,
-          //percent: _initValue / _maxValue,
+          percent: state.initValue / state.maxValue,
           center: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
