@@ -13,8 +13,8 @@ class SebhaState extends Equatable {
   const SebhaState({
     this.initValue = 0,
     this.maxValue = 33,
-    this.isMusicEnalbe = false,
-    this.isVibrationEnalbe = false,
+    this.isMusicEnalbe = true,
+    this.isVibrationEnalbe = true,
   });
 
   SebhaState copyWith({

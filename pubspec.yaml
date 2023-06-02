@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  audioplayers: ^4.1.0
   bloc: ^8.1.1
   build_runner: ^2.4.2
   csv: ^5.0.2
@@ -48,7 +49,7 @@ dependencies:
   percent_indicator: ^4.2.3
   scrollable_positioned_list: ^0.3.8
   shared_preferences: ^2.1.1
-  sleek_circular_slider: ^2.0.1
+  
   vibration: ^1.7.7
 
 dev_dependencies:
@@ -70,6 +71,7 @@ flutter:
     - assets/quran/quran.json
     - assets/hadith/
     - assets/images/
+    - assets/sounds/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

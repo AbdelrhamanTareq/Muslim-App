@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 
 import 'widgets/actions_row.dart';
 import 'widgets/zekr_actions_row.dart';

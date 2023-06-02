@@ -1,7 +1,8 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
-import 'package:vibration/vibration.dart';
 
 class ZekrActionsRow extends StatelessWidget {
   const ZekrActionsRow({
@@ -22,16 +23,9 @@ class ZekrActionsRow extends StatelessWidget {
             Icons.add,
             size: 30,
           ),
-          onPressed: () {
-            BlocProvider.of<SebhaCubit>(context).add();
+          onPressed: () async {
+            BlocProvider.of<SebhaCubit>(context).add(context);
             
-            // setState(() {
-            //   if (_initValue == _maxValue) {
-            //     _initValue = _maxValue;
-            //   } else {
-            //     _initValue++;
-            //   }
-            // });
           },
         ),
         ElevatedButton(

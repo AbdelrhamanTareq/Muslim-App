@@ -40,11 +40,7 @@ class ZekrIndictor extends StatelessWidget {
                       (resulat != null)
                           ? double.tryParse(resulat) ?? 0
                           : state.maxValue);
-                  // setState(() {
-                  //   _maxValue = (resulat != null)
-                  //       ? double.tryParse(resulat) ?? 0
-                  //       : _maxValue;
-                  // });
+                 
                 },
                 child: Text(
                   state.maxValue.toInt().toString(),
@@ -91,17 +87,7 @@ class ZekerCountWidget extends StatelessWidget {
               // onEditingComplete:()=> Navigator.pop(context),
               onSubmitted: (value) => Navigator.pop(context, value),
             ),
-            // Slider(
-            //   min: 0,
-            //   divisions:1000,
-            //   max: 1000,
-            //   value: _value,
-            //   onChanged: (value) {
-            //     setState(() {
-            //       _value = value;
-            //     });
-            //   },
-            // ),
+            
           ],
         ),
       ),

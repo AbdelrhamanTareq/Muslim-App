@@ -1,5 +1,7 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:vibration/vibration.dart';
 
 part 'sebha_state.dart';
@@ -7,9 +9,13 @@ part 'sebha_state.dart';
 class SebhaCubit extends Cubit<SebhaState> {
   SebhaCubit() : super(const SebhaState());
 
-  void add() {
+  void add(context) {
     if (state.initValue < state.maxValue) {
       emit(state.copyWith(initValue: state.initValue + 1));
+    }
+    if (state.initValue == state.maxValue) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("تم الوصول لعدد التسبيح المطلوب")));
     }
     vibration();
   }
@@ -25,9 +31,27 @@ class SebhaCubit extends Cubit<SebhaState> {
   }
 
   void enableVibrate() {
+    if (state.isVibrationEnalbe == false) {
+      Vibration.vibrate();
+    }
     emit(
-      state.copyWith(isVibrationEnalbe: true),
+      state.copyWith(isVibrationEnalbe: !state.isVibrationEnalbe),
     );
+  }
+
+  void enableMusic() {
+    if (state.isMusicEnalbe == false) {
+      AudioPlayer().play(AssetSource("sounds/done.mp3"));
+    }
+    emit(
+      state.copyWith(isMusicEnalbe: !state.isMusicEnalbe),
+    );
+  }
+
+  void startMusicSound(){
+    if (state.isMusicEnalbe) {
+      AudioPlayer().play(AssetSource("sounds/done.mp3"));
+    }
   }
 
   void vibration() {
