@@ -23,7 +23,8 @@ class ZekrIndictor extends StatelessWidget {
             children: [
               Text(
                 state.initValue.toInt().toString(),
-                style: const TextStyle(fontSize: 35, color: Colors.white),
+                style: const TextStyle(
+                    fontSize: 35, color: Colors.white, fontFamily: "DS-DIGI"),
               ),
               const Divider(
                 thickness: 2,
@@ -40,11 +41,11 @@ class ZekrIndictor extends StatelessWidget {
                       (resulat != null)
                           ? double.tryParse(resulat) ?? 0
                           : state.maxValue);
-                 
                 },
                 child: Text(
                   state.maxValue.toInt().toString(),
-                  style: const TextStyle(fontSize: 35, color: Colors.white),
+                  style: const TextStyle(
+                      fontSize: 35, color: Colors.white, fontFamily: "DS-DIGI"),
                 ),
               ),
             ],
@@ -87,7 +88,6 @@ class ZekerCountWidget extends StatelessWidget {
               // onEditingComplete:()=> Navigator.pop(context),
               onSubmitted: (value) => Navigator.pop(context, value),
             ),
-            
           ],
         ),
       ),

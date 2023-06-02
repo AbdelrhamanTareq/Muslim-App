@@ -91,6 +91,9 @@ flutter:
     - family: me_quran
       fonts:
         - asset: assets/fonts/me_quran-Regular.ttf
+    - family: DS-DIGI
+      fonts:
+        - asset: assets/fonts/DS-DIGI.ttf
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
