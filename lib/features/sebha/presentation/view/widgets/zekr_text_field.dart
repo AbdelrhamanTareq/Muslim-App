@@ -7,16 +7,17 @@ class ZkerTextFiled extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 15, horizontal: 20),
-      child: TextField(
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+      child: TextFormField(
+        initialValue: "سبحان الله",
         textAlign: TextAlign.center,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 18,
           color: Colors.white,
           fontFamily: "me_quran",
         ),
-        decoration: InputDecoration(
+        decoration: const InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(16)),
               borderSide: BorderSide(
