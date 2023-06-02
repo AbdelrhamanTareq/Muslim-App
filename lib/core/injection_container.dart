@@ -4,6 +4,7 @@ import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_reop.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
+import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 final GetIt instance = GetIt.instance;
@@ -21,6 +22,9 @@ Future<void> initGetIt() async {
     () => HadithCubit(
       instance(),
     ),
+  );
+  instance.registerFactory<SebhaCubit>(
+    () => SebhaCubit(),
   );
   //final Box box = await Hive.openBox("data");
   instance.registerLazySingleton<AppLocalData>(() => AppLocalDataImpl());

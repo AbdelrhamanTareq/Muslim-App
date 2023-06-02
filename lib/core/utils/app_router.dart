@@ -6,6 +6,8 @@ import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
+import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
+import 'package:muslim_app/features/sebha/presentation/view/sebha_main_view.dart';
 
 abstract class Routes {
   //static const String splashRoute = "/";
@@ -47,6 +49,14 @@ abstract class AppRoutes {
             ),
           ),
         );
+      case Routes.sebhaPath:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider<SebhaCubit>(
+            create: (context) => instance<SebhaCubit>(),
+            child: const SebhaMainView(),
+          ),
+        );
+
       default:
         return unDefinedRoute();
     }
