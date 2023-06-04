@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muslim_app/core/utils/texts_styles.dart';
+import 'package:muslim_app/core/themes/texts_styles.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
 

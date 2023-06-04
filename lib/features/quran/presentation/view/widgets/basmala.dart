@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/utils/texts_styles.dart';
+import 'package:muslim_app/core/themes/texts_styles.dart';
 
 class Basmala extends StatelessWidget {
   const Basmala({super.key});

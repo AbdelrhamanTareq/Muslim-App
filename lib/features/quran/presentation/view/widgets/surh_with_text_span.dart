@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
-import 'package:muslim_app/core/utils/texts_styles.dart';
+import 'package:muslim_app/core/themes/texts_styles.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 
 import '../../../data/models/quran.dart';

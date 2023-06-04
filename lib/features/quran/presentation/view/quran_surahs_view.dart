@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/core/utils/texts_styles.dart';
+import 'package:muslim_app/core/themes/texts_styles.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_shrah_details.dart';
 

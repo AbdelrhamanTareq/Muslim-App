@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/themes/app_themes.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:muslim_app/features/quran/data/repo/quran_repo.dart';
@@ -22,10 +23,12 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: AppRoutes.getRoute,
         title: 'Muslim',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
-        ),
+        theme: AppTheme.lightThem()
+        //  ThemeData(
+        //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        //   useMaterial3: true,
+        // )
+        ,
         locale: const Locale("ar"),
         supportedLocales: const [
           Locale("ar"),
