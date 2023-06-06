@@ -63,7 +63,7 @@ class ZekerCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController controller = TextEditingController();
+    //final TextEditingController controller = TextEditingController();
     return AlertDialog(
       content: SizedBox(
         width: MediaQuery.of(context).size.width * 0.7,
@@ -79,7 +79,7 @@ class ZekerCountWidget extends StatelessWidget {
               height: 15,
             ),
             TextField(
-              controller: controller,
+              //  controller: controller,
               textAlign: TextAlign.center,
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(

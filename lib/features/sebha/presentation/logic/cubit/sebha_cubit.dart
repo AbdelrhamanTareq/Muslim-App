@@ -27,7 +27,7 @@ class SebhaCubit extends Cubit<SebhaState> {
   }
 
   void changeMaxValue(double maxValue) {
-    state.copyWith(maxValue: maxValue);
+    emit(state.copyWith(maxValue: maxValue),);
   }
 
   void enableVibrate() {
