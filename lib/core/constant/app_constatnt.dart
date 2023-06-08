@@ -50,8 +50,8 @@ List<ScreenObject> appScreen = [
   ),
   ScreenObject(
     color: const Color(0xff0e3042),
-    name: "البوصلة",
-    path: Routes.compassPath,
+    name: "القبلة",
+    path: Routes.qiblaPath,
     iconAsset: AppAssets.compassSvgPath,
   ),
   ScreenObject(

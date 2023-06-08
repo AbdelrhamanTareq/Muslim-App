@@ -21,5 +21,8 @@ abstract class AppAssets {
   static const hadithSvgPath = "$imageAssetsPath/hadith.svg";
   static const seb7aSvgPath = "$imageAssetsPath/seb7a.svg";
   static const alarmSvgPath = "$imageAssetsPath/alarm.svg";
+  ////////////////////////////////////////////////////////
+  static const compassPath = "$imageAssetsPath/compass.png";
+  static const neddleKabahPath = "$imageAssetsPath/qibla.png";
   
 }

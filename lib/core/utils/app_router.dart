@@ -5,6 +5,7 @@ import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
+import 'package:muslim_app/features/qibla/presentation/view/qibla_main_view.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:muslim_app/features/sebha/presentation/view/sebha_main_view.dart';
@@ -16,7 +17,7 @@ abstract class Routes {
   static const String quranPath = "/quran";
   static const String hadithPath = "/hadith";
   static const String hadithDeatilsPath = "/hadith-details";
-  static const String compassPath = "/compass";
+  static const String qiblaPath = "/qibla";
   static const String sebhaPath = "/sebha";
   static const String prayerTimePath = "/prayer-time";
 }
@@ -55,6 +56,10 @@ abstract class AppRoutes {
             create: (context) => instance<SebhaCubit>(),
             child: const SebhaMainView(),
           ),
+        );
+      case Routes.qiblaPath:
+        return MaterialPageRoute(
+          builder: (context) => const QiblaMainView(),
         );
 
       default:
