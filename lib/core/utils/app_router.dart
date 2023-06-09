@@ -5,6 +5,8 @@ import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
+import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
+import 'package:muslim_app/features/prayer_time/presentation/view/prayer_time_view.dart';
 import 'package:muslim_app/features/qibla/presentation/view/qibla_main_view.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
@@ -60,6 +62,13 @@ abstract class AppRoutes {
       case Routes.qiblaPath:
         return MaterialPageRoute(
           builder: (context) => const QiblaMainView(),
+        );
+      case Routes.prayerTimePath:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider<PrayerTimeCubit>(
+            create: (context) => instance<PrayerTimeCubit>(),
+            child: const PrayerTimeView(),
+          ),
         );
 
       default:
