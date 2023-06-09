@@ -2,7 +2,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-part 'bukhari.g.dart';
+part 'hadith.g.dart';
 
 
 @JsonSerializable()
@@ -17,7 +17,8 @@ class Hadith {
     required this.id,
   });
 
-  factory Hadith.fromJson(Map<String, dynamic> json) => _$BukhariFromJson(json);
 
-  Map<String, dynamic> toJson() => _$BukhariToJson(this);
+  factory Hadith.fromJson(Map<String, dynamic> json) => _$HadithFromJson(json);
+
+  Map<String, dynamic> toJson() => _$HadithToJson(this);
 }

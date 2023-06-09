@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
 import 'package:muslim_app/core/errors/erros.dart';
-import 'package:muslim_app/features/hadith/data/models/bukhari.dart';
+import 'package:muslim_app/features/hadith/data/models/hadith.dart';
 
 abstract class HadithRepo {
   Future<Either<Faliure, List<Hadith>>> getSahihElbokharyData(String hadihPath);
