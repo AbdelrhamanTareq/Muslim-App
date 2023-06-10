@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
-import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import 'widgets/hadith_details_list_builder.dart';

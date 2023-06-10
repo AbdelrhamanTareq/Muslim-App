@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_reop.dart';
