@@ -21,7 +21,10 @@ class _AppServiceClient implements AppServiceClient {
   String? baseUrl;
 
   @override
-  Future<PrayerTime> getPrayerTimeData() async {
+  Future<PrayerTime> getPrayerTimeData(
+    int year,
+    int month,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -34,7 +37,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'calendarByCity/2023/6?city=Cairo&country=Egypt&method=2',
+              'calendarByCity/${year}/${month}?city=Cairo&country=Egypt&method=2',
               queryParameters: queryParameters,
               data: _data,
             )

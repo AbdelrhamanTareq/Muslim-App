@@ -8,8 +8,13 @@ part 'app_api.g.dart';
 
 @RestApi(baseUrl: ApiConstant.baseUrl)
 abstract class AppServiceClient {
+  static const _calendarByCityEndPoint = "calendarByCity";
+
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @GET("calendarByCity/2023/6?city=Cairo&country=Egypt&method=2")
-  Future<PrayerTime> getPrayerTimeData();
+  @GET("$_calendarByCityEndPoint/{year}/{month}?city=Cairo&country=Egypt&method=2")
+  Future<PrayerTime> getPrayerTimeData(
+    @Path("year") int year,
+    @Path("month") int month,
+  );
 }

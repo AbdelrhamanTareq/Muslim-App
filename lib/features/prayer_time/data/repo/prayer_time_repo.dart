@@ -14,8 +14,10 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
   PrayerTimeRepoImpl(this._appServiceClient);
   @override
   Future<Either<Faliure, PrayerTime>> getPrayerTimeData() async {
+    final int year = DateTime.now().year;
+    final int month = DateTime.now().month;
     try {
-      final data = await _appServiceClient.getPrayerTimeData();
+      final data = await _appServiceClient.getPrayerTimeData(year, month);
       return Right(data);
     } catch (e) {
       if (e is DioException) {
