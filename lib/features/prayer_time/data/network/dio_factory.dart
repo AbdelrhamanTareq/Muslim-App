@@ -9,9 +9,7 @@ class DioFactory {
   Future<Dio> initDio() async {
     final Dio dio = Dio();
 
-    Map<String, dynamic> headers = {
-      //ApiConstant.contentType: ApiConstant.applicationJson,
-    };
+    Map<String, dynamic> headers = {"Content-Type": "application/json"};
 
     dio.options = BaseOptions(
       baseUrl: ApiConstant.baseUrl,

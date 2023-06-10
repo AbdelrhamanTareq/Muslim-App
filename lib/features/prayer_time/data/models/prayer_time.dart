@@ -31,16 +31,27 @@ class Data {
 
 @JsonSerializable()
 class Timings {
+  @JsonKey(name: "Fajr")
   final String fajr;
+  @JsonKey(name: "Sunrise")
   final String sunrise;
+  @JsonKey(name: "Dhuhr")
   final String dhuhr;
+  @JsonKey(name: "Asr")
   final String asr;
+  @JsonKey(name: "Sunset")
   final String sunset;
+  @JsonKey(name: "Maghrib")
   final String maghrib;
+  @JsonKey(name: "Isha")
   final String isha;
+  @JsonKey(name: "Imsak")
   final String imsak;
+  @JsonKey(name: "Midnight")
   final String midnight;
+  @JsonKey(name: "Firstthird")
   final String firstthird;
+  @JsonKey(name: "Lastthird")
   final String lastthird;
 
   Timings({
@@ -245,7 +256,9 @@ class Method {
 
 @JsonSerializable()
 class Params {
+  @JsonKey(name: "Fajr")
   final int fajr;
+  @JsonKey(name: "Isha")
   final int isha;
 
   Params({required this.fajr, required this.isha});
@@ -270,14 +283,23 @@ class Location {
 
 @JsonSerializable()
 class Offset {
+  @JsonKey(name: "Imsak")
   int imsak;
+  @JsonKey(name: "Fajr")
   int fajr;
+  @JsonKey(name: "Sunrise")
   int sunrise;
+  @JsonKey(name: "Dhuhr")
   int dhuhr;
+  @JsonKey(name: "Asr")
   int asr;
+  @JsonKey(name: "Maghrib")
   int maghrib;
+  @JsonKey(name: "Sunset")
   int sunset;
+  @JsonKey(name: "Isha")
   int isha;
+  @JsonKey(name: "Midnight")
   int midnight;
 
   Offset({

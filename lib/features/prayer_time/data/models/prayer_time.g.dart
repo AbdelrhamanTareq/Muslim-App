@@ -34,31 +34,31 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
     };
 
 Timings _$TimingsFromJson(Map<String, dynamic> json) => Timings(
-      fajr: json['fajr'] as String,
-      sunrise: json['sunrise'] as String,
-      dhuhr: json['dhuhr'] as String,
-      asr: json['asr'] as String,
-      sunset: json['sunset'] as String,
-      maghrib: json['maghrib'] as String,
-      isha: json['isha'] as String,
-      imsak: json['imsak'] as String,
-      midnight: json['midnight'] as String,
-      firstthird: json['firstthird'] as String,
-      lastthird: json['lastthird'] as String,
+      fajr: json['Fajr'] as String,
+      sunrise: json['Sunrise'] as String,
+      dhuhr: json['Dhuhr'] as String,
+      asr: json['Asr'] as String,
+      sunset: json['Sunset'] as String,
+      maghrib: json['Maghrib'] as String,
+      isha: json['Isha'] as String,
+      imsak: json['Imsak'] as String,
+      midnight: json['Midnight'] as String,
+      firstthird: json['Firstthird'] as String,
+      lastthird: json['Lastthird'] as String,
     );
 
 Map<String, dynamic> _$TimingsToJson(Timings instance) => <String, dynamic>{
-      'fajr': instance.fajr,
-      'sunrise': instance.sunrise,
-      'dhuhr': instance.dhuhr,
-      'asr': instance.asr,
-      'sunset': instance.sunset,
-      'maghrib': instance.maghrib,
-      'isha': instance.isha,
-      'imsak': instance.imsak,
-      'midnight': instance.midnight,
-      'firstthird': instance.firstthird,
-      'lastthird': instance.lastthird,
+      'Fajr': instance.fajr,
+      'Sunrise': instance.sunrise,
+      'Dhuhr': instance.dhuhr,
+      'Asr': instance.asr,
+      'Sunset': instance.sunset,
+      'Maghrib': instance.maghrib,
+      'Isha': instance.isha,
+      'Imsak': instance.imsak,
+      'Midnight': instance.midnight,
+      'Firstthird': instance.firstthird,
+      'Lastthird': instance.lastthird,
     };
 
 Date _$DateFromJson(Map<String, dynamic> json) => Date(
@@ -210,13 +210,13 @@ Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{
     };
 
 Params _$ParamsFromJson(Map<String, dynamic> json) => Params(
-      fajr: json['fajr'] as int,
-      isha: json['isha'] as int,
+      fajr: json['Fajr'] as int,
+      isha: json['Isha'] as int,
     );
 
 Map<String, dynamic> _$ParamsToJson(Params instance) => <String, dynamic>{
-      'fajr': instance.fajr,
-      'isha': instance.isha,
+      'Fajr': instance.fajr,
+      'Isha': instance.isha,
     };
 
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
@@ -230,25 +230,25 @@ Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{
     };
 
 Offset _$OffsetFromJson(Map<String, dynamic> json) => Offset(
-      imsak: json['imsak'] as int,
-      fajr: json['fajr'] as int,
-      sunrise: json['sunrise'] as int,
-      dhuhr: json['dhuhr'] as int,
-      asr: json['asr'] as int,
-      maghrib: json['maghrib'] as int,
-      sunset: json['sunset'] as int,
-      isha: json['isha'] as int,
-      midnight: json['midnight'] as int,
+      imsak: json['Imsak'] as int,
+      fajr: json['Fajr'] as int,
+      sunrise: json['Sunrise'] as int,
+      dhuhr: json['Dhuhr'] as int,
+      asr: json['Asr'] as int,
+      maghrib: json['Maghrib'] as int,
+      sunset: json['Sunset'] as int,
+      isha: json['Isha'] as int,
+      midnight: json['Midnight'] as int,
     );
 
 Map<String, dynamic> _$OffsetToJson(Offset instance) => <String, dynamic>{
-      'imsak': instance.imsak,
-      'fajr': instance.fajr,
-      'sunrise': instance.sunrise,
-      'dhuhr': instance.dhuhr,
-      'asr': instance.asr,
-      'maghrib': instance.maghrib,
-      'sunset': instance.sunset,
-      'isha': instance.isha,
-      'midnight': instance.midnight,
+      'Imsak': instance.imsak,
+      'Fajr': instance.fajr,
+      'Sunrise': instance.sunrise,
+      'Dhuhr': instance.dhuhr,
+      'Asr': instance.asr,
+      'Maghrib': instance.maghrib,
+      'Sunset': instance.sunset,
+      'Isha': instance.isha,
+      'Midnight': instance.midnight,
     };

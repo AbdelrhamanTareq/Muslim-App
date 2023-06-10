@@ -10,6 +10,6 @@ part 'app_api.g.dart';
 abstract class AppServiceClient {
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @GET("calendarByCity/")
+  @GET("calendarByCity/2023/6?city=Cairo&country=Egypt&method=2")
   Future<PrayerTime> getPrayerTimeData();
 }

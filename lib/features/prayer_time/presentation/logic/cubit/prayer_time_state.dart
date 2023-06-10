@@ -14,7 +14,7 @@ class GetPrayerTimeDataLoading extends PrayerTimeState {}
 class GetPrayerTimeDataSuccess extends PrayerTimeState {
   final PrayerTime data;
 
-  const GetPrayerTimeDataSuccess(this.data);
+  GetPrayerTimeDataSuccess(this.data);
 }
 
 class GetPrayerTimeDataError extends PrayerTimeState {

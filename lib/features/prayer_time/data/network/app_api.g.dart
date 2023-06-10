@@ -13,7 +13,7 @@ class _AppServiceClient implements AppServiceClient {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'http://api.aladhan.com/v1';
+    baseUrl ??= 'http://api.aladhan.com/v1/';
   }
 
   final Dio _dio;
@@ -34,7 +34,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'calendarByCity/',
+              'calendarByCity/2023/6?city=Cairo&country=Egypt&method=2',
               queryParameters: queryParameters,
               data: _data,
             )

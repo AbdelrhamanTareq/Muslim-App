@@ -18,10 +18,31 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     emit(GetPrayerTimeDataLoading());
     final dataOrError = await _prayerTimeRepo.getPrayerTimeData();
     dataOrError.fold(
-      (error) => emit(GetPrayerTimeDataError(error.errorMessage)),
-      (data) => emit(
-        GetPrayerTimeDataSuccess(data),
-      ),
+      (error) {
+        print(error.errorMessage);
+        emit(GetPrayerTimeDataError(error.errorMessage));
+      },
+      (data) {
+        emit(
+          GetPrayerTimeDataSuccess(data),
+        );
+      },
     );
   }
+
+  // getPrayerTimeData() async {
+  //   emit(GetPrayerTimeDataLoading());
+  //   final dataOrError = await _prayerTimeRepo.getPostsData();
+  //   dataOrError.fold(
+  //     (error) {
+  //       print(error.errorMessage);
+  //       emit(GetPrayerTimeDataError(error.errorMessage));
+  //     },
+  //     (data) {
+  //       emit(
+  //       GetPrayerTimeDataSuccess(data),
+  //     );
+  //     },
+  //   );
+  // }
 }
