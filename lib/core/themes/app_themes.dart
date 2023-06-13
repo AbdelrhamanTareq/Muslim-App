@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/themes/texts_styles.dart';
 
 class AppTheme {
   const AppTheme._();
@@ -13,6 +14,11 @@ class AppTheme {
       useMaterial3: true,
       // app bar theme
       appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
+
+      textTheme: const TextTheme(
+        headlineMedium: AppTextsStyle.reqularText18,
+        headlineLarge: AppTextsStyle.reqularText22,
+      ),
 
       inputDecorationTheme: const InputDecorationTheme(
         // content padding

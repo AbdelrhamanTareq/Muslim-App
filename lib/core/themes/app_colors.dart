@@ -4,4 +4,5 @@ class AppColor {
   const AppColor._();
 
   static const white = Colors.white;
+  static const gery = Color.fromARGB(255, 218, 218, 218);
 }
