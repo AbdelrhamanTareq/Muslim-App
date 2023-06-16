@@ -12,7 +12,7 @@ abstract class AppServiceClient {
 
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @GET("$_calendarByCityEndPoint/{year}/{month}?city=Cairo&method=2")
+  @GET("$_calendarByCityEndPoint/{year}/{month}?city=Cairo&country=Egypt&method=2")
   Future<PrayerTime> getPrayerTimeData(
     @Path("year") int year,
     @Path("month") int month,

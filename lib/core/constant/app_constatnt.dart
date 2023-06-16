@@ -62,15 +62,17 @@ List<ScreenObject> appScreen = [
   ),
 ];
 
- List<HadithScreenObject> hadithBooks = [
+List<HadithScreenObject> hadithBooks = [
   HadithScreenObject(name: "صحيح البخاري", path: AppAssets.bukhariPath),
   HadithScreenObject(name: "صحيح مسلم", path: AppAssets.muslimPath),
   HadithScreenObject(name: "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
   HadithScreenObject(name: "سنن ابي دواد", path: AppAssets.abuDaudPath),
   HadithScreenObject(name: "سنن الترمذي", path: AppAssets.tirmidziPath),
-  HadithScreenObject(name:  "الموطأ", path: AppAssets.malikPath),
-  HadithScreenObject(name:  "سنن النسائي", path: AppAssets.nasaiPath),
-  HadithScreenObject(name:  "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
+  HadithScreenObject(name: "الموطأ", path: AppAssets.malikPath),
+  HadithScreenObject(name: "سنن النسائي", path: AppAssets.nasaiPath),
+  HadithScreenObject(name: "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
   HadithScreenObject(name: "مسند احمد", path: AppAssets.ahmadPath),
-
 ];
+
+const String bookmarksKey = "BOOKMARK";
+const String prayerTimesKey = "PRAYER_TIMES";

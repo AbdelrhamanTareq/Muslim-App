@@ -63,16 +63,16 @@ class PrayerTimesWidget extends StatelessWidget {
     var finalDate = int.parse(newDateWithoutFractional);
     print(finalDate);
     Map<String, Timings> data = {};
-    final date = state.data.data.forEach((element) {
-      var date = int.parse(element.date.timestamp);
-      print("date ===== $date");
-      if (date == finalDate) {
-        Map<String, Timings> entery = {element.date.timestamp: element.timings};
-        data.addEntries(entery.entries);
-      }
-    });
+    // final date = state.data.data.forEach((element) {
+    //   var date = int.parse(element.date.timestamp);
+    //   print("date ===== $date");
+    //   if (date == finalDate) {
+    //     Map<String, Timings> entery = {element.date.timestamp: element.timings};
+    //     data.addEntries(entery.entries);
+    //   }
+    // });
     print("data = $data");
-    var prayerTimes = data.entries.first.value;
+    var prayerTimes = state.data;
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 16),
@@ -87,57 +87,60 @@ class PrayerTimesWidget extends StatelessWidget {
           _buildListTile(
             context,
             name: "الفجر",
-            time: prayerTimes.fajr.split(" ")[0],
+            time: prayerTimes[finalDate]!.fajr.split(" ")[0],
           ),
           _buildListTile(
             context,
             name: "الشروق",
-            time: prayerTimes.sunrise
+            time: prayerTimes[finalDate]!.sunrise
                 // subString from fist index = 0 to the index of charchter you want to split it
-                .substring(0, prayerTimes.sunrise.indexOf(" ")),
+                .substring(0, prayerTimes[finalDate]!.sunrise.indexOf(" ")),
           ),
           _buildListTile(
             context,
             name: "الظهر",
-            time: prayerTimes.dhuhr.split(" ")[0],
+            time: prayerTimes[finalDate]!.dhuhr.split(" ")[0],
           ),
           _buildListTile(
             context,
             name: "العصر",
-            time: prayerTimes.asr.split(" ")[0],
+            time: prayerTimes[finalDate]!.asr.split(" ")[0],
           ),
           _buildListTile(
             context,
             name: "المغرب",
-            time: prayerTimes.maghrib.split(" ")[0],
+            time: prayerTimes[finalDate]!.maghrib.split(" ")[0],
           ),
           _buildListTile(
             context,
             name: "العشاء",
-            time: prayerTimes.isha.split(" ")[0],
+            time: prayerTimes[finalDate]!.isha.split(" ")[0],
           ),
         ],
       ),
     );
   }
 
-  ListTile _buildListTile(context,
+  Widget _buildListTile(context,
       {required String name, required String time}) {
-    return ListTile(
-      leading: IconButton(
-        icon: const Icon(
-          Icons.alarm,
-          size: 35,
+    return Container(
+      color: AppColor.green,
+      child: ListTile(
+        leading: IconButton(
+          icon: const Icon(
+            Icons.alarm,
+            size: 35,
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
-      ),
-      title: Text(
-        name,
-        style: Theme.of(context).textTheme.headlineLarge,
-      ),
-      trailing: Text(
-        time,
-        style: Theme.of(context).textTheme.headlineLarge,
+        title: Text(
+          name,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
+        trailing: Text(
+          time,
+          style: Theme.of(context).textTheme.headlineLarge,
+        ),
       ),
     );
   }

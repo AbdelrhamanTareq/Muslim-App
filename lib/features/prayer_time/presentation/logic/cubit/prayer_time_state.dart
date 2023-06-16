@@ -12,9 +12,9 @@ class PrayerTimeInitial extends PrayerTimeState {}
 class GetPrayerTimeDataLoading extends PrayerTimeState {}
 
 class GetPrayerTimeDataSuccess extends PrayerTimeState {
-  final PrayerTime data;
+  final Map<int, Timings> data;
 
-  GetPrayerTimeDataSuccess(this.data);
+  const GetPrayerTimeDataSuccess(this.data);
 }
 
 class GetPrayerTimeDataError extends PrayerTimeState {

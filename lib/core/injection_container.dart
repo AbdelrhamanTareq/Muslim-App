@@ -26,7 +26,9 @@ Future<void> initGetIt() async {
 
   instance.registerLazySingleton<HadithRepo>(() => HadithRepoImpl());
   instance.registerLazySingleton<PrayerTimeLocalDate>(
-    () => PrayerTimeLocalDateImpl(),
+    () => PrayerTimeLocalDateImpl(
+      instance(),
+    ),
   );
   instance.registerLazySingleton<PrayerTimeRepo>(
     () => PrayerTimeRepoImpl(

@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'prayer_time.g.dart';
@@ -28,29 +29,40 @@ class Data {
 
   Map<String, dynamic> toJson() => _$DataToJson(this);
 }
-
+@HiveType(typeId: 1)
 @JsonSerializable()
 class Timings {
+  @HiveField(0)
   @JsonKey(name: "Fajr")
   final String fajr;
+  @HiveField(1)
   @JsonKey(name: "Sunrise")
   final String sunrise;
+  @HiveField(2)
   @JsonKey(name: "Dhuhr")
   final String dhuhr;
+  @HiveField(3)
   @JsonKey(name: "Asr")
   final String asr;
+   @HiveField(4)
   @JsonKey(name: "Sunset")
   final String sunset;
+   @HiveField(5)
   @JsonKey(name: "Maghrib")
   final String maghrib;
+   @HiveField(6)
   @JsonKey(name: "Isha")
   final String isha;
+   @HiveField(7)
   @JsonKey(name: "Imsak")
   final String imsak;
+   @HiveField(8)
   @JsonKey(name: "Midnight")
   final String midnight;
+   @HiveField(9)
   @JsonKey(name: "Firstthird")
   final String firstthird;
+   @HiveField(10)
   @JsonKey(name: "Lastthird")
   final String lastthird;
 
