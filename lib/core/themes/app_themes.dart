@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/themes/texts_styles.dart';
+import 'package:muslim_app/core/themes/theme_constant.dart';
 
 class AppTheme {
   const AppTheme._();
@@ -14,7 +15,7 @@ class AppTheme {
       useMaterial3: true,
       // app bar theme
       appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
-
+      fontFamily: ThemeConstant.defaultFont,
       textTheme: const TextTheme(
         headlineMedium: AppTextsStyle.reqularText18,
         headlineLarge: AppTextsStyle.reqularText22,

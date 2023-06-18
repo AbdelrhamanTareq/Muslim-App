@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
-import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
+import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 
 class PrayerTimeView extends StatefulWidget {
@@ -30,12 +30,18 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
             );
           } else if (state is GetPrayerTimeDataSuccess) {
             //print(state.data.data[0].date.timestamp);
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
+            return Stack(
+              // crossAxisAlignment: CrossAxisAlignment.center,
+              alignment: Alignment.topCenter,
               children: [
-                const PrayerTimeHeaderWidget(),
-                PrayerTimesWidget(
+                PrayerTimeHeaderWidget(
                   state: state,
+                ),
+                Align(
+                  alignment: Alignment.bottomCenter,
+                  child: PrayerTimesWidget(
+                    state: state,
+                  ),
                 )
               ],
             );
@@ -61,56 +67,52 @@ class PrayerTimesWidget extends StatelessWidget {
         1000;
     var newDateWithoutFractional = newDate.toStringAsFixed(0);
     var finalDate = int.parse(newDateWithoutFractional);
-    print(finalDate);
-    Map<String, Timings> data = {};
-    // final date = state.data.data.forEach((element) {
-    //   var date = int.parse(element.date.timestamp);
-    //   print("date ===== $date");
-    //   if (date == finalDate) {
-    //     Map<String, Timings> entery = {element.date.timestamp: element.timings};
-    //     data.addEntries(entery.entries);
-    //   }
-    // });
-    print("data = $data");
+
     var prayerTimes = state.data;
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 16),
+      height: MediaQuery.of(context).size.height * 0.67,
+      margin: const EdgeInsets.only(top: 16, left: 10, right: 10, bottom: 16),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       decoration: BoxDecoration(
         color: AppColor.white,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
           _buildListTile(
             context,
             name: "الفجر",
             time: prayerTimes[finalDate]!.fajr.split(" ")[0],
           ),
+          const Divider(height: 12),
           _buildListTile(
             context,
             name: "الشروق",
-            time: prayerTimes[finalDate]!.sunrise
+            time: prayerTimes[finalDate]!
+                .sunrise
                 // subString from fist index = 0 to the index of charchter you want to split it
                 .substring(0, prayerTimes[finalDate]!.sunrise.indexOf(" ")),
           ),
+          const Divider(height: 12),
           _buildListTile(
             context,
             name: "الظهر",
             time: prayerTimes[finalDate]!.dhuhr.split(" ")[0],
           ),
+          const Divider(height: 12),
           _buildListTile(
             context,
             name: "العصر",
             time: prayerTimes[finalDate]!.asr.split(" ")[0],
           ),
+          const Divider(height: 12),
           _buildListTile(
             context,
             name: "المغرب",
             time: prayerTimes[finalDate]!.maghrib.split(" ")[0],
           ),
+          const Divider(height: 12),
           _buildListTile(
             context,
             name: "العشاء",
@@ -121,26 +123,22 @@ class PrayerTimesWidget extends StatelessWidget {
     );
   }
 
-  Widget _buildListTile(context,
-      {required String name, required String time}) {
-    return Container(
-      color: AppColor.green,
-      child: ListTile(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.alarm,
-            size: 35,
-          ),
-          onPressed: () {},
+  Widget _buildListTile(context, {required String name, required String time}) {
+    return ListTile(
+      leading: IconButton(
+        icon: const Icon(
+          Icons.alarm,
+          size: 35,
         ),
-        title: Text(
-          name,
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        trailing: Text(
-          time,
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
+        onPressed: () {},
+      ),
+      title: Text(
+        name,
+        style: Theme.of(context).textTheme.headlineMedium,
+      ),
+      trailing: Text(
+        time,
+        style: Theme.of(context).textTheme.headlineMedium,
       ),
     );
   }
@@ -149,44 +147,120 @@ class PrayerTimesWidget extends StatelessWidget {
 class PrayerTimeHeaderWidget extends StatelessWidget {
   const PrayerTimeHeaderWidget({
     super.key,
+    required this.state,
   });
+  final GetPrayerTimeDataSuccess state;
 
   @override
   Widget build(BuildContext context) {
+    final now = DateTime.now();
+    var newDate = DateTime(now.year, now.month, now.day, 09, 01, 01)
+            .millisecondsSinceEpoch /
+        1000;
+    var newDateWithoutFractional = newDate.toStringAsFixed(0);
+    var finalDate = int.parse(newDateWithoutFractional);
+    var prayerTimes = state.data;
+
+    final dateList = [
+      DateTime.parse(
+          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.fajr.split(" ")[0]}"),
+      DateTime.parse(
+          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.dhuhr.split(" ")[0]}"),
+      DateTime.parse(
+          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.asr.split(" ")[0]}"),
+      DateTime.parse(
+          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.maghrib.split(" ")[0]}"),
+      DateTime.parse(
+          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.isha.split(" ")[0]}"),
+    ];
+    print(DateTime.parse(
+        "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} 04:35:00"));
+    //${getPrayerName(dateList)}
     return Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(top: 30, left: 10, right: 10, bottom: 0),
+        height: MediaQuery.of(context).size.height * 0.3,
+        margin: const EdgeInsets.only(top: 30),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: AppColor.white,
-          borderRadius: BorderRadius.circular(12),
+          image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+              Colors.black.withOpacity(0.2),
+              BlendMode.darken,
+            ),
+            fit: BoxFit.fill,
+            image: const AssetImage(
+              AppAssets.dayImagePath,
+            ),
+          ),
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(12),
+            topRight: Radius.circular(12),
+          ),
         ),
-        child: Column(
+        child: Stack(
           children: [
-            Text(
-              "القاهرة",
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            Text(
-              DateTime.now().toLocal().toString(),
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            Text(
-              "الوقت المتبقي للظهر",
-              style: Theme.of(context).textTheme.headlineLarge,
-            ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              "1 ساعة",
-              style: Theme.of(context)
-                  .textTheme
-                  .headlineLarge!
-                  .copyWith(color: Colors.deepPurple),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  "الفجر",
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColor.white,
+                      ),
+                ),
+                Text(
+                  prayerTimes[finalDate]!.fajr,
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        fontWeight: FontWeight.w700,
+                        color: AppColor.white,
+                      ),
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Column(
+                  children: [
+                    Text(
+                      "متبقي",
+                      style:
+                          Theme.of(context).textTheme.headlineMedium!.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: AppColor.white,
+                              ),
+                    ),
+                    const SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      "05:24",
+                      style:
+                          Theme.of(context).textTheme.headlineLarge!.copyWith(
+                                fontWeight: FontWeight.w700,
+                                color: AppColor.white,
+                              ),
+                    ),
+                  ],
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: Row(
+                    children: [
+                      const Icon(
+                        Icons.place,
+                        color: AppColor.white,
+                      ),
+                      Text(
+                        "القاهرة مصر",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: AppColor.white,
+                            ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
             ),
           ],
         ));

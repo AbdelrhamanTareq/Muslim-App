@@ -24,5 +24,7 @@ abstract class AppAssets {
   ////////////////////////////////////////////////////////
   static const compassPath = "$imageAssetsPath/compass.png";
   static const neddleKabahPath = "$imageAssetsPath/qibla.png";
+  static const dayImagePath = "$imageAssetsPath/day.jpg";
+  static const nightImagePath = "$imageAssetsPath/night.jpg";
   
 }
