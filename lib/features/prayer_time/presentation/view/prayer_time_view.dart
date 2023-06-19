@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/function.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
@@ -162,20 +165,14 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
     var prayerTimes = state.data;
 
     final dateList = [
-      DateTime.parse(
-          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.fajr.split(" ")[0]}"),
-      DateTime.parse(
-          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.dhuhr.split(" ")[0]}"),
-      DateTime.parse(
-          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.asr.split(" ")[0]}"),
-      DateTime.parse(
-          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.maghrib.split(" ")[0]}"),
-      DateTime.parse(
-          "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} ${prayerTimes[finalDate]!.isha.split(" ")[0]}"),
+      prayerTimeConverter(prayerTimes[finalDate]!.fajr),
+      prayerTimeConverter(prayerTimes[finalDate]!.dhuhr),
+      prayerTimeConverter(prayerTimes[finalDate]!.asr),
+      prayerTimeConverter(prayerTimes[finalDate]!.maghrib),
+      prayerTimeConverter(prayerTimes[finalDate]!.isha),
     ];
-    print(DateTime.parse(
-        "${DateTime.now().year}-0${DateTime.now().month}-${DateTime.now().day} 04:35:00"));
-    //${getPrayerName(dateList)}
+    log("${prayerTimeConverter(getPrayerTimeDate(dateList, prayerTimes[finalDate]!))}");
+    //log("${toTimeOfDay(prayerTimes[finalDate]!.fajr)}");
     return Container(
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.3,
@@ -204,14 +201,15 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "الفجر",
+                  getPrayerName(dateList),
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColor.white,
                       ),
                 ),
                 Text(
-                  prayerTimes[finalDate]!.fajr,
+                  getPrayerTimeDate(dateList, prayerTimes[finalDate]!)
+                      .split(" ")[0],
                   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                         fontWeight: FontWeight.w700,
                         color: AppColor.white,
@@ -234,7 +232,10 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
                       height: 8,
                     ),
                     Text(
-                      "05:24",
+                      toTimeOfDay(dateList, prayerTimes[finalDate]!)
+                          .difference(DateTime.now())
+                          .toString()
+                          .substring(0, 4),
                       style:
                           Theme.of(context).textTheme.headlineLarge!.copyWith(
                                 fontWeight: FontWeight.w700,
