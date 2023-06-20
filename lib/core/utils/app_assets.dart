@@ -6,6 +6,8 @@ const String imageAssetsPath = "assets/images";
 abstract class AppAssets {
   static const quran = "$quranPath/quran.json";
   //////////////////////////////////////////////////////
+  static const azkar = "$quranPath/azkar.json";
+  //////////////////////////////////////////////////////
   static const bukhariPath = "$hadithPath/bukhari.json";
   static const muslimPath = "$hadithPath/muslim.json";
   static const ahmadPath = "$hadithPath/ahmad.json";
