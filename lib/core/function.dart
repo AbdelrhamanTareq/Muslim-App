@@ -15,33 +15,49 @@ DateTime prayerTimeConverter(String prayerTime) {
   return newDate;
 }
 
-DateTime toTimeOfDay(List<DateTime> prayerTimes, Timings prayerTimesMap) {
-  final stringTime = getPrayerTimeDate(prayerTimes, prayerTimesMap);
-  final time = stringTime.split(" ")[0];
-  List<String> timeSplit = time.split(":");
-  int hour = int.parse(timeSplit.first);
-  int minute = int.parse(timeSplit.last);
+DateTime toTimeOfDay({
+  List<DateTime>? prayerTimes,
+  Timings? prayerTimesMap,
+  String? stringDate,
+}) {
+  if (stringDate != null) {
+    final time = stringDate.split(" ")[0];
+    List<String> timeSplit = time.split(":");
+    int hour = int.parse(timeSplit.first);
+    int minute = int.parse(timeSplit.last);
+    final timeOfDay = TimeOfDay(hour: hour, minute: minute);
+    final now = DateTime.now();
+    return DateTime(
+        now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+  } else {
+    final stringTime = getPrayerTimeDate(prayerTimes!, prayerTimesMap!);
+    final time = stringTime.split(" ")[0];
+    List<String> timeSplit = time.split(":");
+    int hour = int.parse(timeSplit.first);
+    int minute = int.parse(timeSplit.last);
 
-  final timeOfDay = TimeOfDay(hour: hour, minute: minute);
-  final now = DateTime.now();
-  return DateTime(
-      now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+    final timeOfDay = TimeOfDay(hour: hour, minute: minute);
+    final now = DateTime.now();
+    return DateTime(
+        now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+  }
 }
 
 String getPrayerName(List<DateTime> prayerTimes) {
   final now = DateTime.now();
-  for (var element in prayerTimes) {
-    print(element.hour);
-  }
-  if (now.hour >= prayerTimes[0].hour && now.hour < prayerTimes[1].hour) {
-    return "الظهر";
-  } else if (now.hour > prayerTimes[1].hour && now.hour < prayerTimes[2].hour) {
+  // for (var element in prayerTimes) {
+  //   //print(element.hour);
+  //   print(element.hour);
+  // }
+  final int nowHour = now.hour;
+  if (nowHour >= prayerTimes[0].hour && nowHour < prayerTimes[1].hour) {
+    return "الفجر";
+  } else if (nowHour >= prayerTimes[1].hour && nowHour < prayerTimes[2].hour) {
+    return "الضهر";
+  } else if (nowHour >= prayerTimes[2].hour && nowHour < prayerTimes[3].hour) {
     return "العصر";
-  } else if (now.hour > prayerTimes[2].hour && now.hour < prayerTimes[3].hour) {
+  } else if (nowHour >= prayerTimes[3].hour && nowHour <= prayerTimes[4].hour) {
     return "المغرب";
-  } else if (now.hour > prayerTimes[3].hour &&
-      now.hour <= prayerTimes[4].hour) {
-    return "العشاء";
   } else {
     return "الفجر";
   }
@@ -65,4 +81,14 @@ String getPrayerTimeDate(List<DateTime> prayerTimes, Timings prayerTimesMap) {
     default:
       return prayerTimesMap.isha;
   }
+}
+
+int convertDateToTimeStampInInt() {
+  final now = DateTime.now();
+  var newDate = DateTime(now.year, now.month, now.day, 09, 01, 01)
+          .millisecondsSinceEpoch /
+      1000;
+  var newDateWithoutFractional = newDate.toStringAsFixed(0);
+  var finalDate = int.parse(newDateWithoutFractional);
+  return finalDate;
 }
