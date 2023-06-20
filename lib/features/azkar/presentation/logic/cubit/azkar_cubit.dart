@@ -1,4 +1,6 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
@@ -18,6 +20,7 @@ class AzkarCubit extends Cubit<AzkarState> {
     emit(GetAzkarDataLoading());
     try {
       final data = await _azkarRepo.getAzkarDate();
+      log("$data");
       emit(GetAzkarDataSuccess(data));
     } catch (e) {
       emit(GetAzkarDataError(e.toString()));

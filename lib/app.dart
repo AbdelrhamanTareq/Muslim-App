@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_themes.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:muslim_app/features/azkar/presentation/logic/cubit/azkar_cubit.dart';
 import 'package:muslim_app/features/quran/data/repo/quran_repo.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
 
@@ -15,7 +17,11 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider<QuranCubit>(
-          create: (_) => QuranCubit(QuranRepoImpl())..getAllQuranData(),
+          create: (_) => instance<QuranCubit>()..getAllQuranData(),
+          lazy: false,
+        ),
+        BlocProvider<AzkarCubit>(
+          create: (_) => instance<AzkarCubit>()..getAllAzkarData(),
           lazy: false,
         ),
       ],
