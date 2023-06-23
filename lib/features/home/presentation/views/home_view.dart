@@ -18,7 +18,7 @@ class HomwView extends StatefulWidget {
 class _HomwViewState extends State<HomwView> {
   @override
   void initState() {
-    BlocProvider.of<AzkarCubit>(context).getAllAzkarData();
+    BlocProvider.of<AzkarCubit>(context).getMainAzkarData();
     super.initState();
   }
 

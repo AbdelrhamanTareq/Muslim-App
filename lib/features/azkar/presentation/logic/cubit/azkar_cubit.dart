@@ -26,4 +26,15 @@ class AzkarCubit extends Cubit<AzkarState> {
       emit(GetAzkarDataError(e.toString()));
     }
   }
+
+  Future getMainAzkarData() async {
+    emit(GetMainAzkarDataLoading());
+    try {
+      final data = await _azkarRepo.getMainAzkarDate();
+      log("$data");
+      emit(GetMainAzkarDataSuccess(data));
+    } catch (e) {
+      emit(GetMainAzkarDataError(e.toString()));
+    }
+  }
 }

@@ -50,14 +50,19 @@ String getPrayerName(List<DateTime> prayerTimes) {
   //   print(element.hour);
   // }
   final int nowHour = now.hour;
+  print(prayerTimes[0].hour);
+  print(prayerTimes[1].hour);
+  print(prayerTimes[2].hour);
+  print(prayerTimes[3].hour);
+  print(prayerTimes[4].hour);
   if (nowHour >= prayerTimes[0].hour && nowHour < prayerTimes[1].hour) {
-    return "الفجر";
-  } else if (nowHour >= prayerTimes[1].hour && nowHour < prayerTimes[2].hour) {
     return "الضهر";
-  } else if (nowHour >= prayerTimes[2].hour && nowHour < prayerTimes[3].hour) {
+  } else if (nowHour >= prayerTimes[1].hour && nowHour < prayerTimes[2].hour) {
     return "العصر";
-  } else if (nowHour >= prayerTimes[3].hour && nowHour <= prayerTimes[4].hour) {
+  } else if (nowHour >= prayerTimes[2].hour && nowHour < prayerTimes[3].hour) {
     return "المغرب";
+  } else if (nowHour >= prayerTimes[3].hour && nowHour <= prayerTimes[4].hour) {
+    return "العشاء";
   } else {
     return "الفجر";
   }

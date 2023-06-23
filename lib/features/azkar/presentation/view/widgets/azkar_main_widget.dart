@@ -10,7 +10,7 @@ class AzkarMainWidget extends StatelessWidget {
     required this.state,
   }) : super(key: key);
 
-  final GetAzkarDataSuccess state;
+  final GetMainAzkarDataSuccess state;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(

@@ -8,6 +8,7 @@ abstract class AppAssets {
   static const quran = "$quranPath/quran.json";
   //////////////////////////////////////////////////////
   static const azkar = "$azkarPath/azkar.json";
+  static const mainAzkar = "$azkarPath/main_azkar.json";
   //////////////////////////////////////////////////////
   static const bukhariPath = "$hadithPath/bukhari.json";
   static const muslimPath = "$hadithPath/muslim.json";

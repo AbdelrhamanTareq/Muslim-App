@@ -22,3 +22,16 @@ class GetAzkarDataSuccess extends AzkarState {
 
   const GetAzkarDataSuccess(this.data);
 }
+class GetMainAzkarDataLoading extends AzkarState {}
+
+class GetMainAzkarDataError extends AzkarState {
+  final String error;
+
+  const GetMainAzkarDataError(this.error);
+}
+
+class GetMainAzkarDataSuccess extends AzkarState {
+  final List<Azkar> data;
+
+  const GetMainAzkarDataSuccess(this.data);
+}

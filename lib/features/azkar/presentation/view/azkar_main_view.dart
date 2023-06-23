@@ -12,10 +12,10 @@ class AzkarMainView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<AzkarCubit, AzkarState>(
       builder: (context, state) {
-        if (state is GetAzkarDataError) {
+        if (state is GetMainAzkarDataError) {
           // TODO
           return Text("error");
-        } else if (state is GetAzkarDataSuccess) {
+        } else if (state is GetMainAzkarDataSuccess) {
           return AzkarMainWidget(
             state: state,
           );
