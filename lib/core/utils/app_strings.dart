@@ -20,4 +20,8 @@ abstract class AppStrings {
   static const String isha = "العشاء";
   static const String sunrise = "الشروق";
   static const String remaining = "متبقي";
+
+
+  static const String alazkar = "الاذكار";
+  static const String allAzkar = "جميع الاذكار";
 }

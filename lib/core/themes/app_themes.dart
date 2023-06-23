@@ -14,7 +14,11 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       // app bar theme
-      appBarTheme: const AppBarTheme(centerTitle: true, elevation: 0),
+      appBarTheme: const AppBarTheme(
+        centerTitle: true,
+        elevation: 0,
+        scrolledUnderElevation: 0,
+      ),
       fontFamily: ThemeConstant.defaultFont,
       textTheme: const TextTheme(
         headlineMedium: AppTextsStyle.reqularText18,
