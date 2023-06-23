@@ -8,24 +8,15 @@ import 'package:muslim_app/features/azkar/data/repo/azkar_repo.dart';
 
 import '../../../data/models/azkar.dart';
 
-part 'azkar_state.dart';
+part 'main_azkar_state.dart';
 
-class AzkarCubit extends Cubit<AzkarState> {
+class MainAzkarCubit extends Cubit<MainAzkarState> {
   final AzkarRepo _azkarRepo;
-  AzkarCubit(
+  MainAzkarCubit(
     this._azkarRepo,
   ) : super(AzkarInitial());
 
-  Future getAllAzkarData() async {
-    emit(GetAzkarDataLoading());
-    try {
-      final data = await _azkarRepo.getAzkarDate();
-      log("$data");
-      emit(GetAzkarDataSuccess(data));
-    } catch (e) {
-      emit(GetAzkarDataError(e.toString()));
-    }
-  }
+ 
 
   Future getMainAzkarData() async {
     emit(GetMainAzkarDataLoading());

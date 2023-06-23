@@ -2,7 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'package:muslim_app/features/azkar/presentation/logic/cubit/azkar_cubit.dart';
+import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/widgets/azkar_main_widget.dart';
 
 class AzkarMainView extends StatelessWidget {
@@ -10,7 +10,7 @@ class AzkarMainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AzkarCubit, AzkarState>(
+    return BlocBuilder<MainAzkarCubit, MainAzkarState>(
       builder: (context, state) {
         if (state is GetMainAzkarDataError) {
           // TODO

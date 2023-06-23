@@ -1,29 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_router.dart';
-import '../../logic/cubit/azkar_cubit.dart';
+import '../../logic/cubit/main_azkar_cubit.dart';
 
 class AzkarMainWidget extends StatelessWidget {
   const AzkarMainWidget({
     Key? key,
-    required this.state,
+    this.state,
+    this.data,
   }) : super(key: key);
 
-  final GetMainAzkarDataSuccess state;
+  final GetMainAzkarDataSuccess? state;
+  final List<Azkar>? data;
   @override
   Widget build(BuildContext context) {
+    if (state != null) {
+      return _buildListBuilder(state!.data);
+    } else {
+      return _buildListBuilder(data!);
+    }
+  }
+
+  GestureDetector _buildListBuilder(List<Azkar> data) {
     return GestureDetector(
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
-        itemCount: 10,
+        itemCount: data.length,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
               Navigator.pushNamed(context, Routes.azkarDetailsPath, arguments: {
-                "zkerTitle": state.data[index].category,
-                "data": state.data[index].array,
+                "zkerTitle": data[index].category,
+                "data": data[index].array,
               });
             },
             child: Container(
@@ -33,7 +44,7 @@ class AzkarMainWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(16),
                   color: AppColor.gery),
               child: Text(
-                state.data[index].category,
+                data[index].category,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ),

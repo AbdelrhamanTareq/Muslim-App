@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/injection_container.dart';
-import 'package:muslim_app/features/azkar/presentation/logic/cubit/azkar_cubit.dart';
+import 'package:muslim_app/features/azkar/data/models/azkar.dart';
+import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
+import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/akar_details_view.dart';
+import 'package:muslim_app/features/azkar/presentation/view/all_azkar_view.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
@@ -25,6 +28,7 @@ abstract class Routes {
   static const String sebhaPath = "/sebha";
   static const String prayerTimePath = "/prayer-time";
   static const String azkarDetailsPath = "/azkar-details";
+  static const String allAzkarPath = "/all-azkar";
 }
 
 abstract class AppRoutes {
@@ -32,7 +36,10 @@ abstract class AppRoutes {
     switch (settings.name) {
       case Routes.home:
         return MaterialPageRoute(
-          builder: (context) => const HomwView(),
+          builder: (context) =>  BlocProvider<MainAzkarCubit>(
+            create: (context) => instance<MainAzkarCubit>(),
+            child:const HomwView(),
+          ),
         );
       case Routes.quranPath:
         return MaterialPageRoute(
@@ -77,11 +84,21 @@ abstract class AppRoutes {
         final Map<String, dynamic> args =
             settings.arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (context) => BlocProvider<AzkarCubit>(
-            create: (context) => instance<AzkarCubit>(),
+          builder: (context) => BlocProvider<MainAzkarCubit>(
+            create: (context) => instance<MainAzkarCubit>(),
             child: AzkarDetailsView(
               zkerTitle: args["zkerTitle"],
               data: args["data"],
+            ),
+          ),
+        );
+      case Routes.allAzkarPath:
+        final data = settings.arguments as List<Azkar>;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider<AllAzkarCubit>(
+            create: (context) => instance<AllAzkarCubit>(),
+            child: AllAzkarView(
+              data: data,
             ),
           ),
         );

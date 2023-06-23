@@ -6,13 +6,13 @@ import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 import '../../../../core/utils/app_assets.dart';
 
 abstract class AzkarRepo {
-  Future<List<Azkar>> getAzkarDate();
+  Future<List<Azkar>> getAllAzkarDate();
   Future<List<Azkar>> getMainAzkarDate();
 }
 
 class AzkarRepoImpl extends AzkarRepo {
   @override
-  Future<List<Azkar>> getAzkarDate() async {
+  Future<List<Azkar>> getAllAzkarDate() async {
     final List<Azkar> azkarData = [];
 
     final stringData = await rootBundle.loadString(AppAssets.azkar);
