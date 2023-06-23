@@ -1,7 +1,9 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/core/themes/app_colors.dart';
+
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/azkar_cubit.dart';
+import 'package:muslim_app/features/azkar/presentation/view/widgets/azkar_main_widget.dart';
 
 class AzkarMainView extends StatelessWidget {
   const AzkarMainView({super.key});
@@ -14,29 +16,8 @@ class AzkarMainView extends StatelessWidget {
           // TODO
           return Text("error");
         } else if (state is GetAzkarDataSuccess) {
-          return GestureDetector(
-            onTap: () {
-              
-            },
-            child: ListView.builder(
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.only(bottom: 10,left: 10,right: 10),
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    color: AppColor.gery
-                  ),
-                  child: Text(
-                    state.data[index].category,
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
-                );
-              },
-            ),
+          return AzkarMainWidget(
+            state: state,
           );
         } else {
           return const CircularProgressIndicator.adaptive();

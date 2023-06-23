@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/features/azkar/presentation/logic/cubit/azkar_cubit.dart';
+import 'package:muslim_app/features/azkar/presentation/view/akar_details_view.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
@@ -22,6 +24,7 @@ abstract class Routes {
   static const String qiblaPath = "/qibla";
   static const String sebhaPath = "/sebha";
   static const String prayerTimePath = "/prayer-time";
+  static const String azkarDetailsPath = "/azkar-details";
 }
 
 abstract class AppRoutes {
@@ -68,6 +71,18 @@ abstract class AppRoutes {
           builder: (context) => BlocProvider<PrayerTimeCubit>(
             create: (context) => instance<PrayerTimeCubit>(),
             child: const PrayerTimeView(),
+          ),
+        );
+      case Routes.azkarDetailsPath:
+        final Map<String, dynamic> args =
+            settings.arguments as Map<String, dynamic>;
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider<AzkarCubit>(
+            create: (context) => instance<AzkarCubit>(),
+            child: AzkarDetailsView(
+              zkerTitle: args["zkerTitle"],
+              data: args["data"],
+            ),
           ),
         );
 

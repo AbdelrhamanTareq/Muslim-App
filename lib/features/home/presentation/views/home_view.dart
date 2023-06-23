@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/azkar_main_view.dart';
@@ -24,7 +25,7 @@ class _HomwViewState extends State<HomwView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffedebf2),
+      backgroundColor: AppColor.scaffoldColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
