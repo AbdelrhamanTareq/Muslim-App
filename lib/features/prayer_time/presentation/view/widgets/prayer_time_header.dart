@@ -55,7 +55,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
         margin: const EdgeInsets.only(top: 30),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: AppColor.white,
+          color: AppColors.white,
           image: DecorationImage(
             colorFilter: ColorFilter.mode(
               Colors.black.withOpacity(0.2),
@@ -101,13 +101,13 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
         children: [
           const Icon(
             Icons.place,
-            color: AppColor.white,
+            color: AppColors.white,
           ),
           // TODO
           Text(
             "القاهرة,مصر",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: AppColor.white,
+                  color: AppColors.white,
                 ),
           ),
         ],
@@ -126,7 +126,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
           AppStrings.remaining,
           style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                 fontWeight: FontWeight.w700,
-                color: AppColor.white,
+                color: AppColors.white,
               ),
         ),
         const SizedBox(
@@ -141,7 +141,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
               .substring(0, 4),
           style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                 fontWeight: FontWeight.w700,
-                color: AppColor.white,
+                color: AppColors.white,
               ),
         ),
       ],
@@ -154,7 +154,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
       getPrayerTimeDate(prayerTimesList, prayerTimes[finalDate]!).split(" ")[0],
       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
             fontWeight: FontWeight.w700,
-            color: AppColor.white,
+            color: AppColors.white,
           ),
     );
   }
@@ -165,7 +165,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
       getPrayerName(prayerTimesList),
       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
             fontWeight: FontWeight.w700,
-            color: AppColor.white,
+            color: AppColors.white,
           ),
     );
   }

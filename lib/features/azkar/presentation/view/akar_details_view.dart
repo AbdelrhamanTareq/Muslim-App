@@ -17,7 +17,7 @@ class AzkarDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.scaffoldColor,
+      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
        // backgroundColor: AppColor.scaffoldColor,
         title: Text(zkerTitle),

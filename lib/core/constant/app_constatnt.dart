@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/features/hadith/data/models/hadith_screen_object.dart';
@@ -31,7 +32,7 @@ const appHomeIcons = [
 
 List<ScreenObject> appScreen = [
   ScreenObject(
-    color: const Color(0xff61b3de),
+    color: AppColors.quranBackgroundAppBar,
     name: "القران الكريم",
     path: Routes.quranPath,
     iconAsset: AppAssets.quranSvgPath,

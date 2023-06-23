@@ -42,7 +42,7 @@ class AzkarMainWidget extends StatelessWidget {
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: AppColor.gery),
+                  color: AppColors.gery),
               child: Text(
                 data[index].category,
                 style: Theme.of(context).textTheme.headlineMedium,

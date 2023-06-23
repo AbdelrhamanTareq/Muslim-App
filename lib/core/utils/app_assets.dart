@@ -30,5 +30,6 @@ abstract class AppAssets {
   static const neddleKabahPath = "$imageAssetsPath/qibla.png";
   static const dayImagePath = "$imageAssetsPath/day.jpg";
   static const nightImagePath = "$imageAssetsPath/night.jpg";
+  static const quranBorder = "$imageAssetsPath/border.png";
   
 }

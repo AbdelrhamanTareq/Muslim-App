@@ -29,7 +29,7 @@ class _HomwViewState extends State<HomwView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColor.scaffoldColor,
+      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
