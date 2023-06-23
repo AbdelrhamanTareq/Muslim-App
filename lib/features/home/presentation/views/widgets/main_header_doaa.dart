@@ -38,12 +38,14 @@ class MainHeaderDoaa extends StatelessWidget {
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
-          const Text(
-            "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: TextStyle(),
+          const FittedBox(
+            child: Text(
+              "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
+              style: TextStyle(),
+            ),
           ),
         ],
       ),
