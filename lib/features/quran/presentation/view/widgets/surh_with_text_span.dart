@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
-import 'package:muslim_app/core/themes/texts_styles.dart';
 
 import '../../../data/models/quran.dart';
 
@@ -25,6 +24,7 @@ class SurhWithTextSpan extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text.rich(
       TextSpan(
+        style: Theme.of(context).textTheme.displayMedium,
         children: _surahAyat
             .map(
               (e) => TextSpan(
@@ -54,21 +54,6 @@ class SurhWithTextSpan extends StatelessWidget {
                                       children: [
                                         IconButton(
                                           onPressed: () async {
-                                            // print(_scrollController.offset);
-                                            // print(details.globalPosition.distance);
-                                            // print(
-                                            //     MediaQuery.of(context).padding.top);
-                                            // await instance<QuranLocalData>()
-                                            //     .setBookmark(
-                                            //       key: "QURAN_BOOKMARK",
-                                            //         value: _scrollController
-                                            //                 .offset +
-                                            //             details.globalPosition
-                                            //                 .distance);
-                                            // await instance<QuranLocalData>()
-                                            //     .setBookMarkedName(
-                                            //       name:  _surhName, key: "BOOKMARKED_SURH_NAME");
-
                                             await instance<AppLocalData>()
                                                 .setBookmarkedNames(
                                                     key: _surhName,
@@ -87,6 +72,7 @@ class SurhWithTextSpan extends StatelessWidget {
                                     ),
                                     Column(
                                       children: [
+                                        //TODO
                                         IconButton(
                                           onPressed: () {},
                                           icon: const Icon(Icons.share),
@@ -102,14 +88,14 @@ class SurhWithTextSpan extends StatelessWidget {
                         }),
                   TextSpan(
                     text: "\uFD3F${e.id.toArabicNumbers}\uFD3E",
-                    style: const TextStyle(fontSize: 27),
+                    style: const TextStyle(fontSize: 27, color: Colors.black),
                   ),
                 ],
               ),
             )
             .toList(),
       ),
-      style: AppTextsStyle.quranTextStyle,
+      style: Theme.of(context).textTheme.displayMedium,
       textAlign: TextAlign.center,
     );
   }

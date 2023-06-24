@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/function.dart';
 
 import '../../../../../core/data/app_local_data.dart';
 import '../../../../../core/injection_container.dart';
-import '../../../../../core/utils/app_strings.dart';
 
 class BookmarkWidget extends StatelessWidget {
   const BookmarkWidget({
@@ -17,19 +17,19 @@ class BookmarkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final appBarHight = AppBar().preferredSize.height;
+
+    print(appBarHight);
+
     return IconButton(
       onPressed: () {
         final bookmark = instance<AppLocalData>().getBookmarkedNames(surhName);
         if (bookmark == null || bookmark[0] != surhName) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text(AppStrings.noBookmark),
-            ),
-          );
+          showNoBookmarkSnackBar(context);
           return;
         }
         final double position = bookmark[1];
-        _scrollController.animateTo(position - 240,
+        _scrollController.animateTo(position - appBarHight - 80,
             duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
       },
       icon: const Icon(

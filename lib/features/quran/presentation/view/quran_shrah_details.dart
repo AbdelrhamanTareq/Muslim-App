@@ -23,14 +23,14 @@ class QuranSurahDetails extends StatefulWidget {
 class _QuranSurahDetailsState extends State<QuranSurahDetails> {
   @override
   Widget build(BuildContext context) {
-    ScrollController _scrollController = ScrollController();
+    ScrollController scrollController = ScrollController();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.quranBackgroundAppBar,
         title: Text(widget._surahName),
         actions: [
           BookmarkWidget(
-              surhName: widget._surahName, scrollController: _scrollController),
+              surhName: widget._surahName, scrollController: scrollController),
         ],
       ),
       backgroundColor: AppColors.quranBackground,
@@ -39,7 +39,7 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
         padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
         child: Center(
           child: SingleChildScrollView(
-            controller: _scrollController,
+            controller: scrollController,
             child: Column(
               children: [
                 // surh el fatah or surh el tobah
@@ -52,7 +52,7 @@ class _QuranSurahDetailsState extends State<QuranSurahDetails> {
                 SurhWithTextSpan(
                   surhName: widget._surahName,
                   surahAyat: widget._surahAyat,
-                  scrollController: _scrollController,
+                  scrollController: scrollController,
                 ),
               ],
             ),
