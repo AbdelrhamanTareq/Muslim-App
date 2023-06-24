@@ -18,7 +18,8 @@ class MainHeaderDoaa extends StatelessWidget {
       height: 90,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.white,
+        // color: Colors.white,
+        color: Color(0xff9EB0A2),
         boxShadow: const [
           BoxShadow(
             color: Colors.grey,
@@ -36,6 +37,7 @@ class MainHeaderDoaa extends StatelessWidget {
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
+              color: Colors.white
             ),
           ),
           const SizedBox(
@@ -44,7 +46,9 @@ class MainHeaderDoaa extends StatelessWidget {
           const FittedBox(
             child: Text(
               "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-              style: TextStyle(),
+              style: TextStyle(
+                color: Colors.white
+              ),
             ),
           ),
         ],

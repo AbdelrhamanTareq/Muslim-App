@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
@@ -24,12 +23,10 @@ class _HomwViewState extends State<HomwView> {
     super.initState();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: Color(0xff90BED6),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -64,7 +61,6 @@ class _HomwViewState extends State<HomwView> {
                       return TextButton(
                         onPressed: () {
                           if (state is GetAllAzkarDataSuccess) {
-                            print("data = ${state.data.length}");
                             Navigator.pushNamed(context, Routes.allAzkarPath,
                                 arguments: state.data);
                           }

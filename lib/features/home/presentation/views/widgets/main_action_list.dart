@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:muslim_app/core/themes/texts_styles.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
 
@@ -70,11 +69,10 @@ class MainActionList extends StatelessWidget {
                       padding: const EdgeInsets.only(right: 8, bottom: 8),
                       child: Text(
                         appScreen[index].name,
-                        style: AppTextsStyle.surhsNamesTextStyle.copyWith(
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                        style: Theme.of(context)
+                            .textTheme
+                            .headlineMedium!
+                            .copyWith(fontWeight: FontWeight.w700),
                       ),
                     ),
                   )
