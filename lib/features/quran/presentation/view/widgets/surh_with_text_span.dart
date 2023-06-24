@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
+import 'package:muslim_app/core/function.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
@@ -65,6 +66,8 @@ class SurhWithTextSpan extends StatelessWidget {
                                                       details.globalPosition
                                                           .distance,
                                                 ]);
+                                            showAddedBookmarkToast(
+                                                AppStrings.addedBookmark);
                                             if (context.mounted) {
                                               Navigator.pop(context);
                                             }
