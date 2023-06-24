@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/themes/texts_styles.dart';
 import 'package:muslim_app/core/themes/theme_constant.dart';
 
@@ -20,9 +21,11 @@ class AppTheme {
         scrolledUnderElevation: 0,
       ),
       fontFamily: ThemeConstant.defaultFont,
-      textTheme: const TextTheme(
-        headlineMedium: AppTextsStyle.reqularText18,
-        headlineLarge: AppTextsStyle.reqularText22,
+      textTheme: TextTheme(
+        headlineMedium: AppTextsStyles.headlineMediumText(),
+        headlineLarge: AppTextsStyles.headlineLargText(),
+        bodyMedium: AppTextsStyles.regularText(),
+        displayMedium: AppTextsStyles.quranTextStyle(color: AppColors.black),
       ),
 
       inputDecorationTheme: const InputDecorationTheme(
