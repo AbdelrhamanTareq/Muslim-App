@@ -6,6 +6,7 @@ import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cub
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/akar_details_view.dart';
 import 'package:muslim_app/features/azkar/presentation/view/all_azkar_view.dart';
+import 'package:muslim_app/features/hadith/data/models/hadith_book_object.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
@@ -36,9 +37,9 @@ abstract class AppRoutes {
     switch (settings.name) {
       case Routes.home:
         return MaterialPageRoute(
-          builder: (context) =>  BlocProvider<MainAzkarCubit>(
+          builder: (context) => BlocProvider<MainAzkarCubit>(
             create: (context) => instance<MainAzkarCubit>(),
-            child:const HomwView(),
+            child: const HomwView(),
           ),
         );
       case Routes.quranPath:
@@ -50,15 +51,13 @@ abstract class AppRoutes {
           builder: (context) => const HadithView(),
         );
       case Routes.hadithDeatilsPath:
-        // TODO make map object
-        final Map<String, dynamic> book =
-            settings.arguments as Map<String, dynamic>;
+        final HadithBookObject book = settings.arguments as HadithBookObject;
         return MaterialPageRoute(
           builder: (context) => BlocProvider<HadithCubit>(
             create: (context) => instance<HadithCubit>(),
             child: HadithDetailsView(
-              bookName: book["bookName"],
-              bookPath: book["bookPath"],
+              bookName: book.name,
+              bookPath: book.path,
             ),
           ),
         );
