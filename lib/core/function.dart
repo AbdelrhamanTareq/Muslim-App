@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../features/prayer_time/data/models/prayer_time.dart';
+import 'utils/app_strings.dart';
+
+void showNoBookmarkSnackBar(context) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    const SnackBar(
+      content: Text(AppStrings.noBookmark),
+    ),
+  );
+}
 
 String dateFormater(DateTime dateTime) {
   final newDate = DateFormat("dd/MM/yyyy").format(dateTime);
@@ -97,3 +106,5 @@ int convertDateToTimeStampInInt() {
   var finalDate = int.parse(newDateWithoutFractional);
   return finalDate;
 }
+
+
