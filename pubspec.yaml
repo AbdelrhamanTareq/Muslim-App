@@ -49,6 +49,7 @@ dependencies:
   percent_indicator: ^4.2.3
   retrofit: ^4.0.1
   scrollable_positioned_list: ^0.3.8
+  share_plus: ^7.0.2
   shared_preferences: ^2.1.1
   smooth_compass: ^2.0.11
   vibration: ^1.7.7

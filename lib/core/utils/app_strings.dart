@@ -4,6 +4,8 @@ abstract class AppStrings {
   static const String holyQuran = "القران الكريم";
   static const String noBookmark = "لا يوجد علامة في هذة الصورة";
   static const String noOfAyat = "عدد آياتها";
+  static const String bookmark = "علامة";
+  static const String share = "مشاركة";
 
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
   static const String enableLocationText = "تفعيل الموقع";

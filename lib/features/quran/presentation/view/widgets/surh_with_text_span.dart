@@ -2,7 +2,9 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
+import 'package:share_plus/share_plus.dart';
 
 import '../../../data/models/quran.dart';
 
@@ -63,21 +65,24 @@ class SurhWithTextSpan extends StatelessWidget {
                                                       details.globalPosition
                                                           .distance,
                                                 ]);
-                                            Navigator.pop(context);
+                                            if (context.mounted) {
+                                              Navigator.pop(context);
+                                            }
                                           },
                                           icon: const Icon(Icons.bookmark),
                                         ),
-                                        Text("علامة")
+                                        const Text(AppStrings.bookmark)
                                       ],
                                     ),
                                     Column(
                                       children: [
-                                        //TODO
                                         IconButton(
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            Share.share(e.ar);
+                                          },
                                           icon: const Icon(Icons.share),
                                         ),
-                                        const Text("مشاركة")
+                                        const Text(AppStrings.share)
                                       ],
                                     ),
                                   ],
