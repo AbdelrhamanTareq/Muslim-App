@@ -1,7 +1,9 @@
 abstract class AppStrings {
   const AppStrings._();
 
+  static const String holyQuran = "القران الكريم";
   static const String noBookmark = "لا يوجد علامة في هذة الصورة";
+  static const String noOfAyat = "عدد آياتها";
 
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
   static const String enableLocationText = "تفعيل الموقع";
