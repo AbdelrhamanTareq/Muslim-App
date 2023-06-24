@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/constant/app_constatnt.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 
 class HadithView extends StatelessWidget {
   const HadithView({super.key});
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
-        title: const Text("الأحاديث"),
+        title: const Text(AppStrings.hadith),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -31,7 +34,7 @@ class HadithView extends StatelessWidget {
                 //width: MediaQuery.of(context).size.width * 0.4,
                 //height: MediaQuery.of(context).size.height * 0.3,
                 decoration: BoxDecoration(
-                  color: Colors.green,
+                  color: AppColors.green,
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Column(
