@@ -4,10 +4,10 @@ import 'package:intl/intl.dart';
 import '../features/prayer_time/data/models/prayer_time.dart';
 import 'utils/app_strings.dart';
 
-void showNoBookmarkSnackBar(context) {
+void showNoBookmarkSnackBar(context, {String? text}) {
   ScaffoldMessenger.of(context).showSnackBar(
-    const SnackBar(
-      content: Text(AppStrings.noBookmark),
+    SnackBar(
+      content: Text(text ?? AppStrings.noBookmark),
     ),
   );
 }
@@ -106,5 +106,3 @@ int convertDateToTimeStampInInt() {
   var finalDate = int.parse(newDateWithoutFractional);
   return finalDate;
 }
-
-

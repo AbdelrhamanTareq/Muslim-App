@@ -8,6 +8,8 @@ abstract class AppStrings {
   static const String share = "مشاركة";
   /////////////////////////////////////////////////
   static const String hadith = "الأحاديث";
+  static const String noBookmarkHadith = "لا يوجد علامة في هذا الكتاب";
+
 
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
   static const String enableLocationText = "تفعيل الموقع";
