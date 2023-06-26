@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
-import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:muslim_app/features/sebha/presentation/view/widgets/zeker_count_dialog.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
