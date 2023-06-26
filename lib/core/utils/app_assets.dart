@@ -31,7 +31,9 @@ class AppAssets {
   static const alarmSvgPath = "$_imageAssetsPath/alarm.svg";
   ////////////////////////////////////////////////////////
   static const compassPath = "$_imageAssetsPath/compass.png";
+  static const compass2Path = "$_imageAssetsPath/compass2.png";
   static const neddleKabahPath = "$_imageAssetsPath/qibla.png";
+  static const neddleKabah1Path = "$_imageAssetsPath/neddle.png";
   static const dayImagePath = "$_imageAssetsPath/day.jpg";
   static const nightImagePath = "$_imageAssetsPath/night.jpg";
   static const quranBorder = "$_imageAssetsPath/border.png";

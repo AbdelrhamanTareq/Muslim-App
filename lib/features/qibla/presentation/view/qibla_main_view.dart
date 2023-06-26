@@ -14,8 +14,9 @@ class _QiblaMainViewState extends State<QiblaMainView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+     // backgroundColor: Colors.black45,
       appBar: AppBar(
-        title: const Text("القبلة"),
+        title: const Text(AppStrings.qibla),
       ),
       body: Center(
         child: SmoothCompass(
@@ -50,16 +51,16 @@ class _QiblaMainViewState extends State<QiblaMainView> {
                       ),
                     ),
                     Positioned(
-                      top: 20,
-                      left: 0,
+                      top: -20,
+                      left: 50,
                       right: 0,
-                      bottom: 20,
+                      bottom: 40,
                       child: AnimatedRotation(
                         turns: (compassData?.data?.qiblahOffset ?? 0) / 360,
                         duration: const Duration(milliseconds: 400),
                         child: Image.asset(
-                          AppAssets.neddleKabahPath,
-                          fit: BoxFit.fitHeight,
+                          AppAssets.neddleKabah1Path,
+                          fit: BoxFit.contain,
                         ),
                       ),
                     ),

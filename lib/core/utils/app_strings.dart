@@ -11,6 +11,8 @@ abstract class AppStrings {
   static const String noBookmarkHadith = "لا يوجد علامة في هذا الكتاب";
   static const String addedBookmark = "تم اضافة علامة";
   /////////////////////////////////////////////////
+  
+  static const String qibla = "القبلة";
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
   static const String enableLocationText = "تفعيل الموقع";
   static const String locationServicesDisabledText = "خدمة الموقع معطلة";
