@@ -11,6 +11,12 @@ abstract class AppStrings {
   static const String noBookmarkHadith = "لا يوجد علامة في هذا الكتاب";
   static const String addedBookmark = "تم اضافة علامة";
   /////////////////////////////////////////////////
+  static const String numberOfTasbeehReached = "تم الوصول للعدد المطلوب";
+  static const String enableClickSound = "تفعيل الصوت";
+  static const String disableClickSound = "الغاء الصوت";
+  static const String enableVibration = "تفعيل الاهتزاز";
+  static const String disableVibration = "الغاء الاهتزاز";
+  ///////////////////////////////////////////////////
   
   static const String qibla = "القبلة";
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
