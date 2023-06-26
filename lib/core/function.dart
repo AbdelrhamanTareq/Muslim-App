@@ -6,19 +6,22 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 import '../features/prayer_time/data/models/prayer_time.dart';
 import 'utils/app_strings.dart';
 
-void showNoBookmarkSnackBar(context, {String? text}) {
+void showSnackBar(context, {String? text}) {
+  ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
     SnackBar(
+      duration: const Duration(seconds: 1),
       content: Text(text ?? AppStrings.noBookmark),
     ),
   );
 }
 
-void showAddedBookmarkToast(String msg) {
+void showToast(String msg) {
   Fluttertoast.showToast(
       msg: msg,
       backgroundColor: AppColors.green,
-      toastLength: Toast.LENGTH_SHORT,gravity: ToastGravity.CENTER);
+      toastLength: Toast.LENGTH_SHORT,
+      gravity: ToastGravity.CENTER);
 }
 
 String dateFormater(DateTime dateTime) {
