@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 
 class ZekrActionsRow extends StatelessWidget {
@@ -12,37 +13,38 @@ class ZekrActionsRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(16),
-          ),
-          child: const Icon(
-            Icons.add,
-            size: 30,
-          ),
-          onPressed: () async {
+        _buildButton(
+          icon: Icons.add,
+          onPressed: () {
             BlocProvider.of<SebhaCubit>(context).add(context);
-            
+             BlocProvider.of<SebhaCubit>(context).startMusicSound();
           },
         ),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(16),
-          ),
-          onPressed: () {
-            BlocProvider.of<SebhaCubit>(context).reset();
-            // setState(() {
-            //   _initValue = 0;
-            // });
-          },
-          child: const Icon(
-            Icons.settings_backup_restore_sharp,
-            size: 30,
-          ),
+        _buildButton(
+          icon: Icons.restart_alt,
+          onPressed: () => BlocProvider.of<SebhaCubit>(context).reset(),
         ),
       ],
+    );
+  }
+
+  ElevatedButton _buildButton(
+      {required IconData icon, required void Function() onPressed}) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.white,
+        elevation: 5,
+        shape: const CircleBorder(),
+        
+        padding: const EdgeInsets.all(16),
+      ),
+      child: Icon(
+        icon,
+        size: 40,
+      ),
+      onPressed: () async {
+        onPressed();
+      },
     );
   }
 }

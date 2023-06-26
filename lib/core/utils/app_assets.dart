@@ -6,7 +6,7 @@ class AppAssets {
   static const String _hadithPath = "$_assetsPath/hadith";
   static const String _azkarPath = "$_assetsPath/azkar";
   static const String _imageAssetsPath = "$_assetsPath/images";
-  static const String _soundsAssetsPath = "$_assetsPath/sounds";
+  static const String _soundsAssetsPath = "sounds";
   //////////////////////////////////////////////////////
 
   static const quran = "$_quranPath/quran.json";
@@ -37,5 +37,5 @@ class AppAssets {
   static const quranBorder = "$_imageAssetsPath/border.png";
 
   ////////////////////////////////////////////////////////
-  static const clickSoundPath = "$_soundsAssetsPath/click.mp3";
+  static const clickSoundPath = "$_soundsAssetsPath/click.wav";
 }

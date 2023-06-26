@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:vibration/vibration.dart';
 
 part 'sebha_state.dart';
@@ -27,7 +28,9 @@ class SebhaCubit extends Cubit<SebhaState> {
   }
 
   void changeMaxValue(double maxValue) {
-    emit(state.copyWith(maxValue: maxValue),);
+    emit(
+      state.copyWith(maxValue: maxValue),
+    );
   }
 
   void enableVibrate() {
@@ -41,16 +44,16 @@ class SebhaCubit extends Cubit<SebhaState> {
 
   void enableMusic() {
     if (state.isMusicEnalbe == false) {
-      AudioPlayer().play(AssetSource("sounds/done.mp3"));
+      AudioPlayer().play(AssetSource(AppAssets.clickSoundPath));
     }
     emit(
       state.copyWith(isMusicEnalbe: !state.isMusicEnalbe),
     );
   }
 
-  void startMusicSound(){
+  void startMusicSound() {
     if (state.isMusicEnalbe) {
-      AudioPlayer().play(AssetSource("sounds/done.mp3"));
+      AudioPlayer().play(AssetSource(AppAssets.clickSoundPath));
     }
   }
 

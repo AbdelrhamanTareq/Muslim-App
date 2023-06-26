@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 
 class ActionsRow extends StatelessWidget {
@@ -11,30 +12,35 @@ class ActionsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SebhaCubit, SebhaState>(
       builder: (context, state) {
-        return Container(
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12), color: Colors.white),
-          margin: const EdgeInsets.symmetric(horizontal: 20),
-          padding: const EdgeInsets.all(8),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconWidget(
-                icon: Icons.vibration,
-                color: (state.isVibrationEnalbe) ? Colors.black : Colors.grey,
-                onPressed: () {
-                  BlocProvider.of<SebhaCubit>(context).enableVibrate();
-                },
-              ),
-              IconWidget(
-                color: (state.isMusicEnalbe) ? Colors.black : Colors.grey,
-                icon: Icons.music_note,
-                onPressed: () {
-                  //TODO implment music sound and adjust sound assets
-                  BlocProvider.of<SebhaCubit>(context).enableMusic();
-                },
-              ),
-            ],
+        return Card(
+          elevation: 5,
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                IconWidget(
+                  icon: Icons.vibration,
+                  color: (state.isVibrationEnalbe)
+                      ? AppColors.indigo
+                      : AppColors.gery,
+                  onPressed: () {
+                    BlocProvider.of<SebhaCubit>(context).enableVibrate();
+                  },
+                ),
+                const SizedBox(
+                  width: 20,
+                ),
+                IconWidget(
+                  color:
+                      (state.isMusicEnalbe) ? AppColors.indigo : AppColors.gery,
+                  icon: Icons.music_note,
+                  onPressed: () {
+                    BlocProvider.of<SebhaCubit>(context).enableMusic();
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -56,10 +62,10 @@ class IconWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(
-        iconSize: 35,
-        color: color,
-        onPressed: onPressed,
-        icon: Icon(icon) // Icons.vibration),
-        );
+      iconSize: 35,
+      color: color,
+      onPressed: onPressed,
+      icon: Icon(icon),
+    );
   }
 }
