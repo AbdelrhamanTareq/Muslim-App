@@ -1,8 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
+import 'package:muslim_app/core/function.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:vibration/vibration.dart';
 
 part 'sebha_state.dart';
@@ -15,8 +16,7 @@ class SebhaCubit extends Cubit<SebhaState> {
       emit(state.copyWith(initValue: state.initValue + 1));
     }
     if (state.initValue == state.maxValue) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text("تم الوصول لعدد التسبيح المطلوب")));
+      showSnackBar(context, text: AppStrings.numberOfTasbeehReached);
     }
     vibration();
   }
@@ -36,7 +36,10 @@ class SebhaCubit extends Cubit<SebhaState> {
   void enableVibrate() {
     if (state.isVibrationEnalbe == false) {
       Vibration.vibrate();
+      showToast(AppStrings.enableVibration);
     }
+    if (state.isVibrationEnalbe) showToast(AppStrings.disableVibration);
+
     emit(
       state.copyWith(isVibrationEnalbe: !state.isVibrationEnalbe),
     );
@@ -45,7 +48,9 @@ class SebhaCubit extends Cubit<SebhaState> {
   void enableMusic() {
     if (state.isMusicEnalbe == false) {
       AudioPlayer().play(AssetSource(AppAssets.clickSoundPath));
+      showToast(AppStrings.enableClickSound);
     }
+    if (state.isMusicEnalbe) showToast(AppStrings.disableClickSound);
     emit(
       state.copyWith(isMusicEnalbe: !state.isMusicEnalbe),
     );

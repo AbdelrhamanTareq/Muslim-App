@@ -26,7 +26,7 @@ class HadithBookmarkWidget extends StatelessWidget {
       onPressed: () {
         final bookmark = instance<AppLocalData>().getBookmarkedNames(_bookName);
         if (bookmark == null || bookmark[0] != _bookName) {
-          showNoBookmarkSnackBar(context, text: AppStrings.noBookmarkHadith);
+          showSnackBar(context, text: AppStrings.noBookmarkHadith);
           return;
         }
         final double index = bookmark[1];

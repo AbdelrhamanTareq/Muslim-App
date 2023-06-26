@@ -66,7 +66,7 @@ class SurhWithTextSpan extends StatelessWidget {
                                                       details.globalPosition
                                                           .distance,
                                                 ]);
-                                            showAddedBookmarkToast(
+                                            showToast(
                                                 AppStrings.addedBookmark);
                                             if (context.mounted) {
                                               Navigator.pop(context);

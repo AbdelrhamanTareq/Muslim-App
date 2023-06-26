@@ -25,7 +25,7 @@ class BookmarkWidget extends StatelessWidget {
       onPressed: () {
         final bookmark = instance<AppLocalData>().getBookmarkedNames(surhName);
         if (bookmark == null || bookmark[0] != surhName) {
-          showNoBookmarkSnackBar(context);
+          showSnackBar(context);
           return;
         }
         final double position = bookmark[1];
