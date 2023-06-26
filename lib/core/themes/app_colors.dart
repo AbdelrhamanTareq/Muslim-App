@@ -5,7 +5,7 @@ class AppColors {
 
   static const white = Colors.white;
   static const black = Colors.black;
-  static const gery = Color.fromARGB(255, 218, 218, 218);
+  static const grey = Color.fromARGB(255, 218, 218, 218);
   static const custoumGreen = Color.fromARGB(255, 60, 226, 38);
   static const green = Colors.green;
   static const scaffoldColor = Color(0xffedebf2);
