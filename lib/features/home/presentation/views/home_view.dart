@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/core/utils/app_router.dart';
-import 'package:muslim_app/core/utils/app_strings.dart';
-import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_assets.dart';
+
 import 'package:muslim_app/features/azkar/presentation/view/azkar_main_view.dart';
 
 import '../../../azkar/presentation/logic/cubit/main_azkar_cubit.dart';
+import '../../../azkar/presentation/view/widgets/azkar_header_row_texts.dart';
 import 'widgets/main_action_list.dart';
 import 'widgets/main_header_doaa.dart';
 
@@ -24,9 +25,17 @@ class _HomwViewState extends State<HomwView> {
   }
 
   @override
+  void didChangeDependencies() {
+    // preload prayer times image
+    precacheImage(const AssetImage(AppAssets.dayImagePath), context);
+    precacheImage(const AssetImage(AppAssets.nightImagePath), context);
+    super.didChangeDependencies();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff90BED6),
+      backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -35,47 +44,20 @@ class _HomwViewState extends State<HomwView> {
           icon: const Icon(Icons.menu),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(),
+      body: const SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
-            const MainHeaderDoaa(),
-            const SizedBox(
+            MainHeaderDoaa(),
+            SizedBox(
               height: 20,
             ),
-            const MainActionList(),
-            const SizedBox(
+            MainActionList(),
+            SizedBox(
               height: 20,
             ),
-            Padding(
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    AppStrings.alazkar,
-                    style: Theme.of(context).textTheme.headlineLarge,
-                  ),
-                  BlocBuilder<AllAzkarCubit, AllAzkarState>(
-                    builder: (context, state) {
-                      return TextButton(
-                        onPressed: () {
-                          if (state is GetAllAzkarDataSuccess) {
-                            Navigator.pushNamed(context, Routes.allAzkarPath,
-                                arguments: state.data);
-                          }
-                        },
-                        child: Text(
-                          AppStrings.allAzkar,
-                          style: Theme.of(context).textTheme.headlineLarge,
-                        ),
-                      );
-                    },
-                  ),
-                ],
-              ),
-            ),
-            const AzkarMainView(),
+            AzkarHeaderRowTexts(),
+            AzkarMainView(),
           ],
         ),
       ),
