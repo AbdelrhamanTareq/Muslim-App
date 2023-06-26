@@ -39,12 +39,13 @@ List<ScreenObject> appScreen = [
   ),
   ScreenObject(
     color: const Color(0xffa1e3df),
+    //color: AppColors.indigo,
     name: "الحديث",
     path: Routes.hadithPath,
     iconAsset: AppAssets.hadithSvgPath,
   ),
   ScreenObject(
-    color: const Color(0xffffe980),
+    color: const Color(0xff61b3de),
     name: "مواقيت الصلاة",
     path: Routes.prayerTimePath,
     iconAsset: AppAssets.alarmSvgPath,
