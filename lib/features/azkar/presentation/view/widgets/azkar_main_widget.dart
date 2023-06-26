@@ -3,6 +3,7 @@ import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_router.dart';
+import '../../../data/models/azkar_map.dart';
 import '../../logic/cubit/main_azkar_cubit.dart';
 
 class AzkarMainWidget extends StatelessWidget {
@@ -32,20 +33,23 @@ class AzkarMainWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, Routes.azkarDetailsPath, arguments: {
-                "zkerTitle": data[index].category,
-                "data": data[index].array,
-              });
+              Navigator.pushNamed(
+                context,
+                Routes.azkarDetailsPath,
+                arguments: AzkarMap(
+                    zkerTitle: data[index].category, data: data[index].array),
+              );
             },
-            child: Container(
+            child: Card(
               margin: const EdgeInsets.only(bottom: 10, left: 10, right: 10),
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16),
-                  color: AppColors.gery),
-              child: Text(
-                data[index].category,
-                style: Theme.of(context).textTheme.headlineMedium,
+              elevation: 5,
+              color: AppColors.indigo,
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Text(
+                  data[index].category,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
               ),
             ),
           );
