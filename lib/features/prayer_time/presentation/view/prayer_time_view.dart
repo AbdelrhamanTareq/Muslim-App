@@ -23,7 +23,7 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.gery,
+      backgroundColor: AppColors.grey,
       body: BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
         builder: (context, state) {
           if (state is GetPrayerTimeDataError) {

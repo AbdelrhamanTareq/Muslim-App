@@ -23,7 +23,7 @@ class ActionsRow extends StatelessWidget {
                   icon: Icons.vibration,
                   color: (state.isVibrationEnalbe)
                       ? AppColors.indigo
-                      : AppColors.gery,
+                      : AppColors.grey,
                   onPressed: () {
                     BlocProvider.of<SebhaCubit>(context).enableVibrate();
                   },
@@ -33,7 +33,7 @@ class ActionsRow extends StatelessWidget {
                 ),
                 IconWidget(
                   color:
-                      (state.isMusicEnalbe) ? AppColors.indigo : AppColors.gery,
+                      (state.isMusicEnalbe) ? AppColors.indigo : AppColors.grey,
                   icon: Icons.music_note,
                   onPressed: () {
                     BlocProvider.of<SebhaCubit>(context).enableMusic();
