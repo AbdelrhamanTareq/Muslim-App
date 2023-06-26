@@ -4,6 +4,7 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
+import 'package:share_plus/share_plus.dart';
 
 class AzkarDetailsView extends StatelessWidget {
   const AzkarDetailsView({
@@ -65,7 +66,9 @@ class AzkarDetailsView extends StatelessWidget {
                         color: AppColors.error,
                       ),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Share.share(data[index].text);
+                        },
                         icon: const Icon(Icons.share),
                         color: AppColors.indigo,
                       ),
