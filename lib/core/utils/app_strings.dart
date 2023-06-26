@@ -35,5 +35,6 @@ abstract class AppStrings {
   static const String allAzkar = "جميع الاذكار";
   /////////////////////////////////////////////////
   static const String zekerName = "اسم الذكر";
+  static const String enterZekerCount = "ادخل العدد المطلوب";
 
 }

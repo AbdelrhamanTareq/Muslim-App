@@ -25,7 +25,10 @@ class AppTheme {
         headlineMedium: AppTextsStyles.headlineMediumText(),
         headlineLarge: AppTextsStyles.headlineLargText(),
         bodyMedium: AppTextsStyles.regularText(),
+        // quran style
         displayMedium: AppTextsStyles.quranTextStyle(color: AppColors.black),
+        // sebha style
+        labelMedium: AppTextsStyles.digitalStyle()
       ),
 
       inputDecorationTheme: const InputDecorationTheme(
