@@ -18,6 +18,8 @@ import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.da
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:muslim_app/features/sebha/presentation/view/sebha_main_view.dart';
 
+import '../../features/azkar/data/models/azkar_map.dart';
+
 abstract class Routes {
   //static const String splashRoute = "/";
 
@@ -80,14 +82,13 @@ abstract class AppRoutes {
           ),
         );
       case Routes.azkarDetailsPath:
-        final Map<String, dynamic> args =
-            settings.arguments as Map<String, dynamic>;
+        final AzkarMap args = settings.arguments as AzkarMap;
         return MaterialPageRoute(
           builder: (context) => BlocProvider<MainAzkarCubit>(
             create: (context) => instance<MainAzkarCubit>(),
             child: AzkarDetailsView(
-              zkerTitle: args["zkerTitle"],
-              data: args["data"],
+              zkerTitle: args.zkerTitle,
+              data: args.data,
             ),
           ),
         );
