@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 
@@ -17,29 +18,31 @@ class AzkarDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
+      backgroundColor: AppColors.gery,
       appBar: AppBar(
-       // backgroundColor: AppColor.scaffoldColor,
         title: Text(zkerTitle),
       ),
       body: ListView.builder(
         itemCount: data.length,
         itemBuilder: (context, index) {
           return Card(
+            color: AppColors.white,
             margin: (index == 0 || index == data.length - 1)
-                ? const EdgeInsets.only(top: 15, bottom: 15,left: 5,right: 5)
-                : const EdgeInsets.only(bottom: 10,left: 5,right: 5),
-            elevation: 3,
+                ? const EdgeInsets.only(top: 15, bottom: 15, left: 5, right: 5)
+                : const EdgeInsets.only(bottom: 10, left: 5, right: 5),
+            elevation: 10,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
                   child: Text(
                     data[index].text,
-                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                          fontFamily: "me_quran",
-                        ),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium!
+                        .copyWith(color: Colors.black,fontSize: 20),
                   ),
                 ),
                 const SizedBox(
@@ -51,20 +54,20 @@ class AzkarDetailsView extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "عدد مرات التكرار ${data[index].count}",
+                        "${AppStrings.numberOfZeker}${data[index].count}",
                         style:
-                            const TextStyle(color: Colors.green, fontSize: 16),
+                            const TextStyle(color: AppColors.green, fontSize: 16),
                       ),
                       const Spacer(),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.favorite_border),
-                        color: Colors.pinkAccent,
+                        color: AppColors.error,
                       ),
                       IconButton(
                         onPressed: () {},
                         icon: const Icon(Icons.share),
-                        color: Colors.amberAccent,
+                        color: AppColors.indigo,
                       ),
                     ],
                   ),
