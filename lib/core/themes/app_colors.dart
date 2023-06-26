@@ -11,4 +11,6 @@ class AppColors {
   static const scaffoldColor = Color(0xffedebf2);
   static const quranBackgroundAppBar = Color.fromARGB(255, 156, 192, 166);
   static const quranBackground = Color.fromARGB(255, 233, 240, 210);
+  static const indigo = Colors.indigo;
+  static const error = Colors.red;
 }

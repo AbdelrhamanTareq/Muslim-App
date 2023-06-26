@@ -1,7 +1,7 @@
 class AppAssets {
   AppAssets._();
 
-  static const String _assetsPath = "assets/";
+  static const String _assetsPath = "assets";
   static const String _quranPath = "$_assetsPath/quran";
   static const String _hadithPath = "$_assetsPath/hadith";
   static const String _azkarPath = "$_assetsPath/azkar";

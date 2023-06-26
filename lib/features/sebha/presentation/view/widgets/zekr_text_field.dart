@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 
 class ZkerTextFiled extends StatelessWidget {
   const ZkerTextFiled({
@@ -12,19 +14,11 @@ class ZkerTextFiled extends StatelessWidget {
       child: TextFormField(
         initialValue: "سبحان الله",
         textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 18,
-          color: Colors.white,
-          fontFamily: "me_quran",
-        ),
-        decoration: const InputDecoration(
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(16)),
-              borderSide: BorderSide(
-                color: Color.fromARGB(113, 36, 243, 17),
-              ),
-            ),
-            hintText: "اسم الذكر"),
+        style: Theme.of(context)
+            .textTheme
+            .bodyMedium!
+            .copyWith(color: AppColors.black),
+        decoration: const InputDecoration(hintText: AppStrings.zekerName),
       ),
     );
   }

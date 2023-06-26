@@ -8,8 +8,8 @@ class AppTheme {
 
   static const double _outlineBorderWidth = 1;
   static const double _outlineBorderRadius = 16;
-  static const Color _focusColors = Colors.purple;
-  static const Color _focusErrorColors = Colors.red;
+  static const Color _focusColors = AppColors.indigo;
+  static const Color _focusErrorColors = AppColors.error;
 
   static ThemeData lightThem() {
     return ThemeData(
@@ -31,16 +31,7 @@ class AppTheme {
       inputDecorationTheme: const InputDecorationTheme(
         // content padding
         contentPadding: EdgeInsets.all(16),
-        // hint style
-        // hintStyle: getRegularStyle(
-        //     color: ColorManager.ligthGrey, fontSize: FontSize.s14),
-        // labelStyle: getMediumStyle(
-        //     color: ColorManager.ligthGrey, fontSize: FontSize.s14),
-        // errorStyle: getRegularStyle(color: ColorManager.error),
-        // prefixIconColor: ColorManager.ligthGrey,
-        // // filled color
-        // filled: true,
-        // fillColor: ColorManager.grey,
+
         // enabled border style
         enabledBorder: OutlineInputBorder(
           borderSide:

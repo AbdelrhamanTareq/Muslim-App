@@ -10,7 +10,7 @@ abstract class AppStrings {
   static const String hadith = "الأحاديث";
   static const String noBookmarkHadith = "لا يوجد علامة في هذا الكتاب";
   static const String addedBookmark = "تم اضافة علامة";
-
+  /////////////////////////////////////////////////
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
   static const String enableLocationText = "تفعيل الموقع";
   static const String locationServicesDisabledText = "خدمة الموقع معطلة";
@@ -33,4 +33,7 @@ abstract class AppStrings {
 
   static const String alazkar = "الاذكار";
   static const String allAzkar = "جميع الاذكار";
+  /////////////////////////////////////////////////
+  static const String zekerName = "اسم الذكر";
+
 }
