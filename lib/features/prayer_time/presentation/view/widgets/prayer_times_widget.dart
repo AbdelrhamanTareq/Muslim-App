@@ -83,11 +83,11 @@ class PrayerTimesWidget extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.black),
       ),
       trailing: Text(
         time,
-        style: Theme.of(context).textTheme.headlineMedium,
+        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.black),
       ),
     );
   }
