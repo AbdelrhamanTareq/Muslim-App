@@ -6,6 +6,12 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 import '../features/prayer_time/data/models/prayer_time.dart';
 import 'utils/app_strings.dart';
 
+const String fajr = "الفجر";
+const String dhuhr = "الظهر";
+const String asr = "العصر";
+const String maghrib = "المغرب";
+const String isha = "العشاء";
+
 void showSnackBar(context, {String? text}) {
   ScaffoldMessenger.of(context).hideCurrentSnackBar();
   ScaffoldMessenger.of(context).showSnackBar(
@@ -71,21 +77,22 @@ String getPrayerName(List<DateTime> prayerTimes) {
   //   print(element.hour);
   // }
   final int nowHour = now.hour;
+  //final int nowNinute = now.minute;
   print(prayerTimes[0].hour);
   print(prayerTimes[1].hour);
   print(prayerTimes[2].hour);
   print(prayerTimes[3].hour);
   print(prayerTimes[4].hour);
   if (nowHour >= prayerTimes[0].hour && nowHour < prayerTimes[1].hour) {
-    return "الضهر";
+    return dhuhr;
   } else if (nowHour >= prayerTimes[1].hour && nowHour < prayerTimes[2].hour) {
-    return "العصر";
+    return asr;
   } else if (nowHour >= prayerTimes[2].hour && nowHour < prayerTimes[3].hour) {
-    return "المغرب";
+    return maghrib;
   } else if (nowHour >= prayerTimes[3].hour && nowHour <= prayerTimes[4].hour) {
-    return "العشاء";
+    return isha;
   } else {
-    return "الفجر";
+    return fajr;
   }
 }
 
@@ -93,16 +100,16 @@ String getPrayerTimeDate(List<DateTime> prayerTimes, Timings prayerTimesMap) {
   final name = getPrayerName(prayerTimes);
   //Map<int, Timings> prayerTimesMap;
   switch (name) {
-    case "الفجر":
+    case fajr:
       return prayerTimesMap.fajr;
-    case "الظهر":
+    case dhuhr:
       return prayerTimesMap.dhuhr;
 
-    case "العصر":
+    case asr:
       return prayerTimesMap.asr;
-    case "المغرب":
+    case maghrib:
       return prayerTimesMap.maghrib;
-    case "العشاء":
+    case isha:
       return prayerTimesMap.isha;
     default:
       return prayerTimesMap.isha;
