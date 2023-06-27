@@ -1,13 +1,16 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/utils/app_strings.dart';
+
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 
 import '../../../../../core/function.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_assets.dart';
 import '../../logic/cubit/prayer_time_cubit.dart';
+import 'coming_prayer_remaining_time.dart';
 
-class PrayerTimeHeaderWidget extends StatefulWidget {
+class PrayerTimeHeaderWidget extends StatelessWidget {
   const PrayerTimeHeaderWidget({
     super.key,
     required this.state,
@@ -15,30 +18,8 @@ class PrayerTimeHeaderWidget extends StatefulWidget {
   final GetPrayerTimeDataSuccess state;
 
   @override
-  State<PrayerTimeHeaderWidget> createState() => _PrayerTimeHeaderWidgetState();
-}
-
-class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
-  late AssetImage day;
-  late AssetImage night;
-
-  @override
-  void initState() {
-    day = const AssetImage(AppAssets.dayImagePath);
-    night = const AssetImage(AppAssets.nightImagePath);
-    super.initState();
-  }
-
-  @override
-  void didChangeDependencies() {
-    precacheImage(day, context);
-    precacheImage(night, context);
-    super.didChangeDependencies();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    Map<int, Timings> prayerTimes = widget.state.data;
+    Map<int, Timings> prayerTimes = state.data;
     int finalDate = convertDateToTimeStampInInt();
 
     final prayerTimesList = [
@@ -63,11 +44,11 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
             ),
             fit: BoxFit.fill,
             image: (DateTime.now().isAfter(toTimeOfDay(
-                        stringDate: widget.state.data[finalDate]!.sunrise)) &&
-                    DateTime.now().isBefore(toTimeOfDay(
-                        stringDate: widget.state.data[finalDate]!.sunset)))
-                ? day
-                : night,
+                        stringDate: state.data[finalDate]!.sunrise)) &&
+                    DateTime.now().isBefore(
+                        toTimeOfDay(stringDate: state.data[finalDate]!.sunset)))
+                ? const AssetImage(AppAssets.dayImagePath)
+                : const AssetImage(AppAssets.nightImagePath),
           ),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(12),
@@ -85,8 +66,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
                 const SizedBox(
                   height: 8,
                 ),
-                _buildComingPrayerRemainingTime(
-                    context, prayerTimesList, prayerTimes, finalDate),
+                ComingPrayerRemainingTime(state: state),
                 _buildPrayerTimesLocation(context)
               ],
             ),
@@ -115,38 +95,7 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
     );
   }
 
-  Column _buildComingPrayerRemainingTime(
-      BuildContext context,
-      List<DateTime> prayerTimesList,
-      Map<int, Timings> prayerTimes,
-      int finalDate) {
-    return Column(
-      children: [
-        Text(
-          AppStrings.remaining,
-          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontWeight: FontWeight.w700,
-                color: AppColors.white,
-              ),
-        ),
-        const SizedBox(
-          height: 8,
-        ),
-        Text(
-          toTimeOfDay(
-                  prayerTimes: prayerTimesList,
-                  prayerTimesMap: prayerTimes[finalDate]!)
-              .difference(DateTime.now())
-              .toString()
-              .substring(0, 4),
-          style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                fontWeight: FontWeight.w700,
-                color: AppColors.white,
-              ),
-        ),
-      ],
-    );
-  }
+  
 
   Text _buildComingPrayerTime(List<DateTime> prayerTimesList,
       Map<int, Timings> prayerTimes, int finalDate, BuildContext context) {
@@ -170,3 +119,4 @@ class _PrayerTimeHeaderWidgetState extends State<PrayerTimeHeaderWidget> {
     );
   }
 }
+
