@@ -37,7 +37,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'calendarByCity/${year}/${month}?city=Cairo&country=Egypt&method=2',
+              'calendarByCity/${year}/${month}?city=Cairo&country=Egypt&method=5',
               queryParameters: queryParameters,
               data: _data,
             )
