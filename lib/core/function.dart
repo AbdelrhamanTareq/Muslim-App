@@ -70,26 +70,29 @@ DateTime toTimeOfDay({
   }
 }
 
+String formatDuration(Duration duration) {
+  String twoDigits(int n) => n.toString().padLeft(2, "0");
+  String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
+  String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
+  return "${twoDigits(duration.inHours)}:$twoDigitMinutes:$twoDigitSeconds";
+}
+
 String getPrayerName(List<DateTime> prayerTimes) {
   final now = DateTime.now();
-  // for (var element in prayerTimes) {
-  //   //print(element.hour);
-  //   print(element.hour);
-  // }
-  final int nowHour = now.hour;
-  //final int nowNinute = now.minute;
+
   print(prayerTimes[0].hour);
   print(prayerTimes[1].hour);
   print(prayerTimes[2].hour);
   print(prayerTimes[3].hour);
   print(prayerTimes[4].hour);
-  if (nowHour >= prayerTimes[0].hour && nowHour < prayerTimes[1].hour) {
+
+  if (now.isAfter(prayerTimes[0]) && now.isBefore(prayerTimes[1])) {
     return dhuhr;
-  } else if (nowHour >= prayerTimes[1].hour && nowHour < prayerTimes[2].hour) {
+  } else if (now.isAfter(prayerTimes[1]) && now.isBefore(prayerTimes[2])) {
     return asr;
-  } else if (nowHour >= prayerTimes[2].hour && nowHour < prayerTimes[3].hour) {
+  } else if (now.isAfter(prayerTimes[2]) && now.isBefore(prayerTimes[3])) {
     return maghrib;
-  } else if (nowHour >= prayerTimes[3].hour && nowHour <= prayerTimes[4].hour) {
+  } else if (now.isAfter(prayerTimes[3]) && now.isBefore(prayerTimes[4])) {
     return isha;
   } else {
     return fajr;
@@ -98,7 +101,6 @@ String getPrayerName(List<DateTime> prayerTimes) {
 
 String getPrayerTimeDate(List<DateTime> prayerTimes, Timings prayerTimesMap) {
   final name = getPrayerName(prayerTimes);
-  //Map<int, Timings> prayerTimesMap;
   switch (name) {
     case fajr:
       return prayerTimesMap.fajr;
