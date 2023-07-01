@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
@@ -13,6 +14,7 @@ import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/prayer_time/presentation/view/prayer_time_view.dart';
+import 'package:muslim_app/features/prayer_time/presentation/view/widgets/prayer_country_picker_view.dart';
 import 'package:muslim_app/features/qibla/presentation/view/qibla_main_view.dart';
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
@@ -30,6 +32,8 @@ abstract class Routes {
   static const String qiblaPath = "/qibla";
   static const String sebhaPath = "/sebha";
   static const String prayerTimePath = "/prayer-time";
+  static const String prayerTimeCountryPickerPath =
+      "/prayer-time-country-picker";
   static const String azkarDetailsPath = "/azkar-details";
   static const String allAzkarPath = "/all-azkar";
 }
@@ -75,10 +79,23 @@ abstract class AppRoutes {
           builder: (context) => const QiblaMainView(),
         );
       case Routes.prayerTimePath:
+        final Placemark arg = settings.arguments as Placemark;
         return MaterialPageRoute(
           builder: (context) => BlocProvider<PrayerTimeCubit>(
             create: (context) => instance<PrayerTimeCubit>(),
-            child: const PrayerTimeView(),
+
+            //child: const PrayerTimeView(),
+            child: PrayerTimeView(
+              address: arg,
+            ),
+          ),
+        );
+      case Routes.prayerTimeCountryPickerPath:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider<PrayerTimeCubit>(
+            create: (context) => instance<PrayerTimeCubit>(),
+            // child: const PrayerTimeView(),
+            child: const PrayerCountryPickerView(),
           ),
         );
       case Routes.azkarDetailsPath:
@@ -113,11 +130,11 @@ abstract class AppRoutes {
         builder: (_) => Scaffold(
               appBar: AppBar(
                 title: const Text(
-                    "No Route Found"), // todo move this string to strings manager
+                    "No Route Found"), // TODO move this string to strings manager
               ),
               body: const Center(
                   child: Text(
-                      "No Route Found")), // todo move this string to strings manager
+                      "No Route Found")), // TODO move this string to strings manager
             ));
   }
 }
