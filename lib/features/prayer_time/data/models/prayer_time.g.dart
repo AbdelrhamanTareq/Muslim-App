@@ -242,8 +242,8 @@ Map<String, dynamic> _$MonthDataToJson(MonthData instance) => <String, dynamic>{
     };
 
 Meta _$MetaFromJson(Map<String, dynamic> json) => Meta(
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+      latitude: json['latitude'] as num,
+      longitude: json['longitude'] as num,
       timezone: json['timezone'] as String,
       method: Method.fromJson(json['method'] as Map<String, dynamic>),
       latitudeAdjustmentMethod: json['latitudeAdjustmentMethod'] as String,
@@ -266,30 +266,18 @@ Map<String, dynamic> _$MetaToJson(Meta instance) => <String, dynamic>{
 Method _$MethodFromJson(Map<String, dynamic> json) => Method(
       id: json['id'] as int,
       name: json['name'] as String,
-      params: Params.fromJson(json['params'] as Map<String, dynamic>),
       location: Location.fromJson(json['location'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$MethodToJson(Method instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
-      'params': instance.params,
       'location': instance.location,
     };
 
-Params _$ParamsFromJson(Map<String, dynamic> json) => Params(
-      fajr: json['Fajr'] as int,
-      isha: json['Isha'] as int,
-    );
-
-Map<String, dynamic> _$ParamsToJson(Params instance) => <String, dynamic>{
-      'Fajr': instance.fajr,
-      'Isha': instance.isha,
-    };
-
 Location _$LocationFromJson(Map<String, dynamic> json) => Location(
-      latitude: (json['latitude'] as num).toDouble(),
-      longitude: (json['longitude'] as num).toDouble(),
+      latitude: json['latitude'] as num,
+      longitude: json['longitude'] as num,
     );
 
 Map<String, dynamic> _$LocationToJson(Location instance) => <String, dynamic>{

@@ -223,8 +223,8 @@ class MonthData {
 
 @JsonSerializable()
 class Meta {
-  final double latitude;
-  final double longitude;
+  final num latitude;
+  final num longitude;
   final String timezone;
   final Method method;
   final String latitudeAdjustmentMethod;
@@ -252,13 +252,11 @@ class Meta {
 class Method {
   final int id;
   final String name;
-  final Params params;
   final Location location;
 
   Method(
       {required this.id,
       required this.name,
-      required this.params,
       required this.location});
 
   factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);
@@ -266,24 +264,12 @@ class Method {
   Map<String, dynamic> toJson() => _$MethodToJson(this);
 }
 
-@JsonSerializable()
-class Params {
-  @JsonKey(name: "Fajr")
-  final int fajr;
-  @JsonKey(name: "Isha")
-  final int isha;
 
-  Params({required this.fajr, required this.isha});
-
-  factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
-
-  Map<String, dynamic> toJson() => _$ParamsToJson(this);
-}
 
 @JsonSerializable()
 class Location {
-  final double latitude;
-  final double longitude;
+  final num latitude;
+  final num longitude;
 
   Location({required this.latitude, required this.longitude});
 
