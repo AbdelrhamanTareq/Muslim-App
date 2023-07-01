@@ -73,5 +73,6 @@ Future<void> initGetIt() async {
     ),
   );
   //final Box box = await Hive.openBox("data");
-  instance.registerLazySingleton<AppLocalData>(() => AppLocalDataImpl());
+  instance.registerLazySingleton<AppLocalData>(
+      () => AppLocalDataImpl(sharedPreferences));
 }
