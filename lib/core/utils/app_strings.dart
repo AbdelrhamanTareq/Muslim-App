@@ -17,7 +17,7 @@ abstract class AppStrings {
   static const String enableVibration = "تفعيل الاهتزاز";
   static const String disableVibration = "الغاء الاهتزاز";
   ///////////////////////////////////////////////////
-  
+
   static const String qibla = "القبلة";
   static const String compassSupportText = "هذا الجهاز لا يدعم البوصلة";
   static const String enableLocationText = "تفعيل الموقع";
@@ -30,7 +30,13 @@ abstract class AppStrings {
       "تم رفض الموقع بشكل دائم";
   static const String allowLocationFromSettingsAndPrivacyText =
       "يرجى السماح بإذن الموقع من الإعدادات والخصوصية";
-
+  //////////////////////////////////////////////////////////
+  static const String chooseYourLocation =
+      "من فضلك قم بتحديد موقعك لتحصل علي مواقيت الصلاة الخاصة بموقعك";
+  static const String getLocationByLocationSevice = "اختيار الموقع عن طريق خدمة الموقع:";
+  static const String getLocationManual = "اختيار الموقع يدويا:";
+  static const String getCurrentLocation = "الحصول علي الموقع";
+  static const String getCurrentManual = "حفظ الموقع المختار";
   static const String fajr = "الفجر";
   static const String dhuhr = "الظهر";
   static const String asr = "العصر";
@@ -46,5 +52,4 @@ abstract class AppStrings {
   /////////////////////////////////////////////////
   static const String zekerName = "اسم الذكر";
   static const String enterZekerCount = "ادخل العدد المطلوب";
-
 }
