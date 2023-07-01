@@ -22,10 +22,10 @@ void showSnackBar(context, {String? text}) {
   );
 }
 
-void showToast(String msg) {
+void showToast(String msg, {Color? color}) {
   Fluttertoast.showToast(
       msg: msg,
-      backgroundColor: AppColors.green,
+      backgroundColor: color ?? AppColors.green,
       toastLength: Toast.LENGTH_SHORT,
       gravity: ToastGravity.CENTER);
 }
@@ -65,6 +65,11 @@ DateTime toTimeOfDay({
 
     final timeOfDay = TimeOfDay(hour: hour, minute: minute);
     final now = DateTime.now();
+    final subString = int.parse(stringTime.substring(1, 2));
+    if (prayerTimes[0].hour == subString) {
+      return DateTime(
+        now.year, now.month, now.day+1, timeOfDay.hour, timeOfDay.minute);
+    }
     return DateTime(
         now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
   }
@@ -80,11 +85,11 @@ String formatDuration(Duration duration) {
 String getPrayerName(List<DateTime> prayerTimes) {
   final now = DateTime.now();
 
-  print(prayerTimes[0].hour);
-  print(prayerTimes[1].hour);
-  print(prayerTimes[2].hour);
-  print(prayerTimes[3].hour);
-  print(prayerTimes[4].hour);
+  // print(prayerTimes[0].hour);
+  // print(prayerTimes[1].hour);
+  // print(prayerTimes[2].hour);
+  // print(prayerTimes[3].hour);
+  // print(prayerTimes[4].hour);
 
   if (now.isAfter(prayerTimes[0]) && now.isBefore(prayerTimes[1])) {
     return dhuhr;
