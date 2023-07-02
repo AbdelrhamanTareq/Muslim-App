@@ -22,14 +22,18 @@ abstract class AppLocalData {
   Map<int, Timings> getPrayerTimesDataMap();
   Future setLatAndLong({required double lat, required double long});
   List<String>? getLatAndLong();
-  // Future setAddress({required String data});
-  // List<String>? getAddress();
   Future setAddress({required Map<String, dynamic> data});
   getAddress();
+  Future setCity({required String data});
+  String? getCity();
+  Future setCountry({required String data});
+  String? getCountry();
 }
 
 const String latLongKey = "LAT_LONG";
-const String addresKey = "ADDRESS";
+const String addressKey = "ADDRESS";
+const String cityKey = "CITY";
+const String countryKey = "COUNTRY";
 
 class AppLocalDataImpl extends AppLocalData {
   // final Box box ;
@@ -56,7 +60,7 @@ class AppLocalDataImpl extends AppLocalData {
 
     Map<int, Timings> mappedData =
         data.map((key, value) => MapEntry(int.parse(key), value));
-    print(mappedData);
+    // print(mappedData);
     return mappedData;
   }
 
@@ -84,7 +88,7 @@ class AppLocalDataImpl extends AppLocalData {
 
   @override
   getAddress() {
-    final String? data = _sharedPreferences.getString(addresKey);
+    final String? data = _sharedPreferences.getString(addressKey);
     if (data != null) {
       final map = jsonDecode(data);
       return Placemark.fromMap(map);
@@ -95,6 +99,26 @@ class AppLocalDataImpl extends AppLocalData {
 
   @override
   Future setAddress({required Map<String, dynamic> data}) async {
-    return await _sharedPreferences.setString(addresKey, jsonEncode(data));
+    return await _sharedPreferences.setString(addressKey, jsonEncode(data));
+  }
+
+  @override
+  String? getCity() {
+    return _sharedPreferences.getString(cityKey);
+  }
+
+  @override
+  String? getCountry() {
+    return _sharedPreferences.getString(countryKey);
+  }
+
+  @override
+  Future setCity({required String data}) async {
+    return await _sharedPreferences.setString(cityKey, data);
+  }
+
+  @override
+  Future setCountry({required String data}) async {
+    return await _sharedPreferences.setString(countryKey, data);
   }
 }
