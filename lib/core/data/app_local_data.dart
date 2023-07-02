@@ -1,5 +1,9 @@
+import 'dart:convert';
+
+import 'package:geocoding/geocoding.dart';
 import 'package:hive/hive.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../constant/app_constatnt.dart';
 
@@ -16,12 +20,25 @@ abstract class AppLocalData {
   });
 
   Map<int, Timings> getPrayerTimesDataMap();
+  Future setLatAndLong({required double lat, required double long});
+  List<String>? getLatAndLong();
+  // Future setAddress({required String data});
+  // List<String>? getAddress();
+  Future setAddress({required Map<String, dynamic> data});
+  getAddress();
 }
+
+const String latLongKey = "LAT_LONG";
+const String addresKey = "ADDRESS";
 
 class AppLocalDataImpl extends AppLocalData {
   // final Box box ;
 
   // AppLocalDataImpl(this.box);
+
+  final SharedPreferences _sharedPreferences;
+
+  AppLocalDataImpl(this._sharedPreferences);
   @override
   setBookmarkedNames({required String key, required dynamic value}) async {
     await Hive.box(bookmarksKey).put(key, value);
@@ -46,5 +63,38 @@ class AppLocalDataImpl extends AppLocalData {
   @override
   Future<void> setPrayerTimesData({required String key, required value}) async {
     return await Hive.box(prayerTimesKey).put(key, value);
+  }
+
+  @override
+  List<String>? getLatAndLong() {
+    //final data = _sharedPreferences.getStringList(latLongKey);
+    return _sharedPreferences.getStringList(latLongKey);
+  }
+
+  @override
+  Future setLatAndLong({required double lat, required double long}) async {
+    return await _sharedPreferences.setStringList(
+      latLongKey,
+      [
+        lat.toString(),
+        long.toString(),
+      ],
+    );
+  }
+
+  @override
+  getAddress() {
+    final String? data = _sharedPreferences.getString(addresKey);
+    if (data != null) {
+      final map = jsonDecode(data);
+      return Placemark.fromMap(map);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future setAddress({required Map<String, dynamic> data}) async {
+    return await _sharedPreferences.setString(addresKey, jsonEncode(data));
   }
 }
