@@ -6,14 +6,14 @@ import '../../../../../core/function.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/prayer_time.dart';
-import '../../logic/cubit/prayer_time_cubit.dart';
 
 class ComingPrayerRemainingTime extends StatefulWidget {
   const ComingPrayerRemainingTime({
     Key? key,
     required this.state,
   }) : super(key: key);
-  final GetPrayerTimeDataSuccess state;
+  // final GetPrayerTimeDataSuccess state;
+  final Map<int, Timings> state;
 
   @override
   State<ComingPrayerRemainingTime> createState() =>
@@ -59,7 +59,7 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
 
   @override
   Widget build(BuildContext context) {
-    Map<int, Timings> prayerTimes = widget.state.data;
+    Map<int, Timings> prayerTimes = widget.state;
     int finalDate = convertDateToTimeStampInInt();
 
     final prayerTimesList = [
