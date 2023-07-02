@@ -33,10 +33,12 @@ abstract class AppStrings {
   //////////////////////////////////////////////////////////
   static const String chooseYourLocation =
       "من فضلك قم بتحديد موقعك لتحصل علي مواقيت الصلاة الخاصة بموقعك";
-  static const String getLocationByLocationSevice = "اختيار الموقع عن طريق خدمة الموقع:";
+  static const String getLocationByLocationSevice =
+      "اختيار الموقع عن طريق خدمة الموقع:";
   static const String getLocationManual = "اختيار الموقع يدويا:";
   static const String getCurrentLocation = "الحصول علي الموقع";
   static const String getCurrentManual = "حفظ الموقع المختار";
+  static const String save = "حفظ";
   static const String fajr = "الفجر";
   static const String dhuhr = "الظهر";
   static const String asr = "العصر";
