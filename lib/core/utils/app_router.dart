@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
@@ -139,12 +140,9 @@ abstract class AppRoutes {
     return MaterialPageRoute(
         builder: (_) => Scaffold(
               appBar: AppBar(
-                title: const Text(
-                    "No Route Found"), // TODO move this string to strings manager
+                title: const Text(AppStrings.noRouteFound),
               ),
-              body: const Center(
-                  child: Text(
-                      "No Route Found")), // TODO move this string to strings manager
+              body: const Center(child: Text(AppStrings.noRouteFound)),
             ));
   }
 }

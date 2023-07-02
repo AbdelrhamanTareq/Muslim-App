@@ -45,26 +45,6 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                         onPressed: () {
                           BlocProvider.of<PrayerTimeCubit>(context)
                               .getCurrentPosition();
-
-                          // if (state.position != null || state.addres != null) {
-                          //   instance<AppLocalData>().setLatAndLong(
-                          //       lat: state.position!.latitude,
-                          //       long: state.position!.longitude);
-                          //   instance<AppLocalData>()
-                          //       .setAddress(data: state.addres!.toJson());
-                          // }
-
-                          // if (state.position != null || state.addres != null) {
-                          //   //TODO
-
-                          //   //   instance<AppLocalData>().setLatAndLong(
-                          //   //       lat: state.position!.latitude,
-                          //   //       long: state.position!.longitude);
-                          // }
-                          // if (state.addres != null) {
-                          //   // instance<AppLocalData>()
-                          //   //     .setAddress(data: state.addres!.toJson());
-                          // }
                         },
                       ),
                 const SizedBox(
@@ -76,21 +56,23 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: CSCPicker(
+                  child: CSCPicker( 
                     dropdownItemStyle: const TextStyle(color: Colors.black),
                     dropdownHeadingStyle: const TextStyle(color: Colors.black),
                     selectedItemStyle: const TextStyle(color: Colors.black),
                     onCityChanged: (value) {
                       print("city $value");
+                      BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
+
                     },
                     onCountryChanged: (value) {
                       print("county $value");
-                      // BlocProvider.of<PrayerTimeCubit>(context)
-                      //     .getCountry(value);
+                      BlocProvider.of<PrayerTimeCubit>(context)
+                          .getCountry(value);
                     },
                     onStateChanged: (value) {
                       print("state $value");
-                      //BlocProvider.of<PrayerTimeCubit>(context).getCity(value!);
+                      BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
                     },
                   ),
                 ),

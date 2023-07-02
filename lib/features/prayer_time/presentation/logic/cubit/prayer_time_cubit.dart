@@ -3,6 +3,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 import 'package:muslim_app/features/prayer_time/data/repo/prayer_time_repo.dart';
@@ -57,16 +58,15 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   }
 
   Future<bool> _handleLocationPermission() async {
-    //TODO locale msg
     bool serviceEnabled;
     LocationPermission permission;
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      showToast('Location services are disabled. Please enable the services',
+      showToast(AppStrings.locationServicesDisabledText,
           color: AppColors.error);
       emit(state.copyWith(
-          error: "Location services are disabled. Please enable the services",
+          error: AppStrings.locationServicesDisabledText,
           isLoadingGetLocation: false));
       return false;
     }
@@ -74,20 +74,19 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        showToast('Location permissions are denied', color: AppColors.error);
+        showToast(AppStrings.locationServicesDeniedText,
+            color: AppColors.error);
         emit(state.copyWith(
-            error: "Location permissions are denied",
+            error: AppStrings.locationServicesDeniedText,
             isLoadingGetLocation: false));
         return false;
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      showToast(
-          'Location permissions are permanently denied, we cannot request permissions.',
+      showToast(AppStrings.locationServicesPermentDeniedText,
           color: AppColors.error);
       emit(state.copyWith(
-          error:
-              "Location permissions are permanently denied, we cannot request permissions.",
+          error: AppStrings.locationServicesPermentDeniedText,
           isLoadingGetLocation: false));
       return false;
     }
