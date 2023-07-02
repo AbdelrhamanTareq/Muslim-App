@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:geocoding/geocoding.dart';
+import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
@@ -12,6 +12,7 @@ import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
+import 'package:muslim_app/features/prayer_time/data/models/prayer_time_object.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/prayer_time/presentation/view/prayer_time_view.dart';
 import 'package:muslim_app/features/prayer_time/presentation/view/widgets/prayer_country_picker_view.dart';
@@ -79,25 +80,34 @@ abstract class AppRoutes {
           builder: (context) => const QiblaMainView(),
         );
       case Routes.prayerTimePath:
-        final Placemark arg = settings.arguments as Placemark;
+        final PrayerTimeObjcet? arg = settings.arguments as PrayerTimeObjcet?;
+        // instance<AppLocalData>().getAddress();
+
         return MaterialPageRoute(
           builder: (context) => BlocProvider<PrayerTimeCubit>(
             create: (context) => instance<PrayerTimeCubit>(),
 
             //child: const PrayerTimeView(),
-            child: PrayerTimeView(
-              address: arg,
-            ),
+            child: (instance<AppLocalData>().getLatAndLong() != null)
+                ? PrayerTimeView(
+                    address:
+                        arg?.address ?? instance<AppLocalData>().getAddress(),
+                    lat: arg?.lat ??
+                        instance<AppLocalData>().getLatAndLong()![0],
+                    long: arg?.long ??
+                        instance<AppLocalData>().getLatAndLong()![1],
+                  )
+                : const PrayerCountryPickerView(),
           ),
         );
-      case Routes.prayerTimeCountryPickerPath:
-        return MaterialPageRoute(
-          builder: (context) => BlocProvider<PrayerTimeCubit>(
-            create: (context) => instance<PrayerTimeCubit>(),
-            // child: const PrayerTimeView(),
-            child: const PrayerCountryPickerView(),
-          ),
-        );
+      // case Routes.prayerTimeCountryPickerPath:
+      //   return MaterialPageRoute(
+      //     builder: (context) => BlocProvider<PrayerTimeCubit>(
+      //       create: (context) => instance<PrayerTimeCubit>(),
+      //       // child: const PrayerTimeView(),
+      //       child: const PrayerCountryPickerView(),
+      //     ),
+      //   );
       case Routes.azkarDetailsPath:
         final AzkarMap args = settings.arguments as AzkarMap;
         return MaterialPageRoute(
