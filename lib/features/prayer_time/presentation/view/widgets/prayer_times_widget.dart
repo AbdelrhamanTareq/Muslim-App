@@ -4,18 +4,22 @@ import 'package:muslim_app/core/utils/app_strings.dart';
 import '../../../../../core/function.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../data/models/prayer_time.dart';
-import '../../logic/cubit/prayer_time_cubit.dart';
 
 class PrayerTimesWidget extends StatelessWidget {
-  const PrayerTimesWidget({super.key, required this.state});
+  const PrayerTimesWidget({
+    super.key,
+    required this.state,
+  });
 
-  final GetPrayerTimeDataSuccess state;
+  // final GetPrayerTimeDataSuccess state;
+  final Map<int, Timings> state;
 
   @override
   Widget build(BuildContext context) {
     var finalDate = convertDateToTimeStampInInt();
 
-    Map<int, Timings> prayerTimes = state.data;
+    // Map<int, Timings> prayerTimes = state.data;
+    Map<int, Timings> prayerTimes = state;
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.67,
@@ -83,11 +87,17 @@ class PrayerTimesWidget extends StatelessWidget {
       ),
       title: Text(
         name,
-        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.black),
+        style: Theme.of(context)
+            .textTheme
+            .headlineMedium!
+            .copyWith(color: AppColors.black),
       ),
       trailing: Text(
         time,
-        style: Theme.of(context).textTheme.headlineMedium!.copyWith(color: AppColors.black),
+        style: Theme.of(context)
+            .textTheme
+            .headlineMedium!
+            .copyWith(color: AppColors.black),
       ),
     );
   }

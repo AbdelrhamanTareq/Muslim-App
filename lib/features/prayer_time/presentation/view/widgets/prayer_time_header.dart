@@ -1,25 +1,29 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 
 import '../../../../../core/function.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_assets.dart';
-import '../../logic/cubit/prayer_time_cubit.dart';
 import 'coming_prayer_remaining_time.dart';
 
 class PrayerTimeHeaderWidget extends StatelessWidget {
   const PrayerTimeHeaderWidget({
     super.key,
     required this.state,
+    required this.position,
   });
-  final GetPrayerTimeDataSuccess state;
+  // final GetPrayerTimeDataSuccess state;
+  final Map<int, Timings> state;
+  final Placemark position;
 
   @override
   Widget build(BuildContext context) {
-    Map<int, Timings> prayerTimes = state.data;
+    Map<int, Timings> prayerTimes = state;
+    // Map<int, Timings> prayerTimes = state.data;
     int finalDate = convertDateToTimeStampInInt();
 
     final prayerTimesList = [
@@ -43,10 +47,10 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
               BlendMode.darken,
             ),
             fit: BoxFit.fill,
-            image: (DateTime.now().isAfter(toTimeOfDay(
-                        stringDate: state.data[finalDate]!.sunrise)) &&
+            image: (DateTime.now().isAfter(
+                        toTimeOfDay(stringDate: state[finalDate]!.sunrise)) &&
                     DateTime.now().isBefore(
-                        toTimeOfDay(stringDate: state.data[finalDate]!.sunset)))
+                        toTimeOfDay(stringDate: state[finalDate]!.sunset)))
                 ? const AssetImage(AppAssets.dayImagePath)
                 : const AssetImage(AppAssets.nightImagePath),
           ),
@@ -67,14 +71,14 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
                   height: 8,
                 ),
                 ComingPrayerRemainingTime(state: state),
-                _buildPrayerTimesLocation(context)
+                _buildPrayerTimesLocation(context,position)
               ],
             ),
           ],
         ));
   }
 
-  Align _buildPrayerTimesLocation(BuildContext context) {
+  Align _buildPrayerTimesLocation(BuildContext context, Placemark position) {
     return Align(
       alignment: Alignment.bottomRight,
       child: Row(
@@ -85,7 +89,7 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
           ),
           // TODO
           Text(
-            "القاهرة,مصر",
+            "${position.country},${position.administrativeArea}",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: AppColors.white,
                 ),
@@ -94,8 +98,6 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
       ),
     );
   }
-
-  
 
   Text _buildComingPrayerTime(List<DateTime> prayerTimesList,
       Map<int, Timings> prayerTimes, int finalDate, BuildContext context) {
@@ -119,4 +121,3 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
     );
   }
 }
-
