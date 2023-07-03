@@ -21,6 +21,7 @@ class AppTextsStyles {
       color: color,
       fontFamily: ThemeConstant.quranFont,
       height: 2,
+      wordSpacing: 2,
     );
   }
 
