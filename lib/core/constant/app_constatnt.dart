@@ -78,3 +78,38 @@ List<HadithScreenObject> hadithBooks = [
 
 const String bookmarksKey = "BOOKMARK";
 const String prayerTimesKey = "PRAYER_TIMES";
+
+const List<Map<String, String>> prayerTimesMethods = [
+  {
+    "en": "Shia Ithna Ashari",
+    "ar": "الشيعة الاثنا عشرية",
+  },
+  {
+    "en": "University of Islamic Sciences, Karachi",
+    "ar": "جامعة العلوم الإسلامية، كراتشي",
+  },
+  {
+    "en": "Islamic Society of North America",
+    "ar": "الجمعية الإسلامية لأمريكا الشمالية",
+  },
+  {
+    "en": "Muslim World League",
+    "ar": "رابطة العالم الإسلامي",
+  },
+  {
+    "en": "Umm Al-Qura University, Makkah",
+    "ar": "جامعة أم القرى، مكة المكرمة",
+  },
+  {
+    "en": "Egyptian General Authority of Survey",
+    "ar": "الهيئة المصرية العامة للمساحة",
+  },
+  {
+    "en": "Institute of Geophysics, University of Tehran",
+    "ar": "معهد الجيوفيزياء ، جامعة طهران",
+  },
+  {
+    "en": "Gulf Region",
+    "ar": "منطقة الخليج",
+  },
+];
