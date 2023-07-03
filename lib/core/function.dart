@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 
 import '../features/prayer_time/data/models/prayer_time.dart';
+import 'constant/app_constatnt.dart';
 import 'utils/app_strings.dart';
 
 const String fajr = "الفجر";
@@ -68,7 +69,7 @@ DateTime toTimeOfDay({
     final subString = int.parse(stringTime.substring(1, 2));
     if (prayerTimes[0].hour == subString) {
       return DateTime(
-        now.year, now.month, now.day+1, timeOfDay.hour, timeOfDay.minute);
+          now.year, now.month, now.day + 1, timeOfDay.hour, timeOfDay.minute);
     }
     return DateTime(
         now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
@@ -131,4 +132,15 @@ int convertDateToTimeStampInInt() {
   var newDateWithoutFractional = newDate.toStringAsFixed(0);
   var finalDate = int.parse(newDateWithoutFractional);
   return finalDate;
+}
+
+int getIndexOfPrayerTimeMethods(String value) {
+  int i = 4;
+  for (var element in prayerTimesMethods) {
+    if (element["ar"] == value) {
+      i = prayerTimesMethods.indexOf(element);
+      break;
+    }
+  }
+  return i;
 }

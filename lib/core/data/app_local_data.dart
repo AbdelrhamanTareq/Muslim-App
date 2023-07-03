@@ -28,12 +28,15 @@ abstract class AppLocalData {
   String? getCity();
   Future setCountry({required String data});
   String? getCountry();
+  Future setPrayerTimesMethoed({required int data});
+  int? getPrayerTimesMethoed();
 }
 
 const String latLongKey = "LAT_LONG";
 const String addressKey = "ADDRESS";
 const String cityKey = "CITY";
 const String countryKey = "COUNTRY";
+const String methodesKey = "METHODES";
 
 class AppLocalDataImpl extends AppLocalData {
   // final Box box ;
@@ -120,5 +123,15 @@ class AppLocalDataImpl extends AppLocalData {
   @override
   Future setCountry({required String data}) async {
     return await _sharedPreferences.setString(countryKey, data);
+  }
+
+  @override
+  int? getPrayerTimesMethoed() {
+    return _sharedPreferences.getInt(methodesKey);
+  }
+
+  @override
+  Future setPrayerTimesMethoed({required int data}) async {
+    return await _sharedPreferences.setInt(methodesKey, data);
   }
 }
