@@ -41,7 +41,8 @@ abstract class AppStrings {
       "من فضلك قم بتحديد موقعك لتحصل علي مواقيت الصلاة الخاصة بموقعك";
   static const String getLocationByLocationSevice =
       "اختيار الموقع عن طريق خدمة الموقع:";
-  static const String getLocationManual = "اختيار الموقع يدويا:";
+  static const String choosePrayerTimesMethods = "اختار طريقة حساب مواقيت الصلاة ";
+  static const String getLocationManual = "أو اختار الموقع يدويا:";
   static const String getCurrentLocation = "الحصول علي الموقع";
   static const String getCurrentManual = "حفظ الموقع المختار";
   static const String save = "حفظ";
