@@ -26,11 +26,13 @@ class _AppServiceClient implements AppServiceClient {
     int month,
     String city,
     String country,
+    int method,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'city': city,
       r'country': country,
+      r'method': method,
     };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
@@ -42,7 +44,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'calendarByCity/${year}/${month}?method=1',
+              'calendarByCity/${year}/${month}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -57,11 +59,13 @@ class _AppServiceClient implements AppServiceClient {
     int month,
     String lat,
     String long,
+    int method,
   ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'latitude': lat,
       r'longitude': long,
+      r'method': method,
     };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
@@ -73,7 +77,7 @@ class _AppServiceClient implements AppServiceClient {
     )
             .compose(
               _dio.options,
-              'calendar/${year}/${month}?method=5',
+              'calendar/${year}/${month}',
               queryParameters: queryParameters,
               data: _data,
             )

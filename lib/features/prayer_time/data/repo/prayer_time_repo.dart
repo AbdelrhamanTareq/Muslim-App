@@ -7,9 +7,9 @@ import 'package:muslim_app/features/prayer_time/data/network/app_api.dart';
 
 abstract class PrayerTimeRepo {
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData(
-      {required String city, required String country});
+      {required String city, required String country, required int methods});
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeDataByLatLong(
-      {required String lat, required String long});
+      {required String lat, required String long, required int methods});
 }
 
 class PrayerTimeRepoImpl extends PrayerTimeRepo {
@@ -19,7 +19,9 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
   PrayerTimeRepoImpl(this._appServiceClient, this._prayerTimeLocalDate);
   @override
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData(
-      {required String city, required String country}) async {
+      {required String city,
+      required String country,
+      required int methods}) async {
     final int year = DateTime.now().year;
     final int month = DateTime.now().month;
     try {
@@ -39,6 +41,7 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
             month,
             city,
             country,
+            methods,
           );
           Map<int, Timings> prayerTimesMap = {};
           for (var element in data.data) {
@@ -65,7 +68,7 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
 
   @override
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeDataByLatLong(
-      {required String lat, required String long}) async {
+      {required String lat, required String long, required int methods}) async {
     final int year = DateTime.now().year;
     final int month = DateTime.now().month;
 
@@ -82,7 +85,7 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
       } else {
         try {
           final data = await _appServiceClient.getPrayerTimeDataByLatLong(
-              year, month, lat, long);
+              year, month, lat, long, methods);
           Map<int, Timings> prayerTimesMap = {};
           for (var element in data.data) {
             _prayerTimeLocalDate.setMonthPrayerTimesLocalData(

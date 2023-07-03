@@ -13,20 +13,21 @@ abstract class AppServiceClient {
 
   factory AppServiceClient(Dio dio, {String baseUrl}) = _AppServiceClient;
 
-  @GET("$_calendarByCityEndPoint/{year}/{month}?method=1")
+  @GET("$_calendarByCityEndPoint/{year}/{month}")
   Future<PrayerTime> getPrayerTimeData(
     @Path("year") int year,
     @Path("month") int month,
     @Query("city") String city,
     @Query("country") String country,
-    
+    @Query("method") int method,
   );
 
-  @GET("$_calendarByLatLongEndPoint/{year}/{month}?method=5")
+  @GET("$_calendarByLatLongEndPoint/{year}/{month}")
   Future<PrayerTime> getPrayerTimeDataByLatLong(
     @Path("year") int year,
     @Path("month") int month,
     @Query("latitude") String lat,
     @Query("longitude") String long,
+    @Query("method") int method,
   );
 }

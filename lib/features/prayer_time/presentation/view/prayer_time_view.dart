@@ -37,13 +37,14 @@ class PrayerTimeView extends StatefulWidget {
 class _PrayerTimeViewState extends State<PrayerTimeView> {
   @override
   void initState() {
+    final int method = instance<AppLocalData>().getPrayerTimesMethoed() ?? 4;
     if ((widget.lat != null && widget.long != null) ||
         instance<AppLocalData>().getLatAndLong() != null) {
-      BlocProvider.of<PrayerTimeCubit>(context)
-          .getPrayerTimeDataByLocation(lat: widget.lat!, long: widget.long!);
+      BlocProvider.of<PrayerTimeCubit>(context).getPrayerTimeDataByLocation(
+          lat: widget.lat!, long: widget.long!, methods: method);
     } else if (widget.city != null && widget.country != null) {
-      BlocProvider.of<PrayerTimeCubit>(context)
-          .getPrayerTimeData(city: widget.city!, country: widget.country!);
+      BlocProvider.of<PrayerTimeCubit>(context).getPrayerTimeData(
+          city: widget.city!, country: widget.country!, methods: method);
     }
     super.initState();
   }

@@ -37,6 +37,7 @@ class PrayerTimeState extends Equatable {
   final Placemark? addres;
   final String? country;
   final String? city;
+  final int methods;
   @override
   List<Object?> get props => [
         error,
@@ -46,7 +47,8 @@ class PrayerTimeState extends Equatable {
         isLoadingGetLocation,
         addres,
         country,
-        city
+        city,
+        methods,
       ];
   const PrayerTimeState({
     this.error = "",
@@ -57,6 +59,7 @@ class PrayerTimeState extends Equatable {
     this.addres,
     this.city,
     this.country,
+    this.methods = 4,
   });
 
   PrayerTimeState copyWith({
@@ -68,16 +71,17 @@ class PrayerTimeState extends Equatable {
     Placemark? addres,
     String? country,
     String? city,
+    int? methods,
   }) {
     return PrayerTimeState(
-      error: error ?? this.error,
-      isLoading: isLoading ?? this.isLoading,
-      position: position ?? this.position,
-      data: data ?? this.data,
-      isLoadingGetLocation: isLoadingGetLocation ?? this.isLoadingGetLocation,
-      addres: addres ?? this.addres,
-      country: country ?? this.country,
-      city: city ?? city,
-    );
+        error: error ?? this.error,
+        isLoading: isLoading ?? this.isLoading,
+        position: position ?? this.position,
+        data: data ?? this.data,
+        isLoadingGetLocation: isLoadingGetLocation ?? this.isLoadingGetLocation,
+        addres: addres ?? this.addres,
+        country: country ?? this.country,
+        city: city ?? this.city,
+        methods: methods ?? this.methods);
   }
 }

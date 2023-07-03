@@ -10,6 +10,8 @@ import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time_object.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 
+import '../../../../../core/constant/app_constatnt.dart';
+
 class PrayerCountryPickerView extends StatefulWidget {
   const PrayerCountryPickerView({super.key});
 
@@ -81,6 +83,15 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 const SizedBox(
                   height: 16,
                 ),
+                _buildChooseLocationText(
+                    context, AppStrings.choosePrayerTimesMethods),
+                const SizedBox(
+                  height: 16,
+                ),
+                _buildPrayerTimesMethodsDropdownMenu(),
+                const SizedBox(
+                  height: 16,
+                ),
                 _buildGetLocationButton(
                   text: AppStrings.save,
                   onPressed: () {
@@ -114,6 +125,25 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
             );
           },
         ),
+      ),
+    );
+  }
+
+  Padding _buildPrayerTimesMethodsDropdownMenu() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12),
+      child: DropdownMenu(
+        initialSelection: prayerTimesMethods[4]["ar"],
+        onSelected: (value) {
+          int method = getIndexOfPrayerTimeMethods(value!);
+          BlocProvider.of<PrayerTimeCubit>(context)
+              .changePrayerTimesMethods(method);
+        },
+        dropdownMenuEntries: prayerTimesMethods
+            .map(
+              (e) => DropdownMenuEntry(value: e["ar"], label: e["ar"]!),
+            )
+            .toList(),
       ),
     );
   }

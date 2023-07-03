@@ -20,10 +20,13 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
 
   final PrayerTimeRepo _prayerTimeRepo;
 
-  getPrayerTimeData({required String city, required String country}) async {
+  getPrayerTimeData(
+      {required String city,
+      required String country,
+      required int methods}) async {
     emit(state.copyWith(isLoading: true));
-    final dataOrError =
-        await _prayerTimeRepo.getPrayerTimeData(city: city, country: country);
+    final dataOrError = await _prayerTimeRepo.getPrayerTimeData(
+        city: city, country: country, methods: methods);
     dataOrError.fold(
       (error) {
         //print(error.errorMessage);
@@ -38,13 +41,10 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   }
 
   getPrayerTimeDataByLocation(
-      {required String lat, required String long}) async {
-    // final List<String> list = instance<AppLocalData>().getLatAndLong() ?? [];
-    // String latttuide = (list[0].isNotEmpty) ? list[0] : lat!;
-    // String longitude = (list[0].isNotEmpty) ? list[1] : long!;
+      {required String lat, required String long, required int methods}) async {
     emit(state.copyWith(isLoading: true));
-    final dataOrError =
-        await _prayerTimeRepo.getPrayerTimeDataByLatLong(lat: lat, long: long);
+    final dataOrError = await _prayerTimeRepo.getPrayerTimeDataByLatLong(
+        lat: lat, long: long, methods: methods);
     dataOrError.fold(
       (error) {
         //print(error.errorMessage);
@@ -132,5 +132,10 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   getCountry(String country) async {
     await instance<AppLocalData>().setCountry(data: country);
     emit(state.copyWith(country: country));
+  }
+
+  changePrayerTimesMethods(int method) async {
+    await instance<AppLocalData>().setPrayerTimesMethoed(data: method);
+    emit(state.copyWith(methods: method));
   }
 }
