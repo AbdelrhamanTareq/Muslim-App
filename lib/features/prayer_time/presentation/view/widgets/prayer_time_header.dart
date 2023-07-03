@@ -14,11 +14,15 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
   const PrayerTimeHeaderWidget({
     super.key,
     required this.state,
-    required this.position,
+    this.position,
+    this.city,
+    this.country,
   });
   // final GetPrayerTimeDataSuccess state;
   final Map<int, Timings> state;
-  final Placemark position;
+  final Placemark? position;
+  final String? city;
+  final String? country;
 
   @override
   Widget build(BuildContext context) {
@@ -71,14 +75,16 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
                   height: 8,
                 ),
                 ComingPrayerRemainingTime(state: state),
-                _buildPrayerTimesLocation(context,position)
+                _buildPrayerTimesLocation(context,
+                    position: position, city: city, country: country)
               ],
             ),
           ],
         ));
   }
 
-  Align _buildPrayerTimesLocation(BuildContext context, Placemark position) {
+  Align _buildPrayerTimesLocation(BuildContext context,
+      {Placemark? position, String? city, String? country}) {
     return Align(
       alignment: Alignment.bottomRight,
       child: Row(
@@ -89,7 +95,7 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
           ),
           // TODO
           Text(
-            "${position.country},${position.administrativeArea}",
+            "${position?.country ?? country},${position?.administrativeArea ?? city}",
             style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                   color: AppColors.white,
                 ),

@@ -19,12 +19,16 @@ class PrayerTimeView extends StatefulWidget {
     required this.address,
     this.lat,
     this.long,
+    this.city,
+    this.country,
   }) : super(key: key);
   // final String lat;
   // final String long;
   final Placemark? address;
   final String? lat;
   final String? long;
+  final String? city;
+  final String? country;
 
   @override
   State<PrayerTimeView> createState() => _PrayerTimeViewState();
@@ -37,8 +41,9 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
         instance<AppLocalData>().getLatAndLong() != null) {
       BlocProvider.of<PrayerTimeCubit>(context)
           .getPrayerTimeDataByLocation(lat: widget.lat!, long: widget.long!);
-    } else {
-      BlocProvider.of<PrayerTimeCubit>(context).getPrayerTimeData();
+    } else if (widget.city != null && widget.country != null) {
+      BlocProvider.of<PrayerTimeCubit>(context)
+          .getPrayerTimeData(city: widget.city!, country: widget.country!);
     }
     super.initState();
   }
@@ -61,7 +66,9 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
               children: [
                 PrayerTimeHeaderWidget(
                   state: state.data,
-                  position: widget.address!,
+                  position: widget.address,
+                  city: widget.city,
+                  country: widget.country,
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,

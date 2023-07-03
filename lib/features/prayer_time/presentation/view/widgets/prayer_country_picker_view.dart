@@ -1,6 +1,7 @@
 import 'package:csc_picker/csc_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:muslim_app/core/function.dart';
 
 import 'package:muslim_app/core/themes/app_colors.dart';
@@ -56,14 +57,15 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: CSCPicker( 
+                  child: CSCPicker(
+                    flagState: CountryFlag.DISABLE,
                     dropdownItemStyle: const TextStyle(color: Colors.black),
                     dropdownHeadingStyle: const TextStyle(color: Colors.black),
                     selectedItemStyle: const TextStyle(color: Colors.black),
                     onCityChanged: (value) {
                       print("city $value");
-                      BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
-
+                      BlocProvider.of<PrayerTimeCubit>(context)
+                          .getCity(value ?? "");
                     },
                     onCountryChanged: (value) {
                       print("county $value");
@@ -71,8 +73,8 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                           .getCountry(value);
                     },
                     onStateChanged: (value) {
-                      print("state $value");
-                      BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
+                      // print("state $value");
+                      // BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
                     },
                   ),
                 ),
@@ -82,14 +84,27 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 _buildGetLocationButton(
                   text: AppStrings.save,
                   onPressed: () {
-                    if (state.position != null ||
-                        (state.country != null && state.city != null)) {
+                    if (state.position != null) {
                       Navigator.pushReplacementNamed(
-                          context, Routes.prayerTimePath,
-                          arguments: PrayerTimeObjcet(
-                              address: state.addres,
-                              lat: state.position!.latitude.toString(),
-                              long: state.position!.latitude.toString()));
+                        context,
+                        Routes.prayerTimePath,
+                        arguments: PrayerTimeObjcet(
+                            address: state.addres,
+                            lat: state.position!.latitude.toString(),
+                            long: state.position!.latitude.toString()),
+                      );
+                    } else if ((state.country != null && state.city != null)) {
+                      Navigator.pushReplacementNamed(
+                        context,
+                        Routes.prayerTimePath,
+                        arguments: PrayerTimeObjcet(
+                          city: state.city,
+                          country: state.country,
+                          address: Placemark(
+                              country: state.country,
+                              administrativeArea: state.city),
+                        ),
+                      );
                     } else {
                       showToast("من فضلك اختار موقعك", color: AppColors.error);
                     }
@@ -114,12 +129,16 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
     );
   }
 
-  Center _buildGetLocationButton(
+  Widget _buildGetLocationButton(
       {required String text, required void Function()? onPressed}) {
-    return Center(
-      child: ElevatedButton(
-        onPressed: onPressed,
-        child: Text(text),
+    return SizedBox(
+      width: double.infinity,
+      child: Center(
+        child: ElevatedButton(
+          // style: ElevatedButton.styleFrom(minimumSize: Size(double.infinity, 50)),
+          onPressed: onPressed,
+          child: Text(text),
+        ),
       ),
     );
   }

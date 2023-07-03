@@ -20,9 +20,10 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
 
   final PrayerTimeRepo _prayerTimeRepo;
 
-  getPrayerTimeData() async {
+  getPrayerTimeData({required String city, required String country}) async {
     emit(state.copyWith(isLoading: true));
-    final dataOrError = await _prayerTimeRepo.getPrayerTimeData();
+    final dataOrError =
+        await _prayerTimeRepo.getPrayerTimeData(city: city, country: country);
     dataOrError.fold(
       (error) {
         //print(error.errorMessage);
@@ -123,11 +124,13 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     return placemarks[0];
   }
 
-  getCity(String city) {
+  getCity(String city) async {
+    await instance<AppLocalData>().setCity(data: city);
     emit(state.copyWith(city: city));
   }
 
-  getCountry(String country) {
+  getCountry(String country) async {
+    await instance<AppLocalData>().setCountry(data: country);
     emit(state.copyWith(country: country));
   }
 }

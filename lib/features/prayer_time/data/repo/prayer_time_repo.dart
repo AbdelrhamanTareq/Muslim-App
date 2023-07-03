@@ -6,7 +6,8 @@ import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 import 'package:muslim_app/features/prayer_time/data/network/app_api.dart';
 
 abstract class PrayerTimeRepo {
-  Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData();
+  Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData(
+      {required String city, required String country});
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeDataByLatLong(
       {required String lat, required String long});
 }
@@ -17,7 +18,8 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
 
   PrayerTimeRepoImpl(this._appServiceClient, this._prayerTimeLocalDate);
   @override
-  Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData() async {
+  Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData(
+      {required String city, required String country}) async {
     final int year = DateTime.now().year;
     final int month = DateTime.now().month;
     try {
@@ -32,7 +34,12 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
         return Right(data);
       } else {
         try {
-          final data = await _appServiceClient.getPrayerTimeData(year, month);
+          final data = await _appServiceClient.getPrayerTimeData(
+            year,
+            month,
+            city,
+            country,
+          );
           Map<int, Timings> prayerTimesMap = {};
           for (var element in data.data) {
             _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
@@ -96,7 +103,5 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
       print(e.toString());
       return Left(ServerFailure(e.toString()));
     }
- 
   }
-} 
-
+}

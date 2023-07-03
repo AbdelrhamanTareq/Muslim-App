@@ -89,14 +89,17 @@ abstract class AppRoutes {
             create: (context) => instance<PrayerTimeCubit>(),
 
             //child: const PrayerTimeView(),
-            child: (instance<AppLocalData>().getLatAndLong() != null)
+            child: (instance<AppLocalData>().getLatAndLong() != null || instance<AppLocalData>().getCity() != null)
                 ? PrayerTimeView(
                     address:
                         arg?.address ?? instance<AppLocalData>().getAddress(),
                     lat: arg?.lat ??
-                        instance<AppLocalData>().getLatAndLong()![0],
+                        instance<AppLocalData>().getLatAndLong()?[0],
                     long: arg?.long ??
-                        instance<AppLocalData>().getLatAndLong()![1],
+                        instance<AppLocalData>().getLatAndLong()?[1],
+                    city: arg?.city ?? instance<AppLocalData>().getCity(),
+                    country:
+                        arg?.country ?? instance<AppLocalData>().getCountry(),
                   )
                 : const PrayerCountryPickerView(),
           ),
