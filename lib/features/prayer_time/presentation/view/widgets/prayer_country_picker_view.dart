@@ -60,7 +60,7 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CSCPicker(
-                    flagState: CountryFlag.DISABLE,
+                    //flagState: CountryFlag.DISABLE,
                     dropdownItemStyle: const TextStyle(color: Colors.black),
                     dropdownHeadingStyle: const TextStyle(color: Colors.black),
                     selectedItemStyle: const TextStyle(color: Colors.black),

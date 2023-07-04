@@ -2,6 +2,7 @@ abstract class AppStrings {
   const AppStrings._();
 
   static const String noRouteFound = "لم يتم العثور علي هذة الصفحة";
+  static const String retry = "حاول مرة اخري";
 
   //////////////////////////////////////////////////////////////
 

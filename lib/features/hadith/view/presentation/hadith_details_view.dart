@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/widgets/hadith_bookmark_widget.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -39,8 +40,8 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
         child: BlocBuilder<HadithCubit, HadithState>(
           builder: (context, state) {
             if (state is GetSahihElbokharyDataErrorState) {
-              return Center(
-                child: Text(state.error),
+              return AppErrorWidget(
+                error: state.error,
               );
             } else if (state is GetSahihElbokharyDataSuccesState) {
               return HadithDetailsListBuilder(

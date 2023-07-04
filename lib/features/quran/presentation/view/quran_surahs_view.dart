@@ -1,6 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/errors/error_widget.dart';
 
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
@@ -25,8 +26,8 @@ class _QuranSurahsViewState extends State<QuranSurahsView> {
       body: SafeArea(child: BlocBuilder<QuranCubit, QuranState>(
         builder: (context, state) {
           if (state is QuranGetAllDataError) {
-            return Center(
-              child: Text(state.error),
+            return AppErrorWidget(
+              error: state.error,
             );
           } else if (state is QuranGetAllDataSucces) {
             return AllSurhsList(state: state);

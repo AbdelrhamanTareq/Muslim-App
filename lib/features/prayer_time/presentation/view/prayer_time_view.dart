@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
+import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/injection_container.dart';
 
 import 'package:muslim_app/core/themes/app_colors.dart';
@@ -56,8 +57,8 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
       body: BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
         builder: (context, state) {
           if (state.error != "") {
-            return Center(
-              child: Text(state.error),
+            return AppErrorWidget(
+              error: state.error,
             );
           } else if (state.data.isNotEmpty) {
             //print(state.data.data[0].date.timestamp);
