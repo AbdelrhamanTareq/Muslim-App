@@ -3,6 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:muslim_app/core/errors/erros.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
@@ -95,24 +97,32 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   }
 
   Future<void> getCurrentPosition() async {
-//TODO add internet connection checker
     emit(state.copyWith(isLoadingGetLocation: true));
     final hasPermission = await _handleLocationPermission();
     if (!hasPermission) return;
-    try {
-      final position = await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.high);
+    if (await InternetConnectionChecker().hasConnection) {
+      try {
+        final position = await Geolocator.getCurrentPosition(
+            desiredAccuracy: LocationAccuracy.high);
 
-      final placemark = await getAddressFromLatLng(position);
-      // print(position.latitude);
-      // print(position.longitude);
-      instance<AppLocalData>()
-          .setLatAndLong(lat: position.latitude, long: position.longitude);
+        final placemark = await getAddressFromLatLng(position);
+        // print(position.latitude);
+        // print(position.longitude);
+        instance<AppLocalData>()
+            .setLatAndLong(lat: position.latitude, long: position.longitude);
+        emit(state.copyWith(
+            position: position,
+            isLoadingGetLocation: false,
+            addres: placemark));
+        showToast(AppStrings.locationFounded);
+      } catch (e) {
+        emit(state.copyWith(error: e.toString(), isLoadingGetLocation: false));
+      }
+    } else {
+      showToast(OtherFaliure().errorMessage,
+          color: AppColors.error);
       emit(state.copyWith(
-          position: position, isLoadingGetLocation: false, addres: placemark));
-      showToast("تم ايجاد الموقع");
-    } catch (e) {
-      emit(state.copyWith(error: e.toString(), isLoadingGetLocation: false));
+          error: OtherFaliure().errorMessage, isLoadingGetLocation: false));
     }
   }
 

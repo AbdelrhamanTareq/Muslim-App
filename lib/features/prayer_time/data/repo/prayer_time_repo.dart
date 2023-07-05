@@ -56,13 +56,13 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
           if (e is DioException) {
             return Left(ServerFailure.fromDioError(e));
           }
-          return Left(ServerFailure(e.toString()));
+          return Left(OtherFaliure());
         }
       }
       // print("data ~~====!! $data");
     } catch (e) {
       print(e.toString());
-      return Left(ServerFailure(e.toString()));
+      return Left(OtherFaliure());
     }
   }
 
@@ -99,12 +99,12 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
           if (e is DioException) {
             return Left(ServerFailure.fromDioError(e));
           }
-          return Left(ServerFailure(e.toString()));
+          return Left(OtherFaliure());
         }
       }
     } catch (e) {
       print(e.toString());
-      return Left(ServerFailure(e.toString()));
+      return Left(OtherFaliure());
     }
   }
 }
