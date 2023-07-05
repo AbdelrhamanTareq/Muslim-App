@@ -48,7 +48,7 @@ class ServerFailure extends Faliure {
 
   factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
     if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
-      return ServerFailure(response['error']['message']);
+      return ServerFailure(response['data']);
     } else if (statusCode == 404) {
       return ServerFailure('Your request not found, Please try later!');
     } else if (statusCode == 500) {
@@ -57,4 +57,16 @@ class ServerFailure extends Faliure {
       return ServerFailure('Opps There was an Error, Please try again');
     }
   }
+}
+
+class NoConnectionFaliure implements Faliure {
+  @override
+  String get errorMessage => "There is no internet connection, Please check you connectiom and try again";
+
+}
+
+class OtherFaliure implements Faliure {
+  @override
+  String get errorMessage => "Opps There was an Error, Please try again";
+
 }
