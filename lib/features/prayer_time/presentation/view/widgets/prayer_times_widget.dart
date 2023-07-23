@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/utils/app_notifications.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
 import '../../../../../core/function.dart';
@@ -83,7 +84,9 @@ class PrayerTimesWidget extends StatelessWidget {
           Icons.alarm,
           size: 35,
         ),
-        onPressed: () {},
+        onPressed: () {
+          AppNotification().showNotification(title: "Sample",body: "asdasdasdasdasdasdasdasdasdasdasdasd");
+        },
       ),
       title: Text(
         name,
