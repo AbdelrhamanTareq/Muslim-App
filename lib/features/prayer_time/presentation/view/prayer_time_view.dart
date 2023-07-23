@@ -7,6 +7,7 @@ import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/injection_container.dart';
 
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/prayer_time/presentation/view/widgets/prayer_time_header.dart';
 
@@ -59,6 +60,10 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
           if (state.error != "") {
             return AppErrorWidget(
               error: state.error,
+              retryFunciton: (){
+                //TODO
+                Navigator.pushReplacementNamed(context, Routes.prayerTimePath);
+              },
             );
           } else if (state.data.isNotEmpty) {
             //print(state.data.data[0].date.timestamp);
