@@ -34,8 +34,8 @@ abstract class Routes {
   static const String qiblaPath = "/qibla";
   static const String sebhaPath = "/sebha";
   static const String prayerTimePath = "/prayer-time";
-  static const String prayerTimeCountryPickerPath =
-      "/prayer-time-country-picker";
+  // static const String prayerTimeCountryPickerPath =
+  //     "/prayer-time-country-picker";
   static const String azkarDetailsPath = "/azkar-details";
   static const String allAzkarPath = "/all-azkar";
 }
@@ -89,7 +89,8 @@ abstract class AppRoutes {
             create: (context) => instance<PrayerTimeCubit>(),
 
             //child: const PrayerTimeView(),
-            child: (instance<AppLocalData>().getLatAndLong() != null || instance<AppLocalData>().getCity() != null)
+            child: (instance<AppLocalData>().getLatAndLong() != null ||
+                    instance<AppLocalData>().getCity() != null)
                 ? PrayerTimeView(
                     address:
                         arg?.address ?? instance<AppLocalData>().getAddress(),
@@ -104,14 +105,7 @@ abstract class AppRoutes {
                 : const PrayerCountryPickerView(),
           ),
         );
-      // case Routes.prayerTimeCountryPickerPath:
-      //   return MaterialPageRoute(
-      //     builder: (context) => BlocProvider<PrayerTimeCubit>(
-      //       create: (context) => instance<PrayerTimeCubit>(),
-      //       // child: const PrayerTimeView(),
-      //       child: const PrayerCountryPickerView(),
-      //     ),
-      //   );
+
       case Routes.azkarDetailsPath:
         final AzkarMap args = settings.arguments as AzkarMap;
         return MaterialPageRoute(
