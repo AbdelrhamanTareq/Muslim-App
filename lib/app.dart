@@ -7,6 +7,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
 
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 

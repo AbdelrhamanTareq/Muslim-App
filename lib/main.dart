@@ -9,6 +9,7 @@ import 'core/bloc_observer.dart';
 import 'core/constant/app_constatnt.dart';
 import 'core/injection_container.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
@@ -19,7 +20,5 @@ void main() async {
   Hive.registerAdapter(TimingsAdapter());
   await Hive.openBox(prayerTimesKey);
   Bloc.observer = MyBlocObserver();
-
-
   runApp(const MyApp());
 }
