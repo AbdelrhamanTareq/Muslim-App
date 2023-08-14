@@ -6,7 +6,7 @@ import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cu
 import 'package:muslim_app/features/hadith/data/repo/hadith_reop.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
-import 'package:muslim_app/features/prayer_time/data/network/app_api.dart';
+import 'package:muslim_app/features/prayer_time/data/network/prayer_times_api.dart';
 import 'package:muslim_app/features/prayer_time/data/repo/prayer_time_repo.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
