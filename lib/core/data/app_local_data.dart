@@ -59,12 +59,12 @@ class AppLocalDataImpl extends AppLocalData {
   @override
   Map<int, Timings> getPrayerTimesDataMap() {
     //print(Hive.box(prayerTimesKey).keys.first);
-    final data = Hive.box(prayerTimesKey).toMap();
+    final data = Hive.box(prayerTimesKey).toMap() ;
 
     Map<int, Timings> mappedData =
         data.map((key, value) => MapEntry(int.parse(key), value));
     // print(mappedData);
-    return mappedData;
+    return mappedData ;
   }
 
   @override
