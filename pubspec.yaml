@@ -41,6 +41,7 @@ dependencies:
   flutter_local_notifications: ^15.1.0+1
   flutter_localizations:
     sdk: flutter
+  flutter_native_timezone: ^2.0.0
   flutter_svg: ^2.0.5
   fluttertoast: ^8.2.2
   geocoding: ^2.1.0
@@ -58,6 +59,7 @@ dependencies:
   share_plus: ^7.0.2
   shared_preferences: ^2.1.1
   smooth_compass: ^2.0.11
+  timezone: ^0.9.2
   vibration: ^1.7.7
 
 dev_dependencies:
