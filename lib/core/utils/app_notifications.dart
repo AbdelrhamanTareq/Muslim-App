@@ -1,12 +1,17 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
+
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class AppNotification {
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 
   Future<void> initialize() async {
+    _configureLocalTimeZone();
     var androidInitializationSettings =
-        const AndroidInitializationSettings("flutter_logo");
+        const AndroidInitializationSettings("@mipmap/ic_launcher");
 
     var iosInitializationSettings = DarwinInitializationSettings(
         requestAlertPermission: true,
@@ -20,20 +25,77 @@ class AppNotification {
 
     await _notificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse:
-            (NotificationResponse notificationResponse) async {
-
-            });
+            (NotificationResponse notificationResponse) async {});
   }
 
-  Future showNotification({int id = 0, String?title, String? body, String? payload}) async {
+  Future showNotification(
+      {int id = 0, String? title, String? body, String? payload}) async {
     return _notificationsPlugin.show(id, title, body, notificationDetails());
   }
 
-  notificationDetails(){
-return const NotificationDetails(
-  android: AndroidNotificationDetails("channelId", "channelName",importance: Importance.max),
-  iOS: DarwinNotificationDetails()
+  /// Set right date and time for notifications
+  tz.TZDateTime _convertTime(int hour, int minutes) {
+    final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
+    tz.TZDateTime scheduleDate = tz.TZDateTime(
+      tz.local,
+      now.year,
+      now.month,
+      now.day,
+      hour,
+      minutes,
+    );
+    // print(now);
+    // print(scheduleDate);
+    if (scheduleDate.isBefore(now)) {
+      scheduleDate = scheduleDate.add(const Duration(days: 1));
+    }
+    return scheduleDate;
+  }
 
-);
+  Future<void> _configureLocalTimeZone() async {
+    tz.initializeTimeZones();
+    final String timeZone = await FlutterNativeTimezone.getLocalTimezone();
+    tz.setLocalLocation(tz.getLocation(timeZone));
+  }
+
+  Future showScheduleNotification({
+    required int id,
+    String? title,
+    String? body,
+    String? payload,
+    required int hour,
+    required int minutes,
+  }) async {
+    // final now = DateTime.now();
+
+    return await _notificationsPlugin.zonedSchedule(
+      id,
+      title,
+      body,
+      _convertTime(hour, minutes),
+      await notificationDetails(),
+      // androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+      matchDateTimeComponents: DateTimeComponents.time,
+      uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+    );
+  }
+
+  cancelAll() async => await _notificationsPlugin.cancelAll();
+  cancel(id) async => await _notificationsPlugin.cancel(id);
+
+  notificationDetails() {
+    return const NotificationDetails(
+        android: AndroidNotificationDetails(
+          "Muslim123",
+          "Muslim",
+          channelDescription: "Muslim app notifications",
+          icon: "@mipmap/ic_launcher",
+          importance: Importance.max,
+          playSound: true,
+          sound: RawResourceAndroidNotificationSound("azan"),
+          enableLights: true, 
+        ),
+        iOS: DarwinNotificationDetails());
   }
 }
