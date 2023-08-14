@@ -48,6 +48,7 @@ DateTime toTimeOfDay({
   Timings? prayerTimesMap,
   String? stringDate,
 }) {
+  // TODO if string data == null get Data becuase month is over
   if (stringDate != null) {
     final time = stringDate.split(" ")[0];
     List<String> timeSplit = time.split(":");

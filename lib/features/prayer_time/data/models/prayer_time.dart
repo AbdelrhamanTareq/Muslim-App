@@ -7,7 +7,7 @@ part 'prayer_time.g.dart';
 class PrayerTime {
   final int code;
   final String status;
-  final List<Data> data;
+  final Map<String,List<Data>> data;
 
   PrayerTime({required this.code, required this.status, required this.data});
 

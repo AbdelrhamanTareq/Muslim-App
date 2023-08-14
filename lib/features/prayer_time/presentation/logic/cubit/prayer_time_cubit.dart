@@ -1,10 +1,13 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:muslim_app/core/errors/erros.dart';
+import 'package:muslim_app/core/utils/app_notifications.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
@@ -35,6 +38,7 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
         emit(state.copyWith(error: error.errorMessage, isLoading: false));
       },
       (data) {
+        prayerScheduleTimesNotifaction(data: data);
         emit(
           state.copyWith(data: data, isLoading: false),
         );
@@ -53,6 +57,8 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
         emit(state.copyWith(error: error.errorMessage, isLoading: false));
       },
       (data) {
+        prayerScheduleTimesNotifaction(data: data);
+
         emit(
           state.copyWith(data: data, isLoading: false),
         );
@@ -119,8 +125,7 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
         emit(state.copyWith(error: e.toString(), isLoadingGetLocation: false));
       }
     } else {
-      showToast(OtherFaliure().errorMessage,
-          color: AppColors.error);
+      showToast(OtherFaliure().errorMessage, color: AppColors.error);
       emit(state.copyWith(
           error: OtherFaliure().errorMessage, isLoadingGetLocation: false));
     }
@@ -147,5 +152,149 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   changePrayerTimesMethods(int method) async {
     await instance<AppLocalData>().setPrayerTimesMethoed(data: method);
     emit(state.copyWith(methods: method));
+  }
+
+  void prayerScheduleTimesNotifaction({required Map<int, Timings>? data}) {
+    if (data == null || data == {} || data.isEmpty) {
+      return;
+    }
+    // final now = DateTime.now();
+    int finalDate = convertDateToTimeStampInInt();
+    final prayerTimesList = [
+      toTimeOfDay(stringDate: data[finalDate]?.fajr),
+      toTimeOfDay(stringDate: data[finalDate]?.dhuhr),
+      toTimeOfDay(stringDate: data[finalDate]?.asr),
+      toTimeOfDay(stringDate: data[finalDate]?.maghrib),
+      toTimeOfDay(stringDate: data[finalDate]?.isha),
+    ];
+    for (var i = 0; i < prayerTimesList.length; i++) {
+      AppNotification().showScheduleNotification(
+          id: i,
+          hour: prayerTimesList[i].hour,
+          minutes: prayerTimesList[i].minute,
+          title: _getTitle(i),
+          body: _getBody(i));
+    }
+  }
+  // void prayerTimesNotifaction1() {
+  //   final now = DateTime.now();
+  //   // int finalDate = convertDateToTimeStampInInt();
+  //   // AppNotification().showScheduleNotification(title: "yyyyyyyyyy",body: "fghfghgfhfghfgh");
+  //   final timesList = [
+  //     DateTime(now.year, now.month, now.day, 11, 15, 00),
+  //     DateTime(now.year, now.month, now.day, 11, 20, 00),
+  //     DateTime(now.year, now.month, now.day, 11, 25, 00),
+  //     DateTime(now.year, now.month, now.day, 11, 30, 00),
+  //     DateTime(now.year, now.month, now.day, 11, 35, 00),
+  //   ];
+  //   for (var i = 0; i < timesList.length; i++) {
+  //     AppNotification().showScheduleNotification(
+  //         id: i,
+  //         hour: timesList[i].hour,
+  //         minutes: timesList[i].minute,
+  //         title: _getTitle(i),
+  //         body: _getBody(i));
+  //   }
+  // }
+
+  String _getTitle(int i) {
+    switch (i) {
+      case 0:
+        return "صلاة الفجر";
+      case 1:
+        return "صلاة الظهر";
+      case 2:
+        return "صلاة العصر";
+      case 3:
+        return "صلاة المغرب";
+      case 4:
+        return "صلاة العشاء";
+      default:
+        return "صلاة الفجر";
+    }
+  }
+
+  String _getBody(int i) {
+    switch (i) {
+      case 0:
+        return "حان الان موعد صلاة الفجر";
+      case 1:
+        return " حان الان موعد صلاة الظهر";
+      case 2:
+        return " حان الان موعد صلاة العصر";
+      case 3:
+        return " حان الان موعد صلاة المغرب";
+      case 4:
+        return "حان الان موعد صلاة العشاء";
+      default:
+        return "حان الان موعد صلاة الفجر";
+    }
+  }
+
+  void prayerTimesNotifaction({Map<int, Timings>? data}) {
+    // Timer timer;
+    // var finalDate = convertDateToTimeStampInInt();
+    // final prayerTimesList = [
+    //   toTimeOfDay(stringDate: data[finalDate]!.fajr),
+    //   toTimeOfDay(stringDate: data[finalDate]!.dhuhr),
+    //   toTimeOfDay(stringDate: data[finalDate]!.asr),
+    //   toTimeOfDay(stringDate: data[finalDate]!.maghrib),
+    //   toTimeOfDay(stringDate: data[finalDate]!.isha),
+    // ];
+    //final now = DateTime.now();
+    // final AppNotification appNotification = AppNotification();
+
+    // print(prayerTimes[0].hour);
+    // print(prayerTimes[1].hour);
+    // print(prayerTimes[2].hour);
+    // print(prayerTimes[3].hour);
+    // print(prayerTimes[4].hour);
+
+    //   if (now == (prayerTimesList[1])) {
+    //     appNotification.showNotification(
+    //         title: "اذان الظهر", body: "حان الان موعد اذان الظهر");
+    //   } else if (now == (prayerTimesList[2])) {
+    //     appNotification.showNotification(
+    //         title: "اذان العصر", body: "حان الان موعد اذان العصر");
+    //   } else if (now == (prayerTimesList[3])) {
+    //     appNotification.showNotification(
+    //         title: "اذان المغرب", body: "حان الان موعد اذان المغرب");
+    //   } else if (now == (prayerTimesList[4])) {
+    //     appNotification.showNotification(
+    //         title: "اذان العشاء", body: "حان الان موعد اذان العشاء");
+    //   } else if (now == (prayerTimesList[0])) {
+    //     appNotification.showNotification(
+    //         title: "اذان الفجر", body: "حان الان موعد اذان الفجر");
+    //   }
+    //   timer = Timer.periodic(Duration(hours: 1), (timer) {
+    //     print("xxxxxxxxxx");
+
+    //     // AppNotification().showNotification(title: "اذان الظهر", body: "حان الان موعد اذان الظهر");
+    //     if (now.hour == DateTime(now.year, now.month, now.day, 13, 0, 0).hour) {
+    //       AppNotification().showNotification(
+    //           title: "اذان الظهر", body: "حان الان موعد اذان الظهر");
+    //       print("22");
+    //     } else if (now.hour ==
+    //         DateTime(now.year, now.month, now.day, 16, 30, 0).hour) {
+    //       AppNotification().showNotification(
+    //           title: "اذان العصر", body: "حان الان موعد اذان العصر");
+    //       print("33");
+    //     } else if (now.hour ==
+    //         DateTime(now.year, now.month, now.day, 20, 0, 0).hour) {
+    //       AppNotification().showNotification(
+    //           title: "اذان المغرب", body: "حان الان موعد اذان المغرب");
+    //       print("44");
+    //     } else if (now.hour ==
+    //         DateTime(now.year, now.month, now.day, 21, 30, 0).hour) {
+    //       AppNotification().showNotification(
+    //           title: "اذان العشاء", body: "حان الان موعد اذان العشاء");
+    //       print("55");
+    //     } else if (now.hour ==
+    //         DateTime(now.year, now.month, now.day, 4, 30, 0).hour) {
+    //       AppNotification().showNotification(
+    //           title: "اذان الفجر", body: "حان الان موعد اذان الفجر");
+    //       print("11");
+    //     }
+    //   });
   }
 }

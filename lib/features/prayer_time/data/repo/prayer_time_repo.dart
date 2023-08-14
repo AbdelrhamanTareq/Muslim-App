@@ -3,7 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:muslim_app/core/errors/erros.dart';
 import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
-import 'package:muslim_app/features/prayer_time/data/network/app_api.dart';
+import 'package:muslim_app/features/prayer_time/data/network/prayer_times_api.dart';
 
 abstract class PrayerTimeRepo {
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeData(
@@ -23,7 +23,6 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
       required String country,
       required int methods}) async {
     final int year = DateTime.now().year;
-    final int month = DateTime.now().month;
     try {
       final now = DateTime.now();
       var newDate = DateTime(now.year, now.month, now.day, 09, 01, 01)
@@ -38,18 +37,34 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
         try {
           final data = await _appServiceClient.getPrayerTimeData(
             year,
-            month,
             city,
             country,
             methods,
           );
+          final mappedData = data.data;
           Map<int, Timings> prayerTimesMap = {};
-          for (var element in data.data) {
-            _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
-                key: element.date.timestamp, prayerTimes: element.timings);
-            prayerTimesMap
-                .addAll({int.parse(element.date.timestamp): element.timings});
+          for (var element in mappedData.values) {
+            for (var listElement in element) {
+              _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
+                  // key: element.date[element].timestamp, prayerTimes: element.timings);
+                  key: listElement.date.timestamp,
+                  prayerTimes: listElement.timings);
+
+              prayerTimesMap.addAll(
+                  {int.parse(listElement.date.timestamp): listElement.timings});
+            }
           }
+
+          // mappedData["1"]
+
+          // for (String key in mappedData.keys) {
+          //   _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
+          //       // key: element.date[element].timestamp, prayerTimes: element.timings);
+          //       key: mappedData[key][1].date.timestamp,
+          //       prayerTimes: element.timings);
+          //   prayerTimesMap
+          //       .addAll({int.parse(element.date.timestamp): element.timings});
+          // }
 
           return Right(prayerTimesMap);
         } catch (e) {
@@ -70,7 +85,6 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
   Future<Either<Faliure, Map<int, Timings>>> getPrayerTimeDataByLatLong(
       {required String lat, required String long, required int methods}) async {
     final int year = DateTime.now().year;
-    final int month = DateTime.now().month;
 
     try {
       final now = DateTime.now();
@@ -85,14 +99,27 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
       } else {
         try {
           final data = await _appServiceClient.getPrayerTimeDataByLatLong(
-              year, month, lat, long, methods);
+              year, lat, long, methods);
+          final mappedData = data.data;
           Map<int, Timings> prayerTimesMap = {};
-          for (var element in data.data) {
-            _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
-                key: element.date.timestamp, prayerTimes: element.timings);
-            prayerTimesMap
-                .addAll({int.parse(element.date.timestamp): element.timings});
+          for (var element in mappedData.values) {
+            for (var listElement in element) {
+              _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
+                  // key: element.date[element].timestamp, prayerTimes: element.timings);
+                  key: listElement.date.timestamp,
+                  prayerTimes: listElement.timings);
+
+              prayerTimesMap.addAll(
+                  {int.parse(listElement.date.timestamp): listElement.timings});
+            }
           }
+          // Map<int, Timings> prayerTimesMap = {};
+          // for (var element in data.data) {
+          //   _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
+          //       key: element.date.timestamp, prayerTimes: element.timings);
+          //   prayerTimesMap
+          //       .addAll({int.parse(element.date.timestamp): element.timings});
+          // }
 
           return Right(prayerTimesMap);
         } catch (e) {

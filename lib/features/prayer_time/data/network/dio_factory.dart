@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
-import 'api_constant.dart';
+import 'prayer_times_api_constant.dart';
 
 class DioFactory {
   static const int _timeOut = 1000;

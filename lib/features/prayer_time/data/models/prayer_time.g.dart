@@ -77,9 +77,13 @@ class TimingsAdapter extends TypeAdapter<Timings> {
 PrayerTime _$PrayerTimeFromJson(Map<String, dynamic> json) => PrayerTime(
       code: json['code'] as int,
       status: json['status'] as String,
-      data: (json['data'] as List<dynamic>)
-          .map((e) => Data.fromJson(e as Map<String, dynamic>))
-          .toList(),
+      data: (json['data'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            k,
+            (e as List<dynamic>)
+                .map((e) => Data.fromJson(e as Map<String, dynamic>))
+                .toList()),
+      ),
     );
 
 Map<String, dynamic> _$PrayerTimeToJson(PrayerTime instance) =>

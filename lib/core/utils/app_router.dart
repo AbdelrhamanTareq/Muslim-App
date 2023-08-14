@@ -86,9 +86,10 @@ abstract class AppRoutes {
 
         return MaterialPageRoute(
           builder: (context) => BlocProvider<PrayerTimeCubit>(
-            create: (context) => instance<PrayerTimeCubit>(),
-
-            //child: const PrayerTimeView(),
+            create: (context) => instance<PrayerTimeCubit>()
+              ..prayerScheduleTimesNotifaction(
+                data: instance<AppLocalData>().getPrayerTimesDataMap(),
+              ),
             child: (instance<AppLocalData>().getLatAndLong() != null ||
                     instance<AppLocalData>().getCity() != null)
                 ? PrayerTimeView(
