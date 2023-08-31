@@ -160,20 +160,33 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     }
     // final now = DateTime.now();
     int finalDate = convertDateToTimeStampInInt();
+
+    final prayerTimesSoundsEnable =
+        instance<AppLocalData>().getPrayerTimesSound();
     final prayerTimesList = [
       toTimeOfDay(stringDate: data[finalDate]?.fajr),
       toTimeOfDay(stringDate: data[finalDate]?.dhuhr),
       toTimeOfDay(stringDate: data[finalDate]?.asr),
       toTimeOfDay(stringDate: data[finalDate]?.maghrib),
       toTimeOfDay(stringDate: data[finalDate]?.isha),
+      // DateTime(now.year, now.month, now.day, 12, 30, 00),
+      // DateTime(now.year, now.month, now.day, 12, 31, 00),
+      // DateTime(now.year, now.month, now.day, 12, 32, 00),
+      // DateTime(now.year, now.month, now.day, 12, 33, 00),
+      // DateTime(now.year, now.month, now.day, 12, 34, 00),
+      
+      
+      
     ];
     for (var i = 0; i < prayerTimesList.length; i++) {
       AppNotification().showScheduleNotification(
-          id: i,
-          hour: prayerTimesList[i].hour,
-          minutes: prayerTimesList[i].minute,
-          title: _getTitle(i),
-          body: _getBody(i));
+        id: i,
+        hour: prayerTimesList[i].hour,
+        minutes: prayerTimesList[i].minute,
+        title: _getTitle(i),
+        body: _getBody(i),
+        playSound: prayerTimesSoundsEnable[i] ? true : false,
+      );
     }
   }
   // void prayerTimesNotifaction1() {
