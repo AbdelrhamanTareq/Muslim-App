@@ -30,6 +30,10 @@ abstract class AppLocalData {
   String? getCountry();
   Future setPrayerTimesMethoed({required int data});
   int? getPrayerTimesMethoed();
+
+  Future<bool> setPrayerTimesSound({required List<String> data});
+  List<bool> getPrayerTimesSound();
+  
 }
 
 const String latLongKey = "LAT_LONG";
@@ -37,6 +41,7 @@ const String addressKey = "ADDRESS";
 const String cityKey = "CITY";
 const String countryKey = "COUNTRY";
 const String methodesKey = "METHODES";
+const String prayerTimesSoundKey = "PRAYER_TIMES_SOUND";
 
 class AppLocalDataImpl extends AppLocalData {
   // final Box box ;
@@ -59,12 +64,12 @@ class AppLocalDataImpl extends AppLocalData {
   @override
   Map<int, Timings> getPrayerTimesDataMap() {
     //print(Hive.box(prayerTimesKey).keys.first);
-    final data = Hive.box(prayerTimesKey).toMap() ;
+    final data = Hive.box(prayerTimesKey).toMap();
 
     Map<int, Timings> mappedData =
         data.map((key, value) => MapEntry(int.parse(key), value));
     // print(mappedData);
-    return mappedData ;
+    return mappedData;
   }
 
   @override
@@ -133,5 +138,34 @@ class AppLocalDataImpl extends AppLocalData {
   @override
   Future setPrayerTimesMethoed({required int data}) async {
     return await _sharedPreferences.setInt(methodesKey, data);
+  }
+
+  @override
+  List<bool> getPrayerTimesSound() {
+    List<bool> data = [];
+    final savedList =
+        _sharedPreferences.getStringList(prayerTimesSoundKey) ?? [];
+    for (var element in savedList) {
+      if (element == "1") {
+        data.add(true);
+      } else {
+        data.add(false);
+      }
+    }
+    return data;
+  }
+
+  @override
+  Future<bool> setPrayerTimesSound({required List<String>? data}) async {
+    if (data == null || data.isEmpty) {
+      data = [
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+      ];
+    }
+    return await _sharedPreferences.setStringList(prayerTimesSoundKey, data);
   }
 }
