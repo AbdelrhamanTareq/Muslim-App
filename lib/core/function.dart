@@ -165,3 +165,13 @@ List<String> convertPrayerTimesToListOfString(List<bool> boolList) {
   }
   return stringList;
 }
+
+void getPrayerTimesSoundsStateFirstTime() async {
+  if (!instance<AppLocalData>().getIsFirstTime(key: mainFirstTimeKey)) {
+    final List<bool> prayerTimesSoundsEnalbe = getPrayerTimesSound();
+    final List<String> stringList =
+        convertPrayerTimesToListOfString(prayerTimesSoundsEnalbe);
+    await instance<AppLocalData>().setPrayerTimesSound(data: stringList);
+    await instance<AppLocalData>().setIsFirstTime(key: mainFirstTimeKey);
+  }
+}
