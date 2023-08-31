@@ -46,9 +46,8 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
             time: prayerTimes[finalDate]!.fajr.split(" ")[0],
             onPressed: () async {
               _enableOrDisablePrayerTimesSound(0, context);
-              setState(() {
-                
-              });
+              _showChangeStateToast(0);
+              setState(() {});
             },
           ),
           _divider(),
@@ -70,9 +69,8 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
             time: prayerTimes[finalDate]!.dhuhr.split(" ")[0],
             onPressed: () {
               _enableOrDisablePrayerTimesSound(1, context);
-               setState(() {
-                
-              });
+              _showChangeStateToast(1);
+              setState(() {});
             },
           ),
           _divider(),
@@ -83,9 +81,8 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
             time: prayerTimes[finalDate]!.asr.split(" ")[0],
             onPressed: () {
               _enableOrDisablePrayerTimesSound(2, context);
-               setState(() {
-                
-              });
+              _showChangeStateToast(2);
+              setState(() {});
             },
           ),
           _divider(),
@@ -96,9 +93,8 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
             time: prayerTimes[finalDate]!.maghrib.split(" ")[0],
             onPressed: () {
               _enableOrDisablePrayerTimesSound(3, context);
-               setState(() {
-                
-              });
+              _showChangeStateToast(3);
+              setState(() {});
             },
           ),
           _divider(),
@@ -109,14 +105,18 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
             time: prayerTimes[finalDate]!.isha.split(" ")[0],
             onPressed: () {
               _enableOrDisablePrayerTimesSound(4, context);
-               setState(() {
-                
-              });
+              _showChangeStateToast(4);
+
+              setState(() {});
             },
           ),
         ],
       ),
     );
+  }
+
+  void _showChangeStateToast(int index) {
+    getPrayerTimesSound()[index] ? showToast(AppStrings.enableSound) : showToast(AppStrings.disableSound);
   }
 
   Color _getIconColor(index) =>
@@ -151,7 +151,9 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
               ),
               onPressed: onPressed,
             )
-          : SizedBox(width: 40,),
+          : SizedBox(
+              width: 40,
+            ),
       title: Text(
         name,
         style: Theme.of(context)
