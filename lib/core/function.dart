@@ -5,6 +5,8 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 
 import '../features/prayer_time/data/models/prayer_time.dart';
 import 'constant/app_constatnt.dart';
+import 'data/app_local_data.dart';
+import 'injection_container.dart';
 import 'utils/app_strings.dart';
 
 const String fajr = "الفجر";
@@ -144,4 +146,22 @@ int getIndexOfPrayerTimeMethods(String value) {
     }
   }
   return i;
+}
+
+List<bool> getPrayerTimesSound() {
+  return instance<AppLocalData>().getPrayerTimesSound();
+}
+
+List<String> convertPrayerTimesToListOfString(List<bool> boolList) {
+  final List<String> stringList = [];
+  for (var e in boolList) {
+    {
+      if (e == true) {
+        stringList.add("1");
+      } else {
+        stringList.add("0");
+      }
+    }
+  }
+  return stringList;
 }
