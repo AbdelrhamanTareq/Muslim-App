@@ -65,6 +65,7 @@ class AppNotification {
     String? payload,
     required int hour,
     required int minutes,
+    bool playSound = true,
   }) async {
     // final now = DateTime.now();
 
@@ -73,7 +74,7 @@ class AppNotification {
       title,
       body,
       _convertTime(hour, minutes),
-      await notificationDetails(),
+      playSound ? notificationDetails() : notificationDetailsWithoutSound(),
       // androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
       matchDateTimeComponents: DateTimeComponents.time,
       uiLocalNotificationDateInterpretation:
@@ -94,7 +95,20 @@ class AppNotification {
           importance: Importance.max,
           playSound: true,
           sound: RawResourceAndroidNotificationSound("azan"),
-          enableLights: true, 
+          enableLights: true,
+        ),
+        iOS: DarwinNotificationDetails());
+  }
+
+  notificationDetailsWithoutSound() {
+    return const NotificationDetails(
+        android: AndroidNotificationDetails(
+          "Muslim1234",
+          "Muslim12",
+          channelDescription: "Muslim app notifications12",
+          icon: "@mipmap/ic_launcher",
+          importance: Importance.max,
+          enableLights: true,
         ),
         iOS: DarwinNotificationDetails());
   }
