@@ -6,6 +6,8 @@ import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/widgets/azkar_main_widget.dart';
 
+import 'widgets/azkar_shimmer_loading.dart';
+
 class AzkarMainView extends StatelessWidget {
   const AzkarMainView({super.key});
 
@@ -23,7 +25,7 @@ class AzkarMainView extends StatelessWidget {
             state: state,
           );
         } else {
-          return const CircularProgressIndicator.adaptive();
+          return const AzkarLoading();
         }
       },
     );
