@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:shimmer/shimmer.dart';
 
 class AzkarLoading extends StatelessWidget {
@@ -9,7 +8,7 @@ class AzkarLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
         shrinkWrap: true,
-        itemCount: 4,
+        itemCount: 15,
         separatorBuilder: (context, index) => const SizedBox(
               height: 3,
             ),
