@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
+import '../../../../../core/themes/app_colors.dart';
+
 class AzkarLoading extends StatelessWidget {
   const AzkarLoading({super.key});
 
@@ -14,7 +16,7 @@ class AzkarLoading extends StatelessWidget {
             ),
         itemBuilder: (context, index) {
           return Shimmer.fromColors(
-            baseColor: Colors.indigo,
+            baseColor: AppColors.indigo,
             highlightColor: Colors.indigoAccent,
             child: const Card(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
