@@ -14,8 +14,8 @@ class AzkarLoading extends StatelessWidget {
             ),
         itemBuilder: (context, index) {
           return Shimmer.fromColors(
-            baseColor: Colors.grey,
-            highlightColor: Colors.blueGrey,
+            baseColor: Colors.indigo,
+            highlightColor: Colors.indigoAccent,
             child: const Card(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
               child: Padding(
