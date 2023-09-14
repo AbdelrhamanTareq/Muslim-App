@@ -101,11 +101,6 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Uthman
-      fonts:
-        - asset: assets/fonts/Uthman-Regular.ttf
-        - asset: assets/fonts/Uthman-Bold.ttf
-          weight: 700
     - family: me_quran
       fonts:
         - asset: assets/fonts/me_quran-Regular.ttf
@@ -124,8 +119,9 @@ flutter:
           weight: 600
         - asset: assets/fonts/cairo-Bold.ttf
           weight: 700
-    - family: Cairo
+    - family: HAFS
       fonts:
-        - asset: assets/fonts/HAFS.otf
+        - asset: assets/fonts/HAFS-Regular.otf
+      
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

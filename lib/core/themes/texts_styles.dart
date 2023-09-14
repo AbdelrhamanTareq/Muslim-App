@@ -13,7 +13,7 @@ class AppTextsStyles {
   }
 
   static TextStyle quranTextStyle({
-    double fontSize = 25,
+    double fontSize = 30,
     Color color = AppColors.white,
   }) {
     return TextStyle(

@@ -95,8 +95,9 @@ class SurhWithTextSpan extends StatelessWidget {
                           );
                         }),
                   TextSpan(
-                    text: "\uFD3F${e.id.toArabicNumbers}\uFD3E",
-                    style: const TextStyle(fontSize: 27, color: Colors.black),
+                    text: e.id.toArabicNumbers,
+                    // text: "\uFD3F${e.id.toArabicNumbers}\uFD3E",
+                    style: const TextStyle(fontSize: 30, color: Colors.black, wordSpacing: 2),
                   ),
                 ],
               ),
