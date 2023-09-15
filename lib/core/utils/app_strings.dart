@@ -66,4 +66,10 @@ abstract class AppStrings {
   /////////////////////////////////////////////////
   static const String zekerName = "اسم الذكر";
   static const String enterZekerCount = "ادخل العدد المطلوب";
+
+  /////////////////////////////////////////////////
+  static const String settings = "الاعدادت";
+  static const String nightMode = "الوضع الليلي";
+  static const String enableNotifications = "تفعيل الاشعارات";
+  static const String aboutUs = "عن المطور";
 }

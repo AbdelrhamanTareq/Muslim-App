@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
+import 'package:muslim_app/core/widgets/app_drawer.dart';
 
 import 'package:muslim_app/features/azkar/presentation/view/azkar_main_view.dart';
 
@@ -35,14 +36,20 @@ class _HomwViewState extends State<HomwView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: const AppDrawer(),
       backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: IconButton(
-          onPressed: () {},
-          icon: const Icon(Icons.menu),
-        ),
+        leading: Builder(builder: (ctx) {
+          return IconButton(
+            onPressed: () {
+              Scaffold.of(ctx).openDrawer();
+              // Navigator.pushNamed(context, Routes.settingPath);
+            },
+            icon: const Icon(Icons.menu),
+          );
+        }),
       ),
       body: const SingleChildScrollView(
         physics: BouncingScrollPhysics(),
