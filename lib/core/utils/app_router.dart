@@ -21,6 +21,7 @@ import 'package:muslim_app/features/qibla/presentation/view/qibla_main_view.dart
 import 'package:muslim_app/features/quran/presentation/view/quran_surahs_view.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:muslim_app/features/sebha/presentation/view/sebha_main_view.dart';
+import 'package:muslim_app/features/settings/presentation/view/main_settings_view.dart';
 
 import '../../features/azkar/data/models/azkar_map.dart';
 
@@ -38,6 +39,7 @@ abstract class Routes {
   //     "/prayer-time-country-picker";
   static const String azkarDetailsPath = "/azkar-details";
   static const String allAzkarPath = "/all-azkar";
+  static const String settingPath = "/settings";
 }
 
 abstract class AppRoutes {
@@ -126,6 +128,14 @@ abstract class AppRoutes {
             child: AllAzkarView(
               data: data,
             ),
+          ),
+        );
+
+      case Routes.settingPath:
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider<AllAzkarCubit>(
+            create: (context) => instance<AllAzkarCubit>(),
+            child: const MainSettingsView(),
           ),
         );
 
