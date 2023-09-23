@@ -1,5 +1,6 @@
 import 'package:get_it/get_it.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
+import 'package:muslim_app/features/app_drawer/data/local_data/app_drawer_local_data.dart';
 import 'package:muslim_app/features/azkar/data/repo/azkar_repo.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
@@ -15,6 +16,7 @@ import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.d
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../features/app_drawer/presentation/logic/cubit/app_drawer_cubit.dart';
 import '../features/prayer_time/data/network/dio_factory.dart';
 
 final GetIt instance = GetIt.instance;
@@ -28,20 +30,26 @@ Future<void> initGetIt() async {
 
   instance.registerLazySingleton<QuranLocalData>(
       () => QuranLocalDataImpl(sharedPreferences));
+
   instance.registerLazySingleton<AzkarRepo>(() => AzkarRepoImpl());
+
   instance.registerLazySingleton<HadithRepo>(() => HadithRepoImpl());
+
   instance.registerLazySingleton<QuranRepo>(() => QuranRepoImpl());
+
   instance.registerLazySingleton<PrayerTimeLocalDate>(
     () => PrayerTimeLocalDateImpl(
       instance(),
     ),
   );
+
   instance.registerLazySingleton<PrayerTimeRepo>(
     () => PrayerTimeRepoImpl(
       instance(),
       instance(),
     ),
   );
+
   instance.registerLazySingleton<AppServiceClient>(() => AppServiceClient(dio));
 
   instance.registerFactory<QuranCubit>(
@@ -49,11 +57,13 @@ Future<void> initGetIt() async {
       instance(),
     ),
   );
+
   instance.registerFactory<HadithCubit>(
     () => HadithCubit(
       instance(),
     ),
   );
+
   instance.registerFactory<MainAzkarCubit>(
     () => MainAzkarCubit(
       instance(),
@@ -64,15 +74,25 @@ Future<void> initGetIt() async {
       instance(),
     ),
   );
+
   instance.registerFactory<SebhaCubit>(
     () => SebhaCubit(),
   );
+
   instance.registerFactory<PrayerTimeCubit>(
     () => PrayerTimeCubit(
       instance(),
     ),
   );
+
+  instance.registerFactory<AppDrawerCubit>(
+    () => AppDrawerCubit(instance()),
+  );
+
   //final Box box = await Hive.openBox("data");
   instance.registerLazySingleton<AppLocalData>(
       () => AppLocalDataImpl(sharedPreferences));
+
+  instance.registerLazySingleton<AppDrawerLocalData>(
+      () => AppDrawerLocalDataImpl(sharedPreferences));
 }

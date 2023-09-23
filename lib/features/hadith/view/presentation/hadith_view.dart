@@ -5,6 +5,9 @@ import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/hadith/data/models/hadith_book_object.dart';
 
+import '../../../../core/injection_container.dart';
+import '../../../app_drawer/data/local_data/app_drawer_local_data.dart';
+
 class HadithView extends StatelessWidget {
   const HadithView({super.key});
 
@@ -52,7 +55,8 @@ class HadithView extends StatelessWidget {
                     ),
                     Text(
                       data.name,
-                      style: Theme.of(context).textTheme.headlineMedium,
+                      style: Theme.of(context).textTheme.headlineMedium!.copyWith(fontSize: instance<AppDrawerLocalData>().getAppTextSize(),),
+                      textAlign: TextAlign.center,
                     )
                   ],
                 ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/features/app_drawer/data/local_data/app_drawer_local_data.dart';
 
 class MainHeaderDoaa extends StatelessWidget {
   const MainHeaderDoaa({
@@ -15,11 +17,11 @@ class MainHeaderDoaa extends StatelessWidget {
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
       padding: const EdgeInsets.all(8),
-      height: 90,
+      // height: 90,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         // color: Colors.white,
-        color: Color(0xff9EB0A2),
+        color: const Color(0xff9EB0A2),
         boxShadow: const [
           BoxShadow(
             color: Colors.grey,
@@ -34,22 +36,20 @@ class MainHeaderDoaa extends StatelessWidget {
           Text(
             today.toFormat("dd MMMM yyyy"),
             //"استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: const TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.white
-            ),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
+                fontWeight: FontWeight.bold),
           ),
-          const SizedBox(
-            height: 8,
-          ),
-          const FittedBox(
-            child: Text(
-              "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-              style: TextStyle(
-                color: Colors.white
-              ),
-            ),
+          // const SizedBox(
+          //   height: 8,
+          // ),
+          const Divider(),
+          Text(
+            "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
+                fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
           ),
         ],
       ),

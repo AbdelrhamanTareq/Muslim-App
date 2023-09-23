@@ -4,9 +4,9 @@ import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_themes.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:muslim_app/features/app_drawer/presentation/logic/cubit/app_drawer_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -23,6 +23,9 @@ class MyApp extends StatelessWidget {
         BlocProvider<AllAzkarCubit>(
           create: (_) => instance<AllAzkarCubit>()..getAllAzkarData(),
           lazy: false,
+        ),
+        BlocProvider<AppDrawerCubit>(
+          create: (_) => instance<AppDrawerCubit>(),
         ),
       ],
       child: MaterialApp(

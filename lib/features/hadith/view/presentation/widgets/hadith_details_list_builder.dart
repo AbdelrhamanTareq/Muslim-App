@@ -7,6 +7,7 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../core/injection_container.dart';
+import '../../../../app_drawer/data/local_data/app_drawer_local_data.dart';
 import '../../logic/cubit/hadith_cubit.dart';
 
 class HadithDetailsListBuilder extends StatelessWidget {
@@ -170,7 +171,8 @@ class HadithDetailsListBuilder extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .displayMedium!
-                    .copyWith(fontSize: 20),
+                    .copyWith(fontSize: instance<AppDrawerLocalData>().getAppTextSize(),),
+                    textAlign: TextAlign.start,
               ),
             ],
           ),

@@ -6,15 +6,15 @@ class AppTextsStyles {
   const AppTextsStyles._();
 
   static TextStyle regularText({
-    double fontSize = 18,
+    double fontSize = 20,
     Color color = AppColors.white,
   }) {
     return TextStyle(fontSize: fontSize, color: color);
   }
 
   static TextStyle quranTextStyle({
-    double fontSize = 30,
-    Color color = AppColors.white,
+    Color color = AppColors.black,
+    double fontSize = 25,
   }) {
     return TextStyle(
       fontSize: fontSize,
@@ -48,9 +48,8 @@ class AppTextsStyles {
     Color color = AppColors.black,
   }) {
     return TextStyle(
-      fontSize: fontSize,
-      color: color,
-      fontFamily: ThemeConstant.digitalFont
-    );
+        fontSize: fontSize,
+        color: color,
+        fontFamily: ThemeConstant.digitalFont);
   }
 }

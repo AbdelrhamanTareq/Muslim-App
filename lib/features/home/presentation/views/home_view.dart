@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
-import 'package:muslim_app/core/widgets/app_drawer.dart';
 
 import 'package:muslim_app/features/azkar/presentation/view/azkar_main_view.dart';
 
+import '../../../app_drawer/presentation/view/app_drawer.dart';
 import '../../../azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import '../../../azkar/presentation/view/widgets/azkar_header_row_texts.dart';
 import 'widgets/main_action_list.dart';

@@ -22,14 +22,13 @@ class AppTheme {
       ),
       fontFamily: ThemeConstant.defaultFont,
       textTheme: TextTheme(
-        headlineMedium: AppTextsStyles.headlineMediumText(),
-        headlineLarge: AppTextsStyles.headlineLargText(),
-        bodyMedium: AppTextsStyles.regularText(),
-        // quran style
-        displayMedium: AppTextsStyles.quranTextStyle(color: AppColors.black),
-        // sebha style
-        labelMedium: AppTextsStyles.digitalStyle()
-      ),
+          headlineMedium: AppTextsStyles.headlineMediumText(),
+          headlineLarge: AppTextsStyles.headlineLargText(),
+          bodyMedium: AppTextsStyles.regularText(),
+          // quran style
+          displayMedium: AppTextsStyles.quranTextStyle(),
+          // sebha style
+          labelMedium: AppTextsStyles.digitalStyle()),
 
       inputDecorationTheme: const InputDecorationTheme(
         // content padding
