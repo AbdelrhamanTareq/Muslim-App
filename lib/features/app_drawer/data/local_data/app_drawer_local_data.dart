@@ -25,7 +25,7 @@ class AppDrawerLocalDataImpl implements AppDrawerLocalData {
 
   @override
   double getAppTextSize() {
-    return _sharedPreferences.getDouble(appTextSizeKey) ?? 20.0;
+    return _sharedPreferences.getDouble(appTextSizeKey) ?? 1;
   }
 
   @override

@@ -16,54 +16,60 @@ class AppDrawer extends StatelessWidget {
     return BlocBuilder<AppDrawerCubit, AppDrawerState>(
       builder: (context, state) {
         return Drawer(
-          child: Column(
-            children: [
-              const DrawerHeader(),
-              const SizedBox(
-                height: 50,
-              ),
-              DrawerSwitchListTile(
-                title: AppStrings.nightMode,
-                value: state.isDarkMode,
-                onChanged: (val) {
-                  provider.changeToDarkMode(val);
-                },
-              ),
-              DrawerSwitchListTile(
-                title: AppStrings.enableNotifications,
-                value: state.enableNotifications,
-                onChanged: (val) {
-                  provider.enableNotifications(val);
-                },
-              ),
-              DrawerSlider(
-                title: "تغيير حجم خط القران",
-                value: instance<AppDrawerLocalData>().getQuranTextSize(),
-                onChanged: (val) {
-                  provider.changeQuranTextSize(val, context);
-                },
-              ),
-              DrawerSlider(
-                title: "تغيير حجم خط التطبيق",
-               
-                max: 35,
-                value: instance<AppDrawerLocalData>().getAppTextSize(),
-                onChanged: (val) {
-                  provider.changeAppTextSize(val);
-                },
-              ),
-              DrawerListTile(
-                icon: Icons.alarm,
-                name: "ضبط اعدادت مواقيت الصلاة",
-                onPressed: () {},
-              ),
-              const Divider(),
-              DrawerListTile(
-                icon: Icons.info_outline,
-                name: AppStrings.aboutUs,
-                onPressed: () {},
-              ),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                const DrawerHeader(),
+                const SizedBox(
+                  height: 50,
+                ),
+                DrawerSwitchListTile(
+                  title: AppStrings.nightMode,
+                  value: state.isDarkMode,
+                  onChanged: (val) {
+                    provider.changeToDarkMode(val);
+                  },
+                ),
+                DrawerSwitchListTile(
+                  title: AppStrings.enableNotifications,
+                  value: state.enableNotifications,
+                  onChanged: (val) {
+                    provider.enableNotifications(val);
+                  },
+                ),
+                // EDITED
+
+                // DrawerSlider(
+                //   title: "تغيير حجم خط القران",
+                //   value: instance<AppDrawerLocalData>().getQuranTextSize(),
+                //   onChanged: (val) {
+                //     provider.changeQuranTextSize(val, context);
+                //   },
+                // ),
+
+                // EDITED
+                DrawerSlider(
+                  title: "تغيير حجم خط التطبيق",
+                  max: 2,
+                  min: 1,
+                  value: instance<AppDrawerLocalData>().getAppTextSize(),
+                  onChanged: (val) {
+                    provider.changeAppTextSize(val);
+                  },
+                ),
+                DrawerListTile(
+                  icon: Icons.alarm,
+                  name: "ضبط اعدادت مواقيت الصلاة",
+                  onPressed: () {},
+                ),
+                const Divider(),
+                DrawerListTile(
+                  icon: Icons.info_outline,
+                  name: AppStrings.aboutUs,
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -105,9 +111,9 @@ class DrawerSlider extends StatelessWidget {
           Slider.adaptive(
             value: value,
             onChanged: onChanged,
-            divisions: 5,
+            divisions: 10,
             min: min ?? 20,
-            max: max ??60,
+            max: max ?? 60,
           ),
         ],
       ),
