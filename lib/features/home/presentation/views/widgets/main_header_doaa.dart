@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hijri/hijri_calendar.dart';
-import 'package:muslim_app/core/injection_container.dart';
-import 'package:muslim_app/features/app_drawer/data/local_data/app_drawer_local_data.dart';
 
 class MainHeaderDoaa extends StatelessWidget {
   const MainHeaderDoaa({
@@ -30,15 +28,18 @@ class MainHeaderDoaa extends StatelessWidget {
           ),
         ],
       ),
+      // EDITED
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             today.toFormat("dd MMMM yyyy"),
             //"استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
-                fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.bodyMedium
+            // !.copyWith(
+            //     fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
+            //     fontWeight: FontWeight.bold)
+            ,
           ),
           // const SizedBox(
           //   height: 8,
@@ -46,9 +47,11 @@ class MainHeaderDoaa extends StatelessWidget {
           const Divider(),
           Text(
             "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
-                fontWeight: FontWeight.bold),
+            style: Theme.of(context).textTheme.bodyMedium
+            // !.copyWith(
+            //     fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
+            //     fontWeight: FontWeight.bold),
+            ,
             textAlign: TextAlign.center,
           ),
         ],

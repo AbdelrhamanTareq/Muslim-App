@@ -4,8 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/errors/error_widget.dart';
 
 import 'package:muslim_app/core/utils/app_strings.dart';
-import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
-
+import '../logic/cubit/quran_cubit/quran_cubit.dart';
 import 'widgets/all_surhs_list.dart';
 
 class QuranSurahsView extends StatefulWidget {

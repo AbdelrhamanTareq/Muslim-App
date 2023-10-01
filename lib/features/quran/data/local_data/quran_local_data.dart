@@ -6,10 +6,14 @@ abstract class QuranLocalData {
   setBookMarkedName({required String name, required String key});
   String? getBookMarkedName(String key);
 
- 
+  
+  double getQuranTextSize();
+  Future<bool> setQuranTextSize(double value);
 }
 
 class QuranLocalDataImpl extends QuranLocalData {
+  static const String quranTextSizeKey = "QURAN_TEXT_SIZE_1";
+
   final SharedPreferences _sharedPreferences;
 
   QuranLocalDataImpl(this._sharedPreferences);
@@ -33,4 +37,14 @@ class QuranLocalDataImpl extends QuranLocalData {
     return await _sharedPreferences.setString(key, name);
   }
 
+  // EDITED
+  @override
+  double getQuranTextSize() {
+    return _sharedPreferences.getDouble(quranTextSizeKey) ?? 25.0;
+  }
+
+  @override
+  Future<bool> setQuranTextSize(double value) async {
+    return await _sharedPreferences.setDouble(quranTextSizeKey, value);
+  }
 }

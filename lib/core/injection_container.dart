@@ -12,12 +12,13 @@ import 'package:muslim_app/features/prayer_time/data/repo/prayer_time_repo.dart'
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:muslim_app/features/quran/data/repo/quran_repo.dart';
-import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_cubit.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/app_drawer/presentation/logic/cubit/app_drawer_cubit.dart';
 import '../features/prayer_time/data/network/dio_factory.dart';
+import '../features/quran/presentation/logic/cubit/quran_cubit/quran_cubit.dart';
+import '../features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 
 final GetIt instance = GetIt.instance;
 
@@ -54,6 +55,14 @@ Future<void> initGetIt() async {
 
   instance.registerFactory<QuranCubit>(
     () => QuranCubit(
+      instance(),
+    ),
+  );
+
+  
+
+  instance.registerFactory<QuranSettingsCubit>(
+    () => QuranSettingsCubit(
       instance(),
     ),
   );

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
-import '../../logic/cubit/quran_cubit.dart';
+import '../../logic/cubit/quran_cubit/quran_cubit.dart';
 import '../quran_shrah_details.dart';
+
+// EDIT
 
 class AllSurhsList extends StatelessWidget {
   const AllSurhsList({
@@ -33,8 +35,10 @@ class AllSurhsList extends StatelessWidget {
             onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      QuranSurahDetails(listData.array, listData.name),
+                  builder: (context) => QuranSurahDetails(
+                    index: index,
+                    data: data,
+                  ),
                 )),
             child: ListTile(
               leading: Text(

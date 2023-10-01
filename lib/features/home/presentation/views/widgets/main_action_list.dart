@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
-import '../../../../../core/injection_container.dart';
-import '../../../../app_drawer/data/local_data/app_drawer_local_data.dart';
 
 class MainActionList extends StatelessWidget {
   const MainActionList({
@@ -71,13 +69,14 @@ class MainActionList extends StatelessWidget {
                       child: Container(
                         color: appScreen[index].color,
                         padding: const EdgeInsets.all(8),
-                        child: Text(
-                          appScreen[index].name,
-                          style: Theme.of(context)
-                              .textTheme
-                              .headlineMedium!
-                              .copyWith(fontWeight: FontWeight.w700,fontSize: instance<AppDrawerLocalData>().getAppTextSize(),),
-                        ),
+                        child: Text(appScreen[index].name,
+                            style: Theme.of(context).textTheme.headlineMedium!
+                            // .copyWith(
+                            //   fontWeight: FontWeight.w700,
+                            //   fontSize: instance<AppDrawerLocalData>()
+                            //       .getAppTextSize(),
+                            // ),
+                            ),
                       ),
                     )
                   ],
