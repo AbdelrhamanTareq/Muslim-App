@@ -5,10 +5,11 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
+import '../../../../core/function.dart';
 import '../logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 import '../logic/cubit/quran_settings_cubit/quran_settings_state.dart';
 import 'widgets/basmala.dart';
-import 'widgets/bookmark_widget.dart';
+import '../../../../core/widgets/bookmark_widget.dart';
 import 'widgets/surh_with_text_span.dart';
 
 class QuranSurahDetails extends StatelessWidget {
@@ -21,9 +22,10 @@ class QuranSurahDetails extends StatelessWidget {
     super.key,
   });
 
+  // double _val = 25;
   @override
   Widget build(BuildContext context) {
-    ScrollController scrollController = ScrollController();
+    final ScrollController scrollController = ScrollController();
     final int index = this.index;
     final List<Quran> data = this.data ?? [];
     final String surahName = data[index].name;
@@ -33,17 +35,34 @@ class QuranSurahDetails extends StatelessWidget {
         backgroundColor: AppColors.quranBackgroundAppBar,
         title: Text(surahName),
         actions: [
-          BookmarkWidget(
-              surhName: surahName, scrollController: scrollController),
           // EDITED
-          DropDownMenu(
-            text: "تغيير حجم الايات",
-            sliderValue: instance<QuranLocalData>().getQuranTextSize(),
-            onChangedSlider: (val) {
-              BlocProvider.of<QuranSettingsCubit>(context)
-                  .changeQuranTextSize(val);
+          BookmarkWidget(
+            scrollItemName: surahName,
+            onPressed: () {
+              final double appBarHight = AppBar().preferredSize.height;
+              final bookmark =
+                  instance<QuranLocalData>().getQuranBookmarkedNames(surahName);
+              if (bookmark == null || bookmark[0] != surahName) {
+                showSnackBar(context);
+                return;
+              }
+              final double position = bookmark[1];
+              scrollController.animateTo(position - appBarHight - 80,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeIn);
             },
           ),
+          // EDITED
+          const DropDownMenu(
+              // text: "تغيير حجم الايات",
+              // sliderValue: size,
+              // onChangedSlider: (val) {
+              //   s(() {
+              //     BlocProvider.of<QuranSettingsCubit>(context)
+              //         .changeQuranTextSize(val);
+              //   });
+              // },
+              ),
         ],
       ),
       backgroundColor: AppColors.quranBackground,
@@ -56,21 +75,24 @@ class QuranSurahDetails extends StatelessWidget {
             child: Column(
               children: [
                 // surh el fatah or surh el tobah
-                surahAyat.length == 7 || surahAyat.length == 129
+                surahAyat.length == 129
                     ? const Text("")
-                    : const Basmala(),
+                    : (surahAyat.length == 7)
+                        ? const BasmalaFataha()
+                        : const Basmala(),
                 const SizedBox(
                   height: 8,
                 ),
                 // TEST it in Mobile
                 // For switching between Sur
                 GestureDetector(
-                  onHorizontalDragEnd: (details) {
-                    if (details.velocity.pixelsPerSecond.dx < 0) {
-                      if (index > data.length) return;
-                      _navToOtherSurha(context, index: index - 1, data: data);
-                    } else {
+                  onHorizontalDragUpdate: (details) {
+                    //TODO
+                    if (details.delta.dx < -10) {
                       if (index <= 0) return;
+                      _navToOtherSurha(context, index: index - 1, data: data);
+                    } else if (details.delta.dx > 10) {
+                      if (index > data.length) return;
                       _navToOtherSurha(context, index: index + 1, data: data);
                     }
                   },
@@ -86,6 +108,51 @@ class QuranSurahDetails extends StatelessWidget {
         ),
       ),
     );
+    // return Scaffold(
+    //   appBar: AppBar(
+    //     title: Text("Test"),
+    //     actions: [
+    //       PopupMenuButton(
+    //         key: UniqueKey(),
+    //         position: PopupMenuPosition.under,
+    //         itemBuilder: (context) => <PopupMenuItem>[
+    //           PopupMenuItem(
+    //             child: StatefulBuilder(builder: (context, s) {
+    //               return Column(
+    //                 children: [
+    //                   Text("widget.text"),
+    //                   Slider.adaptive(
+    //                     value: _val,
+    //                     onChanged: (val) {
+    //                       s(() {
+    //                         _val = val;
+    //                       });
+    //                     },
+    //                     divisions: 10,
+    //                     min: 25,
+    //                     max: 50,
+    //                   ),
+    //                   // Slider.adaptive(
+    //                   //   value: instance<QuranLocalData>().getQuranTextSize(),
+    //                   //   onChanged: (val) =>
+    //                   //       BlocProvider.of<QuranSettingsCubit>(context)
+    //                   //           .changeQuranTextSize(val),
+    //                   //   divisions: 10,
+    //                   //   min: 25,
+    //                   //   max: 50,
+    //                   // ),
+    //                 ],
+    //               );
+    //             }),
+    //           ),
+    //         ],
+    //       )
+    //     ],
+    //   ),
+    //   body: Center(
+    //     child: Text("data"),
+    //   ),
+    // );
   }
 
   _navToOtherSurha(context, {required int index, required List<Quran> data}) {
@@ -101,51 +168,118 @@ class QuranSurahDetails extends StatelessWidget {
   }
 }
 
-// EDITED
+// Dorp down menu with slider to change text size
 class DropDownMenu extends StatelessWidget {
   const DropDownMenu({
     super.key,
-    required this.text,
-    required this.sliderValue,
-    required this.onChangedSlider,
+    // required this.text,
+    // required this.sliderValue,
+    // required this.onChangedSlider,
   });
 
-  final String text;
-  final double sliderValue;
-  final Function(double)? onChangedSlider;
+  // final String text;
+  // final double sliderValue;
+  // final void Function(double) onChangedSlider;
 
   @override
   Widget build(BuildContext context) {
+    // print("sliderValue + ${widget.sliderValue}");
     return PopupMenuButton(
       position: PopupMenuPosition.under,
-      itemBuilder: (context) => [
+      itemBuilder: (context) => <PopupMenuItem>[
         PopupMenuItem(
           child: BlocBuilder<QuranSettingsCubit, QuranSettingsState>(
-              builder: (context, state) {
-            return Column(
-              children: [
-                Text(text),
-                // Slider.adaptive(
-                //   value: sliderValue,
-                //   onChanged: onChangedSlider,
-                //   divisions: 10,
-                //   min: 25,
-                //   max: 50,
-                // ),
-                Slider.adaptive(
-                  value: instance<QuranLocalData>().getQuranTextSize(),
-                  onChanged: (val) =>
-                      BlocProvider.of<QuranSettingsCubit>(context)
-                          .changeQuranTextSize(val),
-                  divisions: 10,
-                  min: 25,
-                  max: 50,
-                ),
-              ],
-            );
-          }),
+            builder: (context, state) {
+              return Column(
+                children: [
+                  const Text(
+                    "تغيير حجم الايات",
+                  ),
+                  // TODO
+                  // Slider.adaptive(
+                  //   value: sliderValue,
+                  //   onChanged: (val) {
+                  //     onChangedSlider(val);
+                  //     state(() {});
+                  //   },
+                  //   divisions: 10,
+                  //   min: 25,
+                  //   max: 50,
+                  // ),
+                  Slider.adaptive(
+                    value: instance<QuranLocalData>().getQuranTextSize(),
+                    onChanged: (val) =>
+                        BlocProvider.of<QuranSettingsCubit>(context)
+                            .changeQuranTextSize(val),
+                    divisions: 10,
+                    min: 25,
+                    max: 50,
+                  ),
+                ],
+              );
+            },
+          ),
         ),
       ],
     );
   }
 }
+
+// class TEST extends StatefulWidget {
+//   const TEST({super.key});
+
+//   @override
+//   State<TEST> createState() => _TESTState();
+// }
+
+// class _TESTState extends State<TEST> {
+//   double _val = 25;
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Test"),
+//         actions: [
+//           PopupMenuButton(
+//             key: UniqueKey(),
+//             position: PopupMenuPosition.under,
+//             itemBuilder: (context) => <PopupMenuItem>[
+//               PopupMenuItem(
+//                 child: StatefulBuilder(builder: (context, s) {
+//                   return Column(
+//                     children: [
+//                       Text("widget.text"),
+//                       Slider.adaptive(
+//                         value: _val,
+//                         onChanged: (val) {
+//                           setState(() {
+//                             _val = val;
+//                           });
+//                         },
+//                         divisions: 10,
+//                         min: 25,
+//                         max: 50,
+//                       ),
+//                       // Slider.adaptive(
+//                       //   value: instance<QuranLocalData>().getQuranTextSize(),
+//                       //   onChanged: (val) =>
+//                       //       BlocProvider.of<QuranSettingsCubit>(context)
+//                       //           .changeQuranTextSize(val),
+//                       //   divisions: 10,
+//                       //   min: 25,
+//                       //   max: 50,
+//                       // ),
+//                     ],
+//                   );
+//                 }),
+//               ),
+//             ],
+//           )
+//         ],
+//       ),
+//       body: Center(
+//         child: Text("data"),
+//       ),
+//     );
+//   }
+// }
