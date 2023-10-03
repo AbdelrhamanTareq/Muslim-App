@@ -8,12 +8,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../constant/app_constatnt.dart';
 
 abstract class AppLocalData {
-  Future<void> setBookmarkedNames({
-    required String key,
-    required dynamic value,
-  });
-
-  getBookmarkedNames(String key);
   Future<void> setPrayerTimesData({
     required String key,
     required dynamic value,
@@ -54,15 +48,6 @@ class AppLocalDataImpl extends AppLocalData {
   final SharedPreferences _sharedPreferences;
 
   AppLocalDataImpl(this._sharedPreferences);
-  @override
-  setBookmarkedNames({required String key, required dynamic value}) async {
-    await Hive.box(bookmarksKey).put(key, value);
-  }
-
-  @override
-  getBookmarkedNames(String key) {
-    return Hive.box(bookmarksKey).get(key);
-  }
 
   @override
   Map<int, Timings> getPrayerTimesDataMap() {
