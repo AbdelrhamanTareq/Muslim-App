@@ -1,7 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/function.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
@@ -41,8 +40,9 @@ class SurhWithTextSpan extends StatelessWidget {
                   children: [
                     TextSpan(
                         text: e.ar,
-                        recognizer: TapGestureRecognizer()
-                          ..onTapDown = (details) {
+                        // long press to show action menu for save bookmark or share aya
+                        recognizer: LongPressGestureRecognizer()
+                          ..onLongPressDown = (details) {
                             var globalPositionDx = details.globalPosition.dx;
                             var globalPositionDy = details.globalPosition.dy;
                             showMenu(
@@ -64,8 +64,8 @@ class SurhWithTextSpan extends StatelessWidget {
                                         children: [
                                           IconButton(
                                             onPressed: () async {
-                                              await instance<AppLocalData>()
-                                                  .setBookmarkedNames(
+                                              await instance<QuranLocalData>()
+                                                  .setQuranBookmarkedNames(
                                                       key: _surhName,
                                                       value: [
                                                     _surhName,

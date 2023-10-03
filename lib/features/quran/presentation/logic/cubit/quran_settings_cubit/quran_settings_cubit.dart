@@ -3,7 +3,6 @@ import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart'
 
 import 'quran_settings_state.dart';
 
-
 class QuranSettingsCubit extends Cubit<QuranSettingsState> {
   QuranSettingsCubit(this._quranLocalData) : super(const QuranSettingsState());
 
@@ -13,4 +12,10 @@ class QuranSettingsCubit extends Cubit<QuranSettingsState> {
     _quranLocalData.setQuranTextSize(quranTextSize);
     emit(state.copyWith(quranTextSize: quranTextSize));
   }
+
+  // double getQuranTextSize() {
+  //   final double val = instance<QuranLocalData>().getQuranTextSize();
+  //   emit(state.copyWith(quranTextSize: val));
+  //   return val;
+  // }
 }
