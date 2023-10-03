@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/function.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../../../core/injection_container.dart';
-import '../../../../app_drawer/data/local_data/app_drawer_local_data.dart';
 import '../../logic/cubit/hadith_cubit.dart';
 
 class HadithDetailsListBuilder extends StatelessWidget {
@@ -134,10 +133,9 @@ class HadithDetailsListBuilder extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(8),
                       decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                       // color: Color.fromARGB(255, 9, 109, 12),
-                        color: AppColors.green
-                      ),
+                          shape: BoxShape.circle,
+                          // color: Color.fromARGB(255, 9, 109, 12),
+                          color: AppColors.green),
                       child: Text(
                         state.data[index].number.toString(),
                         style: const TextStyle(color: Colors.white),
@@ -147,7 +145,7 @@ class HadithDetailsListBuilder extends StatelessWidget {
                     IconButton(
                       color: AppColors.black,
                       onPressed: () {
-                        instance<AppLocalData>().setBookmarkedNames(
+                        instance<HadithLocalData>().setHadithesBookmarkedNames(
                             key: name, value: [name, index.toDouble()]);
                         showToast(AppStrings.addedBookmark);
                       },
@@ -168,11 +166,8 @@ class HadithDetailsListBuilder extends StatelessWidget {
               ),
               Text(
                 data[index].arab,
-                style: Theme.of(context)
-                    .textTheme
-                    .displayMedium!
-                    .copyWith(fontSize: instance<AppDrawerLocalData>().getAppTextSize(),),
-                    textAlign: TextAlign.start,
+                style: Theme.of(context).textTheme.displayMedium,
+                textAlign: TextAlign.start,
               ),
             ],
           ),
