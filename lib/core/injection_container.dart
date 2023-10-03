@@ -4,6 +4,7 @@ import 'package:muslim_app/features/app_drawer/data/local_data/app_drawer_local_
 import 'package:muslim_app/features/azkar/data/repo/azkar_repo.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
+import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:muslim_app/features/hadith/data/repo/hadith_reop.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
@@ -59,8 +60,6 @@ Future<void> initGetIt() async {
     ),
   );
 
-  
-
   instance.registerFactory<QuranSettingsCubit>(
     () => QuranSettingsCubit(
       instance(),
@@ -99,9 +98,13 @@ Future<void> initGetIt() async {
   );
 
   //final Box box = await Hive.openBox("data");
+
+  // LOCAL DATA
   instance.registerLazySingleton<AppLocalData>(
       () => AppLocalDataImpl(sharedPreferences));
 
   instance.registerLazySingleton<AppDrawerLocalData>(
       () => AppDrawerLocalDataImpl(sharedPreferences));
+
+  instance.registerLazySingleton<HadithLocalData>(() => HadithLocalDataImpl());
 }
