@@ -76,6 +76,19 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
                 ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: DrawerButton(
+                    icon: Icons.delete_forever,
+                    label: "مسح كل علامات الحديث",
+                    onPressed: () async {
+                      await instance<QuranLocalData>()
+                          .removeAllQuranBookmarks();
+
+                      showToast("تم حذف جميع علامات الحديث");
+                    },
+                  ),
+                ),
                 const Divider(),
                 DrawerListTile(
                   icon: Icons.info_outline,

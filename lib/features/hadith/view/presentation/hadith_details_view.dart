@@ -50,11 +50,10 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeIn,
                 );
-              })
-          // HadithBookmarkWidget(
-          //   bookName: widget.bookName,
-          //   itemScrollController: _itemScrollController,
-          // ),
+              }),
+          DropDownMenu(
+            deletedBookmarkName: widget.bookName,
+          ),
         ],
       ),
       body: SafeArea(
@@ -78,6 +77,39 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
           },
         ),
       ),
+    );
+  }
+}
+
+class DropDownMenu extends StatelessWidget {
+  const DropDownMenu({
+    super.key,
+    required this.deletedBookmarkName,
+  });
+
+  final String deletedBookmarkName;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton(
+      position: PopupMenuPosition.under,
+      itemBuilder: (context) => <PopupMenuItem>[
+        PopupMenuItem(
+          child: ElevatedButton.icon(
+            onPressed: () async {
+              bool val = await instance<HadithLocalData>()
+                  .removeHadithBookmark(deletedBookmarkName);
+              if (val) {
+                showToast("تم حذف العلامة");
+              } else {
+                showToast("لا يوجد العلامة");
+              }
+            },
+            icon: const Icon(Icons.delete_forever),
+            label: Text("مسح العلامة"),
+          ),
+        ),
+      ],
     );
   }
 }

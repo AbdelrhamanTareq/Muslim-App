@@ -9,6 +9,9 @@ abstract class HadithLocalData {
   });
 
   getHadithesBookmarkedNames(String key);
+
+  Future<bool> removeHadithBookmark(String key);
+  Future<int> removeAllHadithBookmarks();
 }
 
 class HadithLocalDataImpl implements HadithLocalData {
@@ -25,5 +28,17 @@ class HadithLocalDataImpl implements HadithLocalData {
   @override
   getHadithesBookmarkedNames(String key) {
     return Hive.box(hadithHiveBox).get(key);
+  }
+
+  @override
+  Future<bool> removeHadithBookmark(String key) async {
+    if (Hive.box(hadithHiveBox).isEmpty) return false;
+    await Hive.box(hadithHiveBox).delete(key);
+    return true;
+  }
+
+  @override
+  Future<int> removeAllHadithBookmarks() async {
+    return await Hive.box(hadithHiveBox).clear();
   }
 }
