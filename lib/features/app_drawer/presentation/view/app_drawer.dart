@@ -4,6 +4,8 @@ import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
+import '../../../../core/function.dart';
+import '../../../quran/data/local_data/quran_local_data.dart';
 import '../../data/local_data/app_drawer_local_data.dart';
 import '../logic/cubit/app_drawer_cubit.dart';
 
@@ -47,7 +49,6 @@ class AppDrawer extends StatelessWidget {
                 //   },
                 // ),
 
-                // EDITED
                 DrawerSlider(
                   title: "تغيير حجم خط التطبيق",
                   max: 2,
@@ -61,6 +62,19 @@ class AppDrawer extends StatelessWidget {
                   icon: Icons.alarm,
                   name: "ضبط اعدادت مواقيت الصلاة",
                   onPressed: () {},
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: DrawerButton(
+                    icon: Icons.delete_forever,
+                    label: "مسح كل علامات القران",
+                    onPressed: () async {
+                      await instance<QuranLocalData>()
+                          .removeAllQuranBookmarks();
+
+                      showToast("تم حذف جميع العلامات في المصحف");
+                    },
+                  ),
                 ),
                 const Divider(),
                 DrawerListTile(
@@ -183,6 +197,27 @@ class DrawerHeader extends StatelessWidget {
           color: AppColors.white,
         ),
       ),
+    );
+  }
+}
+
+class DrawerButton extends StatelessWidget {
+  const DrawerButton(
+      {super.key,
+      required this.icon,
+      required this.label,
+      required this.onPressed});
+
+  final IconData icon;
+  final String label;
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton.icon(
+      icon: Icon(icon),
+      label: Text(label),
+      onPressed: onPressed,
     );
   }
 }
