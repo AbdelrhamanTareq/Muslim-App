@@ -20,6 +20,7 @@ class AppDrawerCubit extends Cubit<AppDrawerState> {
   }
 
   void changeToDarkMode(bool isDarkMode) {
+    _appDrawerLocalData.setAppTheme(isDarkMode);
     emit(state.copyWith(isDarkMode: isDarkMode));
   }
 

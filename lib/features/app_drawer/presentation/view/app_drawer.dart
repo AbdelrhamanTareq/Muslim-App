@@ -25,7 +25,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 DrawerSwitchListTile(
                   title: AppStrings.nightMode,
-                  value: state.isDarkMode,
+                  value: instance<AppDrawerLocalData>().getAppTheme(),
                   onChanged: (val) {
                     provider.changeToDarkMode(val);
                   },
@@ -102,10 +102,10 @@ class DrawerSlider extends StatelessWidget {
             width: double.infinity,
             child: Text(
               title,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium!
-                  .copyWith(color: AppColors.black, fontSize: 15),
+              // style: Theme.of(context)
+              //     .textTheme
+              //     .bodyMedium!
+              //     .copyWith(fontWeight: FontWeight.w400),
             ),
           ),
           Slider.adaptive(
