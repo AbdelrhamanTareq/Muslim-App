@@ -23,8 +23,6 @@ class MyApp extends StatelessWidget {
           create: (_) => instance<QuranCubit>()..getAllQuranData(),
           lazy: false,
         ),
-        
-
         BlocProvider<QuranSettingsCubit>(
           create: (_) => instance<QuranSettingsCubit>(),
         ),
@@ -36,7 +34,6 @@ class MyApp extends StatelessWidget {
           create: (_) => instance<AppDrawerCubit>(),
         ),
       ],
-      
       child: BlocBuilder<AppDrawerCubit, AppDrawerState>(
           builder: (context, state) {
         return MaterialApp(
@@ -51,7 +48,8 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: AppRoutes.getRoute,
           title: 'Muslim',
           debugShowCheckedModeBanner: false,
-          theme: AppTheme.lightThem()
+          theme:
+              (state.isDarkMode) ? AppTheme.darkTheme() : AppTheme.lightTheme()
           //  ThemeData(
           //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           //   useMaterial3: true,
