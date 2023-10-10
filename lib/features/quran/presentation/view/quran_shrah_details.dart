@@ -73,42 +73,47 @@ class QuranSurahDetails extends StatelessWidget {
       ),
       backgroundColor: AppColors.quranBackground,
       // backgroundColor: const Color(0xfffff8f3),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
-        child: Center(
-          child: SingleChildScrollView(
-            controller: scrollController,
-            child: Column(
-              children: [
-                // surh el fatah or surh el tobah
-                surahAyat.length == 129
-                    ? const Text("")
-                    : (surahAyat.length == 7)
-                        ? const BasmalaFataha()
-                        : const Basmala(),
-                const SizedBox(
-                  height: 8,
-                ),
-                // TEST it in Mobile
-                // For switching between Sur
-                GestureDetector(
-                  onHorizontalDragUpdate: (details) {
-                    //TODO
-                    if (details.delta.dx < -10) {
-                      if (index <= 0) return;
-                      _navToOtherSurha(context, index: index - 1, data: data);
-                    } else if (details.delta.dx > 10) {
-                      if (index > data.length) return;
-                      _navToOtherSurha(context, index: index + 1, data: data);
-                    }
-                  },
-                  child: SurhWithTextSpan(
-                    surhName: surahName,
-                    surahAyat: surahAyat as List<Array>,
-                    scrollController: scrollController,
+      body: WillPopScope(
+        onWillPop: () async{
+          return true;
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
+          child: Center(
+            child: SingleChildScrollView(
+              controller: scrollController,
+              child: Column(
+                children: [
+                  // surh el fatah or surh el tobah
+                  surahAyat.length == 129
+                      ? const Text("")
+                      : (surahAyat.length == 7)
+                          ? const BasmalaFataha()
+                          : const Basmala(),
+                  const SizedBox(
+                    height: 8,
                   ),
-                ),
-              ],
+                  // TEST it in Mobile
+                  // For switching between Sur
+                  GestureDetector(
+                    onHorizontalDragUpdate: (details) {
+                      //TODO
+                      if (details.delta.dx < -10) {
+                        if (index <= 0) return;
+                        _navToOtherSurha(context, index: index - 1, data: data);
+                      } else if (details.delta.dx > 10) {
+                        if (index > data.length) return;
+                        _navToOtherSurha(context, index: index + 1, data: data);
+                      }
+                    },
+                    child: SurhWithTextSpan(
+                      surhName: surahName,
+                      surahAyat: surahAyat as List<Array>,
+                      scrollController: scrollController,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
