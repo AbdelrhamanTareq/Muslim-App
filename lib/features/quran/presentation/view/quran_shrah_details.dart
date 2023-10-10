@@ -59,22 +59,23 @@ class QuranSurahDetails extends StatelessWidget {
             },
           ),
           // EDITED
-          const DropDownMenu(
-              // text: "تغيير حجم الايات",
-              // sliderValue: size,
-              // onChangedSlider: (val) {
-              //   s(() {
-              //     BlocProvider.of<QuranSettingsCubit>(context)
-              //         .changeQuranTextSize(val);
-              //   });
-              // },
-              ),
+          DropDownMenu(
+            deletedBookmarkName: surahName,
+            // text: "تغيير حجم الايات",
+            // sliderValue: size,
+            // onChangedSlider: (val) {
+            //   s(() {
+            //     BlocProvider.of<QuranSettingsCubit>(context)
+            //         .changeQuranTextSize(val);
+            //   });
+            // },
+          ),
         ],
       ),
       backgroundColor: AppColors.quranBackground,
       // backgroundColor: const Color(0xfffff8f3),
       body: WillPopScope(
-        onWillPop: () async{
+        onWillPop: () async {
           return true;
         },
         child: Padding(
@@ -183,10 +184,13 @@ class QuranSurahDetails extends StatelessWidget {
 class DropDownMenu extends StatelessWidget {
   const DropDownMenu({
     super.key,
+    required this.deletedBookmarkName,
     // required this.text,
     // required this.sliderValue,
     // required this.onChangedSlider,
   });
+
+  final String deletedBookmarkName;
 
   // final String text;
   // final double sliderValue;
@@ -226,6 +230,19 @@ class DropDownMenu extends StatelessWidget {
                     min: 25,
                     max: 50,
                   ),
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      bool val = await instance<QuranLocalData>()
+                          .removeQuranBookmark(deletedBookmarkName);
+                      if (val) {
+                        showToast("تم حذف العلامة");
+                      } else {
+                        showToast("لا يوجد العلامة");
+                      }
+                    },
+                    icon: const Icon(Icons.delete_forever),
+                    label: Text("مسح العلامة"),
+                  )
                 ],
               );
             },

@@ -16,7 +16,7 @@ abstract class QuranLocalData {
 
   getQuranBookmarkedNames(String key);
 
-  Future<void> removeQuranBookmark(String key);
+  Future<bool> removeQuranBookmark(String key);
   Future<int> removeAllQuranBookmarks();
 
   double getQuranTextSize();
@@ -63,12 +63,14 @@ class QuranLocalDataImpl extends QuranLocalData {
   }
 
   @override
-  Future<void> removeQuranBookmark(String key) async {
-    return await Hive.box(quranHiveBox).delete(key);
+  Future<bool> removeQuranBookmark(String key) async {
+    if (Hive.box(quranHiveBox).isEmpty) return false;
+    await Hive.box(quranHiveBox).delete(key);
+    return true;
   }
 
   @override
-  Future<int> removeAllQuranBookmarks()async {
+  Future<int> removeAllQuranBookmarks() async {
     return await Hive.box(quranHiveBox).clear();
   }
 }
