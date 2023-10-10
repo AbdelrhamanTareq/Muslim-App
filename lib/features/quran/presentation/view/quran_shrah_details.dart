@@ -33,7 +33,13 @@ class QuranSurahDetails extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.quranBackgroundAppBar,
-        title: Text(surahName),
+        // actionsIconTheme: IconThemeData(color: AppColors.black),
+        // EDITED FOR DARK THEME
+        iconTheme: const IconThemeData(color: AppColors.black),
+        title: Text(
+          surahName,
+          style: const TextStyle(color: AppColors.black),
+        ),
         actions: [
           // EDITED
           BookmarkWidget(

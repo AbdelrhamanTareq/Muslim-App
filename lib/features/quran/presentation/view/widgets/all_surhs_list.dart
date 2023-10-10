@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../logic/cubit/quran_cubit/quran_cubit.dart';
 import '../quran_shrah_details.dart';
-
-// EDIT
 
 class AllSurhsList extends StatelessWidget {
   const AllSurhsList({
@@ -21,10 +18,9 @@ class AllSurhsList extends StatelessWidget {
     return ListView.separated(
       itemCount: data.length,
       itemBuilder: (context, index) {
-        var bodyMedium2 = Theme.of(context)
-            .textTheme
-            .bodyMedium!
-            .copyWith(color: AppColors.black);
+        var bodyMedium2 = Theme.of(context).textTheme.bodyMedium!
+            // .copyWith(color: AppColors.black)
+            ;
         var listData = data[index];
         return Container(
           padding: const EdgeInsets.all(8.0),

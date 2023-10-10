@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 
 import 'package:muslim_app/features/azkar/presentation/view/azkar_main_view.dart';
@@ -37,7 +36,7 @@ class _HomwViewState extends State<HomwView> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const AppDrawer(),
-      backgroundColor: AppColors.scaffoldColor,
+      // backgroundColor: AppColors.scaffoldColor,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,

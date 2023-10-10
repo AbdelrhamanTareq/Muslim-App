@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../logic/cubit/all_azkar_cubit.dart';
@@ -20,10 +19,10 @@ class AzkarHeaderRowTexts extends StatelessWidget {
         children: [
           Text(
             AppStrings.alazkar,
-            style: Theme.of(context)
-                .textTheme
-                .headlineLarge!
-                .copyWith(color: AppColors.black),
+            style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                  // FOR DARK MODE
+                  color: Theme.of(context).shadowColor,
+                ),
           ),
           BlocBuilder<AllAzkarCubit, AllAzkarState>(
             builder: (context, state) {
@@ -36,10 +35,10 @@ class AzkarHeaderRowTexts extends StatelessWidget {
                 },
                 child: Text(
                   AppStrings.allAzkar,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineLarge!
-                      .copyWith(color: AppColors.black),
+                  // FOR DARK MODE
+                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                        color: Theme.of(context).shadowColor,
+                      ),
                 ),
               );
             },
