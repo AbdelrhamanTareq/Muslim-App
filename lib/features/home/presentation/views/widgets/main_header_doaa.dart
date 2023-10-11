@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:hijri/hijri_calendar.dart';
+import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_assets.dart';
 
 class MainHeaderDoaa extends StatelessWidget {
   const MainHeaderDoaa({
@@ -19,7 +22,8 @@ class MainHeaderDoaa extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
         // color: Colors.white,
-        color: const Color(0xff9EB0A2),
+        // color: const Color(0xff9EB0A2),
+        color: Color.fromARGB(255, 125, 222, 255),
         boxShadow: const [
           BoxShadow(
             color: Colors.grey,
@@ -34,26 +38,51 @@ class MainHeaderDoaa extends StatelessWidget {
         children: [
           Text(
             today.toFormat("dd MMMM yyyy"),
-            //"استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: Theme.of(context).textTheme.bodyMedium
-            // !.copyWith(
-            //     fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
-            //     fontWeight: FontWeight.bold)
-            ,
+            style: Theme.of(context).textTheme.bodyMedium,
           ),
-          // const SizedBox(
-          //   height: 8,
-          // ),
-          const Divider(),
+          const Divider(
+            color: AppColors.black,
+          ),
           Text(
             "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: Theme.of(context).textTheme.bodyMedium
-            // !.copyWith(
-            //     fontSize: instance<AppDrawerLocalData>().getAppTextSize(),
-            //     fontWeight: FontWeight.bold),
-            ,
+            style: Theme.of(context).textTheme.bodyMedium,
             textAlign: TextAlign.center,
           ),
+          SizedBox(
+            height: 30,
+          ),
+          Align(
+            alignment: Alignment.bottomRight,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    SvgPicture.asset(
+                      AppAssets.quranSvgPath,
+                      width: 25,
+                      height: 25,
+                    ),
+                    SizedBox(
+                      width: 3,
+                    ),
+                    Text("اخر قراءة"),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 20,
+                    ),
+                    Text(
+                      "سورة البقرة",
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );
