@@ -5,6 +5,7 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
 import '../../../../core/function.dart';
+import '../../../hadith/data/local_data/hadith_local_data.dart';
 import '../../../quran/data/local_data/quran_local_data.dart';
 import '../../data/local_data/app_drawer_local_data.dart';
 import '../logic/cubit/app_drawer_cubit.dart';
@@ -82,8 +83,8 @@ class AppDrawer extends StatelessWidget {
                     icon: Icons.delete_forever,
                     label: "مسح كل علامات الحديث",
                     onPressed: () async {
-                      await instance<QuranLocalData>()
-                          .removeAllQuranBookmarks();
+                      await instance<HadithLocalData>()
+                          .removeAllHadithBookmarks();
 
                       showToast("تم حذف جميع علامات الحديث");
                     },
