@@ -17,11 +17,11 @@ class AzkarLoading extends StatelessWidget {
         itemBuilder: (context, index) {
           return Shimmer.fromColors(
             baseColor: AppColors.indigo,
-            highlightColor: Colors.indigoAccent,
+            highlightColor: Colors.grey,
             child: const Card(
               margin: EdgeInsets.only(bottom: 10, left: 10, right: 10),
               child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.all(25),
               ),
             ),
           );
