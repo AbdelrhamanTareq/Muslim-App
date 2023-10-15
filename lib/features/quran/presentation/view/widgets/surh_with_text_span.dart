@@ -42,7 +42,7 @@ class SurhWithTextSpan extends StatelessWidget {
                         text: e.ar,
                         // long press to show action menu for save bookmark or share aya
                         recognizer: LongPressGestureRecognizer()
-                          ..onLongPressDown = (details) {
+                          ..onLongPressEnd = (details) {
                             var globalPositionDx = details.globalPosition.dx;
                             var globalPositionDy = details.globalPosition.dy;
                             showMenu(
