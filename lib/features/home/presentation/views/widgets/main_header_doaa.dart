@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
+import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_state.dart';
+
+import '../../../../../core/injection_container.dart';
+import '../../../../quran/data/local_data/quran_local_data.dart';
 
 class MainHeaderDoaa extends StatelessWidget {
   const MainHeaderDoaa({
     super.key,
   });
 
+  // String _lastRead = instance<QuranLocalData>().getLastReadQuranSurh();
   @override
   Widget build(BuildContext context) {
     //TODO add to app settings
@@ -63,20 +71,24 @@ class MainHeaderDoaa extends StatelessWidget {
                       width: 25,
                       height: 25,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 3,
                     ),
-                    Text("اخر قراءة"),
+                    const Text(AppStrings.lastRead),
                   ],
                 ),
                 Row(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 20,
                     ),
-                    Text(
-                      "سورة البقرة",
-                      textAlign: TextAlign.center,
+                    BlocBuilder<QuranSettingsCubit,QuranSettingsState>(
+                      builder: (context,state) {
+                        return Text(
+                          "سورة ${instance<QuranLocalData>().getLastReadQuranSurh()}",
+                          textAlign: TextAlign.center,
+                        );
+                      }
                     ),
                   ],
                 ),
