@@ -42,7 +42,8 @@ abstract class AppStrings {
       "من فضلك قم بتحديد موقعك لتحصل علي مواقيت الصلاة الخاصة بموقعك";
   static const String getLocationByLocationSevice =
       "اختيار الموقع عن طريق خدمة الموقع:";
-  static const String choosePrayerTimesMethods = "اختار طريقة حساب مواقيت الصلاة ";
+  static const String choosePrayerTimesMethods =
+      "اختار طريقة حساب مواقيت الصلاة ";
   static const String getLocationManual = "أو اختار الموقع يدويا:";
   static const String getCurrentLocation = "الحصول علي الموقع";
   static const String getCurrentManual = "حفظ الموقع المختار";
@@ -72,4 +73,8 @@ abstract class AppStrings {
   static const String nightMode = "الوضع الليلي";
   static const String enableNotifications = "تفعيل الاشعارات";
   static const String aboutUs = "عن المطور";
+  ////////////////////////////////////////////////////
+
+  static const String noLastRead = "لا يوجد";
+  static const String lastRead = "اخر قراءة";
 }
