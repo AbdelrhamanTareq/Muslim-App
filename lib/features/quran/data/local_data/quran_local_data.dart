@@ -1,23 +1,21 @@
 import 'package:hive/hive.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String quranHiveBox = "QURAN_BOX";
 
 abstract class QuranLocalData {
-  // setBookmark({required double value, required String key});
-  // double? getBookmark(String key);
-  // setBookMarkedName({required String name, required String key});
-  // String? getBookMarkedName(String key);
-
   Future<void> setQuranBookmarkedNames({
     required String key,
     required dynamic value,
   });
-
   getQuranBookmarkedNames(String key);
 
   Future<bool> removeQuranBookmark(String key);
   Future<int> removeAllQuranBookmarks();
+
+  String getLastReadQuranSurh();
+  Future<bool> setLastReadQuranSurh(String name);
 
   double getQuranTextSize();
   Future<bool> setQuranTextSize(double value);
@@ -25,6 +23,7 @@ abstract class QuranLocalData {
 
 class QuranLocalDataImpl extends QuranLocalData {
   static const String quranTextSizeKey = "QURAN_TEXT_SIZE_1";
+  static const String lastReadKey = "LAST_READ_KEY";
 
   final SharedPreferences _sharedPreferences;
 
@@ -72,5 +71,15 @@ class QuranLocalDataImpl extends QuranLocalData {
   @override
   Future<int> removeAllQuranBookmarks() async {
     return await Hive.box(quranHiveBox).clear();
+  }
+
+  @override
+  String getLastReadQuranSurh() {
+    return _sharedPreferences.getString(lastReadKey) ?? AppStrings.noLastRead;
+  }
+
+  @override
+  Future<bool> setLastReadQuranSurh(String name) async {
+    return await _sharedPreferences.setString(lastReadKey, name);
   }
 }
