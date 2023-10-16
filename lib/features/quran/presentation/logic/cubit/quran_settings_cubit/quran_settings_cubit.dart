@@ -13,6 +13,12 @@ class QuranSettingsCubit extends Cubit<QuranSettingsState> {
     emit(state.copyWith(quranTextSize: quranTextSize));
   }
 
+// last read update methed
+  void updateLastRead(String lastRead) {
+    _quranLocalData.setLastReadQuranSurh(lastRead);
+    emit(state.copyWith(lastRead: lastRead));
+  }
+
   // double getQuranTextSize() {
   //   final double val = instance<QuranLocalData>().getQuranTextSize();
   //   emit(state.copyWith(quranTextSize: val));
