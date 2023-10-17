@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 
 import 'widgets/actions_row.dart';
 import 'widgets/zekr_actions_row.dart';
@@ -13,9 +13,9 @@ class SebhaMainView extends StatelessWidget {
   // double _maxValue = 33;
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: AppColors.scaffoldColor,
-      body: SafeArea(
+    return Scaffold(
+      backgroundColor: context.theme.scaffoldBackgroundColor,
+      body: const SafeArea(
         child: SingleChildScrollView(
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.center,

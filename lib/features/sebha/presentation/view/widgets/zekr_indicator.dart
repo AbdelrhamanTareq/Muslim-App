@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.dart';
 import 'package:muslim_app/features/sebha/presentation/view/widgets/zeker_count_dialog.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
@@ -12,6 +13,10 @@ class ZekrIndictor extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var _theme = context.theme;
+    var _digitColor = _theme.shadowColor;
+    var _digitStyle = _theme.textTheme.labelMedium.copyWith(color: _digitColor);
+
     return BlocBuilder<SebhaCubit, SebhaState>(
       builder: (context, state) {
         return CircularPercentIndicator(
@@ -25,7 +30,7 @@ class ZekrIndictor extends StatelessWidget {
             children: [
               Text(
                 state.initValue.toInt().toString(),
-                style: Theme.of(context).textTheme.labelMedium,
+                style: _digitStyle,
               ),
               const Divider(
                 thickness: 2,
@@ -47,7 +52,7 @@ class ZekrIndictor extends StatelessWidget {
                 },
                 child: Text(
                   state.maxValue.toInt().toString(),
-                  style: Theme.of(context).textTheme.labelMedium,
+                  style: _digitStyle,
                 ),
               ),
             ],
@@ -57,5 +62,3 @@ class ZekrIndictor extends StatelessWidget {
     );
   }
 }
-
-
