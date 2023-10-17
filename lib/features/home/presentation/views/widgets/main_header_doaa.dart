@@ -22,6 +22,10 @@ class MainHeaderDoaa extends StatelessWidget {
     //TODO add to app settings
     HijriCalendar.setLocal("ar");
     var today = HijriCalendar.now();
+    var _textTheme = Theme.of(context)
+        .textTheme
+        .bodyMedium!
+        .copyWith(color: AppColors.white);
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -46,17 +50,17 @@ class MainHeaderDoaa extends StatelessWidget {
         children: [
           Text(
             today.toFormat("dd MMMM yyyy"),
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: _textTheme,
           ),
           const Divider(
-            color: AppColors.black,
+            color: AppColors.white,
           ),
           Text(
             "استغفر الله العظيم الذي لا اله الا هو الحي القيوم و اتوب اليه",
-            style: Theme.of(context).textTheme.bodyMedium,
+            style: _textTheme,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Align(
@@ -74,7 +78,10 @@ class MainHeaderDoaa extends StatelessWidget {
                     const SizedBox(
                       width: 3,
                     ),
-                    const Text(AppStrings.lastRead),
+                    Text(
+                      AppStrings.lastRead,
+                      style: _textTheme,
+                    ),
                   ],
                 ),
                 Row(
@@ -82,14 +89,14 @@ class MainHeaderDoaa extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    BlocBuilder<QuranSettingsCubit,QuranSettingsState>(
-                      builder: (context,state) {
-                        return Text(
-                          "سورة ${instance<QuranLocalData>().getLastReadQuranSurh()}",
-                          textAlign: TextAlign.center,
-                        );
-                      }
-                    ),
+                    BlocBuilder<QuranSettingsCubit, QuranSettingsState>(
+                        builder: (context, state) {
+                      return Text(
+                        "سورة ${instance<QuranLocalData>().getLastReadQuranSurh()}",
+                        style: _textTheme,
+                        textAlign: TextAlign.center,
+                      );
+                    }),
                   ],
                 ),
               ],
