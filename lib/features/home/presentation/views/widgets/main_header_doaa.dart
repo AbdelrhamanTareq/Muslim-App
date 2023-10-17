@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_state.dart';
@@ -22,10 +23,14 @@ class MainHeaderDoaa extends StatelessWidget {
     //TODO add to app settings
     HijriCalendar.setLocal("ar");
     var today = HijriCalendar.now();
-    var _textTheme = Theme.of(context)
-        .textTheme
-        .bodyMedium!
-        .copyWith(color: AppColors.white);
+    // var _textTheme = Theme.of(context)
+    //     .textTheme
+    //     .bodyMedium!
+    //     .copyWith(color: AppColors.white) ;
+
+    var _textTheme = context.bodyMedium!.copyWith(color: AppColors.white);
+    String _lastRead = instance<QuranLocalData>().getLastReadQuranSurh();
+
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
@@ -92,7 +97,9 @@ class MainHeaderDoaa extends StatelessWidget {
                     BlocBuilder<QuranSettingsCubit, QuranSettingsState>(
                         builder: (context, state) {
                       return Text(
-                        "سورة ${instance<QuranLocalData>().getLastReadQuranSurh()}",
+                        (_lastRead == AppStrings.noLastRead)
+                            ? _lastRead
+                            : "سورة $_lastRead",
                         style: _textTheme,
                         textAlign: TextAlign.center,
                       );
