@@ -95,16 +95,17 @@ class QuranSurahDetails extends StatelessWidget {
                     height: 8,
                   ),
                   // TEST it in Mobile
+                  // Test sensitvity
                   // For switching between Sur
                   GestureDetector(
                     onHorizontalDragUpdate: (details) {
                       //TODO
-                      if (details.delta.dx < -10) {
+                      if (details.delta.dx < -5) {
                         if (index <= 0) return;
-                        _navToOtherSurha(context, index: index - 1, data: data);
-                      } else if (details.delta.dx > 10) {
+                        // navToOtherSurha(context, index: index - 1, data: data);
+                      } else if (details.delta.dx > 5) {
                         if (index > data.length) return;
-                        _navToOtherSurha(context, index: index + 1, data: data);
+                        // navToOtherSurha(context, index: index + 1, data: data);
                       }
                     },
                     child: SurhWithTextSpan(
@@ -120,64 +121,10 @@ class QuranSurahDetails extends StatelessWidget {
         ),
       ),
     );
-    // return Scaffold(
-    //   appBar: AppBar(
-    //     title: Text("Test"),
-    //     actions: [
-    //       PopupMenuButton(
-    //         key: UniqueKey(),
-    //         position: PopupMenuPosition.under,
-    //         itemBuilder: (context) => <PopupMenuItem>[
-    //           PopupMenuItem(
-    //             child: StatefulBuilder(builder: (context, s) {
-    //               return Column(
-    //                 children: [
-    //                   Text("widget.text"),
-    //                   Slider.adaptive(
-    //                     value: _val,
-    //                     onChanged: (val) {
-    //                       s(() {
-    //                         _val = val;
-    //                       });
-    //                     },
-    //                     divisions: 10,
-    //                     min: 25,
-    //                     max: 50,
-    //                   ),
-    //                   // Slider.adaptive(
-    //                   //   value: instance<QuranLocalData>().getQuranTextSize(),
-    //                   //   onChanged: (val) =>
-    //                   //       BlocProvider.of<QuranSettingsCubit>(context)
-    //                   //           .changeQuranTextSize(val),
-    //                   //   divisions: 10,
-    //                   //   min: 25,
-    //                   //   max: 50,
-    //                   // ),
-    //                 ],
-    //               );
-    //             }),
-    //           ),
-    //         ],
-    //       )
-    //     ],
-    //   ),
-    //   body: Center(
-    //     child: Text("data"),
-    //   ),
-    // );
+    
   }
 
-  _navToOtherSurha(context, {required int index, required List<Quran> data}) {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => QuranSurahDetails(
-          index: index,
-          data: data,
-        ),
-      ),
-    );
-  }
+  
 }
 
 // Dorp down menu with slider to change text size
