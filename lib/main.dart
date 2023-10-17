@@ -26,6 +26,6 @@ void main() async {
   Hive.registerAdapter(TimingsAdapter());
   await Hive.openBox(prayerTimesKey);
   Bloc.observer = MyBlocObserver();
-  getPrayerTimesSoundsStateFirstTime();
+  AppFunctions.getPrayerTimesSoundsStateFirstTime();
   runApp(const MyApp());
 }

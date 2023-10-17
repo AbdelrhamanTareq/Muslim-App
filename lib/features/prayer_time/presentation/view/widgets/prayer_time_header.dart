@@ -28,14 +28,14 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     Map<int, Timings> prayerTimes = state;
     // Map<int, Timings> prayerTimes = state.data;
-    int finalDate = convertDateToTimeStampInInt();
+    int finalDate = AppFunctions.convertDateToTimeStampInInt();
 
     final prayerTimesList = [
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
     ];
 
     return Container(
@@ -51,10 +51,10 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
               BlendMode.darken,
             ),
             fit: BoxFit.fill,
-            image: (DateTime.now().isAfter(
-                        toTimeOfDay(stringDate: state[finalDate]!.sunrise)) &&
-                    DateTime.now().isBefore(
-                        toTimeOfDay(stringDate: state[finalDate]!.sunset)))
+            image: (DateTime.now().isAfter(AppFunctions.toTimeOfDay(
+                        stringDate: state[finalDate]!.sunrise)) &&
+                    DateTime.now().isBefore(AppFunctions.toTimeOfDay(
+                        stringDate: state[finalDate]!.sunset)))
                 ? const AssetImage(AppAssets.dayImagePath)
                 : const AssetImage(AppAssets.nightImagePath),
           ),
@@ -108,7 +108,8 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
   Text _buildComingPrayerTime(List<DateTime> prayerTimesList,
       Map<int, Timings> prayerTimes, int finalDate, BuildContext context) {
     return Text(
-      getPrayerTimeDate(prayerTimesList, prayerTimes[finalDate]!).split(" ")[0],
+      AppFunctions.getPrayerTimeDate(prayerTimesList, prayerTimes[finalDate]!)
+          .split(" ")[0],
       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
             fontWeight: FontWeight.w700,
             color: AppColors.white,
@@ -119,7 +120,7 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
   Text _buildComingPrayerName(
       List<DateTime> prayerTimesList, BuildContext context) {
     return Text(
-      getPrayerName(prayerTimesList),
+      AppFunctions.getPrayerName(prayerTimesList),
       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
             fontWeight: FontWeight.w700,
             color: AppColors.white,

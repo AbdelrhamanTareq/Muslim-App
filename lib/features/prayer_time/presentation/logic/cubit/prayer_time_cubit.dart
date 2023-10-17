@@ -72,7 +72,7 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      showToast(AppStrings.locationServicesDisabledText,
+      AppFunctions.showToast(AppStrings.locationServicesDisabledText,
           color: AppColors.error);
       emit(state.copyWith(
           error: AppStrings.locationServicesDisabledText,
@@ -83,7 +83,7 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        showToast(AppStrings.locationServicesDeniedText,
+        AppFunctions.showToast(AppStrings.locationServicesDeniedText,
             color: AppColors.error);
         emit(state.copyWith(
             error: AppStrings.locationServicesDeniedText,
@@ -92,7 +92,7 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
       }
     }
     if (permission == LocationPermission.deniedForever) {
-      showToast(AppStrings.locationServicesPermentDeniedText,
+      AppFunctions.showToast(AppStrings.locationServicesPermentDeniedText,
           color: AppColors.error);
       emit(state.copyWith(
           error: AppStrings.locationServicesPermentDeniedText,
@@ -120,12 +120,13 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
             position: position,
             isLoadingGetLocation: false,
             addres: placemark));
-        showToast(AppStrings.locationFounded);
+        AppFunctions.showToast(AppStrings.locationFounded);
       } catch (e) {
         emit(state.copyWith(error: e.toString(), isLoadingGetLocation: false));
       }
     } else {
-      showToast(OtherFaliure().errorMessage, color: AppColors.error);
+      AppFunctions.showToast(OtherFaliure().errorMessage,
+          color: AppColors.error);
       emit(state.copyWith(
           error: OtherFaliure().errorMessage, isLoadingGetLocation: false));
     }
@@ -159,24 +160,21 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
       return;
     }
     // final now = DateTime.now();
-    int finalDate = convertDateToTimeStampInInt();
+    int finalDate = AppFunctions.convertDateToTimeStampInInt();
 
     final prayerTimesSoundsEnable =
         instance<AppLocalData>().getPrayerTimesSound();
     final prayerTimesList = [
-      toTimeOfDay(stringDate: data[finalDate]?.fajr),
-      toTimeOfDay(stringDate: data[finalDate]?.dhuhr),
-      toTimeOfDay(stringDate: data[finalDate]?.asr),
-      toTimeOfDay(stringDate: data[finalDate]?.maghrib),
-      toTimeOfDay(stringDate: data[finalDate]?.isha),
+      AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.fajr),
+      AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.dhuhr),
+      AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.asr),
+      AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.maghrib),
+      AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.isha),
       // DateTime(now.year, now.month, now.day, 12, 30, 00),
       // DateTime(now.year, now.month, now.day, 12, 31, 00),
       // DateTime(now.year, now.month, now.day, 12, 32, 00),
       // DateTime(now.year, now.month, now.day, 12, 33, 00),
       // DateTime(now.year, now.month, now.day, 12, 34, 00),
-      
-      
-      
     ];
     for (var i = 0; i < prayerTimesList.length; i++) {
       AppNotification().showScheduleNotification(

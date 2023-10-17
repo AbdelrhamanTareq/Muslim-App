@@ -117,7 +117,8 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                         ),
                       );
                     } else {
-                      showToast("من فضلك اختار موقعك", color: AppColors.error);
+                      AppFunctions.showToast("من فضلك اختار موقعك",
+                          color: AppColors.error);
                     }
                   },
                 ),
@@ -135,7 +136,7 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
       child: DropdownMenu(
         initialSelection: prayerTimesMethods[4]["ar"],
         onSelected: (value) {
-          int method = getIndexOfPrayerTimeMethods(value!);
+          int method = AppFunctions.getIndexOfPrayerTimeMethods(value!);
           BlocProvider.of<PrayerTimeCubit>(context)
               .changePrayerTimesMethods(method);
         },

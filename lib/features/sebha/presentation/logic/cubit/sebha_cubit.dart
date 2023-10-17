@@ -16,7 +16,8 @@ class SebhaCubit extends Cubit<SebhaState> {
       emit(state.copyWith(initValue: state.initValue + 1));
     }
     if (state.initValue == state.maxValue) {
-      showSnackBar(context, text: AppStrings.numberOfTasbeehReached);
+      AppFunctions.showSnackBar(context,
+          text: AppStrings.numberOfTasbeehReached);
     }
     vibration();
   }
@@ -36,9 +37,10 @@ class SebhaCubit extends Cubit<SebhaState> {
   void enableVibrate() {
     if (state.isVibrationEnalbe == false) {
       Vibration.vibrate();
-      showToast(AppStrings.enableVibration);
+      AppFunctions.showToast(AppStrings.enableVibration);
     }
-    if (state.isVibrationEnalbe) showToast(AppStrings.disableVibration);
+    if (state.isVibrationEnalbe)
+      AppFunctions.showToast(AppStrings.disableVibration);
 
     emit(
       state.copyWith(isVibrationEnalbe: !state.isVibrationEnalbe),
@@ -48,9 +50,9 @@ class SebhaCubit extends Cubit<SebhaState> {
   void enableMusic() {
     if (state.isMusicEnalbe == false) {
       AudioPlayer().play(AssetSource(AppAssets.clickSoundPath));
-      showToast(AppStrings.enableClickSound);
+      AppFunctions.showToast(AppStrings.enableClickSound);
     }
-    if (state.isMusicEnalbe) showToast(AppStrings.disableClickSound);
+    if (state.isMusicEnalbe)AppFunctions.showToast(AppStrings.disableClickSound);
     emit(
       state.copyWith(isMusicEnalbe: !state.isMusicEnalbe),
     );

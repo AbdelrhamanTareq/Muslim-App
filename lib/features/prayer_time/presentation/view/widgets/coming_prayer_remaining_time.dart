@@ -60,14 +60,14 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
   @override
   Widget build(BuildContext context) {
     Map<int, Timings> prayerTimes = widget.state;
-    int finalDate = convertDateToTimeStampInInt();
+    int finalDate = AppFunctions.convertDateToTimeStampInInt();
 
     final prayerTimesList = [
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
-      toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
+      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
     ];
     return Column(
       children: [
@@ -82,8 +82,8 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
           height: 8,
         ),
         Text(
-          formatDuration(
-            toTimeOfDay(
+          AppFunctions.formatDuration(
+            AppFunctions.toTimeOfDay(
                     prayerTimes: prayerTimesList,
                     prayerTimesMap: prayerTimes[finalDate]!)
                 .difference(DateTime.now()),

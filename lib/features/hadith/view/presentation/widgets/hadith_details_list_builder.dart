@@ -147,7 +147,7 @@ class HadithDetailsListBuilder extends StatelessWidget {
                       onPressed: () {
                         instance<HadithLocalData>().setHadithesBookmarkedNames(
                             key: name, value: [name, index.toDouble()]);
-                        showToast(AppStrings.addedBookmark);
+                        AppFunctions.showToast(AppStrings.addedBookmark);
                       },
                       icon: const Icon(Icons.bookmark),
                     ),

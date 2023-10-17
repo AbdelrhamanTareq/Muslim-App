@@ -73,7 +73,7 @@ class AppDrawer extends StatelessWidget {
                       await instance<QuranLocalData>()
                           .removeAllQuranBookmarks();
 
-                      showToast("تم حذف جميع العلامات في المصحف");
+                      AppFunctions.showToast("تم حذف جميع العلامات في المصحف");
                     },
                   ),
                 ),
@@ -86,7 +86,7 @@ class AppDrawer extends StatelessWidget {
                       await instance<HadithLocalData>()
                           .removeAllHadithBookmarks();
 
-                      showToast("تم حذف جميع علامات الحديث");
+                      AppFunctions.showToast("تم حذف جميع علامات الحديث");
                     },
                   ),
                 ),

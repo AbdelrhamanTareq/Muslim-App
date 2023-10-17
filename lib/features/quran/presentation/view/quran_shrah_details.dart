@@ -49,7 +49,7 @@ class QuranSurahDetails extends StatelessWidget {
               final bookmark =
                   instance<QuranLocalData>().getQuranBookmarkedNames(surahName);
               if (bookmark == null || bookmark[0] != surahName) {
-                showSnackBar(context);
+                AppFunctions.showSnackBar(context);
                 return;
               }
               final double position = bookmark[1];
@@ -102,10 +102,12 @@ class QuranSurahDetails extends StatelessWidget {
                       //TODO
                       if (details.delta.dx < -5) {
                         if (index <= 0) return;
-                        navToOtherSurha(context, index: index - 1, data: data);
+                        AppFunctions.navToOtherSurha(context,
+                            index: index - 1, data: data);
                       } else if (details.delta.dx > 5) {
                         if (index > data.length) return;
-                         navToOtherSurha(context, index: index + 1, data: data);
+                        AppFunctions.navToOtherSurha(context,
+                            index: index + 1, data: data);
                       }
                     },
                     child: SurhWithTextSpan(
@@ -121,10 +123,7 @@ class QuranSurahDetails extends StatelessWidget {
         ),
       ),
     );
-    
   }
-
-  
 }
 
 // Dorp down menu with slider to change text size
@@ -182,9 +181,9 @@ class DropDownMenu extends StatelessWidget {
                       bool val = await instance<QuranLocalData>()
                           .removeQuranBookmark(deletedBookmarkName);
                       if (val) {
-                        showToast("تم حذف العلامة");
+                        AppFunctions.showToast("تم حذف العلامة");
                       } else {
-                        showToast("لا يوجد العلامة");
+                        AppFunctions.showToast("لا يوجد العلامة");
                       }
                     },
                     icon: const Icon(Icons.delete_forever),

@@ -41,7 +41,8 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
                 final bookmark = instance<HadithLocalData>()
                     .getHadithesBookmarkedNames(widget.bookName);
                 if (bookmark == null || bookmark[0] != widget.bookName) {
-                  showSnackBar(context, text: AppStrings.noBookmarkHadith);
+                  AppFunctions.showSnackBar(context,
+                      text: AppStrings.noBookmarkHadith);
                   return;
                 }
                 final double index = bookmark[1];
@@ -100,9 +101,9 @@ class DropDownMenu extends StatelessWidget {
               bool val = await instance<HadithLocalData>()
                   .removeHadithBookmark(deletedBookmarkName);
               if (val) {
-                showToast("تم حذف العلامة");
+                AppFunctions.showToast("تم حذف العلامة");
               } else {
-                showToast("لا يوجد العلامة");
+                AppFunctions.showToast("لا يوجد العلامة");
               }
             },
             icon: const Icon(Icons.delete_forever),

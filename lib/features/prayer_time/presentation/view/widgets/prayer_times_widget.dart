@@ -24,7 +24,7 @@ class PrayerTimesWidget extends StatefulWidget {
 class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
   @override
   Widget build(BuildContext context) {
-    var finalDate = convertDateToTimeStampInInt();
+    var finalDate = AppFunctions.convertDateToTimeStampInInt();
 
     // Map<int, Timings> prayerTimes = state.data;
     Map<int, Timings> prayerTimes = widget.state;
@@ -116,17 +116,20 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
   }
 
   void _showChangeStateToast(int index) {
-    getPrayerTimesSound()[index] ? showToast(AppStrings.enableSound) : showToast(AppStrings.disableSound);
+    AppFunctions.getPrayerTimesSound()[index]
+        ? AppFunctions.showToast(AppStrings.enableSound)
+        : AppFunctions.showToast(AppStrings.disableSound);
   }
 
   Color _getIconColor(index) =>
-      getPrayerTimesSound()[index] ? Colors.black : Colors.grey;
+      AppFunctions.getPrayerTimesSound()[index] ? Colors.black : Colors.grey;
 
   _enableOrDisablePrayerTimesSound(int index, context) async {
-    final List<bool> prayerTimesSoundsEnalbe = getPrayerTimesSound();
+    final List<bool> prayerTimesSoundsEnalbe =
+        AppFunctions.getPrayerTimesSound();
     prayerTimesSoundsEnalbe[index] = !prayerTimesSoundsEnalbe[index];
     final List<String> stringList =
-        convertPrayerTimesToListOfString(prayerTimesSoundsEnalbe);
+        AppFunctions.convertPrayerTimesToListOfString(prayerTimesSoundsEnalbe);
 
     await instance<AppLocalData>().setPrayerTimesSound(data: stringList);
     BlocProvider.of<PrayerTimeCubit>(context).prayerScheduleTimesNotifaction(
