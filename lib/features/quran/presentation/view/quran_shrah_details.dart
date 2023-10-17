@@ -5,7 +5,7 @@ import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
-import '../../../../core/function.dart';
+import '../../../../core/functions.dart';
 import '../logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 import '../logic/cubit/quran_settings_cubit/quran_settings_state.dart';
 import 'widgets/basmala.dart';
@@ -102,10 +102,10 @@ class QuranSurahDetails extends StatelessWidget {
                       //TODO
                       if (details.delta.dx < -5) {
                         if (index <= 0) return;
-                        // navToOtherSurha(context, index: index - 1, data: data);
+                        navToOtherSurha(context, index: index - 1, data: data);
                       } else if (details.delta.dx > 5) {
                         if (index > data.length) return;
-                        // navToOtherSurha(context, index: index + 1, data: data);
+                         navToOtherSurha(context, index: index + 1, data: data);
                       }
                     },
                     child: SurhWithTextSpan(
