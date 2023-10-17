@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/function.dart';
+import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';

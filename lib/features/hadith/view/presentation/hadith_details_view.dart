@@ -5,7 +5,7 @@ import 'package:muslim_app/core/widgets/bookmark_widget.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-import '../../../../core/function.dart';
+import '../../../../core/functions.dart';
 import '../../../../core/injection_container.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../data/local_data/hadith_local_data.dart';

@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../../../../core/function.dart';
+import '../../../../../core/functions.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_strings.dart';
 import '../../../data/models/prayer_time.dart';

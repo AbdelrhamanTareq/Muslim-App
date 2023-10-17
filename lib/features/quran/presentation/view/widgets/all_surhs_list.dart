@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../logic/cubit/quran_cubit/quran_cubit.dart';
@@ -28,14 +30,19 @@ class AllSurhsList extends StatelessWidget {
           //     ? AppColors.quranBackground
           //     : AppColors.quranBackgroundAppBar,
           child: InkWell(
-            onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => QuranSurahDetails(
-                    index: index,
-                    data: data,
-                  ),
-                )),
+            onTap: () {
+              // save surha name
+              BlocProvider.of<QuranSettingsCubit>(context)
+                  .updateLastRead(data[index].name);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => QuranSurahDetails(
+                      index: index,
+                      data: data,
+                    ),
+                  ));
+            },
             child: ListTile(
               leading: Text(
                 "${index + 1}) ${listData.name}",

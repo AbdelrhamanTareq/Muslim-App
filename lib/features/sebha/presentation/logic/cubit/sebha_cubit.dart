@@ -1,7 +1,7 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/core/function.dart';
+import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:vibration/vibration.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:muslim_app/core/function.dart';
+import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';

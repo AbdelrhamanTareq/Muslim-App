@@ -14,7 +14,7 @@ import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 import 'package:muslim_app/features/prayer_time/data/repo/prayer_time_repo.dart';
 
 import '../../../../../core/data/app_local_data.dart';
-import '../../../../../core/function.dart';
+import '../../../../../core/functions.dart';
 import '../../../../../core/injection_container.dart';
 import '../../../../../core/themes/app_colors.dart';
 

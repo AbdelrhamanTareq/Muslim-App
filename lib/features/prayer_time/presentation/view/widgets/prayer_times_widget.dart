@@ -4,7 +4,7 @@ import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
-import '../../../../../core/function.dart';
+import '../../../../../core/functions.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../data/models/prayer_time.dart';
 

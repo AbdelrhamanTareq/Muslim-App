@@ -5,7 +5,7 @@ import 'package:geocoding/geocoding.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 
-import '../../../../../core/function.dart';
+import '../../../../../core/functions.dart';
 import '../../../../../core/themes/app_colors.dart';
 import '../../../../../core/utils/app_assets.dart';
 import 'coming_prayer_remaining_time.dart';

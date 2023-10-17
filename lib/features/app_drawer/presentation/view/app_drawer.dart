@@ -4,7 +4,7 @@ import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 
-import '../../../../core/function.dart';
+import '../../../../core/functions.dart';
 import '../../../hadith/data/local_data/hadith_local_data.dart';
 import '../../../quran/data/local_data/quran_local_data.dart';
 import '../../data/local_data/app_drawer_local_data.dart';
