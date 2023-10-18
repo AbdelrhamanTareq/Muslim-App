@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -166,7 +167,8 @@ class HadithDetailsListBuilder extends StatelessWidget {
               ),
               Text(
                 data[index].arab,
-                style: Theme.of(context).textTheme.displayMedium,
+                style: context.displayMedium!
+                    .copyWith(color: context.blackLightColor),
                 textAlign: TextAlign.start,
               ),
             ],
