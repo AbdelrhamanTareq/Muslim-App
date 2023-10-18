@@ -77,4 +77,7 @@ abstract class AppStrings {
 
   static const String noLastRead = "لا يوجد";
   static const String lastRead = "اخر قراءة";
+  static const String bookmarkDeleted= "تم حذف العلامة";
+  static const String noBookmarks = "لا يوجد علامات";
+  static const String deleteBookmark = "مسح العلامة";
 }
