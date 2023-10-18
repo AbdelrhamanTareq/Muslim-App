@@ -100,11 +100,11 @@ class QuranSurahDetails extends StatelessWidget {
                   GestureDetector(
                     onHorizontalDragUpdate: (details) {
                       //TODO
-                      if (details.delta.dx < -5) {
+                      if (details.delta.dx < -7) {
                         if (index <= 0) return;
                         AppFunctions.navToOtherSurha(context,
                             index: index - 1, data: data);
-                      } else if (details.delta.dx > 5) {
+                      } else if (details.delta.dx > 7) {
                         if (index > data.length) return;
                         AppFunctions.navToOtherSurha(context,
                             index: index + 1, data: data);
