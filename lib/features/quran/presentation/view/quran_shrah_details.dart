@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
+import 'package:muslim_app/features/app_drawer/presentation/logic/cubit/app_drawer_cubit.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
@@ -31,55 +33,57 @@ class QuranSurahDetails extends StatelessWidget {
     final List<Quran> data = this.data ?? [];
     final String surahName = data[index].name;
     final List surahAyat = data[index].array;
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColors.quranBackgroundAppBar,
-        // actionsIconTheme: IconThemeData(color: AppColors.black),
-        // EDITED FOR DARK THEME
-        iconTheme: const IconThemeData(color: AppColors.black),
-        title: Text(
-          surahName,
-          style: const TextStyle(color: AppColors.black),
+    return BlocBuilder<AppDrawerCubit, AppDrawerState>(
+        builder: (context, state) {
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: (state.isDarkMode)
+              ? Colors.black54
+              : AppColors.quranBackgroundAppBar,
+          // actionsIconTheme: IconThemeData(color: AppColors.black),
+          // EDITED FOR DARK THEME
+          iconTheme:  IconThemeData(color: context.blackLightColor),
+          elevation: 5,
+          title: Text(
+            surahName,
+            style:  TextStyle(color: context.blackLightColor),
+          ),
+          actions: [
+            // EDITED
+            BookmarkWidget(
+              scrollItemName: surahName,
+              onPressed: () {
+                final double appBarHight = AppBar().preferredSize.height;
+                final bookmark = instance<QuranLocalData>()
+                    .getQuranBookmarkedNames(surahName);
+                if (bookmark == null || bookmark[0] != surahName) {
+                  AppFunctions.showSnackBar(context);
+                  return;
+                }
+                final double position = bookmark[1];
+                scrollController.animateTo(position - appBarHight - 80,
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeIn);
+              },
+            ),
+            // EDITED
+            DropDownMenu(
+              deletedBookmarkName: surahName,
+              // text: "تغيير حجم الايات",
+              // sliderValue: size,
+              // onChangedSlider: (val) {
+              //   s(() {
+              //     BlocProvider.of<QuranSettingsCubit>(context)
+              //         .changeQuranTextSize(val);
+              //   });
+              // },
+            ),
+          ],
         ),
-        actions: [
-          // EDITED
-          BookmarkWidget(
-            scrollItemName: surahName,
-            onPressed: () {
-              final double appBarHight = AppBar().preferredSize.height;
-              final bookmark =
-                  instance<QuranLocalData>().getQuranBookmarkedNames(surahName);
-              if (bookmark == null || bookmark[0] != surahName) {
-                AppFunctions.showSnackBar(context);
-                return;
-              }
-              final double position = bookmark[1];
-              scrollController.animateTo(position - appBarHight - 80,
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn);
-            },
-          ),
-          // EDITED
-          DropDownMenu(
-            deletedBookmarkName: surahName,
-            // text: "تغيير حجم الايات",
-            // sliderValue: size,
-            // onChangedSlider: (val) {
-            //   s(() {
-            //     BlocProvider.of<QuranSettingsCubit>(context)
-            //         .changeQuranTextSize(val);
-            //   });
-            // },
-          ),
-        ],
-      ),
-      backgroundColor: AppColors.quranBackground,
-      // backgroundColor: const Color(0xfffff8f3),
-      body: WillPopScope(
-        onWillPop: () async {
-          return true;
-        },
-        child: Padding(
+        backgroundColor:
+            (state.isDarkMode) ? AppColors.black : AppColors.quranBackground,
+        // backgroundColor: const Color(0xfffff8f3),
+        body: Padding(
           padding: const EdgeInsets.only(top: 10, left: 8, right: 8),
           child: Center(
             child: SingleChildScrollView(
@@ -122,8 +126,8 @@ class QuranSurahDetails extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
+    });
   }
 }
 

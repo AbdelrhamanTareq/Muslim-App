@@ -3,6 +3,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
@@ -32,8 +33,9 @@ class SurhWithTextSpan extends StatelessWidget {
         builder: (context, state) {
       return Text.rich(
         TextSpan(
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              fontSize: instance<QuranLocalData>().getQuranTextSize()),
+          style: context.displayMedium!.copyWith(
+              fontSize: instance<QuranLocalData>().getQuranTextSize(),
+              color: context.blackLightColor),
           children: _surahAyat
               .map(
                 (e) => TextSpan(
@@ -105,12 +107,10 @@ class SurhWithTextSpan extends StatelessWidget {
                       text: e.id.toArabicNumbers,
                       // text: "\uFD3F${e.id.toArabicNumbers}\uFD3E",
                       // EDITED
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium!
-                          .copyWith(
-                              fontSize: instance<QuranLocalData>()
-                                  .getQuranTextSize()),
+                      style: context.displayMedium!.copyWith(
+                          fontSize:
+                              instance<QuranLocalData>().getQuranTextSize(),
+                          color: context.blackLightColor),
                     ),
                   ],
                 ),
@@ -118,7 +118,7 @@ class SurhWithTextSpan extends StatelessWidget {
               .toList(),
         ),
         // style: TextStyle(fontSize: 35, color: Colors.black, wordSpacing: 2),
-        style: Theme.of(context).textTheme.displayMedium,
+        style: context.displayMedium,
         textAlign: TextAlign.center,
       );
     });

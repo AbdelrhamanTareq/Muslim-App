@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/arabic_num_converter.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 
@@ -18,8 +19,8 @@ class Basmala extends StatelessWidget {
         return Text(
           "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ",
           // EDITED
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              fontSize: instance<QuranLocalData>().getQuranTextSize()),
+          style: context.displayMedium!.copyWith(
+              fontSize: instance<QuranLocalData>().getQuranTextSize(), color: context.blackLightColor),
         );
       }),
     );
@@ -41,8 +42,8 @@ class BasmalaFataha extends StatelessWidget {
         return Text(
           "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَٰنِ ٱلرَّحِيمِ${1.toArabicNumbers}",
           // EDITED
-          style: Theme.of(context).textTheme.displayMedium!.copyWith(
-              fontSize: instance<QuranLocalData>().getQuranTextSize()),
+          style: context.displayMedium!.copyWith(
+              fontSize: instance<QuranLocalData>().getQuranTextSize(), color: context.blackLightColor),
         );
       }),
     );
