@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'package:muslim_app/features/quran/data/models/quran.dart';
 
@@ -176,19 +177,11 @@ class DropDownMenu extends StatelessWidget {
                     min: 25,
                     max: 50,
                   ),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      bool val = await instance<QuranLocalData>()
-                          .removeQuranBookmark(deletedBookmarkName);
-                      if (val) {
-                        AppFunctions.showToast("تم حذف العلامة");
-                      } else {
-                        AppFunctions.showToast("لا يوجد العلامة");
-                      }
-                    },
-                    icon: const Icon(Icons.delete_forever),
-                    label: Text("مسح العلامة"),
-                  )
+                  RemoveBookmarkElevatedButton(onPressed: () async {
+                    bool val = await instance<QuranLocalData>()
+                        .removeQuranBookmark(deletedBookmarkName);
+                    AppFunctions.removeBookmark(val);
+                  }),
                 ],
               );
             },
