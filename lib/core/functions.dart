@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 
 import '../features/prayer_time/data/models/prayer_time.dart';
-import '../features/quran/data/local_data/quran_local_data.dart';
 import '../features/quran/data/models/quran.dart';
+import '../features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 import '../features/quran/presentation/view/quran_shrah_details.dart';
 import 'constant/app_constatnt.dart';
 import 'data/app_local_data.dart';
@@ -196,7 +197,8 @@ class AppFunctions {
   static void navToOtherSurha(context,
       {required int index, required List<Quran> data}) {
     // save surha name
-    instance<QuranLocalData>().setLastReadQuranSurh(data[index].name);
+    BlocProvider.of<QuranSettingsCubit>(context)
+        .updateLastRead(data[index].name);
 
     // nav to other surha
     Navigator.pushReplacement(
