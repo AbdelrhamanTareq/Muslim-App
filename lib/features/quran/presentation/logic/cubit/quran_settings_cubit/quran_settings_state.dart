@@ -7,6 +7,7 @@ class QuranSettingsState extends Equatable {
   @override
   List<Object> get props => [
         quranTextSize,
+        lastRead,
       ];
 
   final double quranTextSize;
