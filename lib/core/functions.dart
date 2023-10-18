@@ -211,4 +211,13 @@ class AppFunctions {
       ),
     );
   }
+
+  // remove bookmark
+  static void removeBookmark(bool bookmarkDeletedVal) async {
+    if (bookmarkDeletedVal) {
+      AppFunctions.showToast(AppStrings.bookmarkDeleted);
+    } else {
+      AppFunctions.showToast(AppStrings.noBookmarks);
+    }
+  }
 }
