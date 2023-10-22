@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import '../../../../../core/functions.dart';
@@ -34,7 +35,7 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
       margin: const EdgeInsets.only(top: 16, left: 10, right: 10, bottom: 16),
       padding: const EdgeInsets.only(left: 10, right: 10, top: 20, bottom: 20),
       decoration: BoxDecoration(
-        color: AppColors.white,
+        color: context.whiteLightColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: Column(
@@ -154,15 +155,12 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
               ),
               onPressed: onPressed,
             )
-          : SizedBox(
+          : const SizedBox(
               width: 40,
             ),
       title: Text(
         name,
-        style: Theme.of(context)
-            .textTheme
-            .headlineMedium!
-            .copyWith(color: AppColors.black),
+        style: context.headlineMedium!.copyWith(color: context.blackLightColor),
       ),
       trailing: Text(
         time,

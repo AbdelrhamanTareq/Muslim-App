@@ -5,6 +5,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:muslim_app/core/functions.dart';
 
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time_object.dart';
@@ -23,6 +24,8 @@ class PrayerCountryPickerView extends StatefulWidget {
 class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
   @override
   Widget build(BuildContext context) {
+    final blackColor = context.blackLightColor;
+    final whiteColor = context.whiteLightColor;
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -60,10 +63,15 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: CSCPicker(
+                    disabledDropdownDecoration:
+                        BoxDecoration(color: whiteColor),
+                    dropdownDecoration: BoxDecoration(color: whiteColor),
+                    dropdownDialogRadius: 10,
+                    searchBarRadius: 10,
                     flagState: CountryFlag.DISABLE,
-                    dropdownItemStyle: const TextStyle(color: Colors.black),
-                    dropdownHeadingStyle: const TextStyle(color: Colors.black),
-                    selectedItemStyle: const TextStyle(color: Colors.black),
+                    dropdownItemStyle: TextStyle(color: blackColor),
+                    dropdownHeadingStyle: TextStyle(color: blackColor),
+                    selectedItemStyle: TextStyle(color: blackColor),
                     onCityChanged: (value) {
                       print("city $value");
                       BlocProvider.of<PrayerTimeCubit>(context)
@@ -152,10 +160,8 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
   Text _buildHeader(BuildContext context) {
     return Text(
       AppStrings.chooseYourLocation,
-      style: Theme.of(context)
-          .textTheme
-          .headlineMedium!
-          .copyWith(color: AppColors.black),
+      style: context.textThmem.headlineMedium!
+          .copyWith(color: context.blackLightColor),
       textAlign: TextAlign.center,
     );
   }
