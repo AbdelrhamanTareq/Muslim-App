@@ -26,6 +26,8 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
   Widget build(BuildContext context) {
     final blackColor = context.blackLightColor;
     final whiteColor = context.whiteLightColor;
+    final provider = BlocProvider.of<PrayerTimeCubit>(context);
+
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
@@ -74,13 +76,11 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                     selectedItemStyle: TextStyle(color: blackColor),
                     onCityChanged: (value) {
                       print("city $value");
-                      BlocProvider.of<PrayerTimeCubit>(context)
-                          .getCity(value ?? "");
+                      provider.getCity(value ?? "");
                     },
                     onCountryChanged: (value) {
                       print("county $value");
-                      BlocProvider.of<PrayerTimeCubit>(context)
-                          .getCountry(value);
+                      provider.getCountry(value);
                     },
                     onStateChanged: (value) {
                       // print("state $value");
@@ -113,6 +113,8 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                             long: state.position!.latitude.toString()),
                       );
                     } else if ((state.country != null && state.city != null)) {
+                      provider.saveCityAndCountry(
+                          city: state.city!, country: state.country!);
                       Navigator.pushReplacementNamed(
                         context,
                         Routes.prayerTimePath,
