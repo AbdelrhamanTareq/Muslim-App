@@ -35,7 +35,13 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     dataOrError.fold(
       (error) {
         //print(error.errorMessage);
-        emit(state.copyWith(error: error.errorMessage, isLoading: false));
+        if (city != "" && country != "") {
+          emit(state.copyWith(error: error.errorMessage, isLoading: false,failureAction: FaliureAction.navBack));
+        }
+        else {
+
+        emit(state.copyWith(error: error.errorMessage, isLoading: false,failureAction: FaliureAction.relaod));
+        }
       },
       (data) {
         prayerScheduleTimesNotifaction(data: data);

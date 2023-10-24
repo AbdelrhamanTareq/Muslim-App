@@ -1,32 +1,10 @@
 part of 'prayer_time_cubit.dart';
 
-// abstract class PrayerTimeState extends Equatable {
-//   const PrayerTimeState();
-
-//   @override
-//   List<Object> get props => [];
-// }
-
-// class PrayerTimeInitial extends PrayerTimeState {}
-
-// class GetPrayerTimeDataLoading extends PrayerTimeState {}
-
-// class GetPrayerTimeDataSuccess extends PrayerTimeState {
-//   final Map<int, Timings> data;
-
-//   const GetPrayerTimeDataSuccess(this.data);
-// }
-
-// class GetLoactionByLocationServiceSucces2 extends PrayerTimeState {
-//   final Position position;
-
-//   const GetLoactionByLocationServiceSucces2(this.position);
-// }
-// class GetPrayerTimeDataError extends PrayerTimeState {
-//   final String error;
-
-//   const GetPrayerTimeDataError(this.error);
-// }
+// if failure happens what action button do
+enum FaliureAction {
+  relaod, // reload or call the function again
+  navBack, // nav back to change settings and call function again
+}
 
 class PrayerTimeState extends Equatable {
   final String error;
@@ -38,6 +16,7 @@ class PrayerTimeState extends Equatable {
   final String? country;
   final String? city;
   final int methods;
+  final FaliureAction failureAction;
   @override
   List<Object?> get props => [
         error,
@@ -49,6 +28,7 @@ class PrayerTimeState extends Equatable {
         country,
         city,
         methods,
+        failureAction,
       ];
   const PrayerTimeState({
     this.error = "",
@@ -60,6 +40,7 @@ class PrayerTimeState extends Equatable {
     this.city,
     this.country,
     this.methods = 4,
+    this.failureAction = FaliureAction.relaod,
   });
 
   PrayerTimeState copyWith({
@@ -72,16 +53,19 @@ class PrayerTimeState extends Equatable {
     String? country,
     String? city,
     int? methods,
+    FaliureAction? failureAction,
   }) {
     return PrayerTimeState(
-        error: error ?? this.error,
-        isLoading: isLoading ?? this.isLoading,
-        position: position ?? this.position,
-        data: data ?? this.data,
-        isLoadingGetLocation: isLoadingGetLocation ?? this.isLoadingGetLocation,
-        addres: addres ?? this.addres,
-        country: country ?? this.country,
-        city: city ?? this.city,
-        methods: methods ?? this.methods);
+      error: error ?? this.error,
+      isLoading: isLoading ?? this.isLoading,
+      position: position ?? this.position,
+      data: data ?? this.data,
+      isLoadingGetLocation: isLoadingGetLocation ?? this.isLoadingGetLocation,
+      addres: addres ?? this.addres,
+      country: country ?? this.country,
+      city: city ?? this.city,
+      methods: methods ?? this.methods,
+      failureAction: failureAction ?? this.failureAction,
+    );
   }
 }

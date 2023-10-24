@@ -39,6 +39,11 @@ class PrayerTimeView extends StatefulWidget {
 class _PrayerTimeViewState extends State<PrayerTimeView> {
   @override
   void initState() {
+    _getPrayerTimes();
+    super.initState();
+  }
+
+  void _getPrayerTimes() {
     final int method = instance<AppLocalData>().getPrayerTimesMethoed() ?? 4;
     if ((widget.lat != null && widget.long != null) ||
         instance<AppLocalData>().getLatAndLong() != null) {
@@ -48,7 +53,6 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
       BlocProvider.of<PrayerTimeCubit>(context).getPrayerTimeData(
           city: widget.city!, country: widget.country!, methods: method);
     }
-    super.initState();
   }
 
   @override
@@ -60,9 +64,14 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
           if (state.error != "") {
             return AppErrorWidget(
               error: state.error,
-              retryFunciton: (){
+              retryFunciton: () {
                 //TODO
-                Navigator.pushReplacementNamed(context, Routes.prayerTimePath);
+                if (state.failureAction == FaliureAction.navBack) {
+                  Navigator.pushReplacementNamed(
+                      context, Routes.prayerTimePath);
+                } else {
+                  _getPrayerTimes();
+                }
               },
             );
           } else if (state.data.isNotEmpty) {
