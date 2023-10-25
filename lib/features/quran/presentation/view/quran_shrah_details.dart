@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
@@ -62,8 +63,8 @@ class QuranSurahDetails extends StatelessWidget {
                 }
                 final double position = bookmark[1];
                 scrollController.animateTo(position - appBarHight - 80,
-                    duration: const Duration(milliseconds: 300),
-                    curve: Curves.easeIn);
+                    duration: const Duration(milliseconds: scrollDuration),
+                    curve: curvesType);
               },
             ),
             // EDITED
