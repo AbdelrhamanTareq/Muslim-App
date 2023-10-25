@@ -196,9 +196,9 @@ class AppFunctions {
   // nav to other surha and save surha name in shared prefrence
   static void navToOtherSurha(context,
       {required int index, required List<Quran> data}) {
-    // save surha name
+    // save surha name and index
     BlocProvider.of<QuranSettingsCubit>(context)
-        .updateLastRead(data[index].name);
+        .updateLastRead(data[index].name, index);
 
     // nav to other surha
     Navigator.pushReplacement(

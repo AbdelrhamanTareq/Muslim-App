@@ -14,8 +14,9 @@ class QuranSettingsCubit extends Cubit<QuranSettingsState> {
   }
 
 // last read update methed
-  void updateLastRead(String lastRead) {
+  void updateLastRead(String lastRead, int index) {
     _quranLocalData.setLastReadQuranSurh(lastRead);
+    _quranLocalData.setLastReadQuranSurhIndex(index);
     emit(state.copyWith(lastRead: lastRead));
   }
 
