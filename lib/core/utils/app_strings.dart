@@ -74,8 +74,10 @@ abstract class AppStrings {
   static const String changeAppTextSize = "تغيير حجم خط التطبيق";
   static const String editPrayerTimesSettings = "ضبط اعدادت مواقيت الصلاة";
   static const String deleteAllQuranBookmarks = "مسح كل علامات القران";
-  static const String allQuranBookmarksDeleted = "تم حذف جميع العلامات في المصحف";
-  static const String allHadithBookmarksDeleted = "تم حذف جميع العلامات في كتب الحديث";
+  static const String allQuranBookmarksDeleted =
+      "تم حذف جميع العلامات في المصحف";
+  static const String allHadithBookmarksDeleted =
+      "تم حذف جميع العلامات في كتب الحديث";
   static const String deleteAllHadithBookmarks = "مسح كل علامات الحديث";
   static const String enableNotifications = "تفعيل الاشعارات";
   static const String aboutUs = "عن المطور";
@@ -86,6 +88,7 @@ abstract class AppStrings {
   static const String bookmarkDeleted = "تم حذف العلامة";
   static const String noBookmarks = "لا يوجد علامات";
   static const String deleteBookmark = "مسح العلامة";
+  static const String surha = "سورة";
 }
 
 class ErrorStrings {
