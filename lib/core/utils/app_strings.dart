@@ -71,6 +71,12 @@ abstract class AppStrings {
   /////////////////////////////////////////////////
   static const String settings = "الاعدادت";
   static const String nightMode = "الوضع الليلي";
+  static const String changeAppTextSize = "تغيير حجم خط التطبيق";
+  static const String editPrayerTimesSettings = "ضبط اعدادت مواقيت الصلاة";
+  static const String deleteAllQuranBookmarks = "مسح كل علامات القران";
+  static const String allQuranBookmarksDeleted = "تم حذف جميع العلامات في المصحف";
+  static const String allHadithBookmarksDeleted = "تم حذف جميع العلامات في كتب الحديث";
+  static const String deleteAllHadithBookmarks = "مسح كل علامات الحديث";
   static const String enableNotifications = "تفعيل الاشعارات";
   static const String aboutUs = "عن المطور";
   ////////////////////////////////////////////////////
