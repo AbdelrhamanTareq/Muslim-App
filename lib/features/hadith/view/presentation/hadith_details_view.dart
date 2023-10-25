@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/widgets/bookmark_widget.dart';
 import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
@@ -49,8 +50,8 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
                 final double index = bookmark[1];
                 itemScrollController.scrollTo(
                   index: index.toInt(),
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
+                  duration: const Duration(milliseconds: scrollDuration),
+                  curve: curvesType,
                 );
               }),
           DropDownMenu(
