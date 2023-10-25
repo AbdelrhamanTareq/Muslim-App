@@ -17,6 +17,9 @@ abstract class QuranLocalData {
   String getLastReadQuranSurh();
   Future<bool> setLastReadQuranSurh(String name);
 
+  int getLastReadQuranSurhIndex();
+  Future<bool> setLastReadQuranSurhIndex(int index);
+
   double getQuranTextSize();
   Future<bool> setQuranTextSize(double value);
 }
@@ -24,6 +27,7 @@ abstract class QuranLocalData {
 class QuranLocalDataImpl extends QuranLocalData {
   static const String quranTextSizeKey = "QURAN_TEXT_SIZE_1";
   static const String lastReadKey = "LAST_READ_KEY";
+  static const String lastReadIndexKey = "LAST_READ_INDEX_KEY";
 
   final SharedPreferences _sharedPreferences;
 
@@ -81,5 +85,15 @@ class QuranLocalDataImpl extends QuranLocalData {
   @override
   Future<bool> setLastReadQuranSurh(String name) async {
     return await _sharedPreferences.setString(lastReadKey, name);
+  }
+
+  @override
+  int getLastReadQuranSurhIndex() {
+    return _sharedPreferences.getInt(lastReadIndexKey) ?? 0;
+  }
+
+  @override
+  Future<bool> setLastReadQuranSurhIndex(int index) async {
+    return await _sharedPreferences.setInt(lastReadIndexKey, index);
   }
 }
