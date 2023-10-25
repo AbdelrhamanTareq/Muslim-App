@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/functions.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../core/utils/app_strings.dart';
 import '../../logic/cubit/quran_cubit/quran_cubit.dart';
@@ -8,14 +9,17 @@ class AllSurhsList extends StatelessWidget {
   const AllSurhsList({
     Key? key,
     required this.state,
+    required this.scrollController,
   }) : super(key: key);
 
   final QuranGetAllDataSucces state;
+  final ItemScrollController scrollController;
 
   @override
   Widget build(BuildContext context) {
     var data = state.data;
-    return ListView.separated(
+    return ScrollablePositionedList.separated(
+      itemScrollController: scrollController,
       itemCount: data.length,
       itemBuilder: (context, index) {
         var bodyMedium2 = Theme.of(context).textTheme.bodyMedium!
