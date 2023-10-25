@@ -77,7 +77,23 @@ abstract class AppStrings {
 
   static const String noLastRead = "لا يوجد";
   static const String lastRead = "اخر قراءة";
-  static const String bookmarkDeleted= "تم حذف العلامة";
+  static const String bookmarkDeleted = "تم حذف العلامة";
   static const String noBookmarks = "لا يوجد علامات";
   static const String deleteBookmark = "مسح العلامة";
+}
+
+class ErrorStrings {
+  ErrorStrings._();
+
+  static const localDataError = "حدث خطأ في تحميل البيانات";
+  static const connectionTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const sendTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const receiveTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const requestTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const noInternetConnection =
+      "لا يوجد اتصال بالانترنت ,الرجاء التحقق من الاتصال بالانترنت والمحاولة مرة اخري";
+  static const unExpectedError = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
+  static const oppsError = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
+  static const notFound = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
+  static const internalError = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
 }
