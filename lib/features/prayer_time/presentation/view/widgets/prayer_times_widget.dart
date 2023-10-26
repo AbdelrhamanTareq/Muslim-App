@@ -6,7 +6,6 @@ import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import '../../../../../core/functions.dart';
-import '../../../../../core/themes/app_colors.dart';
 import '../../../data/models/prayer_time.dart';
 
 class PrayerTimesWidget extends StatefulWidget {
@@ -123,7 +122,7 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
   }
 
   Color _getIconColor(index) =>
-      AppFunctions.getPrayerTimesSound()[index] ? Colors.black : Colors.grey;
+      AppFunctions.getPrayerTimesSound()[index] ? context.blackLightColor : Colors.grey;
 
   _enableOrDisablePrayerTimesSound(int index, context) async {
     final List<bool> prayerTimesSoundsEnalbe =
@@ -139,7 +138,7 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
 
   Divider _divider() => const Divider(height: 10);
 
-  Widget _buildListTile(context,
+  Widget _buildListTile(BuildContext context,
       {required String name,
       required String time,
       Color? color,
@@ -164,10 +163,7 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
       ),
       trailing: Text(
         time,
-        style: Theme.of(context)
-            .textTheme
-            .headlineMedium!
-            .copyWith(color: AppColors.black),
+        style: context.headlineMedium!.copyWith(color: context.blackLightColor),
       ),
     );
   }
