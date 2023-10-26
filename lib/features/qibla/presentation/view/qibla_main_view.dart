@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:smooth_compass/utils/src/compass_ui.dart';
+import 'package:smooth_compass/utils/src/widgets/error_widget.dart';
 
 class QiblaMainView extends StatefulWidget {
   const QiblaMainView({super.key});
@@ -20,6 +21,18 @@ class _QiblaMainViewState extends State<QiblaMainView> {
       ),
       body: Center(
         child: SmoothCompass(
+          errorDecoration: ErrorDecoration(
+            permissionMessage: PermissionMessage(
+              denied: AppStrings.locationServicesDeniedText,
+              permanentlyDenied: AppStrings.locationServicesPermentDeniedText,
+            ),
+            buttonText: ButtonText(
+              onPermissionDenied: AppStrings.locationServicesDisabledText,
+              onLocationDisabled: AppStrings.enableLocationText,
+              onPermissionPermanentlyDenied:
+                  AppStrings.locationServicesPermentDeniedText,
+            ),
+          ),
           isQiblahCompass: true,
           compassBuilder: (context, compassData, compassAsset) {
             return AnimatedRotation(
@@ -41,10 +54,10 @@ class _QiblaMainViewState extends State<QiblaMainView> {
                       ),
                     ),
                     Positioned(
-                      top: -20,
-                      left: 50,
+                      top: 0,
+                      left: 17,
                       right: 0,
-                      bottom: 40,
+                      bottom: 0,
                       child: AnimatedRotation(
                         turns: (compassData?.data?.qiblahOffset ?? 0) / 360,
                         duration: const Duration(milliseconds: 400),
@@ -60,6 +73,46 @@ class _QiblaMainViewState extends State<QiblaMainView> {
             );
           },
         ),
+        // child: SmoothCompass(
+        //   compassBuilder: (context, compassData, compassAsset) {
+        //     return AnimatedRotation(
+        //       turns: compassData?.data?.turns ?? 0 / 360,
+        //       duration: const Duration(milliseconds: 400),
+        //       child: SizedBox(
+        //         height: MediaQuery.of(context).size.height * 0.5,
+        //         width: MediaQuery.of(context).size.width * 0.9,
+        //         child: Stack(
+        //           children: [
+        //             Positioned(
+        //               top: 0,
+        //               left: 0,
+        //               right: 0,
+        //               bottom: 0,
+        //               child: Image.asset(
+        //                 AppAssets.compassPath,
+        //                 fit: BoxFit.fill,
+        //               ),
+        //             ),
+        //             Positioned(
+        //               top: -20,
+        //               left: 50,
+        //               right: 0,
+        //               bottom: 40,
+        //               child: AnimatedRotation(
+        //                 turns: (compassData?.data?.qiblahOffset ?? 0) / 360,
+        //                 duration: const Duration(milliseconds: 400),
+        //                 child: Image.asset(
+        //                   AppAssets.neddleKabah1Path,
+        //                   fit: BoxFit.contain,
+        //                 ),
+        //               ),
+        //             ),
+        //           ],
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
         // child: SmoothCompass(
         //   compassSupportText: AppStrings.compassSupportText,
         //   allowLocationText: AppStrings.allowLocationText,

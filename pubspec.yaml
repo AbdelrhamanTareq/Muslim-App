@@ -59,10 +59,9 @@ dependencies:
   share_plus: ^7.0.2
   shared_preferences: ^2.1.1
   shimmer: ^3.0.0
-  # smooth_compass: ^2.0.11
-  smooth_compass: ^2.0.17
   timezone: ^0.9.2
   vibration: ^1.7.7
+  smooth_compass:
 
 dev_dependencies:
   build_runner: ^2.4.2
@@ -123,6 +122,5 @@ flutter:
     - family: HAFS
       fonts:
         - asset: assets/fonts/HAFS-Regular.otf
-      
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
