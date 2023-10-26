@@ -113,3 +113,6 @@ const List<Map<String, String>> prayerTimesMethods = [
     "ar": "منطقة الخليج",
   },
 ];
+
+const int scrollDuration = 300;
+const Cubic curvesType = Curves.easeIn;

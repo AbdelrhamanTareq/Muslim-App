@@ -4,4 +4,10 @@ extension ThemeShortcut on BuildContext {
   get theme => Theme.of(this);
   get textThmem => Theme.of(this).textTheme;
   get bodyMedium => textThmem.bodyMedium;
+  get displayMedium => textThmem.displayMedium;
+  get headlineMedium => textThmem.headlineMedium;
+  get headlineLarge => textThmem.headlineLarge;
+  get scaffoldBackGroundColor => theme.scaffoldBackgroundColor;
+  get blackLightColor => theme.shadowColor;
+  get whiteLightColor => theme.splashColor;
 }

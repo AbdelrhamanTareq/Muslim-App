@@ -16,22 +16,9 @@ class BookmarkWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final appBarHight = AppBar().preferredSize.height;
-
-    // print(appBarHight);
-
     return IconButton(
       onPressed: () {
         onPressed();
-        // final bookmark =
-        //     instance<QuranLocalData>().getQuranBookmarkedNames(surhName);
-        // if (bookmark == null || bookmark[0] != surhName) {
-        //   showSnackBar(context);
-        //   return;
-        // }
-        // final double position = bookmark[1];
-        // _scrollController.animateTo(position - appBarHight - 80,
-        //     duration: const Duration(milliseconds: 300), curve: Curves.easeIn);
       },
       icon: const Icon(
         Icons.bookmark,

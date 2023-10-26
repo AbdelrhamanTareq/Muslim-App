@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 
@@ -110,10 +111,10 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
     return Text(
       AppFunctions.getPrayerTimeDate(prayerTimesList, prayerTimes[finalDate]!)
           .split(" ")[0],
-      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-            fontWeight: FontWeight.w700,
-            color: AppColors.white,
-          ),
+      style: context.headlineLarge!.copyWith(
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
+      ),
     );
   }
 
@@ -121,10 +122,10 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
       List<DateTime> prayerTimesList, BuildContext context) {
     return Text(
       AppFunctions.getPrayerName(prayerTimesList),
-      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-            fontWeight: FontWeight.w700,
-            color: AppColors.white,
-          ),
+      style: context.headlineLarge!.copyWith(
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
+      ),
     );
   }
 }

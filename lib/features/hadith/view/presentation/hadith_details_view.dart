@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/widgets/bookmark_widget.dart';
+import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -48,8 +50,8 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
                 final double index = bookmark[1];
                 itemScrollController.scrollTo(
                   index: index.toInt(),
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeIn,
+                  duration: const Duration(milliseconds: scrollDuration),
+                  curve: curvesType,
                 );
               }),
           DropDownMenu(
@@ -96,19 +98,11 @@ class DropDownMenu extends StatelessWidget {
       position: PopupMenuPosition.under,
       itemBuilder: (context) => <PopupMenuItem>[
         PopupMenuItem(
-          child: ElevatedButton.icon(
-            onPressed: () async {
-              bool val = await instance<HadithLocalData>()
-                  .removeHadithBookmark(deletedBookmarkName);
-              if (val) {
-                AppFunctions.showToast("تم حذف العلامة");
-              } else {
-                AppFunctions.showToast("لا يوجد العلامة");
-              }
-            },
-            icon: const Icon(Icons.delete_forever),
-            label: Text("مسح العلامة"),
-          ),
+          child: RemoveBookmarkElevatedButton(onPressed: () async {
+            bool val = await instance<HadithLocalData>()
+                .removeHadithBookmark(deletedBookmarkName);
+            AppFunctions.removeBookmark(val);
+          }),
         ),
       ],
     );

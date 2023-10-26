@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/hadith/data/models/hadith_book_object.dart';
@@ -52,7 +53,7 @@ class HadithView extends StatelessWidget {
                     ),
                     Text(
                       data.name,
-                      style: Theme.of(context).textTheme.headlineMedium!,
+                      style: context.headlineMedium!,
                       textAlign: TextAlign.center,
                     )
                   ],

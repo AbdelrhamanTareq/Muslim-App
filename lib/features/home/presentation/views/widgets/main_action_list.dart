@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 
 import '../../../../../core/constant/app_constatnt.dart';
 
@@ -18,7 +19,6 @@ class MainActionList extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              //    GoRouter.of(context).push(appScreen[index].path);
               Navigator.of(context).pushNamed(
                 appScreen[index].path,
               );
@@ -70,13 +70,7 @@ class MainActionList extends StatelessWidget {
                         color: appScreen[index].color,
                         padding: const EdgeInsets.all(8),
                         child: Text(appScreen[index].name,
-                            style: Theme.of(context).textTheme.headlineMedium!
-                            // .copyWith(
-                            //   fontWeight: FontWeight.w700,
-                            //   fontSize: instance<AppDrawerLocalData>()
-                            //       .getAppTextSize(),
-                            // ),
-                            ),
+                            style: context.headlineMedium),
                       ),
                     )
                   ],

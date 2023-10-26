@@ -99,7 +99,7 @@ class MainHeaderDoaa extends StatelessWidget {
                       return Text(
                         (_lastRead == AppStrings.noLastRead)
                             ? _lastRead
-                            : "سورة $_lastRead",
+                            : "${AppStrings.surha} $_lastRead",
                         style: _textTheme,
                         textAlign: TextAlign.center,
                       );

@@ -40,18 +40,8 @@ class AppDrawer extends StatelessWidget {
                     provider.enableNotifications(val);
                   },
                 ),
-                // EDITED
-
-                // DrawerSlider(
-                //   title: "تغيير حجم خط القران",
-                //   value: instance<AppDrawerLocalData>().getQuranTextSize(),
-                //   onChanged: (val) {
-                //     provider.changeQuranTextSize(val, context);
-                //   },
-                // ),
-
                 DrawerSlider(
-                  title: "تغيير حجم خط التطبيق",
+                  title: AppStrings.changeAppTextSize,
                   max: 2,
                   min: 1,
                   value: instance<AppDrawerLocalData>().getAppTextSize(),
@@ -61,19 +51,18 @@ class AppDrawer extends StatelessWidget {
                 ),
                 DrawerListTile(
                   icon: Icons.alarm,
-                  name: "ضبط اعدادت مواقيت الصلاة",
+                  name: AppStrings.editPrayerTimesSettings,
                   onPressed: () {},
                 ),
                 Align(
                   alignment: Alignment.centerRight,
                   child: DrawerButton(
                     icon: Icons.delete_forever,
-                    label: "مسح كل علامات القران",
+                    label: AppStrings.deleteAllQuranBookmarks,
                     onPressed: () async {
                       await instance<QuranLocalData>()
                           .removeAllQuranBookmarks();
-
-                      AppFunctions.showToast("تم حذف جميع العلامات في المصحف");
+                      AppFunctions.showToast(AppStrings.deleteAllQuranBookmarks);
                     },
                   ),
                 ),
@@ -81,12 +70,11 @@ class AppDrawer extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: DrawerButton(
                     icon: Icons.delete_forever,
-                    label: "مسح كل علامات الحديث",
+                    label: AppStrings.deleteAllHadithBookmarks,
                     onPressed: () async {
                       await instance<HadithLocalData>()
                           .removeAllHadithBookmarks();
-
-                      AppFunctions.showToast("تم حذف جميع علامات الحديث");
+                      AppFunctions.showToast(AppStrings.deleteAllHadithBookmarks);
                     },
                   ),
                 ),

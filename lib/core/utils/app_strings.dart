@@ -71,10 +71,38 @@ abstract class AppStrings {
   /////////////////////////////////////////////////
   static const String settings = "الاعدادت";
   static const String nightMode = "الوضع الليلي";
+  static const String changeAppTextSize = "تغيير حجم خط التطبيق";
+  static const String editPrayerTimesSettings = "ضبط اعدادت مواقيت الصلاة";
+  static const String deleteAllQuranBookmarks = "مسح كل علامات القران";
+  static const String allQuranBookmarksDeleted =
+      "تم حذف جميع العلامات في المصحف";
+  static const String allHadithBookmarksDeleted =
+      "تم حذف جميع العلامات في كتب الحديث";
+  static const String deleteAllHadithBookmarks = "مسح كل علامات الحديث";
   static const String enableNotifications = "تفعيل الاشعارات";
   static const String aboutUs = "عن المطور";
   ////////////////////////////////////////////////////
 
   static const String noLastRead = "لا يوجد";
   static const String lastRead = "اخر قراءة";
+  static const String bookmarkDeleted = "تم حذف العلامة";
+  static const String noBookmarks = "لا يوجد علامات";
+  static const String deleteBookmark = "مسح العلامة";
+  static const String surha = "سورة";
+}
+
+class ErrorStrings {
+  ErrorStrings._();
+
+  static const localDataError = "حدث خطأ في تحميل البيانات";
+  static const connectionTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const sendTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const receiveTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const requestTimeOut = "انتهي وقت الاتصال ,من فضلك حاول مجددا";
+  static const noInternetConnection =
+      "لا يوجد اتصال بالانترنت ,الرجاء التحقق من الاتصال بالانترنت والمحاولة مرة اخري";
+  static const unExpectedError = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
+  static const oppsError = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
+  static const notFound = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
+  static const internalError = "حدث خطأ غير متوقع, من فضلك حاول مجددا";
 }

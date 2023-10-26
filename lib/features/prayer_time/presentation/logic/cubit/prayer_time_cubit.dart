@@ -35,7 +35,13 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     dataOrError.fold(
       (error) {
         //print(error.errorMessage);
-        emit(state.copyWith(error: error.errorMessage, isLoading: false));
+        if (city != "" && country != "") {
+          emit(state.copyWith(error: error.errorMessage, isLoading: false,failureAction: FaliureAction.navBack));
+        }
+        else {
+
+        emit(state.copyWith(error: error.errorMessage, isLoading: false,failureAction: FaliureAction.relaod));
+        }
       },
       (data) {
         prayerScheduleTimesNotifaction(data: data);
@@ -141,13 +147,18 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   }
 
   getCity(String city) async {
-    await instance<AppLocalData>().setCity(data: city);
+    // await instance<AppLocalData>().setCity(data: city);
     emit(state.copyWith(city: city));
   }
 
   getCountry(String country) async {
-    await instance<AppLocalData>().setCountry(data: country);
+    // await instance<AppLocalData>().setCountry(data: country);
     emit(state.copyWith(country: country));
+  }
+
+  saveCityAndCountry({required String city, required String country}) async {
+    await instance<AppLocalData>().setCity(data: city);
+    await instance<AppLocalData>().setCountry(data: country);
   }
 
   changePrayerTimesMethods(int method) async {

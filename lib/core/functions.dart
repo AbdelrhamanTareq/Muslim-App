@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
@@ -198,7 +199,10 @@ class AppFunctions {
       {required int index, required List<Quran> data}) {
     // save surha name
     BlocProvider.of<QuranSettingsCubit>(context)
-        .updateLastRead(data[index].name);
+        .updateLastRead(data[index].name, index);
+    // save surha name and index
+    BlocProvider.of<QuranSettingsCubit>(context)
+        .updateLastRead(data[index].name, index);
 
     // nav to other surha
     Navigator.pushReplacement(
@@ -210,5 +214,14 @@ class AppFunctions {
         ),
       ),
     );
+  }
+
+  // remove bookmark
+  static void removeBookmark(bool bookmarkDeletedVal) async {
+    if (bookmarkDeletedVal) {
+      AppFunctions.showToast(AppStrings.bookmarkDeleted);
+    } else {
+      AppFunctions.showToast(AppStrings.noBookmarks);
+    }
   }
 }
