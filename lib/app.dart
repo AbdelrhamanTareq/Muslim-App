@@ -49,7 +49,9 @@ class MyApp extends StatelessWidget {
           title: 'Muslim',
           debugShowCheckedModeBanner: false,
           theme:
-              (state.isDarkMode) ? AppTheme.darkTheme() : AppTheme.lightTheme()
+              (instance<AppDrawerLocalData>().getAppTheme())
+                  ? AppTheme.darkTheme()
+                  : AppTheme.lightTheme()
           //  ThemeData(
           //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           //   useMaterial3: true,
