@@ -4,6 +4,7 @@ import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
+import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
 import 'package:muslim_app/features/app_drawer/presentation/logic/cubit/app_drawer_cubit.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
@@ -140,20 +141,12 @@ class DropDownMenu extends StatelessWidget {
   const DropDownMenu({
     super.key,
     required this.deletedBookmarkName,
-    // required this.text,
-    // required this.sliderValue,
-    // required this.onChangedSlider,
   });
 
   final String deletedBookmarkName;
 
-  // final String text;
-  // final double sliderValue;
-  // final void Function(double) onChangedSlider;
-
   @override
   Widget build(BuildContext context) {
-    // print("sliderValue + ${widget.sliderValue}");
     return PopupMenuButton(
       position: PopupMenuPosition.under,
       itemBuilder: (context) => <PopupMenuItem>[
@@ -163,19 +156,8 @@ class DropDownMenu extends StatelessWidget {
               return Column(
                 children: [
                   const Text(
-                    "تغيير حجم الايات",
+                    AppStrings.changeAyatSize,
                   ),
-                  // TODO
-                  // Slider.adaptive(
-                  //   value: sliderValue,
-                  //   onChanged: (val) {
-                  //     onChangedSlider(val);
-                  //     state(() {});
-                  //   },
-                  //   divisions: 10,
-                  //   min: 25,
-                  //   max: 50,
-                  // ),
                   Slider.adaptive(
                     value: instance<QuranLocalData>().getQuranTextSize(),
                     onChanged: (val) =>
@@ -199,4 +181,3 @@ class DropDownMenu extends StatelessWidget {
     );
   }
 }
-
