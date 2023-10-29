@@ -116,3 +116,4 @@ const List<Map<String, String>> prayerTimesMethods = [
 
 const int scrollDuration = 300;
 const Cubic curvesType = Curves.easeIn;
+const double appBarLeftPadding = 8.0;

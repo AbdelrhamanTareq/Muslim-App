@@ -43,29 +43,32 @@ class QuranSurahDetails extends StatelessWidget {
               : AppColors.quranBackgroundAppBar,
           // actionsIconTheme: IconThemeData(color: AppColors.black),
           // EDITED FOR DARK THEME
-          iconTheme:  IconThemeData(color: context.blackLightColor),
+          iconTheme: IconThemeData(color: context.blackLightColor),
           elevation: 5,
           title: Text(
             surahName,
-            style:  TextStyle(color: context.blackLightColor),
+            style: TextStyle(color: context.blackLightColor),
           ),
           actions: [
             // EDITED
-            BookmarkWidget(
-              scrollItemName: surahName,
-              onPressed: () {
-                final double appBarHight = AppBar().preferredSize.height;
-                final bookmark = instance<QuranLocalData>()
-                    .getQuranBookmarkedNames(surahName);
-                if (bookmark == null || bookmark[0] != surahName) {
-                  AppFunctions.showSnackBar(context);
-                  return;
-                }
-                final double position = bookmark[1];
-                scrollController.animateTo(position - appBarHight - 80,
-                    duration: const Duration(milliseconds: scrollDuration),
-                    curve: curvesType);
-              },
+            Padding(
+              padding: const EdgeInsets.only(left: appBarLeftPadding),
+              child: BookmarkWidget(
+                scrollItemName: surahName,
+                onPressed: () {
+                  final double appBarHight = AppBar().preferredSize.height;
+                  final bookmark = instance<QuranLocalData>()
+                      .getQuranBookmarkedNames(surahName);
+                  if (bookmark == null || bookmark[0] != surahName) {
+                    AppFunctions.showSnackBar(context);
+                    return;
+                  }
+                  final double position = bookmark[1];
+                  scrollController.animateTo(position - appBarHight - 80,
+                      duration: const Duration(milliseconds: scrollDuration),
+                      curve: curvesType);
+                },
+              ),
             ),
             // EDITED
             DropDownMenu(
@@ -197,61 +200,3 @@ class DropDownMenu extends StatelessWidget {
   }
 }
 
-// class TEST extends StatefulWidget {
-//   const TEST({super.key});
-
-//   @override
-//   State<TEST> createState() => _TESTState();
-// }
-
-// class _TESTState extends State<TEST> {
-//   double _val = 25;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Test"),
-//         actions: [
-//           PopupMenuButton(
-//             key: UniqueKey(),
-//             position: PopupMenuPosition.under,
-//             itemBuilder: (context) => <PopupMenuItem>[
-//               PopupMenuItem(
-//                 child: StatefulBuilder(builder: (context, s) {
-//                   return Column(
-//                     children: [
-//                       Text("widget.text"),
-//                       Slider.adaptive(
-//                         value: _val,
-//                         onChanged: (val) {
-//                           setState(() {
-//                             _val = val;
-//                           });
-//                         },
-//                         divisions: 10,
-//                         min: 25,
-//                         max: 50,
-//                       ),
-//                       // Slider.adaptive(
-//                       //   value: instance<QuranLocalData>().getQuranTextSize(),
-//                       //   onChanged: (val) =>
-//                       //       BlocProvider.of<QuranSettingsCubit>(context)
-//                       //           .changeQuranTextSize(val),
-//                       //   divisions: 10,
-//                       //   min: 25,
-//                       //   max: 50,
-//                       // ),
-//                     ],
-//                   );
-//                 }),
-//               ),
-//             ],
-//           )
-//         ],
-//       ),
-//       body: Center(
-//         child: Text("data"),
-//       ),
-//     );
-//   }
-// }

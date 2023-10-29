@@ -29,15 +29,18 @@ class _QuranSurahsViewState extends State<QuranSurahsView> {
       appBar: AppBar(
         title: const Text(AppStrings.holyQuran),
         actions: [
-          IconButton(
-              onPressed: () {
-                itemScrollController.scrollTo(
-                  index: lastReadIndex,
-                  duration: const Duration(milliseconds: scrollDuration),
-                  curve: curvesType,
-                );
-              },
-              icon: const Icon(Icons.bookmarks))
+          Padding(
+            padding: const EdgeInsets.only(left: appBarLeftPadding),
+            child: IconButton(
+                onPressed: () {
+                  itemScrollController.scrollTo(
+                    index: lastReadIndex,
+                    duration: const Duration(milliseconds: scrollDuration),
+                    curve: curvesType,
+                  );
+                },
+                icon: const Icon(Icons.bookmarks)),
+          )
         ],
         //backgroundColor: AppColors.quranBackgroundAppBar,
       ),
