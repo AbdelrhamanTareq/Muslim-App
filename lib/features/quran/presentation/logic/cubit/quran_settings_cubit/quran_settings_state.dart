@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/core/injection_container.dart';
+import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 
 // part of 'quran_settings_cubit.dart';
 
@@ -7,15 +8,15 @@ class QuranSettingsState extends Equatable {
   @override
   List<Object> get props => [
         quranTextSize,
-        lastRead,
+        lastRead!,
       ];
 
   final double quranTextSize;
-  final String lastRead;
+  final String? lastRead;
 
   const QuranSettingsState({
     this.quranTextSize = 25,
-    this.lastRead = AppStrings.noLastRead,
+    this.lastRead,
   });
 
   QuranSettingsState copyWith({
@@ -24,7 +25,7 @@ class QuranSettingsState extends Equatable {
   }) {
     return QuranSettingsState(
       quranTextSize: quranTextSize ?? this.quranTextSize,
-      lastRead: lastRead ?? this.lastRead,
+      lastRead: lastRead ?? instance<QuranLocalData>().getLastReadQuranSurh(),
     );
   }
 }

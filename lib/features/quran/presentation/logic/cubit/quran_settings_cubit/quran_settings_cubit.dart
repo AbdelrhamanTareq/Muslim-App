@@ -1,10 +1,14 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 
 import 'quran_settings_state.dart';
 
 class QuranSettingsCubit extends Cubit<QuranSettingsState> {
-  QuranSettingsCubit(this._quranLocalData) : super(const QuranSettingsState());
+  QuranSettingsCubit(this._quranLocalData)
+      : super(QuranSettingsState(
+          lastRead: instance<QuranLocalData>().getLastReadQuranSurh(),
+        ));
 
   final QuranLocalData _quranLocalData;
 

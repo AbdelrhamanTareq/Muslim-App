@@ -9,8 +9,6 @@ import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_state.dart';
 
-import '../../../../../core/injection_container.dart';
-import '../../../../quran/data/local_data/quran_local_data.dart';
 
 class MainHeaderDoaa extends StatelessWidget {
   const MainHeaderDoaa({
@@ -29,7 +27,7 @@ class MainHeaderDoaa extends StatelessWidget {
     //     .copyWith(color: AppColors.white) ;
 
     var _textTheme = context.bodyMedium!.copyWith(color: AppColors.white);
-    String _lastRead = instance<QuranLocalData>().getLastReadQuranSurh();
+    // String _lastRead = instance<QuranLocalData>().getLastReadQuranSurh();
 
     return Container(
       width: double.infinity,
@@ -97,9 +95,9 @@ class MainHeaderDoaa extends StatelessWidget {
                     BlocBuilder<QuranSettingsCubit, QuranSettingsState>(
                         builder: (context, state) {
                       return Text(
-                        (_lastRead == AppStrings.noLastRead)
-                            ? _lastRead
-                            : "${AppStrings.surha} $_lastRead",
+                        (state.lastRead == AppStrings.noLastRead)
+                            ? AppStrings.noLastRead
+                            : "${AppStrings.surha} ${state.lastRead}",
                         style: _textTheme,
                         textAlign: TextAlign.center,
                       );
