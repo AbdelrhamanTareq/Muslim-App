@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
+import 'package:muslim_app/features/prayer_time/presentation/view/widgets/prayer_country_picker_view.dart';
 
 import '../../../../core/functions.dart';
 import '../../../hadith/data/local_data/hadith_local_data.dart';
@@ -52,7 +54,15 @@ class AppDrawer extends StatelessWidget {
                 DrawerListTile(
                   icon: Icons.alarm,
                   name: AppStrings.editPrayerTimesSettings,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => BlocProvider(
+                            create: (context) => instance<PrayerTimeCubit>(),
+                            child: const PrayerCountryPickerView()),
+                      ),
+                    );
+                  },
                 ),
                 Align(
                   alignment: Alignment.centerRight,
@@ -62,7 +72,8 @@ class AppDrawer extends StatelessWidget {
                     onPressed: () async {
                       await instance<QuranLocalData>()
                           .removeAllQuranBookmarks();
-                      AppFunctions.showToast(AppStrings.deleteAllQuranBookmarks);
+                      AppFunctions.showToast(
+                          AppStrings.deleteAllQuranBookmarks);
                     },
                   ),
                 ),
@@ -74,7 +85,8 @@ class AppDrawer extends StatelessWidget {
                     onPressed: () async {
                       await instance<HadithLocalData>()
                           .removeAllHadithBookmarks();
-                      AppFunctions.showToast(AppStrings.deleteAllHadithBookmarks);
+                      AppFunctions.showToast(
+                          AppStrings.deleteAllHadithBookmarks);
                     },
                   ),
                 ),

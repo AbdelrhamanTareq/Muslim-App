@@ -13,15 +13,9 @@ import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_
 
 import '../../../../../core/constant/app_constatnt.dart';
 
-class PrayerCountryPickerView extends StatefulWidget {
+class PrayerCountryPickerView extends StatelessWidget {
   const PrayerCountryPickerView({super.key});
 
-  @override
-  State<PrayerCountryPickerView> createState() =>
-      _PrayerCountryPickerViewState();
-}
-
-class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
   @override
   Widget build(BuildContext context) {
     final blackColor = context.blackLightColor;
@@ -96,7 +90,7 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                 const SizedBox(
                   height: 16,
                 ),
-                _buildPrayerTimesMethodsDropdownMenu(),
+                _buildPrayerTimesMethodsDropdownMenu(context),
                 const SizedBox(
                   height: 16,
                 ),
@@ -127,7 +121,8 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
                         ),
                       );
                     } else {
-                      AppFunctions.showToast("من فضلك اختار موقعك",
+                      AppFunctions.showToast(
+                          AppStrings.plesasChooseYourLocation,
                           color: AppColors.error);
                     }
                   },
@@ -140,7 +135,7 @@ class _PrayerCountryPickerViewState extends State<PrayerCountryPickerView> {
     );
   }
 
-  Padding _buildPrayerTimesMethodsDropdownMenu() {
+  Padding _buildPrayerTimesMethodsDropdownMenu(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12),
       child: DropdownMenu(
