@@ -112,11 +112,11 @@ class QuranSurahDetails extends StatelessWidget {
                       //TODO
                       if (details.delta.dx < -7) {
                         if (index <= 0) return;
-                        AppFunctions.navToOtherSurha(context,
+                        AppFunctions.navToOtherSurhaWithReplace(context,
                             index: index - 1, data: data);
                       } else if (details.delta.dx > 7) {
                         if (index > data.length) return;
-                        AppFunctions.navToOtherSurha(context,
+                        AppFunctions.navToOtherSurhaWithReplace(context,
                             index: index + 1, data: data);
                       }
                     },

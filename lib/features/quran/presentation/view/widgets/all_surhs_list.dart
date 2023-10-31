@@ -33,7 +33,7 @@ class AllSurhsList extends StatelessWidget {
           //     : AppColors.quranBackgroundAppBar,
           child: InkWell(
             onTap: () {
-              AppFunctions.navToOtherSurha(context, index: index, data: data);
+              AppFunctions.navToOtherSurhaWithoutReplace(context, index: index, data: data);
             },
             child: ListTile(
               leading: Text(

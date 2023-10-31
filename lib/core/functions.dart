@@ -194,14 +194,10 @@ class AppFunctions {
   // Others
 
   // nav to other surha and save surha name in shared prefrence
-  static void navToOtherSurha(context,
+  static void navToOtherSurhaWithReplace(context,
       {required int index, required List<Quran> data}) {
-    // save surha name
-    BlocProvider.of<QuranSettingsCubit>(context)
-        .updateLastRead(data[index].name, index);
     // save surha name and index
-    BlocProvider.of<QuranSettingsCubit>(context)
-        .updateLastRead(data[index].name, index);
+    _saveSurhaNameAndIndex(context, data, index);
 
     // nav to other surha
     Navigator.pushReplacement(
@@ -213,6 +209,30 @@ class AppFunctions {
         ),
       ),
     );
+  }
+
+  // nav to other surha and save surha name in shared prefrence
+  static void navToOtherSurhaWithoutReplace(context,
+      {required int index, required List<Quran> data}) {
+    // save surha name and index
+    _saveSurhaNameAndIndex(context, data, index);
+
+    // nav to other surha
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => QuranSurahDetails(
+          index: index,
+          data: data,
+        ),
+      ),
+    );
+  }
+
+  static void _saveSurhaNameAndIndex(context, List<Quran> data, int index) {
+    // save surha name and index
+    BlocProvider.of<QuranSettingsCubit>(context)
+        .updateLastRead(data[index].name, index);
   }
 
   // remove bookmark
