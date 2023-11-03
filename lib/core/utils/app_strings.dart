@@ -50,6 +50,9 @@ abstract class AppStrings {
   static const String getCurrentManual = "حفظ الموقع المختار";
   static const String locationFounded = "تم ايجاد الموقع";
   static const String plesasChooseYourLocation = "من فضلك اختار موقعك";
+  static const String selectUpdatePrayerTimesPriod = "اختار طريقة تحديث مواقيت الصلاة";
+  static const String montly = "شهري";
+  static const String yearly = "سنوي";
   static const String save = "حفظ";
   static const String fajr = "الفجر";
   static const String dhuhr = "الظهر";
