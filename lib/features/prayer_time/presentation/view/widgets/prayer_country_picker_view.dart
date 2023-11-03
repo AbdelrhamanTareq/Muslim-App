@@ -27,107 +27,105 @@ class PrayerCountryPickerView extends StatelessWidget {
       body: SafeArea(
         child: BlocBuilder<PrayerTimeCubit, PrayerTimeState>(
           builder: (context, state) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildHeader(context),
-                const SizedBox(
-                  height: 16,
-                ),
-                _buildChooseLocationText(
-                    context, AppStrings.getLocationByLocationSevice),
-                const SizedBox(height: 24),
-                (state.isLoadingGetLocation)
-                    ? const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      )
-                    : _buildGetLocationButton(
-                        text: AppStrings.getCurrentLocation,
-                        onPressed: () {
-                          BlocProvider.of<PrayerTimeCubit>(context)
-                              .getCurrentPosition();
-                        },
-                      ),
-                const SizedBox(
-                  height: 16,
-                ),
-                _buildChooseLocationText(context, AppStrings.getLocationManual),
-                const SizedBox(
-                  height: 16,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CSCPicker(
-                    disabledDropdownDecoration:
-                        BoxDecoration(color: whiteColor),
-                    dropdownDecoration: BoxDecoration(color: whiteColor),
-                    dropdownDialogRadius: 10,
-                    searchBarRadius: 10,
-                    flagState: CountryFlag.DISABLE,
-                    dropdownItemStyle: TextStyle(color: blackColor),
-                    dropdownHeadingStyle: TextStyle(color: blackColor),
-                    selectedItemStyle: TextStyle(color: blackColor),
-                    onCityChanged: (value) {
-                      print("city $value");
-                      provider.getCity(value ?? "");
-                    },
-                    onCountryChanged: (value) {
-                      print("county $value");
-                      provider.getCountry(value);
-                    },
-                    onStateChanged: (value) {
-                      // print("state $value");
-                      // BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                _buildChooseLocationText(
-                    context, AppStrings.choosePrayerTimesMethods),
-                const SizedBox(
-                  height: 16,
-                ),
-                _buildPrayerTimesMethodsDropdownMenu(context),
-                const SizedBox(
-                  height: 16,
-                ),
-                _buildGetLocationButton(
-                  text: AppStrings.save,
-                  onPressed: () {
-                    if (state.position != null) {
-                      Navigator.pushReplacementNamed(
-                        context,
-                        Routes.prayerTimePath,
-                        arguments: PrayerTimeObjcet(
-                            address: state.addres,
-                            lat: state.position!.latitude.toString(),
-                            long: state.position!.latitude.toString()),
-                      );
-                    } else if ((state.country != null && state.city != null)) {
-                      provider.saveCityAndCountry(
-                          city: state.city!, country: state.country!);
-                      Navigator.pushReplacementNamed(
-                        context,
-                        Routes.prayerTimePath,
-                        arguments: PrayerTimeObjcet(
-                          city: state.city,
-                          country: state.country,
-                          address: Placemark(
+            return SingleChildScrollView(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildHeader(
+                        context, AppStrings.selectUpdatePrayerTimesPriod),
+                    const ConstHegithSizedBox(),
+                    _buildRadio(),
+                    const ConstHegithSizedBox(),
+                    _buildHeader(context, AppStrings.chooseYourLocation),
+                    const ConstHegithSizedBox(),
+                    _buildChooseLocationText(
+                        context, AppStrings.getLocationByLocationSevice),
+                    const SizedBox(height: 24),
+                    (state.isLoadingGetLocation)
+                        ? const Center(
+                            child: CircularProgressIndicator.adaptive(),
+                          )
+                        : _buildGetLocationButton(
+                            text: AppStrings.getCurrentLocation,
+                            onPressed: () {
+                              BlocProvider.of<PrayerTimeCubit>(context)
+                                  .getCurrentPosition();
+                            },
+                          ),
+                    const ConstHegithSizedBox(),
+                    _buildChooseLocationText(
+                        context, AppStrings.getLocationManual),
+                    const ConstHegithSizedBox(),
+                    CSCPicker(
+                      disabledDropdownDecoration:
+                          BoxDecoration(color: whiteColor),
+                      dropdownDecoration: BoxDecoration(color: whiteColor),
+                      dropdownDialogRadius: 10,
+                      searchBarRadius: 10,
+                      flagState: CountryFlag.DISABLE,
+                      dropdownItemStyle: TextStyle(color: blackColor),
+                      dropdownHeadingStyle: TextStyle(color: blackColor),
+                      selectedItemStyle: TextStyle(color: blackColor),
+                      onCityChanged: (value) {
+                        print("city $value");
+                        provider.getCity(value ?? "");
+                      },
+                      onCountryChanged: (value) {
+                        print("county $value");
+                        provider.getCountry(value);
+                      },
+                      onStateChanged: (value) {
+                        // print("state $value");
+                        // BlocProvider.of<PrayerTimeCubit>(context).getCity(value ?? "");
+                      },
+                    ),
+                    const ConstHegithSizedBox(),
+                    _buildChooseLocationText(
+                        context, AppStrings.choosePrayerTimesMethods),
+                    const ConstHegithSizedBox(),
+                    _buildPrayerTimesMethodsDropdownMenu(context),
+                    const ConstHegithSizedBox(),
+                    _buildGetLocationButton(
+                      text: AppStrings.save,
+                      onPressed: () {
+                        if (state.position != null) {
+                          Navigator.pushReplacementNamed(
+                            context,
+                            Routes.prayerTimePath,
+                            arguments: PrayerTimeObjcet(
+                                address: state.addres,
+                                lat: state.position!.latitude.toString(),
+                                long: state.position!.latitude.toString()),
+                          );
+                        } else if ((state.country != null &&
+                            state.city != null)) {
+                          provider.saveCityAndCountry(
+                              city: state.city!, country: state.country!);
+                          Navigator.pushReplacementNamed(
+                            context,
+                            Routes.prayerTimePath,
+                            arguments: PrayerTimeObjcet(
+                              city: state.city,
                               country: state.country,
-                              administrativeArea: state.city),
-                        ),
-                      );
-                    } else {
-                      AppFunctions.showToast(
-                          AppStrings.plesasChooseYourLocation,
-                          color: AppColors.error);
-                    }
-                  },
+                              address: Placemark(
+                                  country: state.country,
+                                  administrativeArea: state.city),
+                            ),
+                          );
+                        } else {
+                          AppFunctions.showToast(
+                              AppStrings.plesasChooseYourLocation,
+                              color: AppColors.error);
+                        }
+                      },
+                    ),
+                  ],
                 ),
-              ],
+              ),
             );
           },
         ),
@@ -135,28 +133,25 @@ class PrayerCountryPickerView extends StatelessWidget {
     );
   }
 
-  Padding _buildPrayerTimesMethodsDropdownMenu(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: DropdownMenu(
-        initialSelection: prayerTimesMethods[4]["ar"],
-        onSelected: (value) {
-          int method = AppFunctions.getIndexOfPrayerTimeMethods(value!);
-          BlocProvider.of<PrayerTimeCubit>(context)
-              .changePrayerTimesMethods(method);
-        },
-        dropdownMenuEntries: prayerTimesMethods
-            .map(
-              (e) => DropdownMenuEntry(value: e["ar"], label: e["ar"]!),
-            )
-            .toList(),
-      ),
+  Widget _buildPrayerTimesMethodsDropdownMenu(BuildContext context) {
+    return DropdownMenu(
+      initialSelection: prayerTimesMethods[4]["ar"],
+      onSelected: (value) {
+        int method = AppFunctions.getIndexOfPrayerTimeMethods(value!);
+        BlocProvider.of<PrayerTimeCubit>(context)
+            .changePrayerTimesMethods(method);
+      },
+      dropdownMenuEntries: prayerTimesMethods
+          .map(
+            (e) => DropdownMenuEntry(value: e["ar"], label: e["ar"]!),
+          )
+          .toList(),
     );
   }
 
-  Text _buildHeader(BuildContext context) {
+  Text _buildHeader(BuildContext context, String text) {
     return Text(
-      AppStrings.chooseYourLocation,
+      text,
       style: context.textThmem.headlineMedium!
           .copyWith(color: context.blackLightColor),
       textAlign: TextAlign.center,
@@ -178,15 +173,87 @@ class PrayerCountryPickerView extends StatelessWidget {
   }
 
   Widget _buildChooseLocationText(BuildContext context, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: Text(
-        text,
-        style: Theme.of(context)
-            .textTheme
-            .bodyMedium!
-            .copyWith(color: AppColors.indigo),
-      ),
+    return Text(
+      text,
+      style: Theme.of(context)
+          .textTheme
+          .bodyMedium!
+          .copyWith(color: AppColors.indigo),
+    );
+  }
+
+  Widget _buildRadio() {
+    int id = 1;
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Text(AppStrings.montly),
+        Radio.adaptive(value: 1, groupValue: id, onChanged: (onChanged) {}),
+        const SizedBox(
+          width: 50,
+        ),
+        const Text(AppStrings.yearly),
+        Radio.adaptive(value: 0, groupValue: id, onChanged: (onChanged) {}),
+      ],
+    );
+  }
+}
+
+enum RadioChoice { monthly, yearly }
+
+class RadioGroup extends StatefulWidget {
+  const RadioGroup({super.key});
+
+  @override
+  State<RadioGroup> createState() => _RadioGroupState();
+}
+
+class _RadioGroupState extends State<RadioGroup> {
+  RadioChoice _radioChoice = RadioChoice.monthly;
+  RadioChoice _monthly = RadioChoice.monthly;
+  RadioChoice _yearly = RadioChoice.yearly;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        RadioListTile.adaptive(
+            title: const Text(AppStrings.montly),
+            value: _monthly,
+            groupValue: _radioChoice,
+            toggleable: true,
+            onChanged: (val) {
+              setState(() {
+                _radioChoice = _monthly;
+              });
+            }),
+        const SizedBox(
+          width: 50,
+        ),
+        RadioListTile.adaptive(
+            title: const Text(AppStrings.yearly),
+            value: 1,
+            groupValue: _radioChoice,
+            onChanged: (val) {
+              setState(() {
+                _radioChoice = _yearly;
+              });
+            }),
+      ],
+    );
+  }
+}
+
+class ConstHegithSizedBox extends StatelessWidget {
+  const ConstHegithSizedBox({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return const SizedBox(
+      height: 16,
     );
   }
 }
