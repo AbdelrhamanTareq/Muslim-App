@@ -38,7 +38,7 @@ class PrayerCountryPickerView extends StatelessWidget {
                     _buildHeader(
                         context, AppStrings.selectUpdatePrayerTimesPriod),
                     const ConstHegithSizedBox(),
-                    _buildRadio(),
+                    const RadioGroup(),
                     const ConstHegithSizedBox(),
                     _buildHeader(context, AppStrings.chooseYourLocation),
                     const ConstHegithSizedBox(),
@@ -181,22 +181,6 @@ class PrayerCountryPickerView extends StatelessWidget {
           .copyWith(color: AppColors.indigo),
     );
   }
-
-  Widget _buildRadio() {
-    int id = 1;
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text(AppStrings.montly),
-        Radio.adaptive(value: 1, groupValue: id, onChanged: (onChanged) {}),
-        const SizedBox(
-          width: 50,
-        ),
-        const Text(AppStrings.yearly),
-        Radio.adaptive(value: 0, groupValue: id, onChanged: (onChanged) {}),
-      ],
-    );
-  }
 }
 
 enum RadioChoice { monthly, yearly }
@@ -210,37 +194,56 @@ class RadioGroup extends StatefulWidget {
 
 class _RadioGroupState extends State<RadioGroup> {
   RadioChoice _radioChoice = RadioChoice.monthly;
-  RadioChoice _monthly = RadioChoice.monthly;
-  RadioChoice _yearly = RadioChoice.yearly;
+  final RadioChoice _monthly = RadioChoice.monthly;
+  final RadioChoice _yearly = RadioChoice.yearly;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        RadioListTile.adaptive(
-            title: const Text(AppStrings.montly),
-            value: _monthly,
-            groupValue: _radioChoice,
-            toggleable: true,
-            onChanged: (val) {
-              setState(() {
-                _radioChoice = _monthly;
-              });
-            }),
-        const SizedBox(
-          width: 50,
+        _buildRadioListTile(
+          context,
+          title: AppStrings.montly,
+          val: _monthly,
         ),
-        RadioListTile.adaptive(
-            title: const Text(AppStrings.yearly),
-            value: 1,
-            groupValue: _radioChoice,
-            onChanged: (val) {
-              setState(() {
-                _radioChoice = _yearly;
-              });
-            }),
+        _buildRadioListTile(
+          context,
+          title: AppStrings.yearly,
+          val: _yearly,
+        ),
+        // SizedBox(
+        //   width: MediaQuery.of(context).size.width * 0.4,
+        //   child: RadioListTile<RadioChoice>.adaptive(
+        //       title: const Text(AppStrings.yearly),
+        //       value: _yearly,
+        //       groupValue: _radioChoice,
+        //       toggleable: true,
+        //       onChanged: (val) {
+        //         print("object1");
+        //       }),
+        // ),
       ],
+    );
+  }
+
+  SizedBox _buildRadioListTile(
+    BuildContext context, {
+    required String title,
+    required RadioChoice val,
+  }) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width * 0.4,
+      child: RadioListTile<RadioChoice>.adaptive(
+          title: Text(title),
+          value: val,
+          groupValue: _radioChoice,
+          // toggleable: true,
+          onChanged: (val) {
+            setState(() {
+              _radioChoice = val!;
+            });
+          }),
     );
   }
 }
