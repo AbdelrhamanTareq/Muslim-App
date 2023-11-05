@@ -11,11 +11,8 @@ class MontlyPrayerTimes {
   String? status;
   List<Data>? data;
 
-  MontlyPrayerTimes({
-    required this.code,
-    required this.status,
-    required this.data
-  });
+  MontlyPrayerTimes(
+      {required this.code, required this.status, required this.data});
 
   factory MontlyPrayerTimes.fromJson(Map<String, dynamic> json) =>
       _$MontlyPrayerTimesFromJson(json);
