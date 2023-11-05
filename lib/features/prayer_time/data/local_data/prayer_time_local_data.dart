@@ -1,50 +1,158 @@
-import 'package:muslim_app/core/data/app_local_data.dart';
-import 'package:muslim_app/features/prayer_time/data/local_data/cached_item.dart';
+import 'dart:convert';
+
+import 'package:geocoding/geocoding.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../../../core/constant/app_constatnt.dart';
 
 const String cachedPrayerTimeKey = "CACHED_PRAYER_TIME_KEY";
 
 abstract class PrayerTimeLocalDate {
-  Future<void> setMonthPrayerTimesCacheData(PrayerTime prayerTime);
-  PrayerTime getMonthPrayerTimesCacheData();
+  Future<void> setPrayerTimesData({
+    required String key,
+    required dynamic value,
+  });
+  Map<int, Timings> getPrayerTimesDataMap();
 
   Future<void> setMonthPrayerTimesLocalData(
       {required dynamic prayerTimes, required String key});
   Map<int, Timings> getMonthPrayerTimesLocalDataMap();
+
+  Future setLatAndLong({required double lat, required double long});
+  List<String>? getLatAndLong();
+  Future setAddress({required Map<String, dynamic> data});
+  getAddress();
+  Future setCity({required String data});
+  String? getCity();
+  Future setCountry({required String data});
+  String? getCountry();
+
+  Future setPrayerTimesMethoed({required int data});
+  int? getPrayerTimesMethoed();
+
+  Future<bool> setPrayerTimesDataGetterPeriod(String val);
+  String? getPrayerTimesDataGetterPeriod();
 }
 
 class PrayerTimeLocalDateImpl extends PrayerTimeLocalDate {
-  final AppLocalData _appLocalData;
+  static const String prayerTimeDataGetterPeriodKey =
+      "PRAYER_TIME_DATA_GETTER_PERIOD";
+  static const String latLongKey = "LAT_LONG";
+  static const String addressKey = "ADDRESS";
+  static const String cityKey = "CITY";
+  static const String countryKey = "COUNTRY";
+  static const String methodesKey = "METHODES";
 
-  static const int _cachedTime = 10 * 60; // every 10 minutes
+  final SharedPreferences _sharedPreferences;
 
-  Map<String, dynamic> _cachedData = {};
+  // static const int _cachedTime = 10 * 60; // every 10 minutes
 
-  PrayerTimeLocalDateImpl(this._appLocalData);
+  // Map<String, dynamic> _cachedData = {};
+
+  PrayerTimeLocalDateImpl(this._sharedPreferences);
 
   @override
-  PrayerTime getMonthPrayerTimesCacheData() {
-    CachedItem? cachedItem = _cachedData[cachedPrayerTimeKey];
-    if (cachedItem != null && cachedItem.isValid(_cachedTime)) {
-      return cachedItem.data;
-    } else {
-      throw "errer";
-    }
+  Future<void> setPrayerTimesData({required String key, required value}) async {
+    return await Hive.box(prayerTimesKey).put(key, value);
   }
 
   @override
-  Future<void> setMonthPrayerTimesCacheData(PrayerTime prayerTime) async {
-    _cachedData[cachedPrayerTimeKey] = CachedItem(prayerTime);
+  Map<int, Timings> getPrayerTimesDataMap() {
+    //print(Hive.box(prayerTimesKey).keys.first);
+    final data = Hive.box(prayerTimesKey).toMap();
+
+    Map<int, Timings> mappedData =
+        data.map((key, value) => MapEntry(int.parse(key), value));
+    // print(mappedData);
+    return mappedData;
   }
 
   @override
   Map<int, Timings> getMonthPrayerTimesLocalDataMap() {
-    return _appLocalData.getPrayerTimesDataMap();
+    return getPrayerTimesDataMap();
   }
 
   @override
-  Future<void> setMonthPrayerTimesLocalData(
-      {required dynamic prayerTimes, required String key}) async {
-    return _appLocalData.setPrayerTimesData(key: key, value: prayerTimes);
+  Future<void> setMonthPrayerTimesLocalData({
+    required dynamic prayerTimes,
+    required String key,
+  }) async {
+    return setPrayerTimesData(key: key, value: prayerTimes);
+  }
+
+  @override
+  List<String>? getLatAndLong() {
+    //final data = _sharedPreferences.getStringList(latLongKey);
+    return _sharedPreferences.getStringList(latLongKey);
+  }
+
+  @override
+  Future setLatAndLong({required double lat, required double long}) async {
+    return await _sharedPreferences.setStringList(
+      latLongKey,
+      [
+        lat.toString(),
+        long.toString(),
+      ],
+    );
+  }
+
+  @override
+  getAddress() {
+    final String? data = _sharedPreferences.getString(addressKey);
+    if (data != null) {
+      final map = jsonDecode(data);
+      return Placemark.fromMap(map);
+    } else {
+      return null;
+    }
+  }
+
+  @override
+  Future setAddress({required Map<String, dynamic> data}) async {
+    return await _sharedPreferences.setString(addressKey, jsonEncode(data));
+  }
+
+  @override
+  String? getCity() {
+    return _sharedPreferences.getString(cityKey);
+  }
+
+  @override
+  String? getCountry() {
+    return _sharedPreferences.getString(countryKey);
+  }
+
+  @override
+  Future setCity({required String data}) async {
+    return await _sharedPreferences.setString(cityKey, data);
+  }
+
+  @override
+  Future setCountry({required String data}) async {
+    return await _sharedPreferences.setString(countryKey, data);
+  }
+
+  @override
+  int? getPrayerTimesMethoed() {
+    return _sharedPreferences.getInt(methodesKey);
+  }
+
+  @override
+  Future setPrayerTimesMethoed({required int data}) async {
+    return await _sharedPreferences.setInt(methodesKey, data);
+  }
+
+  @override
+  getPrayerTimesDataGetterPeriod() {
+    return _sharedPreferences.getString(prayerTimeDataGetterPeriodKey);
+  }
+
+  @override
+  Future<bool> setPrayerTimesDataGetterPeriod(String val) async {
+    return await _sharedPreferences.setString(
+        prayerTimeDataGetterPeriodKey, val);
   }
 }

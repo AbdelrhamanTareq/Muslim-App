@@ -9,6 +9,7 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:muslim_app/core/errors/erros.dart';
 import 'package:muslim_app/core/utils/app_notifications.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
 
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 import 'package:muslim_app/features/prayer_time/data/repo/prayer_time_repo.dart';
@@ -25,6 +26,8 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
 
   final PrayerTimeRepo _prayerTimeRepo;
 
+  final _prayerTimeLocalDataInstance = instance<PrayerTimeLocalDate>();
+
   getPrayerTimeData(
       {required String city,
       required String country,
@@ -36,11 +39,15 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
       (error) {
         //print(error.errorMessage);
         if (city != "" && country != "") {
-          emit(state.copyWith(error: error.errorMessage, isLoading: false,failureAction: FaliureAction.navBack));
-        }
-        else {
-
-        emit(state.copyWith(error: error.errorMessage, isLoading: false,failureAction: FaliureAction.relaod));
+          emit(state.copyWith(
+              error: error.errorMessage,
+              isLoading: false,
+              failureAction: FaliureAction.navBack));
+        } else {
+          emit(state.copyWith(
+              error: error.errorMessage,
+              isLoading: false,
+              failureAction: FaliureAction.relaod));
         }
       },
       (data) {
@@ -120,8 +127,9 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
         final placemark = await getAddressFromLatLng(position);
         // print(position.latitude);
         // print(position.longitude);
-        instance<AppLocalData>()
-            .setLatAndLong(lat: position.latitude, long: position.longitude);
+
+        _prayerTimeLocalDataInstance.setLatAndLong(
+            lat: position.latitude, long: position.longitude);
         emit(state.copyWith(
             position: position,
             isLoadingGetLocation: false,
@@ -142,27 +150,27 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     List<Placemark> placemarks =
         await placemarkFromCoordinates(position.latitude, position.longitude);
     emit(state.copyWith(addres: placemarks[0]));
-    instance<AppLocalData>().setAddress(data: placemarks[0].toJson());
+    _prayerTimeLocalDataInstance.setAddress(data: placemarks[0].toJson());
     return placemarks[0];
   }
 
   getCity(String city) async {
-    // await instance<AppLocalData>().setCity(data: city);
+    // await _prayerTimeLocalDataInstance.setCity(data: city);
     emit(state.copyWith(city: city));
   }
 
   getCountry(String country) async {
-    // await instance<AppLocalData>().setCountry(data: country);
+    // await _prayerTimeLocalDataInstance.setCountry(data: country);
     emit(state.copyWith(country: country));
   }
 
   saveCityAndCountry({required String city, required String country}) async {
-    await instance<AppLocalData>().setCity(data: city);
-    await instance<AppLocalData>().setCountry(data: country);
+    await _prayerTimeLocalDataInstance.setCity(data: city);
+    await _prayerTimeLocalDataInstance.setCountry(data: country);
   }
 
   changePrayerTimesMethods(int method) async {
-    await instance<AppLocalData>().setPrayerTimesMethoed(data: method);
+    await _prayerTimeLocalDataInstance.setPrayerTimesMethoed(data: method);
     emit(state.copyWith(methods: method));
   }
 

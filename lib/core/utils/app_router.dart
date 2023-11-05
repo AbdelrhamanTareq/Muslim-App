@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
@@ -13,6 +12,7 @@ import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_view.dart';
 import 'package:muslim_app/features/home/presentation/views/home_view.dart';
+import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time_object.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/prayer_time/presentation/view/prayer_time_view.dart';
@@ -84,26 +84,26 @@ abstract class AppRoutes {
         );
       case Routes.prayerTimePath:
         final PrayerTimeObjcet? arg = settings.arguments as PrayerTimeObjcet?;
-        // instance<AppLocalData>().getAddress();
+        final prayerTimeLocalDataInstance = instance<PrayerTimeLocalDate>();
 
         return MaterialPageRoute(
           builder: (context) => BlocProvider<PrayerTimeCubit>(
             create: (context) => instance<PrayerTimeCubit>()
               ..prayerScheduleTimesNotifaction(
-                data: instance<AppLocalData>().getPrayerTimesDataMap(),
+                data: prayerTimeLocalDataInstance.getPrayerTimesDataMap(),
               ),
-            child: (instance<AppLocalData>().getLatAndLong() != null ||
-                    instance<AppLocalData>().getCity() != null)
+            child: (prayerTimeLocalDataInstance.getLatAndLong() != null ||
+                    prayerTimeLocalDataInstance.getCity() != null)
                 ? PrayerTimeView(
-                    address:
-                        arg?.address ?? instance<AppLocalData>().getAddress(),
+                    address: arg?.address ??
+                        prayerTimeLocalDataInstance.getAddress(),
                     lat: arg?.lat ??
-                        instance<AppLocalData>().getLatAndLong()?[0],
+                        prayerTimeLocalDataInstance.getLatAndLong()?[0],
                     long: arg?.long ??
-                        instance<AppLocalData>().getLatAndLong()?[1],
-                    city: arg?.city ?? instance<AppLocalData>().getCity(),
-                    country:
-                        arg?.country ?? instance<AppLocalData>().getCountry(),
+                        prayerTimeLocalDataInstance.getLatAndLong()?[1],
+                    city: arg?.city ?? prayerTimeLocalDataInstance.getCity(),
+                    country: arg?.country ??
+                        prayerTimeLocalDataInstance.getCountry(),
                   )
                 : const PrayerCountryPickerView(),
           ),

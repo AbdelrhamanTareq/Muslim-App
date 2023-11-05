@@ -41,7 +41,7 @@ Future<void> initGetIt() async {
 
   instance.registerLazySingleton<PrayerTimeLocalDate>(
     () => PrayerTimeLocalDateImpl(
-      instance(),
+      sharedPreferences,
     ),
   );
 

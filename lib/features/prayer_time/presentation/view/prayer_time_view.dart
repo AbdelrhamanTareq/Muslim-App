@@ -2,12 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/injection_container.dart';
 
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
+import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import 'package:muslim_app/features/prayer_time/presentation/view/widgets/prayer_time_header.dart';
 
@@ -44,13 +44,15 @@ class _PrayerTimeViewState extends State<PrayerTimeView> {
   }
 
   void _getPrayerTimes() {
-    final int method = instance<AppLocalData>().getPrayerTimesMethoed() ?? 4;
+    var prayerTimeLocalDateInstance = instance<PrayerTimeLocalDate>();
+    final int method = prayerTimeLocalDateInstance.getPrayerTimesMethoed() ?? 4;
+    var prayerTimeCubbitProvider = BlocProvider.of<PrayerTimeCubit>(context);
     if ((widget.lat != null && widget.long != null) ||
-        instance<AppLocalData>().getLatAndLong() != null) {
-      BlocProvider.of<PrayerTimeCubit>(context).getPrayerTimeDataByLocation(
+        prayerTimeLocalDateInstance.getLatAndLong() != null) {
+      prayerTimeCubbitProvider.getPrayerTimeDataByLocation(
           lat: widget.lat!, long: widget.long!, methods: method);
     } else if (widget.city != null && widget.country != null) {
-      BlocProvider.of<PrayerTimeCubit>(context).getPrayerTimeData(
+      prayerTimeCubbitProvider.getPrayerTimeData(
           city: widget.city!, country: widget.country!, methods: method);
     }
   }
