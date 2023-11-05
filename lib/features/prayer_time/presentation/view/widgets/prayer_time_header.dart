@@ -37,7 +37,7 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
       AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
       AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
       AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
-    ];
+    ] as List<DateTime>;
 
     return Container(
         width: double.infinity,

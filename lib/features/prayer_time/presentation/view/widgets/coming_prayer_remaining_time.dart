@@ -68,7 +68,7 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
       AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
       AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
       AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
-    ];
+    ] as List<DateTime>;
     return Column(
       children: [
         Text(

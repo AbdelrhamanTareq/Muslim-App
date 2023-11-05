@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
+import 'package:muslim_app/core/errors/erros.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 
@@ -62,7 +63,7 @@ class AppFunctions {
     return newDate;
   }
 
-  static DateTime toTimeOfDay({
+  static dynamic toTimeOfDay({
     List<DateTime>? prayerTimes,
     Timings? prayerTimesMap,
     String? stringDate,
@@ -77,8 +78,8 @@ class AppFunctions {
       final now = DateTime.now();
       return DateTime(
           now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
-    } else {
-      final stringTime = getPrayerTimeDate(prayerTimes!, prayerTimesMap!);
+    } else if (prayerTimes != null && prayerTimesMap != null) {
+      final stringTime = getPrayerTimeDate(prayerTimes, prayerTimesMap);
       final time = stringTime.split(" ")[0];
       List<String> timeSplit = time.split(":");
       int hour = int.parse(timeSplit.first);
@@ -93,6 +94,8 @@ class AppFunctions {
       }
       return DateTime(
           now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
+    } else {
+      throw ServerFailure("حدث خطأ في تحميل مواقيت الصلاة");
     }
   }
 
