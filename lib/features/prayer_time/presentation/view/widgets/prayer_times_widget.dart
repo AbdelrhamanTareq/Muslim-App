@@ -4,6 +4,7 @@ import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 import '../../../../../core/functions.dart';
 import '../../../data/models/prayer_time.dart';
@@ -121,8 +122,9 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
         : AppFunctions.showToast(AppStrings.disableSound);
   }
 
-  Color _getIconColor(index) =>
-      AppFunctions.getPrayerTimesSound()[index] ? context.blackLightColor : Colors.grey;
+  Color _getIconColor(index) => AppFunctions.getPrayerTimesSound()[index]
+      ? context.blackLightColor
+      : Colors.grey;
 
   _enableOrDisablePrayerTimesSound(int index, context) async {
     final List<bool> prayerTimesSoundsEnalbe =
@@ -133,7 +135,7 @@ class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
 
     await instance<AppLocalData>().setPrayerTimesSound(data: stringList);
     BlocProvider.of<PrayerTimeCubit>(context).prayerScheduleTimesNotifaction(
-        data: instance<AppLocalData>().getPrayerTimesDataMap());
+        data: instance<PrayerTimeLocalDate>().getPrayerTimesDataMap());
   }
 
   Divider _divider() => const Divider(height: 10);
