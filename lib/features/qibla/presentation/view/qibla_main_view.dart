@@ -39,44 +39,25 @@ class _QiblaMainViewState extends State<QiblaMainView> {
               turns: compassData?.data?.turns ?? 0 / 360,
               duration: const Duration(milliseconds: 400),
               child: SizedBox(
-                height: 300,
-                // height: MediaQuery.of(context).size.height * 0.7,
-                width: 300,
-                // width: MediaQuery.of(context).size.width * 0.7,
+                height: MediaQuery.of(context).size.height * 0.7,
+                width: MediaQuery.of(context).size.width * 0.7,
                 child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Positioned(
-                      right: 0,
-                      top: 0,
-                      left: 0,
-                      bottom: 0,
-                      child: Image.asset(
-                        AppAssets.compassPath,
-                        fit: BoxFit.fill,
-                      ),
+                    Image.asset(
+                      AppAssets.compassPath,
+                      fit: BoxFit.fill,
                     ),
 
                     AnimatedRotation(
                       turns: (compassData?.data?.qiblahOffset ?? 0) / 360,
                       duration: const Duration(milliseconds: 400),
                       child: Positioned(
-                        right: 0,
-                        top: 20,
-                        left: 0,
-                        bottom: 20,
                         child: Image.asset(
                           AppAssets.neddleKabah1Path,
                           fit: BoxFit.fitHeight,
+                          scale: 4,
                         ),
-
-                        // child: AnimatedRotation(
-                        //   turns: (compassData?.data?.qiblahOffset ?? 0) / 360,
-                        //   duration: const Duration(milliseconds: 400),
-                        //   child: Image.asset(
-                        //     AppAssets.neddleKabah1Path,
-                        //     fit: BoxFit.fitHeight,
-                        //   ),
-                        // ),
                       ),
                     ),
                     // child: AnimatedRotation(
