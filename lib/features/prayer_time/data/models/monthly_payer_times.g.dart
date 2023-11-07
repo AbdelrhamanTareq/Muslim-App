@@ -3,6 +3,74 @@
 part of 'monthly_payer_times.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class TimingsAdapter extends TypeAdapter<Timings> {
+  @override
+  final int typeId = 1;
+
+  @override
+  Timings read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return Timings(
+      fajr: fields[0] as String,
+      sunrise: fields[1] as String,
+      dhuhr: fields[2] as String,
+      asr: fields[3] as String,
+      sunset: fields[4] as String,
+      maghrib: fields[5] as String,
+      isha: fields[6] as String,
+      imsak: fields[7] as String,
+      midnight: fields[8] as String,
+      firstthird: fields[9] as String,
+      lastthird: fields[10] as String,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, Timings obj) {
+    writer
+      ..writeByte(11)
+      ..writeByte(0)
+      ..write(obj.fajr)
+      ..writeByte(1)
+      ..write(obj.sunrise)
+      ..writeByte(2)
+      ..write(obj.dhuhr)
+      ..writeByte(3)
+      ..write(obj.asr)
+      ..writeByte(4)
+      ..write(obj.sunset)
+      ..writeByte(5)
+      ..write(obj.maghrib)
+      ..writeByte(6)
+      ..write(obj.isha)
+      ..writeByte(7)
+      ..write(obj.imsak)
+      ..writeByte(8)
+      ..write(obj.midnight)
+      ..writeByte(9)
+      ..write(obj.firstthird)
+      ..writeByte(10)
+      ..write(obj.lastthird);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is TimingsAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
@@ -41,31 +109,31 @@ Map<String, dynamic> _$DataToJson(Data instance) => <String, dynamic>{
     };
 
 Timings _$TimingsFromJson(Map<String, dynamic> json) => Timings(
-      fajr: json['fajr'] as String?,
-      sunrise: json['sunrise'] as String?,
-      dhuhr: json['dhuhr'] as String?,
-      asr: json['asr'] as String?,
-      sunset: json['sunset'] as String?,
-      maghrib: json['maghrib'] as String?,
-      isha: json['isha'] as String?,
-      imsak: json['imsak'] as String?,
-      midnight: json['midnight'] as String?,
-      firstthird: json['firstthird'] as String?,
-      lastthird: json['lastthird'] as String?,
+      fajr: json['Fajr'] as String,
+      sunrise: json['Sunrise'] as String,
+      dhuhr: json['Dhuhr'] as String,
+      asr: json['Asr'] as String,
+      sunset: json['Sunset'] as String,
+      maghrib: json['Maghrib'] as String,
+      isha: json['Isha'] as String,
+      imsak: json['Imsak'] as String,
+      midnight: json['Midnight'] as String,
+      firstthird: json['Firstthird'] as String,
+      lastthird: json['Lastthird'] as String,
     );
 
 Map<String, dynamic> _$TimingsToJson(Timings instance) => <String, dynamic>{
-      'fajr': instance.fajr,
-      'sunrise': instance.sunrise,
-      'dhuhr': instance.dhuhr,
-      'asr': instance.asr,
-      'sunset': instance.sunset,
-      'maghrib': instance.maghrib,
-      'isha': instance.isha,
-      'imsak': instance.imsak,
-      'midnight': instance.midnight,
-      'firstthird': instance.firstthird,
-      'lastthird': instance.lastthird,
+      'Fajr': instance.fajr,
+      'Sunrise': instance.sunrise,
+      'Dhuhr': instance.dhuhr,
+      'Asr': instance.asr,
+      'Sunset': instance.sunset,
+      'Maghrib': instance.maghrib,
+      'Isha': instance.isha,
+      'Imsak': instance.imsak,
+      'Midnight': instance.midnight,
+      'Firstthird': instance.firstthird,
+      'Lastthird': instance.lastthird,
     };
 
 Date _$DateFromJson(Map<String, dynamic> json) => Date(
