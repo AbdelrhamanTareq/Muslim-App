@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:muslim_app/core/functions.dart';
+import 'package:muslim_app/core/injection_container.dart';
 
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/prayer_time/data/local_data/prayer_time_local_data.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time_object.dart';
 import 'package:muslim_app/features/prayer_time/presentation/logic/cubit/prayer_time_cubit.dart';
 
@@ -240,8 +242,10 @@ class _RadioGroupState extends State<RadioGroup> {
           groupValue: _radioChoice,
           // toggleable: true,
           onChanged: (val) {
+            instance<PrayerTimeLocalDate>()
+                .setPrayerTimesDataGetterPeriod(val!.name);
             setState(() {
-              _radioChoice = val!;
+              _radioChoice = val;
             });
           }),
     );
