@@ -28,10 +28,11 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
 
   final _prayerTimeLocalDataInstance = instance<PrayerTimeLocalDate>();
 
-  getPrayerTimeData(
-      {required String city,
-      required String country,
-      required int methods}) async {
+  getPrayerTimeData({
+    required String city,
+    required String country,
+    required int methods,
+  }) async {
     emit(state.copyWith(isLoading: true));
     final dataOrError = await _prayerTimeRepo.getPrayerTimeData(
         city: city, country: country, methods: methods);
@@ -155,12 +156,10 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   }
 
   getCity(String city) async {
-    // await _prayerTimeLocalDataInstance.setCity(data: city);
     emit(state.copyWith(city: city));
   }
 
   getCountry(String country) async {
-    // await _prayerTimeLocalDataInstance.setCountry(data: country);
     emit(state.copyWith(country: country));
   }
 
@@ -178,7 +177,6 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     if (data == null || data == {} || data.isEmpty) {
       return;
     }
-    // final now = DateTime.now();
     int finalDate = AppFunctions.convertDateToTimeStampInInt();
 
     final prayerTimesSoundsEnable =
@@ -189,11 +187,6 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
       AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.asr),
       AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.maghrib),
       AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.isha),
-      // DateTime(now.year, now.month, now.day, 12, 30, 00),
-      // DateTime(now.year, now.month, now.day, 12, 31, 00),
-      // DateTime(now.year, now.month, now.day, 12, 32, 00),
-      // DateTime(now.year, now.month, now.day, 12, 33, 00),
-      // DateTime(now.year, now.month, now.day, 12, 34, 00),
     ];
     for (var i = 0; i < prayerTimesList.length; i++) {
       AppNotification().showScheduleNotification(
@@ -206,26 +199,6 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
       );
     }
   }
-  // void prayerTimesNotifaction1() {
-  //   final now = DateTime.now();
-  //   // int finalDate = convertDateToTimeStampInInt();
-  //   // AppNotification().showScheduleNotification(title: "yyyyyyyyyy",body: "fghfghgfhfghfgh");
-  //   final timesList = [
-  //     DateTime(now.year, now.month, now.day, 11, 15, 00),
-  //     DateTime(now.year, now.month, now.day, 11, 20, 00),
-  //     DateTime(now.year, now.month, now.day, 11, 25, 00),
-  //     DateTime(now.year, now.month, now.day, 11, 30, 00),
-  //     DateTime(now.year, now.month, now.day, 11, 35, 00),
-  //   ];
-  //   for (var i = 0; i < timesList.length; i++) {
-  //     AppNotification().showScheduleNotification(
-  //         id: i,
-  //         hour: timesList[i].hour,
-  //         minutes: timesList[i].minute,
-  //         title: _getTitle(i),
-  //         body: _getBody(i));
-  //   }
-  // }
 
   String _getTitle(int i) {
     switch (i) {
@@ -259,72 +232,5 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
       default:
         return "حان الان موعد صلاة الفجر";
     }
-  }
-
-  void prayerTimesNotifaction({Map<int, Timings>? data}) {
-    // Timer timer;
-    // var finalDate = convertDateToTimeStampInInt();
-    // final prayerTimesList = [
-    //   toTimeOfDay(stringDate: data[finalDate]!.fajr),
-    //   toTimeOfDay(stringDate: data[finalDate]!.dhuhr),
-    //   toTimeOfDay(stringDate: data[finalDate]!.asr),
-    //   toTimeOfDay(stringDate: data[finalDate]!.maghrib),
-    //   toTimeOfDay(stringDate: data[finalDate]!.isha),
-    // ];
-    //final now = DateTime.now();
-    // final AppNotification appNotification = AppNotification();
-
-    // print(prayerTimes[0].hour);
-    // print(prayerTimes[1].hour);
-    // print(prayerTimes[2].hour);
-    // print(prayerTimes[3].hour);
-    // print(prayerTimes[4].hour);
-
-    //   if (now == (prayerTimesList[1])) {
-    //     appNotification.showNotification(
-    //         title: "اذان الظهر", body: "حان الان موعد اذان الظهر");
-    //   } else if (now == (prayerTimesList[2])) {
-    //     appNotification.showNotification(
-    //         title: "اذان العصر", body: "حان الان موعد اذان العصر");
-    //   } else if (now == (prayerTimesList[3])) {
-    //     appNotification.showNotification(
-    //         title: "اذان المغرب", body: "حان الان موعد اذان المغرب");
-    //   } else if (now == (prayerTimesList[4])) {
-    //     appNotification.showNotification(
-    //         title: "اذان العشاء", body: "حان الان موعد اذان العشاء");
-    //   } else if (now == (prayerTimesList[0])) {
-    //     appNotification.showNotification(
-    //         title: "اذان الفجر", body: "حان الان موعد اذان الفجر");
-    //   }
-    //   timer = Timer.periodic(Duration(hours: 1), (timer) {
-    //     print("xxxxxxxxxx");
-
-    //     // AppNotification().showNotification(title: "اذان الظهر", body: "حان الان موعد اذان الظهر");
-    //     if (now.hour == DateTime(now.year, now.month, now.day, 13, 0, 0).hour) {
-    //       AppNotification().showNotification(
-    //           title: "اذان الظهر", body: "حان الان موعد اذان الظهر");
-    //       print("22");
-    //     } else if (now.hour ==
-    //         DateTime(now.year, now.month, now.day, 16, 30, 0).hour) {
-    //       AppNotification().showNotification(
-    //           title: "اذان العصر", body: "حان الان موعد اذان العصر");
-    //       print("33");
-    //     } else if (now.hour ==
-    //         DateTime(now.year, now.month, now.day, 20, 0, 0).hour) {
-    //       AppNotification().showNotification(
-    //           title: "اذان المغرب", body: "حان الان موعد اذان المغرب");
-    //       print("44");
-    //     } else if (now.hour ==
-    //         DateTime(now.year, now.month, now.day, 21, 30, 0).hour) {
-    //       AppNotification().showNotification(
-    //           title: "اذان العشاء", body: "حان الان موعد اذان العشاء");
-    //       print("55");
-    //     } else if (now.hour ==
-    //         DateTime(now.year, now.month, now.day, 4, 30, 0).hour) {
-    //       AppNotification().showNotification(
-    //           title: "اذان الفجر", body: "حان الان موعد اذان الفجر");
-    //       print("11");
-    //     }
-    //   });
   }
 }
