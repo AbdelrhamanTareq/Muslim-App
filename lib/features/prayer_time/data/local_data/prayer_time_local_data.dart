@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:geocoding/geocoding.dart';
 import 'package:hive/hive.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
+import 'package:muslim_app/features/prayer_time/presentation/view/widgets/prayer_country_picker_view.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../core/constant/app_constatnt.dart';
@@ -33,7 +34,7 @@ abstract class PrayerTimeLocalDate {
   int? getPrayerTimesMethoed();
 
   Future<bool> setPrayerTimesDataGetterPeriod(String val);
-  String? getPrayerTimesDataGetterPeriod();
+  String getPrayerTimesDataGetterPeriod();
 }
 
 class PrayerTimeLocalDateImpl extends PrayerTimeLocalDate {
@@ -147,7 +148,8 @@ class PrayerTimeLocalDateImpl extends PrayerTimeLocalDate {
 
   @override
   getPrayerTimesDataGetterPeriod() {
-    return _sharedPreferences.getString(prayerTimeDataGetterPeriodKey);
+    return _sharedPreferences.getString(prayerTimeDataGetterPeriodKey) ??
+        RadioChoice.monthly.name;
   }
 
   @override
