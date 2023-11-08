@@ -97,9 +97,9 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
           // TODO
           Text(
             "${position?.country ?? country},${position?.administrativeArea ?? city}",
-            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                  color: AppColors.white,
-                ),
+            style: context.bodyMedium!.copyWith(
+              color: AppColors.white,
+            ),
           ),
         ],
       ),

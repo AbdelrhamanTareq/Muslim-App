@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:muslim_app/core/functions.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../../../../../core/utils/app_strings.dart';
@@ -22,7 +23,7 @@ class AllSurhsList extends StatelessWidget {
       itemScrollController: scrollController,
       itemCount: data.length,
       itemBuilder: (context, index) {
-        var bodyMedium2 = Theme.of(context).textTheme.bodyMedium!
+        var bodyMedium2 = context.bodyMedium!
             // .copyWith(color: AppColors.black)
             ;
         var listData = data[index];
@@ -33,7 +34,8 @@ class AllSurhsList extends StatelessWidget {
           //     : AppColors.quranBackgroundAppBar,
           child: InkWell(
             onTap: () {
-              AppFunctions.navToOtherSurhaWithoutReplace(context, index: index, data: data);
+              AppFunctions.navToOtherSurhaWithoutReplace(context,
+                  index: index, data: data);
             },
             child: ListTile(
               leading: Text(

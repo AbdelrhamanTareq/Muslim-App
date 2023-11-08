@@ -214,17 +214,6 @@ class _RadioGroupState extends State<RadioGroup> {
           title: AppStrings.yearly,
           val: _yearly,
         ),
-        // SizedBox(
-        //   width: MediaQuery.of(context).size.width * 0.4,
-        //   child: RadioListTile<RadioChoice>.adaptive(
-        //       title: const Text(AppStrings.yearly),
-        //       value: _yearly,
-        //       groupValue: _radioChoice,
-        //       toggleable: true,
-        //       onChanged: (val) {
-        //         print("object1");
-        //       }),
-        // ),
       ],
     );
   }
@@ -240,7 +229,6 @@ class _RadioGroupState extends State<RadioGroup> {
           title: Text(title),
           value: val,
           groupValue: _radioChoice,
-          // toggleable: true,
           onChanged: (val) {
             instance<PrayerTimeLocalDate>()
                 .setPrayerTimesDataGetterPeriod(val!.name);

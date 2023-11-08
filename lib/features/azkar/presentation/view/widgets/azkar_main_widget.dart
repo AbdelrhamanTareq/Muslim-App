@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/features/azkar/data/models/azkar.dart';
 
 import '../../../../../core/themes/app_colors.dart';
@@ -48,7 +49,7 @@ class AzkarMainWidget extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Text(
                   data[index].category,
-                  style: Theme.of(context).textTheme.headlineMedium,
+                  style: context.headlineMedium,
                 ),
               ),
             ),

@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:muslim_app/core/utils/app_extensions.dart';
+import 'package:muslim_app/core/widgets/text_widget.dart';
 
 import '../../../../../core/functions.dart';
 import '../../../../../core/themes/app_colors.dart';
@@ -71,29 +73,50 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
     ] as List<DateTime>;
     return Column(
       children: [
-        Text(
-          AppStrings.remaining,
-          style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                fontWeight: FontWeight.w700,
-                color: AppColors.white,
-              ),
+        // _buildText(context),
+        TextWidget(
+          text: AppStrings.remaining,
+          style: _textStyle(),
         ),
         const SizedBox(
           height: 8,
         ),
-        Text(
-          AppFunctions.formatDuration(
+        TextWidget(
+          text: AppFunctions.formatDuration(
             AppFunctions.toTimeOfDay(
                     prayerTimes: prayerTimesList,
                     prayerTimesMap: prayerTimes[finalDate]!)
                 .difference(DateTime.now()),
           ),
-          style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                fontWeight: FontWeight.w700,
-                color: AppColors.white,
-              ),
-        ),
+          style: _textStyle(),
+        )
+        // Text(
+        //   AppFunctions.formatDuration(
+        //     AppFunctions.toTimeOfDay(
+        //             prayerTimes: prayerTimesList,
+        //             prayerTimesMap: prayerTimes[finalDate]!)
+        //         .difference(DateTime.now()),
+        //   ),
+        //   style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+        //         fontWeight: FontWeight.w700,
+        //         color: AppColors.white,
+        //       ),
+        // ),
       ],
     );
   }
+
+  TextStyle _textStyle() => context.headlineMedium!.copyWith(
+        fontWeight: FontWeight.w700,
+        color: AppColors.white,
+      );
+  // Text _buildText(BuildContext context) {
+  //   return Text(
+  //     AppStrings.remaining,
+  //     style: context.headlineMedium!.copyWith(
+  //       fontWeight: FontWeight.w700,
+  //       color: AppColors.white,
+  //     ),
+  //   );
+  // }
 }
