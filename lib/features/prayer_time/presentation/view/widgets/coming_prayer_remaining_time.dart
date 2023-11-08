@@ -63,14 +63,22 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
   Widget build(BuildContext context) {
     Map<int, Timings> prayerTimes = widget.state;
     int finalDate = AppFunctions.convertDateToTimeStampInInt();
+    Timings? timings = prayerTimes[finalDate];
 
-    final prayerTimesList = [
-      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
-      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
-      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
-      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
-      AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
-    ] as List<DateTime>;
+    // final prayerTimesList = [
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
+    // ] as List<DateTime>;
+    final prayerTimesList = AppFunctions.prayerTimesList(
+      fajr: timings?.fajr,
+      dhuhr: timings?.dhuhr,
+      asr: timings?.asr,
+      maghrib: timings?.maghrib,
+      isha: timings?.isha,
+    );
     return Column(
       children: [
         // _buildText(context),

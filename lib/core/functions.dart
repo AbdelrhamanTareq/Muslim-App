@@ -63,6 +63,24 @@ class AppFunctions {
     return newDate;
   }
 
+  // TODO TEST IT URGENT>>>>>
+
+  static List<DateTime> prayerTimesList({
+    required String? fajr,
+    required String? dhuhr,
+    required String? asr,
+    required String? maghrib,
+    required String? isha,
+  }) {
+    return [
+      toTimeOfDay(stringDate: fajr),
+      toTimeOfDay(stringDate: dhuhr),
+      toTimeOfDay(stringDate: asr),
+      toTimeOfDay(stringDate: maghrib),
+      toTimeOfDay(stringDate: isha),
+    ];
+  }
+
   static dynamic toTimeOfDay({
     List<DateTime>? prayerTimes,
     Timings? prayerTimesMap,
