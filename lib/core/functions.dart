@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
-import 'package:muslim_app/core/errors/erros.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
 
@@ -17,11 +16,11 @@ import 'utils/app_strings.dart';
 class AppFunctions {
   AppFunctions._();
 
-  static const String fajr = "الفجر";
-  static const String dhuhr = "الظهر";
-  static const String asr = "العصر";
-  static const String maghrib = "المغرب";
-  static const String isha = "العشاء";
+  static const String _fajr = "الفجر";
+  static const String _dhuhr = "الظهر";
+  static const String _asr = "العصر";
+  static const String _maghrib = "المغرب";
+  static const String _isha = "العشاء";
 
   // indication functions
 
@@ -112,9 +111,14 @@ class AppFunctions {
       }
       return DateTime(
           now.year, now.month, now.day, timeOfDay.hour, timeOfDay.minute);
-    } else {
-      throw ServerFailure("حدث خطأ في تحميل مواقيت الصلاة");
     }
+    // else {
+    //   // throw ServerFailure("حدث خطأ في تحميل مواقيت الصلاة");
+    // }
+  }
+
+  static String todayFormatter() {
+    return DateFormat("dd-MM-yyyy").format(DateTime.now());
   }
 
   static String formatDuration(Duration duration) {
@@ -141,15 +145,15 @@ class AppFunctions {
     final now = DateTime.now();
 
     if (now.isAfter(prayerTimes[0]) && now.isBefore(prayerTimes[1])) {
-      return dhuhr;
+      return _dhuhr;
     } else if (now.isAfter(prayerTimes[1]) && now.isBefore(prayerTimes[2])) {
-      return asr;
+      return _asr;
     } else if (now.isAfter(prayerTimes[2]) && now.isBefore(prayerTimes[3])) {
-      return maghrib;
+      return _maghrib;
     } else if (now.isAfter(prayerTimes[3]) && now.isBefore(prayerTimes[4])) {
-      return isha;
+      return _isha;
     } else {
-      return fajr;
+      return _fajr;
     }
   }
 
@@ -157,16 +161,16 @@ class AppFunctions {
       List<DateTime> prayerTimes, Timings prayerTimesMap) {
     final name = getPrayerName(prayerTimes);
     switch (name) {
-      case fajr:
+      case _fajr:
         return prayerTimesMap.fajr;
-      case dhuhr:
+      case _dhuhr:
         return prayerTimesMap.dhuhr;
 
-      case asr:
+      case _asr:
         return prayerTimesMap.asr;
-      case maghrib:
+      case _maghrib:
         return prayerTimesMap.maghrib;
-      case isha:
+      case _isha:
         return prayerTimesMap.isha;
       default:
         return prayerTimesMap.isha;
