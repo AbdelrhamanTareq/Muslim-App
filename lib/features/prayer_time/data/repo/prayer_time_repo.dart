@@ -96,7 +96,10 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
                   methods,
                 );
           final mappedData = data.data;
-          Map<String, Timings> prayerTimesMap = _mapPrayerTimesData(mappedData);
+          Map<String, Timings> prayerTimesMap =
+              (_choosePrayerTimesGetterPeriodMethod() == _yearly)
+                  ? _mapPrayerTimesData(mappedData)
+                  : _mapPrayerTimesDataFromList(mappedData);
 
           return Right(prayerTimesMap);
         } catch (e) {
@@ -139,6 +142,22 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
   //   return prayerTimesMap;
   // }
 
+  Map<String, Timings> _mapPrayerTimesDataFromList(List<Data> dataList) {
+    Map<String, Timings> prayerTimesMap = {};
+    for (var element in dataList) {
+      // for (var listElement in element) {
+      _prayerTimeLocalDate.setMonthPrayerTimesLocalData(
+        // key: element.date[element].timestamp, prayerTimes: element.timings);
+        key: element.date.gregorian.date,
+        prayerTimes: element.timings,
+      );
+
+      prayerTimesMap.addAll({element.date.gregorian.date: element.timings});
+      // }
+    }
+    return prayerTimesMap;
+  }
+
   Map<String, Timings> _mapPrayerTimesData(Map<String, List<Data>> mappedData) {
     Map<String, Timings> prayerTimesMap = {};
     for (var element in mappedData.values) {
@@ -149,7 +168,7 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
           prayerTimes: listElement.timings,
         );
 
-        prayerTimesMap.addAll({listElement.date.readable: listElement.timings});
+        prayerTimesMap.addAll({listElement.date.gregorian.date: listElement.timings});
       }
     }
     return prayerTimesMap;
