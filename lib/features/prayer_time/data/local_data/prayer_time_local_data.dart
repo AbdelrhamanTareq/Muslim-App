@@ -15,11 +15,12 @@ abstract class PrayerTimeLocalDate {
     required String key,
     required dynamic value,
   });
-  Map<int, Timings> getPrayerTimesDataMap();
+  Map<String, Timings> getPrayerTimesDataMap();
 
   Future<void> setMonthPrayerTimesLocalData(
       {required dynamic prayerTimes, required String key});
-  Map<int, Timings> getMonthPrayerTimesLocalDataMap();
+  Map<String, Timings> getMonthPrayerTimesLocalDataMap();
+  Map<String, Timings> getMonthPrayerTimesLocalDataMap2();
 
   Future setLatAndLong({required double lat, required double long});
   List<String>? getLatAndLong();
@@ -60,18 +61,31 @@ class PrayerTimeLocalDateImpl extends PrayerTimeLocalDate {
   }
 
   @override
-  Map<int, Timings> getPrayerTimesDataMap() {
+  Map<String, Timings> getPrayerTimesDataMap() {
     //print(Hive.box(prayerTimesKey).keys.first);
     final data = Hive.box(prayerTimesKey).toMap();
 
-    Map<int, Timings> mappedData =
-        data.map((key, value) => MapEntry(int.parse(key), value));
+    // Map<int, Timings> mappedData =
+    //     data.map((key, value) => MapEntry(int.parse(key), value));
+    Map<String, Timings> mappedData =
+        data.map((key, value) => MapEntry(key, value));
+    // print(mappedData);
+    // return mappedData;
+    return mappedData;
+  }
+
+  @override
+  Map<String, Timings> getMonthPrayerTimesLocalDataMap2() {
+    final data = Hive.box(prayerTimesKey).toMap();
+
+    Map<String, Timings> mappedData =
+        data.map((key, value) => MapEntry(key, value));
     // print(mappedData);
     return mappedData;
   }
 
   @override
-  Map<int, Timings> getMonthPrayerTimesLocalDataMap() {
+  Map<String, Timings> getMonthPrayerTimesLocalDataMap() {
     return getPrayerTimesDataMap();
   }
 

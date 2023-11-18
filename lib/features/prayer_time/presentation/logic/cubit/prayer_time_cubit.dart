@@ -52,7 +52,7 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
         }
       },
       (data) {
-        prayerScheduleTimesNotifaction(data: data);
+        // prayerScheduleTimesNotifaction(data: data);
         emit(
           state.copyWith(data: data, isLoading: false),
         );
@@ -173,12 +173,13 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     emit(state.copyWith(methods: method));
   }
 
-  void prayerScheduleTimesNotifaction({required Map<int, Timings>? data}) {
+  void prayerScheduleTimesNotifaction({required Map<String, Timings>? data}) {
     if (data == null || data == {} || data.isEmpty) {
       return;
     }
-    int finalDate = AppFunctions.convertDateToTimeStampInInt();
-    Timings? timings = data[finalDate];
+    String todayDate = AppFunctions.todayFormatter();
+    Timings? timings = data[todayDate];
+    ;
 
     final prayerTimesSoundsEnable =
         instance<AppLocalData>().getPrayerTimesSound();
@@ -190,11 +191,11 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
     //   // AppFunctions.toTimeOfDay(stringDate: data[finalDate]?.isha),
     // ];
     final prayerTimesList = AppFunctions.prayerTimesList(
-      fajr: timings?.fajr,
-      dhuhr: timings?.dhuhr,
-      asr: timings?.asr,
-      maghrib: timings?.maghrib,
-      isha: timings?.isha,
+      fajr: timings!.fajr,
+      dhuhr: timings.dhuhr,
+      asr: timings.asr,
+      maghrib: timings.maghrib,
+      isha: timings.isha,
     );
     for (var i = 0; i < prayerTimesList.length; i++) {
       AppNotification().showScheduleNotification(

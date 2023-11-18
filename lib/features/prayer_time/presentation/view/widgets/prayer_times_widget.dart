@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:muslim_app/core/data/app_local_data.dart';
 import 'package:muslim_app/core/injection_container.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
@@ -16,7 +17,8 @@ class PrayerTimesWidget extends StatefulWidget {
   });
 
   // final GetPrayerTimeDataSuccess state;
-  final Map<int, Timings> state;
+  final Map<String, Timings> state;
+  // final Map<int, Timings> state;
 
   @override
   State<PrayerTimesWidget> createState() => _PrayerTimesWidgetState();
@@ -25,10 +27,12 @@ class PrayerTimesWidget extends StatefulWidget {
 class _PrayerTimesWidgetState extends State<PrayerTimesWidget> {
   @override
   Widget build(BuildContext context) {
-    var finalDate = AppFunctions.convertDateToTimeStampInInt();
+    // var finalDate = AppFunctions.convertDateToTimeStampInInt();
+    var finalDate = DateFormat("dd-MM-yyyy").format(DateTime.now());
 
     // Map<int, Timings> prayerTimes = state.data;
-    Map<int, Timings> prayerTimes = widget.state;
+    Map<String, Timings> prayerTimes = widget.state;
+    // Map<int, Timings> prayerTimes = widget.state;
     return Container(
       width: double.infinity,
       height: MediaQuery.of(context).size.height * 0.67,

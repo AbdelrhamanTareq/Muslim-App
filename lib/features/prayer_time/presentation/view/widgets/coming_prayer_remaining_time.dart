@@ -15,7 +15,7 @@ class ComingPrayerRemainingTime extends StatefulWidget {
     required this.state,
   }) : super(key: key);
   // final GetPrayerTimeDataSuccess state;
-  final Map<int, Timings> state;
+  final Map<String, Timings> state;
 
   @override
   State<ComingPrayerRemainingTime> createState() =>
@@ -61,8 +61,8 @@ class _ComingPrayerRemainingTimeState extends State<ComingPrayerRemainingTime> {
 
   @override
   Widget build(BuildContext context) {
-    Map<int, Timings> prayerTimes = widget.state;
-    int finalDate = AppFunctions.convertDateToTimeStampInInt();
+    Map<String, Timings> prayerTimes = widget.state;
+    String finalDate = AppFunctions.todayFormatter();
     Timings? timings = prayerTimes[finalDate];
 
     // final prayerTimesList = [

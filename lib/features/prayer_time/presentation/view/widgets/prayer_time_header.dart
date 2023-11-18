@@ -19,25 +19,27 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
     this.city,
     this.country,
   });
-  // final GetPrayerTimeDataSuccess state;
-  final Map<int, Timings> state;
+  // final Map<int, Timings> state;
+  final Map<String, Timings> state;
   final Placemark? position;
   final String? city;
   final String? country;
 
   @override
   Widget build(BuildContext context) {
-    Map<int, Timings> prayerTimes = state;
+    Map<String, Timings> prayerTimes = state;
+    // Map<int, Timings> prayerTimes = state;
     // Map<int, Timings> prayerTimes = state.data;
-    int finalDate = AppFunctions.convertDateToTimeStampInInt();
-    Timings? timings = prayerTimes[finalDate];
+    // int finalDate = AppFunctions.convertDateToTimeStampInInt();
+    String todayDate = AppFunctions.todayFormatter();
+    Timings? timings = prayerTimes[todayDate];
 
     // final prayerTimesList = [
-    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.fajr),
-    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.dhuhr),
-    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.asr),
-    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.maghrib),
-    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[finalDate]!.isha),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[todayDate]!.fajr),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[todayDate]!.dhuhr),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[todayDate]!.asr),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[todayDate]!.maghrib),
+    //   AppFunctions.toTimeOfDay(stringDate: prayerTimes[todayDate]!.isha),
     // ] as List<DateTime>;
     final prayerTimesList = AppFunctions.prayerTimesList(
       fajr: timings?.fajr,
@@ -61,9 +63,9 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
             ),
             fit: BoxFit.fill,
             image: (DateTime.now().isAfter(AppFunctions.toTimeOfDay(
-                        stringDate: state[finalDate]!.sunrise)) &&
+                        stringDate: state[todayDate]!.sunrise)) &&
                     DateTime.now().isBefore(AppFunctions.toTimeOfDay(
-                        stringDate: state[finalDate]!.sunset)))
+                        stringDate: state[todayDate]!.sunset)))
                 ? const AssetImage(AppAssets.dayImagePath)
                 : const AssetImage(AppAssets.nightImagePath),
           ),
@@ -78,8 +80,7 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildComingPrayerName(prayerTimesList, context),
-                _buildComingPrayerTime(
-                    prayerTimesList, prayerTimes, finalDate, context),
+                _buildComingPrayerTime(prayerTimesList, prayerTimes, context),
                 const SizedBox(
                   height: 8,
                 ),
@@ -115,9 +116,10 @@ class PrayerTimeHeaderWidget extends StatelessWidget {
   }
 
   Text _buildComingPrayerTime(List<DateTime> prayerTimesList,
-      Map<int, Timings> prayerTimes, int finalDate, BuildContext context) {
+      Map<String, Timings> prayerTimes, BuildContext context) {
     return Text(
-      AppFunctions.getPrayerTimeDate(prayerTimesList, prayerTimes[finalDate]!)
+      AppFunctions.getPrayerTimeDate(
+              prayerTimesList, prayerTimes[AppFunctions.todayFormatter()]!)
           .split(" ")[0],
       style: context.headlineLarge!.copyWith(
         fontWeight: FontWeight.w700,

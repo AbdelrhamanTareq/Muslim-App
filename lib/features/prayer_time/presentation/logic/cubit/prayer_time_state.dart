@@ -10,7 +10,8 @@ class PrayerTimeState extends Equatable {
   final String error;
   final bool isLoading;
   final Position? position;
-  final Map<int, Timings> data;
+  // final Map<int, Timings> data;
+  final Map<String, Timings> data;
   final bool isLoadingGetLocation;
   final Placemark? addres;
   final String? country;
@@ -47,7 +48,8 @@ class PrayerTimeState extends Equatable {
     String? error,
     bool? isLoading,
     Position? position,
-    Map<int, Timings>? data,
+    // Map<int, Timings>? data,
+    Map<String, Timings>? data,
     bool? isLoadingGetLocation,
     Placemark? addres,
     String? country,
