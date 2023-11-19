@@ -27,8 +27,12 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
 
   PrayerTimeRepoImpl(this._appServiceClient, this._prayerTimeLocalDate);
 
-  String _todayDate = AppFunctions.todayFormatter();
+  final String _todayDate = AppFunctions.todayFormatter();
   final String _yearly = RadioChoice.yearly.name;
+
+  final int _year = DateTime.now().year;
+  final int _month = DateTime.now().month;
+
   // final String _monthly = RadioChoice.monthly.name;
   @override
   Future<Either<Faliure, Map<String, Timings>>> getPrayerTimeData({
@@ -36,7 +40,6 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
     required String country,
     required int methods,
   }) async {
-    final int year = DateTime.now().year;
     try {
       // int newIntDate = _getNewIntDate();
 
@@ -45,14 +48,23 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
         return Right(data);
       } else {
         try {
-          final data = await _appServiceClient.getPrayerTimeData(
-            year,
-            city,
-            country,
-            methods,
-          );
+          final String _prayerTimesGetterPeriodMethod =
+              _choosePrayerTimesGetterPeriodMethod();
+          var data;
+          data(_prayerTimesGetterPeriodMethod == _yearly)
+              ? await _appServiceClient.getPrayerTimeData(
+                  _year,
+                  city,
+                  country,
+                  methods,
+                )
+              : _appServiceClient.getMontlyPrayerTimeData(
+                  _year, _month, city, country, methods);
           final mappedData = data.data;
-          Map<String, Timings> prayerTimesMap = _mapPrayerTimesData(mappedData);
+          Map<String, Timings> prayerTimesMap =
+              (_prayerTimesGetterPeriodMethod == _yearly)
+                  ? _mapPrayerTimesData(mappedData)
+                  : _mapPrayerTimesDataFromList(mappedData);
 
           return Right(prayerTimesMap);
         } catch (e) {
@@ -71,33 +83,32 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
   @override
   Future<Either<Faliure, Map<String, Timings>>> getPrayerTimeDataByLatLong(
       {required String lat, required String long, required int methods}) async {
-    final int year = DateTime.now().year;
-    final int month = DateTime.now().month;
-
     try {
       final data = _prayerTimeLocalDate.getMonthPrayerTimesLocalDataMap();
       if (data[_todayDate] != null) {
         return Right(data);
       } else {
         try {
+          final String _prayerTimesGetterPeriodMethod =
+              _choosePrayerTimesGetterPeriodMethod();
           var data;
-          data = (_choosePrayerTimesGetterPeriodMethod() == _yearly)
+          data = (_prayerTimesGetterPeriodMethod == _yearly)
               ? await _appServiceClient.getPrayerTimeDataByLatLong(
-                  year,
+                  _year,
                   lat,
                   long,
                   methods,
                 )
               : await _appServiceClient.getMonthlyPrayerTimeDataByLatLong(
-                  year,
-                  month,
+                  _year,
+                  _month,
                   lat,
                   long,
                   methods,
                 );
           final mappedData = data.data;
           Map<String, Timings> prayerTimesMap =
-              (_choosePrayerTimesGetterPeriodMethod() == _yearly)
+              (_prayerTimesGetterPeriodMethod == _yearly)
                   ? _mapPrayerTimesData(mappedData)
                   : _mapPrayerTimesDataFromList(mappedData);
 
@@ -168,7 +179,8 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
           prayerTimes: listElement.timings,
         );
 
-        prayerTimesMap.addAll({listElement.date.gregorian.date: listElement.timings});
+        prayerTimesMap
+            .addAll({listElement.date.gregorian.date: listElement.timings});
       }
     }
     return prayerTimesMap;
