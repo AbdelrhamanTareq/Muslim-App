@@ -2,6 +2,7 @@
 
 import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 
 part 'monthly_payer_times.g.dart';
 
@@ -20,307 +21,307 @@ class MontlyPrayerTimes {
   Map<String, dynamic> toJson() => _$MontlyPrayerTimesToJson(this);
 }
 
-@JsonSerializable()
-class Data {
-  Timings? timings;
-  Date? date;
-  Meta? meta;
+// @JsonSerializable()
+// class Data {
+//   Timings? timings;
+//   Date? date;
+//   Meta? meta;
 
-  Data({
-    required this.date,
-    required this.meta,
-    required this.timings,
-  });
+//   Data({
+//     required this.date,
+//     required this.meta,
+//     required this.timings,
+//   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+//   factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DataToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$DataToJson(this);
+// }
 
-@HiveType(typeId: 1)
-@JsonSerializable()
-class Timings {
-  @HiveField(0)
-  @JsonKey(name: "Fajr")
-  final String fajr;
-  @HiveField(1)
-  @JsonKey(name: "Sunrise")
-  final String sunrise;
-  @HiveField(2)
-  @JsonKey(name: "Dhuhr")
-  final String dhuhr;
-  @HiveField(3)
-  @JsonKey(name: "Asr")
-  final String asr;
-  @HiveField(4)
-  @JsonKey(name: "Sunset")
-  final String sunset;
-  @HiveField(5)
-  @JsonKey(name: "Maghrib")
-  final String maghrib;
-  @HiveField(6)
-  @JsonKey(name: "Isha")
-  final String isha;
-  @HiveField(7)
-  @JsonKey(name: "Imsak")
-  final String imsak;
-  @HiveField(8)
-  @JsonKey(name: "Midnight")
-  final String midnight;
-  @HiveField(9)
-  @JsonKey(name: "Firstthird")
-  final String firstthird;
-  @HiveField(10)
-  @JsonKey(name: "Lastthird")
-  final String lastthird;
+// @HiveType(typeId: 1)
+// @JsonSerializable()
+// class Timings {
+//   @HiveField(0)
+//   @JsonKey(name: "Fajr")
+//   final String fajr;
+//   @HiveField(1)
+//   @JsonKey(name: "Sunrise")
+//   final String sunrise;
+//   @HiveField(2)
+//   @JsonKey(name: "Dhuhr")
+//   final String dhuhr;
+//   @HiveField(3)
+//   @JsonKey(name: "Asr")
+//   final String asr;
+//   @HiveField(4)
+//   @JsonKey(name: "Sunset")
+//   final String sunset;
+//   @HiveField(5)
+//   @JsonKey(name: "Maghrib")
+//   final String maghrib;
+//   @HiveField(6)
+//   @JsonKey(name: "Isha")
+//   final String isha;
+//   @HiveField(7)
+//   @JsonKey(name: "Imsak")
+//   final String imsak;
+//   @HiveField(8)
+//   @JsonKey(name: "Midnight")
+//   final String midnight;
+//   @HiveField(9)
+//   @JsonKey(name: "Firstthird")
+//   final String firstthird;
+//   @HiveField(10)
+//   @JsonKey(name: "Lastthird")
+//   final String lastthird;
 
-  Timings({
-    required this.fajr,
-    required this.sunrise,
-    required this.dhuhr,
-    required this.asr,
-    required this.sunset,
-    required this.maghrib,
-    required this.isha,
-    required this.imsak,
-    required this.midnight,
-    required this.firstthird,
-    required this.lastthird,
-  });
+//   Timings({
+//     required this.fajr,
+//     required this.sunrise,
+//     required this.dhuhr,
+//     required this.asr,
+//     required this.sunset,
+//     required this.maghrib,
+//     required this.isha,
+//     required this.imsak,
+//     required this.midnight,
+//     required this.firstthird,
+//     required this.lastthird,
+//   });
 
-  factory Timings.fromJson(Map<String, dynamic> json) =>
-      _$TimingsFromJson(json);
+//   factory Timings.fromJson(Map<String, dynamic> json) =>
+//       _$TimingsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TimingsToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$TimingsToJson(this);
+// }
 
-@JsonSerializable()
-class Date {
-  String? readable;
-  String? timestamp;
-  Gregorian? gregorian;
-  Hijri? hijri;
+// @JsonSerializable()
+// class Date {
+//   String? readable;
+//   String? timestamp;
+//   Gregorian? gregorian;
+//   Hijri? hijri;
 
-  Date({
-    required this.readable,
-    required this.timestamp,
-    required this.gregorian,
-    required this.hijri,
-  });
+//   Date({
+//     required this.readable,
+//     required this.timestamp,
+//     required this.gregorian,
+//     required this.hijri,
+//   });
 
-  factory Date.fromJson(Map<String, dynamic> json) => _$DateFromJson(json);
+//   factory Date.fromJson(Map<String, dynamic> json) => _$DateFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DateToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$DateToJson(this);
+// }
 
-@JsonSerializable()
-class Gregorian {
-  String? date;
-  String? format;
-  String? day;
-  Weekday1? weekday;
-  Month? month;
-  String? year;
-  Designation? designation;
+// @JsonSerializable()
+// class Gregorian {
+//   String? date;
+//   String? format;
+//   String? day;
+//   Weekday1? weekday;
+//   Month? month;
+//   String? year;
+//   Designation? designation;
 
-  Gregorian({
-    required this.date,
-    required this.format,
-    required this.day,
-    required this.weekday,
-    required this.month,
-    required this.year,
-    required this.designation,
-  });
+//   Gregorian({
+//     required this.date,
+//     required this.format,
+//     required this.day,
+//     required this.weekday,
+//     required this.month,
+//     required this.year,
+//     required this.designation,
+//   });
 
-  factory Gregorian.fromJson(Map<String, dynamic> json) =>
-      _$GregorianFromJson(json);
+//   factory Gregorian.fromJson(Map<String, dynamic> json) =>
+//       _$GregorianFromJson(json);
 
-  Map<String, dynamic> toJson() => _$GregorianToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$GregorianToJson(this);
+// }
 
-@JsonSerializable()
-class Weekday1 {
-  String? en;
+// @JsonSerializable()
+// class Weekday1 {
+//   String? en;
 
-  Weekday1({required this.en});
+//   Weekday1({required this.en});
 
-  factory Weekday1.fromJson(Map<String, dynamic> json) =>
-      _$Weekday1FromJson(json);
+//   factory Weekday1.fromJson(Map<String, dynamic> json) =>
+//       _$Weekday1FromJson(json);
 
-  Map<String, dynamic> toJson() => _$Weekday1ToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$Weekday1ToJson(this);
+// }
 
-@JsonSerializable()
-class Month {
-  int? number;
-  String? en;
+// @JsonSerializable()
+// class Month {
+//   int? number;
+//   String? en;
 
-  Month({required this.number, required this.en});
+//   Month({required this.number, required this.en});
 
-  factory Month.fromJson(Map<String, dynamic> json) => _$MonthFromJson(json);
+//   factory Month.fromJson(Map<String, dynamic> json) => _$MonthFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MonthToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$MonthToJson(this);
+// }
 
-@JsonSerializable()
-class Designation {
-  String? abbreviated;
-  String? expanded;
+// @JsonSerializable()
+// class Designation {
+//   String? abbreviated;
+//   String? expanded;
 
-  Designation({required this.abbreviated, required this.expanded});
+//   Designation({required this.abbreviated, required this.expanded});
 
-  factory Designation.fromJson(Map<String, dynamic> json) =>
-      _$DesignationFromJson(json);
+//   factory Designation.fromJson(Map<String, dynamic> json) =>
+//       _$DesignationFromJson(json);
 
-  Map<String, dynamic> toJson() => _$DesignationToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$DesignationToJson(this);
+// }
 
-@JsonSerializable()
-class Hijri {
-  String? date;
-  String? format;
-  String? day;
-  Weekday? weekday;
-  Month? month;
-  String? year;
-  Designation? designation;
-  List<String>? holidays;
+// @JsonSerializable()
+// class Hijri {
+//   String? date;
+//   String? format;
+//   String? day;
+//   Weekday? weekday;
+//   Month? month;
+//   String? year;
+//   Designation? designation;
+//   List<String>? holidays;
 
-  Hijri(
-      {required this.date,
-      required this.format,
-      required this.day,
-      required this.weekday,
-      required this.month,
-      required this.year,
-      required this.designation,
-      required this.holidays});
+//   Hijri(
+//       {required this.date,
+//       required this.format,
+//       required this.day,
+//       required this.weekday,
+//       required this.month,
+//       required this.year,
+//       required this.designation,
+//       required this.holidays});
 
-  factory Hijri.fromJson(Map<String, dynamic> json) => _$HijriFromJson(json);
+//   factory Hijri.fromJson(Map<String, dynamic> json) => _$HijriFromJson(json);
 
-  Map<String, dynamic> toJson() => _$HijriToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$HijriToJson(this);
+// }
 
-@JsonSerializable()
-class Weekday {
-  String? en;
-  String? ar;
+// @JsonSerializable()
+// class Weekday {
+//   String? en;
+//   String? ar;
 
-  Weekday({required this.en, required this.ar});
+//   Weekday({required this.en, required this.ar});
 
-  factory Weekday.fromJson(Map<String, dynamic> json) =>
-      _$WeekdayFromJson(json);
+//   factory Weekday.fromJson(Map<String, dynamic> json) =>
+//       _$WeekdayFromJson(json);
 
-  Map<String, dynamic> toJson() => _$WeekdayToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$WeekdayToJson(this);
+// }
 
-@JsonSerializable()
-class Month1 {
-  int? number;
-  String? en;
-  String? ar;
+// @JsonSerializable()
+// class Month1 {
+//   int? number;
+//   String? en;
+//   String? ar;
 
-  Month1({required this.number, required this.en, required this.ar});
+//   Month1({required this.number, required this.en, required this.ar});
 
-  factory Month1.fromJson(Map<String, dynamic> json) => _$Month1FromJson(json);
+//   factory Month1.fromJson(Map<String, dynamic> json) => _$Month1FromJson(json);
 
-  Map<String, dynamic> toJson() => _$Month1ToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$Month1ToJson(this);
+// }
 
-@JsonSerializable()
-class Meta {
-  double? latitude;
-  double? longitude;
-  String? timezone;
-  Method? method;
-  String? latitudeAdjustmentMethod;
-  String? midnightMode;
-  String? school;
-  Offset? offset;
+// @JsonSerializable()
+// class Meta {
+//   double? latitude;
+//   double? longitude;
+//   String? timezone;
+//   Method? method;
+//   String? latitudeAdjustmentMethod;
+//   String? midnightMode;
+//   String? school;
+//   Offset? offset;
 
-  Meta(
-      {required this.latitude,
-      required this.longitude,
-      required this.timezone,
-      required this.method,
-      required this.latitudeAdjustmentMethod,
-      required this.midnightMode,
-      required this.school,
-      required this.offset});
+//   Meta(
+//       {required this.latitude,
+//       required this.longitude,
+//       required this.timezone,
+//       required this.method,
+//       required this.latitudeAdjustmentMethod,
+//       required this.midnightMode,
+//       required this.school,
+//       required this.offset});
 
-  factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
+//   factory Meta.fromJson(Map<String, dynamic> json) => _$MetaFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MetaToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$MetaToJson(this);
+// }
 
-@JsonSerializable()
-class Method {
-  int? id;
-  String? name;
-  Params? params;
-  Location? location;
+// @JsonSerializable()
+// class Method {
+//   int? id;
+//   String? name;
+//   Params? params;
+//   Location? location;
 
-  Method(
-      {required this.id,
-      required this.name,
-      required this.params,
-      required this.location});
+//   Method(
+//       {required this.id,
+//       required this.name,
+//       required this.params,
+//       required this.location});
 
-  factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);
+//   factory Method.fromJson(Map<String, dynamic> json) => _$MethodFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MethodToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$MethodToJson(this);
+// }
 
-@JsonSerializable()
-class Params {
-  int? fajr;
-  int? isha;
+// @JsonSerializable()
+// class Params {
+//   int? fajr;
+//   int? isha;
 
-  Params({required this.fajr, required this.isha});
+//   Params({required this.fajr, required this.isha});
 
-  factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
+//   factory Params.fromJson(Map<String, dynamic> json) => _$ParamsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ParamsToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$ParamsToJson(this);
+// }
 
-@JsonSerializable()
-class Location {
-  double? latitude;
-  double? longitude;
+// @JsonSerializable()
+// class Location {
+//   double? latitude;
+//   double? longitude;
 
-  Location({required this.latitude, required this.longitude});
+//   Location({required this.latitude, required this.longitude});
 
-  factory Location.fromJson(Map<String, dynamic> json) =>
-      _$LocationFromJson(json);
+//   factory Location.fromJson(Map<String, dynamic> json) =>
+//       _$LocationFromJson(json);
 
-  Map<String, dynamic> toJson() => _$LocationToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$LocationToJson(this);
+// }
 
-@JsonSerializable()
-class Offset {
-  int? imsak;
-  int? fajr;
-  int? sunrise;
-  int? dhuhr;
-  int? asr;
-  int? maghrib;
-  int? sunset;
-  int? isha;
-  int? midnight;
+// @JsonSerializable()
+// class Offset {
+//   int? imsak;
+//   int? fajr;
+//   int? sunrise;
+//   int? dhuhr;
+//   int? asr;
+//   int? maghrib;
+//   int? sunset;
+//   int? isha;
+//   int? midnight;
 
-  Offset(
-      {required this.imsak,
-      required this.fajr,
-      required this.sunrise,
-      required this.dhuhr,
-      required this.asr,
-      required this.maghrib,
-      required this.sunset,
-      required this.isha,
-      required this.midnight});
+//   Offset(
+//       {required this.imsak,
+//       required this.fajr,
+//       required this.sunrise,
+//       required this.dhuhr,
+//       required this.asr,
+//       required this.maghrib,
+//       required this.sunset,
+//       required this.isha,
+//       required this.midnight});
 
-  factory Offset.fromJson(Map<String, dynamic> json) => _$OffsetFromJson(json);
+//   factory Offset.fromJson(Map<String, dynamic> json) => _$OffsetFromJson(json);
 
-  Map<String, dynamic> toJson() => _$OffsetToJson(this);
-}
+//   Map<String, dynamic> toJson() => _$OffsetToJson(this);
+// }

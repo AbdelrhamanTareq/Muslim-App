@@ -51,14 +51,14 @@ class PrayerTimeRepoImpl extends PrayerTimeRepo {
           final String _prayerTimesGetterPeriodMethod =
               _choosePrayerTimesGetterPeriodMethod();
           var data;
-          data(_prayerTimesGetterPeriodMethod == _yearly)
+          data = (_prayerTimesGetterPeriodMethod == _yearly)
               ? await _appServiceClient.getPrayerTimeData(
                   _year,
                   city,
                   country,
                   methods,
                 )
-              : _appServiceClient.getMontlyPrayerTimeData(
+              : await _appServiceClient.getMontlyPrayerTimeData(
                   _year, _month, city, country, methods);
           final mappedData = data.data;
           Map<String, Timings> prayerTimesMap =
