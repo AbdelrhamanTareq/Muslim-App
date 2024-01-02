@@ -30,6 +30,8 @@ const appHomeIcons = [
   AppAssets.seb7aSvgPath,
 ];
 
+// TODO make colors and string in app strings and app colors
+
 List<ScreenObject> appScreen = [
   ScreenObject(
     color: AppColors.quranBackgroundAppBar,
@@ -38,7 +40,7 @@ List<ScreenObject> appScreen = [
     iconAsset: AppAssets.quranSvgPath,
   ),
   ScreenObject(
-    color: const Color(0xffa1e3df),
+    color: AppColors.hadithContainerColor,
     //color: AppColors.indigo,
     name: "الحديث",
     path: Routes.hadithPath,

@@ -13,4 +13,6 @@ class AppColors {
   static const quranBackground = Color.fromARGB(255, 233, 240, 210);
   static const indigo = Colors.indigo;
   static const error = Colors.red;
+
+  static const hadithContainerColor =  Color(0xffa1e3df);
 }
