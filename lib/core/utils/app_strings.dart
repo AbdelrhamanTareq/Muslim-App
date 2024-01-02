@@ -50,7 +50,8 @@ abstract class AppStrings {
   static const String getCurrentManual = "حفظ الموقع المختار";
   static const String locationFounded = "تم ايجاد الموقع";
   static const String plesasChooseYourLocation = "من فضلك اختار موقعك";
-  static const String selectUpdatePrayerTimesPriod = "اختار طريقة تحديث مواقيت الصلاة";
+  static const String selectUpdatePrayerTimesPriod =
+      "اختار طريقة تحديث مواقيت الصلاة";
   static const String montly = "شهري";
   static const String yearly = "سنوي";
   static const String save = "حفظ";
@@ -94,6 +95,11 @@ abstract class AppStrings {
   static const String noBookmarks = "لا يوجد علامات";
   static const String deleteBookmark = "مسح العلامة";
   static const String surha = "سورة";
+
+  ///////////////////////////////////////////////////////////
+  static const String favorite = "المفضلة";
+  static const String favoriteHadith = "الاحاديث المفضلة";
+  static const String favoriteZaker = "الاذكار المفضلة";
 }
 
 class ErrorStrings {
