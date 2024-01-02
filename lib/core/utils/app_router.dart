@@ -7,6 +7,9 @@ import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cub
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/akar_details_view.dart';
 import 'package:muslim_app/features/azkar/presentation/view/all_azkar_view.dart';
+import 'package:muslim_app/features/favorite/presentation/view/favorite_main_view.dart';
+import 'package:muslim_app/features/favorite/presentation/view/favorites_azkar.dart';
+import 'package:muslim_app/features/favorite/presentation/view/favorites_hadith.dart';
 import 'package:muslim_app/features/hadith/data/models/hadith_book_object.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:muslim_app/features/hadith/view/presentation/hadith_details_view.dart';
@@ -40,6 +43,9 @@ abstract class Routes {
   static const String azkarDetailsPath = "/azkar-details";
   static const String allAzkarPath = "/all-azkar";
   static const String settingPath = "/settings";
+  static const String favoritePath = "/favorite";
+  static const String favoritesHadith = "/favorites-hadith";
+  static const String favoritesAzkar = "/favorites-azkar";
 }
 
 abstract class AppRoutes {
@@ -137,6 +143,18 @@ abstract class AppRoutes {
             create: (context) => instance<AllAzkarCubit>(),
             child: const MainSettingsView(),
           ),
+        );
+      case Routes.favoritePath:
+        return MaterialPageRoute(
+          builder: (context) => const FavoriteMainView(),
+        );
+      case Routes.favoritesHadith:
+        return MaterialPageRoute(
+          builder: (context) => const FavoritesHadith(),
+        );
+      case Routes.favoritesAzkar:
+        return MaterialPageRoute(
+          builder: (context) => const FavoritesAzkar(),
         );
 
       default:
