@@ -80,6 +80,7 @@ List<HadithScreenObject> hadithBooks = [
 
 const String bookmarksKey = "BOOKMARK";
 const String prayerTimesKey = "PRAYER_TIMES";
+const String favoriteKey = "FOVRITE";
 
 const List<Map<String, String>> prayerTimesMethods = [
   {
