@@ -7,6 +7,7 @@ import 'package:muslim_app/features/azkar/presentation/logic/cubit/all_azkar_cub
 import 'package:muslim_app/features/azkar/presentation/logic/cubit/main_azkar_cubit.dart';
 import 'package:muslim_app/features/azkar/presentation/view/akar_details_view.dart';
 import 'package:muslim_app/features/azkar/presentation/view/all_azkar_view.dart';
+import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_cubit.dart';
 import 'package:muslim_app/features/favorite/presentation/view/favorite_main_view.dart';
 import 'package:muslim_app/features/favorite/presentation/view/favorites_azkar.dart';
 import 'package:muslim_app/features/favorite/presentation/view/favorites_hadith.dart';
@@ -150,7 +151,9 @@ abstract class AppRoutes {
         );
       case Routes.favoritesHadith:
         return MaterialPageRoute(
-          builder: (context) => const FavoritesHadith(),
+          builder: (context) => BlocProvider<FavoriteCubit>(
+              create: (context) => instance<FavoriteCubit>()..getFavHadithData(),
+              child: const FavoritesHadith()),
         );
       case Routes.favoritesAzkar:
         return MaterialPageRoute(
