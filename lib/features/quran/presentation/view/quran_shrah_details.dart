@@ -95,10 +95,9 @@ class QuranSurahDetails extends StatelessWidget {
               controller: scrollController,
               child: Column(
                 children: [
-                  // surh el fatah or surh el tobah
-                  surahAyat.length == 129
+                  index == 8 // surh el toba
                       ? const Text("")
-                      : (surahAyat.length == 7)
+                      : (index == 0)
                           ? const BasmalaFataha()
                           : const Basmala(),
                   const SizedBox(
