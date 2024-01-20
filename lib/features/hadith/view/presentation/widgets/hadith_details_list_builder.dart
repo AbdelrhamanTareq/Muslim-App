@@ -3,6 +3,8 @@ import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
+import 'package:muslim_app/features/favorite/data/local%20data/favorites_local_data.dart';
+import 'package:muslim_app/features/favorite/data/models/fav_hadith_model.dart';
 import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
@@ -67,6 +69,16 @@ class HadithDetailsListBuilder extends StatelessWidget {
                         Share.share(data[index].arab);
                       },
                       icon: const Icon(Icons.share),
+                    ),
+                    IconButton(
+                      color: AppColors.favColor,
+                      onPressed: () {
+                        instance<FavoritesLocalData>().setFavHadithLocalData(
+                            val: FavHadithModel(
+                                hadithData: data[index].arab,
+                                hadithBook: data[index].number.toString()));
+                      },
+                      icon: const Icon(Icons.favorite),
                     ),
                   ],
                 ),

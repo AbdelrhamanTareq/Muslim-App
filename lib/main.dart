@@ -11,6 +11,7 @@ import 'app.dart';
 import 'core/bloc_observer.dart';
 import 'core/constant/app_constatnt.dart';
 import 'core/injection_container.dart';
+import 'features/favorite/data/models/fav_hadith_model.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,8 +23,11 @@ void main() async {
   await Hive.openBox(hadithHiveBox);
   // open quran box
   await Hive.openBox(quranHiveBox);
+  // open fav box
+  await Hive.openBox(favoriteKey);
   await AppNotification().initialize();
   Hive.registerAdapter(TimingsAdapter());
+  Hive.registerAdapter(FavHadithModelAdapter());
   await Hive.openBox(prayerTimesKey);
   Bloc.observer = MyBlocObserver();
   AppFunctions.getPrayerTimesSoundsStateFirstTime();

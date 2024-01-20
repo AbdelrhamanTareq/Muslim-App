@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_cubit.dart';
 
 import '../../../../core/utils/app_strings.dart';
 
@@ -13,6 +16,20 @@ class FavoritesHadith extends StatelessWidget {
           AppStrings.favoriteHadith,
         ),
       ),
+      body:
+          BlocBuilder<FavoriteCubit, FavoriteState>(builder: (context, state) {
+        if (state is GetFavoriteHadithErrorState) {
+          return Center(child: Text(state.error));
+        } else if (state is GetFavoriteHadithLoadedState) {
+          return Column(
+            children: [Text(state.favHadithModel.hadithData)],
+          );
+        } else {
+          return const Center(
+            child: CircularProgressIndicator.adaptive(),
+          );
+        }
+      }),
     );
   }
 }
