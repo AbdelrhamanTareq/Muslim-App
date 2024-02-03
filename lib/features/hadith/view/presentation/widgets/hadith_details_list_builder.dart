@@ -72,13 +72,18 @@ class HadithDetailsListBuilder extends StatelessWidget {
                     ),
                     IconButton(
                       color: AppColors.favColor,
-                      onPressed: () {
-                        instance<FavoritesLocalData>().setFavHadithLocalData(
-                            val: FavHadithModel(
-                                hadithData: data[index].arab,
-                                hadithBook: data[index].number.toString()));
+                      onPressed: () async {
+                        await instance<FavoritesLocalData>()
+                            .setFavHadithLocalData(
+                          val: 
+                          FavHadithModel(
+                            hadithData: data[index].arab,
+                            hadithBook: name,
+                            hadithNumber: data[index].number,
+                          ),
+                        );
                       },
-                      icon: const Icon(Icons.favorite),
+                      icon: const Icon(Icons.favorite_border),
                     ),
                   ],
                 ),
