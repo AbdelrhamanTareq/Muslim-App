@@ -12,7 +12,7 @@ class FavoriteInitial extends FavoriteState {}
 class GetFavoriteHadithLoadingState extends FavoriteState {}
 
 class GetFavoriteHadithLoadedState extends FavoriteState {
-  final FavHadithModel favHadithModel;
+  final List<FavHadithModel> favHadithModel;
 
   const GetFavoriteHadithLoadedState({required this.favHadithModel});
 }

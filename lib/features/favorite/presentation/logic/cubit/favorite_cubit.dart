@@ -13,7 +13,8 @@ class FavoriteCubit extends Cubit<FavoriteState> {
   void getFavHadithData() {
     emit(GetFavoriteHadithLoadingState());
     final data = favoritesLocalData.getFavHadithLocalData();
-    if (data != null) {
+    if (data != []) {
+      print("data = $data");
       emit(GetFavoriteHadithLoadedState(favHadithModel: data));
     } else {
       emit(const GetFavoriteHadithErrorState(error: "No Data"));
