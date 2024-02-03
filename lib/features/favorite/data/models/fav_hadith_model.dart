@@ -8,6 +8,8 @@ class FavHadithModel {
   final String hadithData;
   @HiveField(1)
   final String hadithBook;
+  @HiveField(2)
+  final int  hadithNumber;
 
-  FavHadithModel({required this.hadithData, required this.hadithBook});
+  FavHadithModel({required this.hadithData, required this.hadithBook, required this.hadithNumber});
 }
