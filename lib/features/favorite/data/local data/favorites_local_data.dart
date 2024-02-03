@@ -6,13 +6,13 @@ import '../../../../core/constant/app_constatnt.dart';
 
 abstract class FavoritesLocalData {
   setFavHadithLocalData({required FavHadithModel val});
-  FavHadithModel? getFavHadithLocalData();
+  List<FavHadithModel> getFavHadithLocalData();
   setFavZakerLocalData();
   getFavZakerLocalData();
 }
 
 class FavoritesLocalDataImpl implements FavoritesLocalData {
-  static const _favHadithKey = "FAV_HADITH";
+  // static const _favHadithKey = "FAV_HADITH";
 
   @override
   setFavHadithLocalData({required FavHadithModel val}) async {
@@ -20,8 +20,13 @@ class FavoritesLocalDataImpl implements FavoritesLocalData {
   }
 
   @override
-  FavHadithModel? getFavHadithLocalData() {
-    return Hive.box(favoriteKey).get(_favHadithKey) ?? null;
+  List<FavHadithModel> getFavHadithLocalData() {
+    
+    List<FavHadithModel> data = [];
+    Hive.box(favoriteKey).values.forEach((element) {
+      data.add(element);
+    });
+    return data;
   }
 
   @override
