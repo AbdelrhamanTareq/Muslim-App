@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_extensions.dart';
 import 'package:muslim_app/core/utils/app_strings.dart';
 import 'package:muslim_app/features/favorite/data/local%20data/favorites_local_data.dart';
 import 'package:muslim_app/features/favorite/data/models/fav_hadith_model.dart';
+import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_cubit.dart';
 import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import 'package:share_plus/share_plus.dart';
@@ -12,7 +14,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../../../../core/injection_container.dart';
 import '../../logic/cubit/hadith_cubit.dart';
 
-class HadithDetailsListBuilder extends StatelessWidget {
+class HadithDetailsListBuilder extends StatefulWidget {
   final GetSahihElbokharyDataSuccesState state;
   const HadithDetailsListBuilder({
     super.key,
@@ -25,10 +27,22 @@ class HadithDetailsListBuilder extends StatelessWidget {
   final String name;
 
   @override
+  State<HadithDetailsListBuilder> createState() => _HadithDetailsListBuilderState();
+}
+
+class _HadithDetailsListBuilderState extends State<HadithDetailsListBuilder> {
+  @override
+  void initState() {
+    BlocProvider.of<FavoriteCubit>(context)
+        .getFavHadithDataByBookName(name: widget.name);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var data = state.data;
+    var data = widget.state.data;
     return ScrollablePositionedList.separated(
-      itemScrollController: itemScrollController,
+      itemScrollController: widget.itemScrollController,
       itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.all(12.0),
@@ -49,7 +63,7 @@ class HadithDetailsListBuilder extends StatelessWidget {
                           // color: Color.fromARGB(255, 9, 109, 12),
                           color: AppColors.green),
                       child: Text(
-                        state.data[index].number.toString(),
+                        widget.state.data[index].number.toString(),
                         style: const TextStyle(color: Colors.white),
                       ),
                     ),
@@ -58,7 +72,8 @@ class HadithDetailsListBuilder extends StatelessWidget {
                       color: AppColors.black,
                       onPressed: () {
                         instance<HadithLocalData>().setHadithesBookmarkedNames(
-                            key: name, value: [name, index.toDouble()]);
+                            key: widget.name,
+                            value: [widget.name, index.toDouble()]);
                         AppFunctions.showToast(AppStrings.addedBookmark);
                       },
                       icon: const Icon(Icons.bookmark),
@@ -75,10 +90,9 @@ class HadithDetailsListBuilder extends StatelessWidget {
                       onPressed: () async {
                         await instance<FavoritesLocalData>()
                             .setFavHadithLocalData(
-                          val: 
-                          FavHadithModel(
+                          val: FavHadithModel(
                             hadithData: data[index].arab,
-                            hadithBook: name,
+                            hadithBook: widget.name,
                             hadithNumber: data[index].number,
                           ),
                         );

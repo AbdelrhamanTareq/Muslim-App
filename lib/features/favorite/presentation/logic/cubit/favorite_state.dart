@@ -22,3 +22,18 @@ class GetFavoriteHadithErrorState extends FavoriteState {
 
   const GetFavoriteHadithErrorState({required this.error});
 }
+
+class GetFavoriteHadithByBookNameLoadingState extends FavoriteState {}
+
+
+class GetFavoriteHadithByBookNameLoadedState extends FavoriteState {
+  final List<FavHadithModel> favHadithModel;
+
+  const GetFavoriteHadithByBookNameLoadedState({required this.favHadithModel});
+}
+
+class GetFavoriteHadithByBookNameErrorState extends FavoriteState {
+  final String error;
+
+  const GetFavoriteHadithByBookNameErrorState({required this.error});
+}
