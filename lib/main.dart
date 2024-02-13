@@ -6,6 +6,7 @@ import 'package:muslim_app/core/utils/app_notifications.dart';
 import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
+import 'features/hadith/data/models/hadith.dart';
 
 import 'app.dart';
 import 'core/bloc_observer.dart';
@@ -28,7 +29,9 @@ void main() async {
   await AppNotification().initialize();
   Hive.registerAdapter(TimingsAdapter());
   Hive.registerAdapter(FavHadithModelAdapter());
+  Hive.registerAdapter(HadithAdapter());
   await Hive.openBox(prayerTimesKey);
+  await Hive.openBox(hadithKey);
   Bloc.observer = MyBlocObserver();
   AppFunctions.getPrayerTimesSoundsStateFirstTime();
   runApp(const MyApp());

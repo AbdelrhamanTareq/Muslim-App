@@ -1,22 +1,31 @@
 // ignore_for_file: depend_on_referenced_packages
 
+import 'package:hive/hive.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'hadith.g.dart';
 
-
+@HiveType(typeId: 3)
 @JsonSerializable()
 class Hadith {
+  @HiveField(0)
   final int number;
+  @HiveField(1)
   final String arab;
+  @HiveField(2)
   final String id;
+  // @HiveField(3)
+  // final String hadithBook;
+  @HiveField(3)
+  final bool isFavorite;
 
   Hadith({
     required this.number,
     required this.arab,
     required this.id,
+    // required this.hadithBook,
+    this.isFavorite = false,
   });
-
 
   factory Hadith.fromJson(Map<String, dynamic> json) => _$HadithFromJson(json);
 
