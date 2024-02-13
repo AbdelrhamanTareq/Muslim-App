@@ -67,20 +67,31 @@ List<ScreenObject> appScreen = [
 ];
 
 List<HadithScreenObject> hadithBooks = [
-  HadithScreenObject(name: "صحيح البخاري", path: AppAssets.bukhariPath),
-  HadithScreenObject(name: "صحيح مسلم", path: AppAssets.muslimPath),
-  HadithScreenObject(name: "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
-  HadithScreenObject(name: "سنن ابي دواد", path: AppAssets.abuDaudPath),
-  HadithScreenObject(name: "سنن الترمذي", path: AppAssets.tirmidziPath),
-  HadithScreenObject(name: "الموطأ", path: AppAssets.malikPath),
-  HadithScreenObject(name: "سنن النسائي", path: AppAssets.nasaiPath),
-  HadithScreenObject(name: "سنن ابن ماجه", path: AppAssets.ibnuMajahPath),
-  HadithScreenObject(name: "مسند احمد", path: AppAssets.ahmadPath),
+  HadithScreenObject(name: "صحيح البخاري", databaseKey: bukhariBookKey),
+  HadithScreenObject(name: "صحيح مسلم", databaseKey: musilmBookKey),
+  HadithScreenObject(name: "سنن ابن ماجه", databaseKey: ibnuMajahBookKey),
+  HadithScreenObject(name: "سنن ابي دواد", databaseKey: abuDaudBookKey),
+  HadithScreenObject(name: "سنن الترمذي", databaseKey: tirmidziBookKey),
+  HadithScreenObject(name: "الموطأ", databaseKey: malekBookKey),
+  HadithScreenObject(name: "سنن النسائي", databaseKey: nasaiBookKey),
+  HadithScreenObject(name: "سنن ابن ماجه", databaseKey: ibnuMajahBookKey),
+  HadithScreenObject(name: "مسند احمد", databaseKey: ahmedBookKey),
 ];
+
+const String bukhariBookKey = "BUKHARI";
+const String musilmBookKey = "MUSLIM";
+const String ahmedBookKey = "AHMED";
+const String abuDaudBookKey = "ABU_DAUD";
+const String malekBookKey = "MALEK";
+const String nasaiBookKey = "NASAI";
+const String darimiBookKey = "DARIMI";
+const String tirmidziBookKey = "TIRMIDZ";
+const String ibnuMajahBookKey = "IBNU_MAJAH";
 
 const String bookmarksKey = "BOOKMARK";
 const String prayerTimesKey = "PRAYER_TIMES";
 const String favoriteKey = "FOVRITE";
+const String hadithKey = "HADITH";
 
 const List<Map<String, String>> prayerTimesMethods = [
   {
