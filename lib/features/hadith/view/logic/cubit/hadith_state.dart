@@ -23,3 +23,14 @@ class GetSahihElbokharyDataSuccesState extends HadithState {
   const GetSahihElbokharyDataSuccesState(this.data);
 }
 
+class AddHaithDataToDatabaseLoadingState extends HadithState {}
+
+class AddHaithDataToDatabaseErrorState extends HadithState {
+  final String error;
+
+  const AddHaithDataToDatabaseErrorState(this.error);
+}
+
+class AddHaithDataToDatabaseSuccessState extends HadithState {
+  const AddHaithDataToDatabaseSuccessState();
+}

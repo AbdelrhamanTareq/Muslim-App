@@ -24,4 +24,20 @@ class HadithCubit extends Cubit<HadithState> {
       ),
     );
   }
+
+  Future addHadithDataToDatabase() async {
+    emit(AddHaithDataToDatabaseLoadingState());
+
+    final dataOrError = await hadithRepo.addHadithsBooksToDatabase();
+    dataOrError.fold(
+        (error) => emit(AddHaithDataToDatabaseErrorState(error.errorMessage)),
+        (r) => emit(const AddHaithDataToDatabaseSuccessState()));
+
+    // dataOrError.fold(
+    //   (error) => emit(GetSahihElbokharyDataErrorState(error.errorMessage)),
+    //   (data) => emit(
+    //     GetSahihElbokharyDataSuccesState(data),
+    //   ),
+    // );
+  }
 }
