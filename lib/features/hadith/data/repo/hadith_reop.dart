@@ -9,40 +9,32 @@ import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/features/hadith/data/models/hadith.dart';
 
 abstract class HadithRepo {
-  Future<Either<Faliure, List<Hadith>>> getSahihElbokharyData(String hadihPath);
-  //TODO make methoed invoke whem app start
+  Future<Either<Faliure, List<Hadith>>> getHadithDatabyBookName(
+      String bookname);
   Future<Either<Faliure, bool>> addHadithsBooksToDatabase();
 }
 
 class HadithRepoImpl implements HadithRepo {
-  static const String _bukhariBookKey = "BUKHARI";
-  static const String _musilmBookKey = "MUSLIM";
-  static const String _ahmedBookKey = "AHMED";
-  static const String _abuDaudBookKey = "ABU_DAUD";
-  static const String _malekBookKey = "MALEK";
-  static const String _nasaiBookKey = "NASAI";
-  static const String _darimiBookKey = "DARIMI";
-  static const String _tirmidziBookKey = "TIRMIDZ";
-  static const String _ibnuMajahBookKey = "IBNU_MAJAH";
-
   @override
-  Future<Either<Faliure, List<Hadith>>> getSahihElbokharyData(
-      String hadihPath) async {
+  Future<Either<Faliure, List<Hadith>>> getHadithDatabyBookName(
+      String bookname) async {
     try {
-      final List<Hadith> bukhariHadiths = [];
-      final stringData = await rootBundle.loadString(hadihPath);
-      final data = json.decode(stringData);
+      final box = Hive.box(hadithKey);
+      final data = box.get(bookname) as List<Hadith>;
+      // final List<Hadith> bukhariHadiths = [];
+      // final stringData = await rootBundle.loadString(hadihPath);
+      // final data = json.decode(stringData);
 
-      //print(data.runtimeType);
-      data.forEach(
-        (e) => bukhariHadiths.add(
-          Hadith.fromJson(e),
-        ),
-      );
+      // //print(data.runtimeType);
+      // data.forEach(
+      //   (e) => bukhariHadiths.add(
+      //     Hadith.fromJson(e),
+      //   ),
+      // );
 
       //final data = const CsvToListConverter().convert(stringData);
       //log("${data[0]}");
-      return Right(bukhariHadiths);
+      return Right(data);
     } catch (_) {
       return Left(LocalDataFaliure());
     }
@@ -52,23 +44,23 @@ class HadithRepoImpl implements HadithRepo {
   Future<Either<Faliure, bool>> addHadithsBooksToDatabase() async {
     try {
       await _addHadithBooktoDatabase(
-          bookName: _bukhariBookKey, path: AppAssets.bukhariPath);
+          bookName: bukhariBookKey, path: AppAssets.bukhariPath);
       await _addHadithBooktoDatabase(
-          bookName: _musilmBookKey, path: AppAssets.muslimPath);
+          bookName: musilmBookKey, path: AppAssets.muslimPath);
       await _addHadithBooktoDatabase(
-          bookName: _ahmedBookKey, path: AppAssets.ahmadPath);
+          bookName: ahmedBookKey, path: AppAssets.ahmadPath);
       await _addHadithBooktoDatabase(
-          bookName: _abuDaudBookKey, path: AppAssets.abuDaudPath);
+          bookName: abuDaudBookKey, path: AppAssets.abuDaudPath);
       await _addHadithBooktoDatabase(
-          bookName: _malekBookKey, path: AppAssets.malikPath);
+          bookName: malekBookKey, path: AppAssets.malikPath);
       await _addHadithBooktoDatabase(
-          bookName: _nasaiBookKey, path: AppAssets.nasaiPath);
+          bookName: nasaiBookKey, path: AppAssets.nasaiPath);
       await _addHadithBooktoDatabase(
-          bookName: _darimiBookKey, path: AppAssets.darimiPath);
+          bookName: darimiBookKey, path: AppAssets.darimiPath);
       await _addHadithBooktoDatabase(
-          bookName: _tirmidziBookKey, path: AppAssets.tirmidziPath);
+          bookName: tirmidziBookKey, path: AppAssets.tirmidziPath);
       await _addHadithBooktoDatabase(
-          bookName: _ibnuMajahBookKey, path: AppAssets.ibnuMajahPath);
+          bookName: ibnuMajahBookKey, path: AppAssets.ibnuMajahPath);
       return const Right(true);
     } catch (e) {
       return Left(LocalDataFaliure());

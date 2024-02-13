@@ -13,14 +13,14 @@ class HadithCubit extends Cubit<HadithState> {
     this.hadithRepo,
   ) : super(HadithInitial());
 
-  Future getHadithData(String hadihPath) async {
-    emit(GetSahihElbokharyDataLoadingState());
-    final dataOrError = await hadithRepo.getSahihElbokharyData(hadihPath);
+  Future getHadithDataByBookName(String bookName) async {
+    emit(GetHadithDataByBooknamLoadingState());
+    final dataOrError = await hadithRepo.getHadithDatabyBookName(bookName);
 
     dataOrError.fold(
-      (error) => emit(GetSahihElbokharyDataErrorState(error.errorMessage)),
+      (error) => emit(GetHadithDataByBooknamErrorState(error.errorMessage)),
       (data) => emit(
-        GetSahihElbokharyDataSuccesState(data),
+        GetHadithDataByBooknamSuccesState(data),
       ),
     );
   }

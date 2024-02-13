@@ -9,18 +9,18 @@ abstract class HadithState extends Equatable {
 
 class HadithInitial extends HadithState {}
 
-class GetSahihElbokharyDataLoadingState extends HadithState {}
+class GetHadithDataByBooknamLoadingState extends HadithState {}
 
-class GetSahihElbokharyDataErrorState extends HadithState {
+class GetHadithDataByBooknamErrorState extends HadithState {
   final String error;
 
-  const GetSahihElbokharyDataErrorState(this.error);
+  const GetHadithDataByBooknamErrorState(this.error);
 }
 
-class GetSahihElbokharyDataSuccesState extends HadithState {
+class GetHadithDataByBooknamSuccesState extends HadithState {
   final List<Hadith> data;
 
-  const GetSahihElbokharyDataSuccesState(this.data);
+  const GetHadithDataByBooknamSuccesState(this.data);
 }
 
 class AddHaithDataToDatabaseLoadingState extends HadithState {}
