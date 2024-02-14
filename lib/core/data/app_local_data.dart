@@ -6,10 +6,14 @@ abstract class AppLocalData {
 
   Future<bool> setIsFirstTime({required String key});
   bool getIsFirstTime({required String key});
+
+  Future<bool> setIsFirstTimeLoadingSettingHadithDataToDatabase();
+  bool? getIsFirstTimeLoadingSettingHadithDataToDatabase();
 }
 
 const String prayerTimesSoundKey = "PRAYER_TIMES_SOUND";
 const String mainFirstTimeKey = "MAIN_FIRST_TIME";
+const String hadithFirstTimeKey = "Hadith_FIRST_TIME";
 
 class AppLocalDataImpl extends AppLocalData {
   // final Box box ;
@@ -57,5 +61,15 @@ class AppLocalDataImpl extends AppLocalData {
   @override
   bool getIsFirstTime({required String key}) {
     return _sharedPreferences.getBool(key) ?? false;
+  }
+
+  @override
+  bool? getIsFirstTimeLoadingSettingHadithDataToDatabase() {
+    return _sharedPreferences.getBool(hadithFirstTimeKey) ?? false;
+  }
+
+  @override
+  Future<bool> setIsFirstTimeLoadingSettingHadithDataToDatabase() async {
+    return await _sharedPreferences.setBool(hadithFirstTimeKey, true);
   }
 }
