@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'package:muslim_app/core/themes/app_colors.dart';
 import 'package:muslim_app/core/utils/app_assets.dart';
 import 'package:muslim_app/core/utils/app_router.dart';
@@ -87,6 +88,18 @@ const String nasaiBookKey = "NASAI";
 const String darimiBookKey = "DARIMI";
 const String tirmidziBookKey = "TIRMIDZ";
 const String ibnuMajahBookKey = "IBNU_MAJAH";
+
+Future<void> openHadithBoxes() async{
+  await Hive.openBox(bukhariBookKey);
+  await Hive.openBox(musilmBookKey);
+  await Hive.openBox(ahmedBookKey);
+  await Hive.openBox(abuDaudBookKey);
+  await Hive.openBox(malekBookKey);
+  await Hive.openBox(nasaiBookKey);
+  await Hive.openBox(darimiBookKey);
+  await Hive.openBox(tirmidziBookKey);
+  await Hive.openBox(ibnuMajahBookKey);
+}
 
 const String bookmarksKey = "BOOKMARK";
 const String prayerTimesKey = "PRAYER_TIMES";

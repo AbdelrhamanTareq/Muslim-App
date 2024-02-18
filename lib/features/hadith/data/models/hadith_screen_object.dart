@@ -1,6 +1,6 @@
 class HadithScreenObject {
   final String name;
-  final String path;
+  final String databaseKey;
 
-  HadithScreenObject({required this.name, required this.path});
+  HadithScreenObject({required this.name, required this.databaseKey});
 }

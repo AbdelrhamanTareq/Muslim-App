@@ -65,7 +65,10 @@ abstract class AppRoutes {
         );
       case Routes.hadithPath:
         return MaterialPageRoute(
-          builder: (context) => const HadithView(),
+          builder: (context) => BlocProvider<HadithCubit>(
+              create: (context) =>
+                  instance<HadithCubit>()..addHadithDataToDatabase(),
+              child: const HadithView()),
         );
       case Routes.hadithDeatilsPath:
         final HadithBookObject book = settings.arguments as HadithBookObject;
@@ -74,7 +77,7 @@ abstract class AppRoutes {
             create: (context) => instance<HadithCubit>(),
             child: HadithDetailsView(
               bookName: book.name,
-              bookPath: book.path,
+              databasePath: book.path,
             ),
           ),
         );
@@ -152,7 +155,8 @@ abstract class AppRoutes {
       case Routes.favoritesHadith:
         return MaterialPageRoute(
           builder: (context) => BlocProvider<FavoriteCubit>(
-              create: (context) => instance<FavoriteCubit>()..getFavHadithData(),
+              create: (context) =>
+                  instance<FavoriteCubit>()..getFavHadithData(),
               child: const FavoritesHadith()),
         );
       case Routes.favoritesAzkar:

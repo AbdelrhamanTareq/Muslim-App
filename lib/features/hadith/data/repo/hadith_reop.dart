@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:dartz/dartz.dart';
 import 'package:flutter/services.dart';
@@ -21,21 +22,13 @@ class HadithRepoImpl implements HadithRepo {
   Future<Either<Faliure, List<Hadith>>> getHadithDatabyBookName(
       String bookname) async {
     try {
-      final box = Hive.box(hadithKey);
-      final data = box.get(bookname) as List<Hadith>;
-      // final List<Hadith> bukhariHadiths = [];
-      // final stringData = await rootBundle.loadString(hadihPath);
-      // final data = json.decode(stringData);
-
-      // //print(data.runtimeType);
-      // data.forEach(
-      //   (e) => bukhariHadiths.add(
-      //     Hadith.fromJson(e),
-      //   ),
-      // );
-
-      //final data = const CsvToListConverter().convert(stringData);
-      //log("${data[0]}");
+      List<Hadith> data = [];
+      final box = Hive.box(bookname);
+      log("${box.values.first}");
+      for (var e in box.values) {
+        data.add(e);
+      }
+    
       return Right(data);
     } catch (_) {
       return Left(LocalDataFaliure());
@@ -45,11 +38,12 @@ class HadithRepoImpl implements HadithRepo {
   @override
   Future<Either<Faliure, bool>> addHadithsBooksToDatabase() async {
     try {
-      if (instance<AppLocalData>()
-              .getIsFirstTimeLoadingSettingHadithDataToDatabase() !=
-          false) {
-        return const Right(true);
-      } else {
+      // if (instance<AppLocalData>()
+      //         .getIsFirstTimeLoadingSettingHadithDataToDatabase() !=
+      //     false) {
+      //   return const Right(true);
+      // } else
+      {
         await _addHadithBooktoDatabase(
             bookName: bukhariBookKey, path: AppAssets.bukhariPath);
         await _addHadithBooktoDatabase(
@@ -90,7 +84,9 @@ class HadithRepoImpl implements HadithRepo {
         Hadith.fromJson(e),
       ),
     );
-    final box = Hive.box(hadithKey);
-    box.put(bookName, hadith);
+    final box = Hive.box(bookName);
+    for (var element in hadith) {
+      box.put(element.number, element);
+    }
   }
 }
