@@ -24,8 +24,16 @@ class Hadith {
     required this.arab,
     required this.id,
     // required this.hadithBook,
-    this.isFavorite = false,
-  });
+     bool? isFavorite,
+  }) : this.isFavorite = isFavorite ?? false;
+
+  Hadith copyWith({int? number, String? arab, String? id, bool? isFavorite}) {
+    return Hadith(
+        number: number ?? this.number,
+        arab: arab ?? this.arab,
+        id: id ?? this.id,
+        isFavorite: isFavorite ?? this.isFavorite);
+  }
 
   factory Hadith.fromJson(Map<String, dynamic> json) => _$HadithFromJson(json);
 
