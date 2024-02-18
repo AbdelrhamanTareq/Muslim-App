@@ -4,7 +4,7 @@ import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/widgets/bookmark_widget.dart';
 import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
-import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_cubit.dart';
+import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_setting_cubit.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -16,9 +16,9 @@ import 'widgets/hadith_details_list_builder.dart';
 
 class HadithDetailsView extends StatefulWidget {
   final String bookName;
-  final String bookPath;
+  final String databasePath;
   const HadithDetailsView(
-      {super.key, required this.bookName, required this.bookPath});
+      {super.key, required this.bookName, required this.databasePath});
 
   @override
   State<HadithDetailsView> createState() => _HadithDetailsViewState();
@@ -28,7 +28,8 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
   final ItemScrollController itemScrollController = ItemScrollController();
   @override
   void initState() {
-    BlocProvider.of<HadithCubit>(context).getHadithData(widget.bookPath);
+    BlocProvider.of<HadithCubit>(context)
+        .getHadithDataByBookName(widget.databasePath);
     super.initState();
   }
 
@@ -63,17 +64,18 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
       body: SafeArea(
         child: BlocBuilder<HadithCubit, HadithState>(
           builder: (context, state) {
-            if (state is GetSahihElbokharyDataErrorState) {
+            if (state.error != "") {
               return AppErrorWidget(
                 error: state.error,
               );
-            } else if (state is GetSahihElbokharyDataSuccesState) {
-              return BlocProvider<FavoriteCubit>(
-                create: (context) => instance<FavoriteCubit>()
-                // ..getFavHadithDataByBookName(name: widget.bookName)
+            } else if (state.data.isNotEmpty) {
+              return BlocProvider<FavoriteSettingsCubit>(
+                create: (context) => instance<FavoriteSettingsCubit>()
+                //  ..getFavHadithDataByBookName(name: widget.bookName)
                 ,
                 child: HadithDetailsListBuilder(
-                  state: state,
+                  // state: state,
+                  bookPathInDB: widget.databasePath,
                   itemScrollController: itemScrollController,
                   name: widget.bookName,
                 ),
