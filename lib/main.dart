@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:muslim_app/core/functions.dart';
 import 'package:muslim_app/core/utils/app_notifications.dart';
-import 'package:muslim_app/features/hadith/data/local_data/hadith_local_data.dart';
 import 'package:muslim_app/features/prayer_time/data/models/prayer_time.dart';
 import 'package:muslim_app/features/quran/data/local_data/quran_local_data.dart';
 import 'features/hadith/data/models/hadith.dart';
@@ -20,8 +19,8 @@ void main() async {
   await initGetIt();
   // initialize Hive
   await Hive.initFlutter();
-  // open hadith box
-  await Hive.openBox(hadithHiveBox);
+  // open hadith boxes
+  await openHadithBoxes();
   // open quran box
   await Hive.openBox(quranHiveBox);
   // open fav box
