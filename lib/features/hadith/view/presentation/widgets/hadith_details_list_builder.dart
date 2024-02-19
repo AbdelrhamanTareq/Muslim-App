@@ -88,7 +88,8 @@ class HadithDetailsListBuilder extends StatelessWidget {
                                 .addOrRemvoeFavorite(
                                     number: data[index].number,
                                     bookPathInDB: bookPathInDB,
-                                    newdata: data[index]);
+                                    newdata: data[index],
+                                    bookName: name);
                             // String key =
                             //     "${widget.name + data[index].number.toString()}";
                             // (favData.isNotEmpty &&

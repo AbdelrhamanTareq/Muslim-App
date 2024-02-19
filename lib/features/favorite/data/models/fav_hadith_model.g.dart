@@ -20,19 +20,25 @@ class FavHadithModelAdapter extends TypeAdapter<FavHadithModel> {
       hadithData: fields[0] as String,
       hadithBook: fields[1] as String,
       hadithNumber: fields[2] as int,
+      key: fields[3] as String,
+      bookPath: fields[4] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, FavHadithModel obj) {
     writer
-      ..writeByte(3)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.hadithData)
       ..writeByte(1)
       ..write(obj.hadithBook)
       ..writeByte(2)
-      ..write(obj.hadithNumber);
+      ..write(obj.hadithNumber)
+      ..writeByte(3)
+      ..write(obj.key)
+      ..writeByte(4)
+      ..write(obj.bookPath);
   }
 
   @override

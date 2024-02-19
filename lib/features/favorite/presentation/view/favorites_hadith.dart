@@ -24,11 +24,13 @@ class FavoritesHadith extends StatelessWidget {
         } else if (state is GetFavoriteHadithLoadedState) {
           return ListView.builder(
             itemBuilder: (context, index) {
-              return Card(elevation: 5,
-                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              return Card(
+                elevation: 5,
+                margin:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                 // decoration: BoxDecoration(
                 //   borderRadius: BorderRadius.circular(12.0),
-                  
+
                 //   // border: Border.all(
                 //   //   color: Colors.red,
                 //   // )
@@ -37,12 +39,16 @@ class FavoritesHadith extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     children: [
-                      Text(state.favHadithModel[index].hadithData,style: AppTextsStyles.quranTextStyle(),),
+                      Text(
+                        state.favHadithModel[index].hadithData,
+                        style: AppTextsStyles.quranTextStyle(),
+                      ),
                       Row(
                         children: [
-                          Text(state.favHadithModel[index].hadithNumber.toString()),
-                          const Spacer(),
                           Text(state.favHadithModel[index].hadithBook),
+                          const Spacer(),
+                          Text(
+                              "حديث رقم ${state.favHadithModel[index].hadithNumber}"),
                         ],
                       )
                     ],

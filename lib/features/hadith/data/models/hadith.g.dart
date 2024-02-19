@@ -20,7 +20,7 @@ class HadithAdapter extends TypeAdapter<Hadith> {
       number: fields[0] as int,
       arab: fields[1] as String,
       id: fields[2] as String,
-      isFavorite: fields[3] as bool,
+      isFavorite: fields[3] as bool?,
     );
   }
 
@@ -57,7 +57,7 @@ Hadith _$HadithFromJson(Map<String, dynamic> json) => Hadith(
       number: json['number'] as int,
       arab: json['arab'] as String,
       id: json['id'] as String,
-      isFavorite: json['isFavorite'] as bool? ?? false,
+      isFavorite: json['isFavorite'] as bool?,
     );
 
 Map<String, dynamic> _$HadithToJson(Hadith instance) => <String, dynamic>{
