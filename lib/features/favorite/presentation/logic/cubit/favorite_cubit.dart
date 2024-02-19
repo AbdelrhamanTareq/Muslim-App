@@ -21,14 +21,14 @@ class FavoriteCubit extends Cubit<FavoriteState> {
     }
   }
 
-  void getFavHadithDataByBookName({required String name}) {
-    emit(GetFavoriteHadithByBookNameLoadingState());
-    final data = favoritesLocalData.getFavHadithBNameLocalData(name);
-    if (data != []) {
-      print("data = $data");
-      emit(GetFavoriteHadithByBookNameLoadedState(favHadithModel: data));
-    } else {
-      emit(const GetFavoriteHadithByBookNameErrorState(error: "No Data"));
-    }
-  }
+  // void getFavHadithDataByBookName({required String name}) {
+  //   emit(GetFavoriteHadithByBookNameLoadingState());
+  //   final data = favoritesLocalData.getFavHadithBNameLocalData(name);
+  //   if (data != []) {
+  //     print("data = $data");
+  //     emit(GetFavoriteHadithByBookNameLoadedState(favHadithModel: data));
+  //   } else {
+  //     emit(const GetFavoriteHadithByBookNameErrorState(error: "No Data"));
+  //   }
+  // }
 }

@@ -19,7 +19,6 @@ import 'package:muslim_app/features/sebha/presentation/logic/cubit/sebha_cubit.d
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../features/app_drawer/presentation/logic/cubit/app_drawer_cubit.dart';
-import '../features/favorite/presentation/logic/cubit/favorite_setting_cubit.dart';
 import '../features/prayer_time/data/network/dio_factory.dart';
 import '../features/quran/presentation/logic/cubit/quran_cubit/quran_cubit.dart';
 import '../features/quran/presentation/logic/cubit/quran_settings_cubit/quran_settings_cubit.dart';
@@ -105,10 +104,7 @@ Future<void> initGetIt() async {
     () => FavoriteCubit(instance()),
   );
 
-  instance.registerFactory<FavoriteSettingsCubit>(
-    () => FavoriteSettingsCubit(instance()),
-  );
-
+ 
   //final Box box = await Hive.openBox("data");
 
   // LOCAL DATA

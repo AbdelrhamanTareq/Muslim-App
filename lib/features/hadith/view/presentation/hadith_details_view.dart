@@ -4,7 +4,6 @@ import 'package:muslim_app/core/constant/app_constatnt.dart';
 import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/widgets/bookmark_widget.dart';
 import 'package:muslim_app/core/widgets/remove_bookmark_elevated_icon.dart';
-import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_setting_cubit.dart';
 import 'package:muslim_app/features/hadith/view/logic/cubit/hadith_cubit.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
@@ -69,16 +68,11 @@ class _HadithDetailsViewState extends State<HadithDetailsView> {
                 error: state.error,
               );
             } else if (state.data.isNotEmpty) {
-              return BlocProvider<FavoriteSettingsCubit>(
-                create: (context) => instance<FavoriteSettingsCubit>()
-                //  ..getFavHadithDataByBookName(name: widget.bookName)
-                ,
-                child: HadithDetailsListBuilder(
-                  // state: state,
-                  bookPathInDB: widget.databasePath,
-                  itemScrollController: itemScrollController,
-                  name: widget.bookName,
-                ),
+              return HadithDetailsListBuilder(
+                // state: state,
+                bookPathInDB: widget.databasePath,
+                itemScrollController: itemScrollController,
+                name: widget.bookName,
               );
             } else {
               return const Center(
