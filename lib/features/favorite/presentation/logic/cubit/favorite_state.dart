@@ -11,6 +11,8 @@ class FavoriteInitial extends FavoriteState {}
 
 class GetFavoriteHadithLoadingState extends FavoriteState {}
 
+class GetFavoriteHadithEmptyState extends FavoriteState {}
+
 class GetFavoriteHadithLoadedState extends FavoriteState {
   final List<FavHadithModel> favHadithModel;
 
@@ -24,7 +26,6 @@ class GetFavoriteHadithErrorState extends FavoriteState {
 }
 
 class GetFavoriteHadithByBookNameLoadingState extends FavoriteState {}
-
 
 class GetFavoriteHadithByBookNameLoadedState extends FavoriteState {
   final List<FavHadithModel> favHadithModel;

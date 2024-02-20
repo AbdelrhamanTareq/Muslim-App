@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:muslim_app/core/errors/error_widget.dart';
 import 'package:muslim_app/core/themes/texts_styles.dart';
 
 import 'package:muslim_app/features/favorite/presentation/logic/cubit/favorite_cubit.dart';
@@ -20,7 +21,16 @@ class FavoritesHadith extends StatelessWidget {
       body:
           BlocBuilder<FavoriteCubit, FavoriteState>(builder: (context, state) {
         if (state is GetFavoriteHadithErrorState) {
-          return Center(child: Text(state.error));
+          return AppErrorWidget(
+            error: state.error,
+            retryFunciton: () {
+              //TODO
+            },
+          );
+        } else if (state is GetFavoriteHadithEmptyState) {
+          return const Center(
+            child: Text(AppStrings.noFavHadithsYet),
+          );
         } else if (state is GetFavoriteHadithLoadedState) {
           return ListView.builder(
             itemBuilder: (context, index) {

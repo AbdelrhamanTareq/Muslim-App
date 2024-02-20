@@ -100,6 +100,7 @@ abstract class AppStrings {
   static const String favorite = "المفضلة";
   static const String favoriteHadith = "الاحاديث المفضلة";
   static const String favoriteZaker = "الاذكار المفضلة";
+  static const String noFavHadithsYet = "لا يوجد احاديث مفضلة حتي الان, قم بأضافة الاحاديث";
 }
 
 class ErrorStrings {
