@@ -38,11 +38,11 @@ class HadithRepoImpl implements HadithRepo {
   @override
   Future<Either<Faliure, bool>> addHadithsBooksToDatabase() async {
     try {
-      // if (instance<AppLocalData>()
-      //         .getIsFirstTimeLoadingSettingHadithDataToDatabase() !=
-      //     false) {
-      //   return const Right(true);
-      // } else
+      if (instance<AppLocalData>()
+              .getIsFirstTimeLoadingSettingHadithDataToDatabase() !=
+          false) {
+        return const Right(true);
+      } else
       {
         await _addHadithBooktoDatabase(
             bookName: bukhariBookKey, path: AppAssets.bukhariPath);
